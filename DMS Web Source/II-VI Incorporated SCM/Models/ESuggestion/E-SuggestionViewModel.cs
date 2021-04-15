@@ -63,6 +63,8 @@ namespace II_VI_Incorporated_SCM.Models.ESuggestion
         public string Comment { get; set; }
         public string Status { get; set; }
         public string ProLeaderValue { get; set; }
+        public bool Subject_Matter_Need { get; set; }
+        public string Subject_Matter_Name { get; set; }
     }
     public class BoardirectorViewmodel
     {
@@ -92,6 +94,8 @@ namespace II_VI_Incorporated_SCM.Models.ESuggestion
         public string Sug_ID { get; set; }
         public List<string> Member { get; set; }
         public string Status { get; set; }
+        public string Comment { get; set; }
+        public List<tbl_Inv_File_Attach> OldEvidence { get; set; }
     }
     public class CostSavingmodel
     {

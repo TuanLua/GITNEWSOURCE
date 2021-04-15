@@ -157,7 +157,6 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual DbSet<tbl_Inv_Score_Percent> tbl_Inv_Score_Percent { get; set; }
         public virtual DbSet<tbl_Inv_Step1_SubmitSuggestion> tbl_Inv_Step1_SubmitSuggestion { get; set; }
         public virtual DbSet<tbl_Inv_Step2_CIAproval> tbl_Inv_Step2_CIAproval { get; set; }
-        public virtual DbSet<tbl_Inv_Step3_SponsorApr> tbl_Inv_Step3_SponsorApr { get; set; }
         public virtual DbSet<tbl_Inv_Step5_ProLeaderApr> tbl_Inv_Step5_ProLeaderApr { get; set; }
         public virtual DbSet<tbl_PT_CheckSheet> tbl_PT_CheckSheet { get; set; }
         public virtual DbSet<tbl_PT_Infor> tbl_PT_Infor { get; set; }
@@ -244,7 +243,6 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual DbSet<SKIP_LOT_LEVEL_bk> SKIP_LOT_LEVEL_bk { get; set; }
         public virtual DbSet<STDCOST> STDCOSTs { get; set; }
         public virtual DbSet<STDCOST_Temp> STDCOST_Temp { get; set; }
-        public virtual DbSet<tbl_Inv_File_Attach> tbl_Inv_File_Attach { get; set; }
         public virtual DbSet<tbl_Inv_ScoreCost_4_Mem> tbl_Inv_ScoreCost_4_Mem { get; set; }
         public virtual DbSet<tbl_PT_Dept_PIC> tbl_PT_Dept_PIC { get; set; }
         public virtual DbSet<tbl_PT_Dept_PIC_BuyPart> tbl_PT_Dept_PIC_BuyPart { get; set; }
@@ -279,6 +277,9 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual DbSet<tbl_SOR_Review_Pic> tbl_SOR_Review_Pic { get; set; }
         public virtual DbSet<tbl_SOR_Cur_Review_Detail> tbl_SOR_Cur_Review_Detail { get; set; }
         public virtual DbSet<tbl_SOR_His_Review_Detail> tbl_SOR_His_Review_Detail { get; set; }
+        public virtual DbSet<tbl_Inv_Step3_SponsorApr> tbl_Inv_Step3_SponsorApr { get; set; }
+        public virtual DbSet<tbl_Inv_Subject_Matter_List> tbl_Inv_Subject_Matter_List { get; set; }
+        public virtual DbSet<tbl_Inv_File_Attach> tbl_Inv_File_Attach { get; set; }
     
         [DbFunction("Entities", "f_NCR_DET_1")]
         public virtual IQueryable<f_NCR_DET_1_Result> f_NCR_DET_1()
@@ -8012,11 +8013,6 @@ namespace II_VI_Incorporated_SCM.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SQEDB_SupplierLog_Remind_ReEvaluation");
         }
     
-        public virtual ObjectResult<sp_Inv_SugList_Result> sp_Inv_SugList()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Inv_SugList_Result>("sp_Inv_SugList");
-        }
-    
         public virtual ObjectResult<sp_SOR_GetSoOpen_Result> sp_SOR_GetSoOpen()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SOR_GetSoOpen_Result>("sp_SOR_GetSoOpen");
@@ -8045,6 +8041,11 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual int sp_SOR_RiskShip_Report()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SOR_RiskShip_Report");
+        }
+    
+        public virtual ObjectResult<sp_Inv_SugList_Result> sp_Inv_SugList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Inv_SugList_Result>("sp_Inv_SugList");
         }
     }
 }

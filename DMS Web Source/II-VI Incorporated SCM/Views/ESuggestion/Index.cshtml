@@ -154,6 +154,7 @@
     columns.Bound(p => p.Cur_prob).Title("Cur_prob").Hidden(true);
     columns.Bound(p => p.Idea_impr).Title("Idea_impr").Hidden(true);
     columns.Bound(p => p.Req_Dept).Title("Req_Dept").Hidden(true);
+    columns.Bound(p => p.Subject_Matter_Need).Title("Subject_Matter_Need").Hidden(true);
     })
     .ToolBar(tools => tools.Excel())
     .Excel(excel => excel
@@ -190,22 +191,80 @@
                 {
                     @class = "form-inline",
                     @role = "form",
+                    @enctype = "multipart/form-data",
                     @id = "form-leader"
                 }))
                 {
-                    <table class="table table-striped table-bordered table-hover">
-                        <tbody>
+                <table class="table table-striped table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <td align="center">
+                                Project Member:
+                            </td>
+                            <td>
+                                @Html.DropDownList("Member", (IEnumerable<SelectListItem>)ViewBag.ListUser, new { @class = "form-control", id = "listuser", required = "required", style = "width:100%", multiple = "multiple" })
+                                <input type="hidden" id="SuggestionID" name="Sug_ID" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <label>Subject matter comments</label>
+                            </td>
+                            <td>
+                                <textarea class="form-control" cols="20" id="Comment" name="Comment" rows="2" style="width:100%"></textarea>
+                                @*@Html.TextAreaFor(m => m., new
+                     {
+                        @class = "form-control",
+                        @style = "min-width: 100%;resize:vertical",
+                        @rows = "3",
+                       // @required = "required",
+                        @id="Comment"
+                    })*@
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td align="center">Attach File</td>
+                            <td style="width: 500px">
+                                <fieldset class="ms-showdata-iqc">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbEvidenceIQC">
+                                        <tbody id="tbodyEvidenceIQC"></tbody>
+                                    </table>
+                                    <button type="button" class="btn btn-sm btn-success pull-right" id="btnAddEvidentIQC">Add File</button>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                    @*<table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbEvidenceInProcess">
+                        <thead>
                             <tr>
-                                <td align="center">
-                                    Project Member:
-                                </td>
-                                <td>
-                                    @Html.DropDownList("Member", (IEnumerable<SelectListItem>)ViewBag.ListUser, new { @class = "form-control", id = "listuser", required = "required", style = "width:100%", multiple = "multiple" })
-                                    <input type="hidden" id="SuggestionID" name="Sug_ID" />
-                                </td>
+                                <th>File Name</th>
+                                <th></th>
                             </tr>
+                        </thead>
+                        <tbody id="tbodyEvidenceInProcess">
+                            @if (Model.FirstOrDefault().OldEvidence.Count > 0)
+                            {
+                                int i = 0;
+                                foreach (var evi in Model.FirstOrDefault().OldEvidence)
+                                {
+                                    <tr id="@evi.ID">
+                                        <td width="80%;" style="text-align: left !important;">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="@Url.Action("DownloadFile", "ESuggestion", new { fileId = evi.ID })"><i class="fa fa-file-pdf-o"> &nbsp; @evi.Attached_File.Split('/')[1] </i></a>
+                                            <input type="hidden" name="EVIID" value="@evi.ID" class="old-evi" />
+                                        </td>
+                                        @if (ViewBag.Status == "Released")
+                                        {
+                                            <td><button onclick="deleteEvedenceRowInProcess(this)" type="button" class="btn btn-danger pull-right">Delete</button></td>
+                                        }
+                                    </tr>
+                                    i++;
+                                }
+                            }
                         </tbody>
-                    </table>
+                    </table>*@
                     <div class="modal-footer">
                         <button class="btn btn-success btn-sm" id="save">Save</button>
                         <button class="btn btn-sm btn-info" id="accept">Accept</button>
@@ -221,6 +280,7 @@
 
     $(document).ready(function () {
         debugger;
+        $('#fileattack').select2();
 	//Check Browser before run this module
 	 let userAgentString = navigator.userAgent;
         let chromeAgent = userAgentString.indexOf("Chrome") > -1;
@@ -302,11 +362,110 @@
         //if (role = "CIManager") {
         //    $("#gridNCR").data("kendoGrid").dataSource.filter({ field: "Cur_Step", operator: "contains", value: "1" });
         //}
+    });
+
+
+    $('#buttonfile').on('click', function () {
+        debugger;
+        //$($('#td-save-files input').last()).trigger('click');
+        $('#file-save-' + $('#td-save-files input').length).trigger('click');
+    })
+    function Addmutil(e) {
+        debugger;
+        var test_value = $(e).val();
+        let name = test_value.substring(test_value.lastIndexOf("\\") + 1, test_value.length);
+        if (name != '') {
+            $('#fileattack').append($('<option>', {
+                value: e.id,
+                text: name,
+                selected: true,
+            })
+            );
+
+            let template = '<input type="file" onchange="Addmutil(this)" id="file-save-template"  name="file_save_ideal_1" />';
+            $('#td-save-files').append(template);
+            $('#file-save-template').attr('id', 'file-save-' + $('#td-save-files input').length);
+            $('#file-save-template').attr('name', 'file_save_ideal_' + $('#td-save-files input').length);
+        }
+        $('#fileattack').select2();
+
+
+    }
+
+    $('#fileattack').on('select2:unselect', function (e) {
+        debugger
+        var data = e.params.data;
+        console.log(data);
+        $('#' + data.id).remove();
+        $('#td-save-files input').each(function (i, e) {
+            let ind = i + 1;
+            $(e).attr('id', 'file-save-' + ind);
         });
+    });
+    $('#btnAddEvidentIQC').click(function () {
+        //ModelEvidence
+        debugger;
+        let listRow = $('#tbEvidenceIQC tbody tr');
+        let rowlength = listRow.length;
+
+        for (let i = 0; i < rowlength; i++) {
+            var ListColumns = listRow[i].children;
+            ListColumns[0].children[0].name = "ModelEvidence[" + i + "].EvidenceFile";
+            ListColumns[1].children[0].name = "ModelEvidence[" + i + "].IsPrint";
+        }
+
+        //let template = '<tr> <td width="20%"><input /*onchange="ViewFileEvidence(this)"*/ accept="image/png,image/jpeg,image/bmp,application/pdf,application/PDF" type="file" class="form-control" name="ModelEvidence[' + rowlength + '].EvidenceFile"></td> <td><button onclick="deleteEvedenceRowIQC(this)" type="button" class="btn btn-sm btn-danger pull-right">Delete</button></td> </tr>';
+        let template = '<tr> <td width="20%"><input /*onchange="ViewFileEvidence(this)"*/ type="file" class="form-control" name="ModelEvidence[' + rowlength + '].EvidenceFile"></td> <td><button onclick="deleteEvedenceRowIQC(this)" type="button" class="btn btn-sm btn-danger pull-right">Delete</button></td> </tr>';
+        $('#tbodyEvidenceIQC').append(template);
+    });
+
+    function deleteEvedenceRowIQC(e) {
+        $(e).parent().parent().remove();
+        let listRow = $('#tbEvidenceIQC tbody tr');
+        let rowlength = listRow.length;
+        for (let i = 0; i < rowlength; i++) {
+            var ListColumns = listRow[i].children;
+            ListColumns[0].children[0].name = "ModelEvidence[" + i + "].EvidenceFile";
+            ListColumns[1].children[0].name = "ModelEvidence[" + i + "].IsPrint";
+        }
+    }
+
+    var testevi = null;
+    //var arrExtension = ['png', 'pdf', 'jpeg', 'jpg', 'bmp'];
+      function ViewFileEvidence(evi_file) {
+            var test_value = $(evi_file).val();
+            var extension = test_value.split('.').pop().toLowerCase();
+            debugger
+            if ($.inArray(extension, arrExtension) === -1 & test_value !== '') {
+                bootbox.alert("Invalid file !");
+                evi_file.value = '';
+                return;
+            }
+
+
+            var formData = new FormData();
+
+            formData.append('ReviewFile', evi_file.files[0]);
+            console.log(formData);
+            $.ajax({
+                url: '@Url.Action("SaveFileReview", "NCRApproval")',
+                type: "POST",
+                dataType: 'json',
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: formData,
+                success: function (result) {
+                    window.open(result, '_blank');
+                },
+                error: function (err) {
+                    window.open(err.responseText, '_blank');
+                }
+            });
+    }
 
     var Sug_ID = "";
     var UserID;
-
+    let Subject_Need = false;
 
 
     $("#gridNCR").on("click", ".RefNUMBER", function (e) {
@@ -321,6 +480,7 @@
         let idProLeader = model.Pro_Leader;
         let idDirector = model.Director;
         let Step_status = model.Step_Status;
+        Subject_Need = model.Subject_Matter_Need;
             $('#SuggestionID').val(ID);
             $('#ESNum').val(ID);
             $('#Title').val(TT);
@@ -340,7 +500,7 @@
                 window.location.href ='@Url.Action("Management", "ESuggestion")' + '?SuggestionID=' + ID;
             }
         } else
-        if (step == "4" && idProLeader==id) {
+            if ((step == "4" && idProLeader == id) || (Step_status.indexOf("Step 5") > -1 && Step_status.indexOf("Approve") <= -1)) {
               //  step5
             Sug_ID = ID;
             $('#listuser option:selected').remove();
@@ -361,7 +521,12 @@
             }).always(function () {
                         $.unblockUI();
             });
-                $("#popup").modal('show');
+            $("#popup").modal('show');
+            
+            if (Subject_Need != true) {
+                $("#Comment").attr('disabled', 'disabled');
+                $("#btnAddEvidentIQC").attr('disabled', 'disabled');
+            }
         }
 	//after assign task, no need to do any things, so remove condition "(Step_status.indexOf("Task") > 0 && role == "CIManager")"
         //else if ((step == "1" && role == "CIManager") || (Step_status.indexOf("Task") > 0 && role == "CIManager")) {//role == "CIApproval"
@@ -399,15 +564,30 @@
                 bootbox.alert('Please select member!');
             }
             else {
+                var input = $("<input>", { type: "hidden", name: "Status", value: "Waiting" });
+                $formleader.append(input);
                 $formleader.submit();
             }
         })
-        $('#accept').on('click', function () {
+    $('#accept').on('click', function () {
+        event.preventDefault();
+        debugger;
             let member = $('#listuser').val();
+            let Comment = $('#Comment').val();
+            let listRow = $('#tbEvidenceIQC tbody tr');
+        let rowlength = listRow.length;
+        let Subject_Need_Chk = true;
+            if (Subject_Need == true) {
+                if (Comment == '' || rowlength <= 0) {
+                    Subject_Need_Chk = false;
+                    bootbox.alert('Please input comment and add attach file!');
+                    //return;
+                }
+            }
             if (member == null) {
                 bootbox.alert('Please select member!');
             }
-            else {
+            else if (Subject_Need_Chk) {
                 var input = $("<input>", { type: "hidden", name: "Status", value: "Approve" });
                 $formleader.append(input);
                 $formleader.submit();

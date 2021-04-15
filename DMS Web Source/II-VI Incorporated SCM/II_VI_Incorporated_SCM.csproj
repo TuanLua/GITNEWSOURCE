@@ -1301,6 +1301,9 @@
     <Compile Include="Models\tbl_Inv_Step5_ProLeaderApr.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_Inv_Subject_Matter_List.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_PT_CheckSheet.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>

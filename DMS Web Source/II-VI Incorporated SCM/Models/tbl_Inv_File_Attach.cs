@@ -14,8 +14,10 @@ namespace II_VI_Incorporated_SCM.Models
     
     public partial class tbl_Inv_File_Attach
     {
+        public int Att_ID { get; set; }
         public string Sug_ID { get; set; }
+        public byte Step { get; set; }
         public string Att_Path { get; set; }
-        public byte Att_Type { get; set; }
+        public Nullable<byte> Att_Type { get; set; }
     }
 }

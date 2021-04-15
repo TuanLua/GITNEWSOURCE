@@ -248,6 +248,35 @@
                 </td>
 
             </tr>
+            <tr>
+                <td>
+                    <label> Subject Matter Need:</label>
+                </td>
+                <td>
+                    @Html.CheckBoxFor(m => m.Subject_Matter_Need, new
+          {
+              @class = "form-control",
+              @rows = "3",
+              @id = "Subject_Matter_Need",
+              @checked= "checked",
+              @style = "float:left ;width:20px;"
+               })
+                    @*<input style="float:left ;width:20px;" type="checkbox" id="Subject_Matter_Need" name="Subject_Matter_Need" class="form-control" />*@
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label>Subject Matter Name:</label>
+                </td>
+                <td>
+                    @Html.DropDownList("Subject_Matter_Name", (IEnumerable<SelectListItem>)ViewBag.Subject_Matter_List, "Select", new { @class = "form-control", id = "Subject_Matter_List", style = "width:100%" })
+                    @*@Html.ValidationMessageFor(model => model.ProLeader, null, new { @class = "help-block text-danger", @style = "margin: 1px" })*@
+
+                </td>
+
+            </tr>
         </tbody>
     </table>
     <div align="center">
@@ -306,7 +335,17 @@
                 });
             });
             $('#listuser').select2();
-              $('#ESNum').val('@ViewBag.ID');
+            $('#Subject_Matter_List').select2();
+            $('#ESNum').val('@ViewBag.ID');
+
+            if ('@ViewBag.Subject_Matter_Need' == "True") {
+                $('#Subject_Matter_List').removeAttr('disabled', 'disabled');
+                $("#Subject_Matter_Need").prop("checked", true);
+            }
+            else {
+                $('#Subject_Matter_List').attr('disabled', 'disabled');
+                $('#Subject_Matter_List').val(null);
+            }
         });
         var $form = $('#form-sponsor');
     $('#Save').on('click', function (e) {
@@ -385,7 +424,16 @@
             }
         })
 
-
+    $('#Subject_Matter_Need').on('click', function () {
+        var Subject_Matter_Need = $('#Subject_Matter_Need').is(":checked");
+        if (!Subject_Matter_Need) {
+            $('#Subject_Matter_List').attr('disabled', 'disabled');
+            $('#Subject_Matter_List').val('');
+        }
+        else {
+            $('#Subject_Matter_List').removeAttr('disabled', 'disabled');
+        }
+    })
     $('#Reject').on('click', function (e) {
     e.preventDefault();
         if (!confirm("Do you really want to REJECT?")) return;

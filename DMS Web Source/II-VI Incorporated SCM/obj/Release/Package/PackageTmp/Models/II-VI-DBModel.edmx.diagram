@@ -135,7 +135,6 @@
         <EntityTypeShape EntityType="IQCTestModel.tbl_Inv_Score_Percent" Width="1.5" PointX="34.75" PointY="3.75" />
         <EntityTypeShape EntityType="IQCTestModel.tbl_Inv_Step1_SubmitSuggestion" Width="1.5" PointX="34.75" PointY="6.75" />
         <EntityTypeShape EntityType="IQCTestModel.tbl_Inv_Step2_CIAproval" Width="1.5" PointX="34.75" PointY="11.75" />
-        <EntityTypeShape EntityType="IQCTestModel.tbl_Inv_Step3_SponsorApr" Width="1.5" PointX="34.75" PointY="14.75" />
         <EntityTypeShape EntityType="IQCTestModel.tbl_Inv_Step5_ProLeaderApr" Width="1.5" PointX="34.75" PointY="20.75" />
         <EntityTypeShape EntityType="IQCTestModel.tbl_PT_CheckSheet" Width="1.5" PointX="22.75" PointY="34.75" />
         <EntityTypeShape EntityType="IQCTestModel.tbl_PT_Infor" Width="1.5" PointX="34.75" PointY="23.75" />
@@ -222,7 +221,6 @@
         <EntityTypeShape EntityType="IQCTestModel.SKIP_LOT_LEVEL_bk" Width="1.5" PointX="44.75" PointY="36.75" />
         <EntityTypeShape EntityType="IQCTestModel.STDCOST" Width="1.5" PointX="36.75" PointY="44.75" />
         <EntityTypeShape EntityType="IQCTestModel.STDCOST_Temp" Width="1.5" PointX="38.75" PointY="44.75" />
-        <EntityTypeShape EntityType="IQCTestModel.tbl_Inv_File_Attach" Width="1.5" PointX="44.75" PointY="39.75" />
         <EntityTypeShape EntityType="IQCTestModel.tbl_Inv_ScoreCost_4_Mem" Width="1.5" PointX="44.75" PointY="42.75" />
         <EntityTypeShape EntityType="IQCTestModel.tbl_PT_Dept_PIC" Width="1.5" PointX="18.75" PointY="45.75" />
         <EntityTypeShape EntityType="IQCTestModel.tbl_PT_Dept_PIC_BuyPart" Width="1.5" PointX="45.75" PointY="24.75" />
@@ -264,6 +262,9 @@
         <EntityTypeShape EntityType="IQCTestModel.tbl_SOR_Review_Pic" Width="1.5" PointX="39.375" PointY="47.75" />
         <EntityTypeShape EntityType="IQCTestModel.tbl_SOR_Cur_Review_Detail" Width="1.5" PointX="17.375" PointY="36.75" />
         <EntityTypeShape EntityType="IQCTestModel.tbl_SOR_His_Review_Detail" Width="1.5" PointX="23.375" PointY="38.75" />
+        <EntityTypeShape EntityType="IQCTestModel.tbl_Inv_Step3_SponsorApr" Width="1.5" PointX="41.375" PointY="47.75" />
+        <EntityTypeShape EntityType="IQCTestModel.tbl_Inv_Subject_Matter_List" Width="1.5" PointX="35.375" PointY="17.75" />
+        <EntityTypeShape EntityType="IQCTestModel.tbl_Inv_File_Attach" Width="1.5" PointX="0.75" PointY="48.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

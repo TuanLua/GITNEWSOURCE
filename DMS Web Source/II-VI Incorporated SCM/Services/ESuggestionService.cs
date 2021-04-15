@@ -13,6 +13,7 @@ namespace II_VI_Incorporated_SCM.Services
     {
         List<SelectListItem> getuserboard(string id);
         List<SelectListItem> GetDropdownlistUser();
+        List<SelectListItem> GetDropdownSubjectMatterList();
         List<tbl_Inv_Step1_SubmitSuggestion> GetListSearch(string title, string ideal);
         List<sp_Inv_SugList_Result> GetListIndex();
         List<SelectListItem> GetDropdownlistUserSponsor();
@@ -34,6 +35,7 @@ namespace II_VI_Incorporated_SCM.Services
         BoardirectorViewmodel getBoardirector(string IDSuggestion);
         ProcessingViewModel getprocess(string IDSuggestion);
         List<sp_Inv_GetStepInfor_Result> GetListManagement(string step, string id);
+        List<tbl_Inv_File_Attach> getFileAttach(string Sug_ID, int step);
         CostSavingmodel getCostSaving(string Sug_ID);
         //List<sp_Inv_Report_Suggestion_Result> ReadEsuggestionData(DateTime dtFrom, DateTime dtTo, string DeptList, string Imp_Method);
         string gettitlebyid(string SuggestionID);
@@ -60,6 +62,15 @@ namespace II_VI_Incorporated_SCM.Services
                 Text = x.FullName.Trim(),
             }).ToList();
             return listvendor;
+        }
+        public List<SelectListItem> GetDropdownSubjectMatterList()
+        {
+            List<SelectListItem> list = _db.tbl_Inv_Subject_Matter_List.Select(x => new SelectListItem
+            {
+                Value = x.Subject_Matter_ID,
+                Text = x.Subject_Matter_Name.Trim(),
+            }).Distinct().ToList();
+            return list;
         }
         public List<SelectListItem> GetDropdownlistMember()
         {
@@ -173,6 +184,11 @@ namespace II_VI_Incorporated_SCM.Services
             var result = _db.sp_Inv_GetStepInfor(step, id).ToList();
 
             return result;
+        }
+        public List<tbl_Inv_File_Attach> getFileAttach(string Sug_ID, int step)
+        {
+            
+            return _db.tbl_Inv_File_Attach.Where(m => m.Sug_ID==Sug_ID && m.Step==step).ToList();
         }
         public List<sp_Inv_SugList_Result> GetListIndex()
         {
@@ -564,6 +580,15 @@ namespace II_VI_Incorporated_SCM.Services
                     _db.tbl_Inv_Step5_ProLeaderApr.RemoveRange(lstremove);
                     _db.SaveChanges();
                 }
+
+                var listAtt = _db.tbl_Inv_File_Attach.Where(x => x.Sug_ID == model.Sug_ID && x.Step == 5).ToList();
+                if (listAtt.Count > 0)
+                {
+                    _db.tbl_Inv_File_Attach.RemoveRange(listAtt);
+                    _db.SaveChanges();
+                }
+                _db.tbl_Inv_File_Attach.AddRange(model.OldEvidence);
+
                 List<tbl_Inv_Step5_ProLeaderApr> list = new List<tbl_Inv_Step5_ProLeaderApr>();
                 tbl_Inv_Step5_ProLeaderApr data = new tbl_Inv_Step5_ProLeaderApr();
                 foreach (var item in model.Member)
@@ -575,6 +600,7 @@ namespace II_VI_Incorporated_SCM.Services
                 }
                 _db.tbl_Inv_Step5_ProLeaderApr.AddRange(list);
 
+                
 
                 if (!string.IsNullOrEmpty(model.Status))
                 {
@@ -584,6 +610,7 @@ namespace II_VI_Incorporated_SCM.Services
                     process.Step_ID = "5";
                     process.Status = model.Status;
                     process.Step_Idx = "5";
+                    process.Comment = model.Comment;
                     _db.tbl_Inv_Apr_Process.Add(process);
                     updatestatusbystept(model.Sug_ID, "5");
 
@@ -761,6 +788,8 @@ namespace II_VI_Incorporated_SCM.Services
                 checkedit.Eco_ben = model.Eco_ben;
                 checkedit.Eco_com = model.Eco_com;
                 checkedit.Comment = model.Comment;
+                checkedit.Subject_Matter_Need = model.Subject_Matter_Need;
+                checkedit.Subject_Matter_Name = model.Subject_Matter_Name;
                 _db.SaveChanges();
                 // add action in process
                 if (!string.IsNullOrEmpty(model.Status))
@@ -820,8 +849,10 @@ namespace II_VI_Incorporated_SCM.Services
                     Fin_com = model.Fin_com,
                     Eco_ben = model.Eco_ben,
                     Eco_com = model.Eco_com,
-                    Comment = model.Comment
-                };
+                    Comment = model.Comment,
+                    Subject_Matter_Need = model.Subject_Matter_Need,
+                    Subject_Matter_Name = model.Subject_Matter_Name
+            };
                 _db.tbl_Inv_Step3_SponsorApr.Add(data);
                 _db.SaveChanges();
                 // add action in process
@@ -919,6 +950,8 @@ namespace II_VI_Incorporated_SCM.Services
                               //Comment = "",
                               Comment = model.Comment,
                               Sug_ID = model.Sug_ID,
+                              Subject_Matter_Need=model.Subject_Matter_Need == true ? true : false,
+                              Subject_Matter_Name = model.Subject_Matter_Name
                           })).FirstOrDefault();
 
             return model1;

@@ -20,5 +20,7 @@ namespace II_VI_Incorporated_SCM.Models
         public int Item_Idx { get; set; }
         public string Attached_File { get; set; }
         public string LINE { get; set; }
+        public string Attached_By { get; set; }
+        public Nullable<System.DateTime> Attached_At { get; set; }
     }
 }

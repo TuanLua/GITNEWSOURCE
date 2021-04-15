@@ -2054,7 +2054,6 @@
     <EntitySet Name="tbl_Inv_Score_Percent" EntityType="IQCTestModel.tbl_Inv_Score_Percent" />
     <EntitySet Name="tbl_Inv_Step1_SubmitSuggestion" EntityType="IQCTestModel.tbl_Inv_Step1_SubmitSuggestion" />
     <EntitySet Name="tbl_Inv_Step2_CIAproval" EntityType="IQCTestModel.tbl_Inv_Step2_CIAproval" />
-    <EntitySet Name="tbl_Inv_Step3_SponsorApr" EntityType="IQCTestModel.tbl_Inv_Step3_SponsorApr" />
     <EntitySet Name="tbl_Inv_Step5_ProLeaderApr" EntityType="IQCTestModel.tbl_Inv_Step5_ProLeaderApr" />
     <EntitySet Name="tbl_PT_CheckSheet" EntityType="IQCTestModel.tbl_PT_CheckSheet" />
     <EntitySet Name="tbl_PT_Infor" EntityType="IQCTestModel.tbl_PT_Infor" />
@@ -2141,7 +2140,6 @@
     <EntitySet Name="SKIP_LOT_LEVEL_bk" EntityType="IQCTestModel.SKIP_LOT_LEVEL_bk" />
     <EntitySet Name="STDCOSTs" EntityType="IQCTestModel.STDCOST" />
     <EntitySet Name="STDCOST_Temp" EntityType="IQCTestModel.STDCOST_Temp" />
-    <EntitySet Name="tbl_Inv_File_Attach" EntityType="IQCTestModel.tbl_Inv_File_Attach" />
     <EntitySet Name="tbl_Inv_ScoreCost_4_Mem" EntityType="IQCTestModel.tbl_Inv_ScoreCost_4_Mem" />
     <EntitySet Name="tbl_PT_Dept_PIC" EntityType="IQCTestModel.tbl_PT_Dept_PIC" />
     <EntitySet Name="tbl_PT_Dept_PIC_BuyPart" EntityType="IQCTestModel.tbl_PT_Dept_PIC_BuyPart" />
@@ -2457,7 +2455,6 @@
     <FunctionImport Name="sp_SQE_SupplierDevelopment_VisitAuditSum" ReturnType="Collection(IQCTestModel.sp_SQE_SupplierDevelopment_VisitAuditSum_Result)" />
     <FunctionImport Name="sp_SQE_Yearlist" ReturnType="Collection(IQCTestModel.sp_SQE_Yearlist_Result)" />
     <FunctionImport Name="sp_SQEDB_SupplierLog_Remind_ReEvaluation" />
-    <FunctionImport Name="sp_Inv_SugList" ReturnType="Collection(IQCTestModel.sp_Inv_SugList_Result)" />
     <EntitySet Name="tbl_Inv_Step4_DirApr" EntityType="IQCTestModel.tbl_Inv_Step4_DirApr" />
     <EntitySet Name="tbl_SOR_Attached_ForItemReview" EntityType="IQCTestModel.tbl_SOR_Attached_ForItemReview" />
     <EntitySet Name="tbl_SOR_Cur_Review_List" EntityType="IQCTestModel.tbl_SOR_Cur_Review_List" />
@@ -2473,6 +2470,10 @@
     <FunctionImport Name="sp_SOR_RiskShip_Report" />
     <EntitySet Name="tbl_SOR_Cur_Review_Detail" EntityType="IQCTestModel.tbl_SOR_Cur_Review_Detail" />
     <EntitySet Name="tbl_SOR_His_Review_Detail" EntityType="IQCTestModel.tbl_SOR_His_Review_Detail" />
+    <EntitySet Name="tbl_Inv_Step3_SponsorApr" EntityType="IQCTestModel.tbl_Inv_Step3_SponsorApr" />
+    <EntitySet Name="tbl_Inv_Subject_Matter_List" EntityType="IQCTestModel.tbl_Inv_Subject_Matter_List" />
+    <FunctionImport Name="sp_Inv_SugList" ReturnType="Collection(IQCTestModel.sp_Inv_SugList_Result)" />
+    <EntitySet Name="tbl_Inv_File_Attach" EntityType="IQCTestModel.tbl_Inv_File_Attach" />
   </EntityContainer>
   <ComplexType Name="pGet_MEASUREMENT_STD_BY_PART_Result">
     <Property Type="String" Name="MEASURE_PARA" Nullable="false" MaxLength="50" />
@@ -6393,28 +6394,6 @@
     <Property Name="Coacher" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="tbl_Inv_Step3_SponsorApr">
-    <Key>
-      <PropertyRef Name="Sug_ID" />
-    </Key>
-    <Property Name="Sug_ID" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
-    <Property Name="Pro_Leader" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Imp_Start" Type="DateTime" Precision="0" />
-    <Property Name="Imp_End" Type="DateTime" Precision="0" />
-    <Property Name="Tech_abi" Type="Boolean" />
-    <Property Name="Tech_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Eco_ben" Type="Boolean" />
-    <Property Name="Eco_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Legal_Rel" Type="Boolean" />
-    <Property Name="Legal_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Res_avai" Type="Boolean" />
-    <Property Name="Res_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Safe_Rel" Type="Boolean" />
-    <Property Name="Safe_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Fin_abi" Type="Boolean" />
-    <Property Name="Fin_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="tbl_Inv_Step5_ProLeaderApr">
     <Key>
       <PropertyRef Name="Sug_ID" />
@@ -7785,16 +7764,6 @@
     <Property Name="ANALYST" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="MAKE" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="tbl_Inv_File_Attach">
-    <Key>
-      <PropertyRef Name="Sug_ID" />
-      <PropertyRef Name="Att_Path" />
-      <PropertyRef Name="Att_Type" />
-    </Key>
-    <Property Name="Sug_ID" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
-    <Property Name="Att_Path" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Att_Type" Type="Byte" Nullable="false" />
-  </EntityType>
   <EntityType Name="tbl_Inv_ScoreCost_4_Mem">
     <Key>
       <PropertyRef Name="Sug_ID" />
@@ -8502,33 +8471,6 @@
     <Property Type="Int32" Name="Value" Nullable="true" />
     <Property Type="Int32" Name="Text" Nullable="true" />
   </ComplexType>
-  <ComplexType Name="sp_Inv_SugList_Result">
-    <Property Type="String" Name="Sug_ID" Nullable="false" MaxLength="14" />
-    <Property Type="String" Name="Sug_Type" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Sug_title" Nullable="true" />
-    <Property Type="String" Name="Cur_prob" Nullable="true" />
-    <Property Type="String" Name="Idea_impr" Nullable="true" />
-    <Property Type="String" Name="Cur_Step" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="Exp_Start_Date" Nullable="true" />
-    <Property Type="DateTime" Name="Exp_End_date" Nullable="true" />
-    <Property Type="DateTime" Name="Submit_date" Nullable="true" />
-    <Property Type="String" Name="Submitter" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Requestor" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="Rqtor_name" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Req_Dept" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="Req_Email" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Att_File_Current" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="Att_File_Idea" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="Step_Status" Nullable="true" MaxLength="74" />
-    <Property Type="String" Name="Next_Approver" Nullable="true" />
-    <Property Type="String" Name="Coacher" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Sponsor" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="CIManager" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Director" Nullable="true" />
-    <Property Type="String" Name="Pro_Leader" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Member" Nullable="true" />
-    <Property Type="DateTime" Name="Action_Date" Nullable="true" Precision="23" />
-  </ComplexType>
   <EntityType Name="tbl_Inv_Step4_DirApr">
     <Key>
       <PropertyRef Name="Sug_ID" />
@@ -8554,6 +8496,8 @@
     <Property Name="Item_Idx" Type="Int32" Nullable="false" />
     <Property Name="Attached_File" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Name="LINE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Attached_By" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Attached_At" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_SOR_Cur_Review_List">
     <Key>
@@ -8737,10 +8681,82 @@
     <Property Name="DOWNLOAD_DATE" Type="DateTime" Precision="0" />
     <Property Name="DEPT_REVIEW" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ITEM_REVIEW" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <Property Name="RESULT" Type="Boolean" />
+    <Property Name="RESULT" Type="String" Unicode="true" MaxLength="50" FixedLength="false" />
     <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="REVIEW_AT" Type="DateTime" Precision="3" />
     <Property Name="REVIEW_BY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_Inv_Step3_SponsorApr">
+    <Key>
+      <PropertyRef Name="Sug_ID" />
+    </Key>
+    <Property Name="Sug_ID" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="Pro_Leader" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Imp_Start" Type="DateTime" Precision="0" />
+    <Property Name="Imp_End" Type="DateTime" Precision="0" />
+    <Property Name="Tech_abi" Type="Boolean" />
+    <Property Name="Tech_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Eco_ben" Type="Boolean" />
+    <Property Name="Eco_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Legal_Rel" Type="Boolean" />
+    <Property Name="Legal_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Res_avai" Type="Boolean" />
+    <Property Name="Res_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Safe_Rel" Type="Boolean" />
+    <Property Name="Safe_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Fin_abi" Type="Boolean" />
+    <Property Name="Fin_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Subject_Matter_Need" Type="Boolean" />
+    <Property Name="Subject_Matter_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_Inv_Subject_Matter_List">
+    <Key>
+      <PropertyRef Name="Subject_Matter_ID" />
+    </Key>
+    <Property Name="Subject_Matter_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Subject_Matter_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Feild" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Area" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="sp_Inv_SugList_Result">
+    <Property Type="String" Name="Sug_ID" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="Sug_Type" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sug_title" Nullable="true" />
+    <Property Type="String" Name="Cur_prob" Nullable="true" />
+    <Property Type="String" Name="Idea_impr" Nullable="true" />
+    <Property Type="String" Name="Cur_Step" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Exp_Start_Date" Nullable="true" />
+    <Property Type="DateTime" Name="Exp_End_date" Nullable="true" />
+    <Property Type="DateTime" Name="Submit_date" Nullable="true" />
+    <Property Type="String" Name="Submitter" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Requestor" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Rqtor_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Req_Dept" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Req_Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Att_File_Current" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Att_File_Idea" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Step_Status" Nullable="true" MaxLength="74" />
+    <Property Type="String" Name="Next_Approver" Nullable="true" />
+    <Property Type="String" Name="Coacher" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Sponsor" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="CIManager" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Director" Nullable="true" />
+    <Property Type="String" Name="Pro_Leader" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Member" Nullable="true" />
+    <Property Type="DateTime" Name="Action_Date" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Subject_Matter_Need" Nullable="true" />
+    <Property Type="String" Name="Comment" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="tbl_Inv_File_Attach">
+    <Key>
+      <PropertyRef Name="Att_ID" />
+    </Key>
+    <Property Name="Att_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sug_ID" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="Step" Type="Byte" Nullable="false" />
+    <Property Name="Att_Path" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Att_Type" Type="Byte" />
   </EntityType>
 </Schema>

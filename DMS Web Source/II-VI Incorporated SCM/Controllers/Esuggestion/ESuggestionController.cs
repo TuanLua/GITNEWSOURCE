@@ -59,7 +59,7 @@ namespace II_VI_Incorporated_SCM.Controllers.ESuggestion
         }
         public JsonResult ReadDataE_SuggestionManagement([DataSourceRequest] DataSourceRequest request, string step, string id)
         {
-            List<sp_Inv_GetStepInfor_Result> lstESuggestion = _iESuggestionService.GetListManagement(step, id);
+            List < sp_Inv_GetStepInfor_Result> lstESuggestion = _iESuggestionService.GetListManagement(step, id);
             if (step == "Step1")
             {
                 if (lstESuggestion[lstESuggestion.Count - 2].item_value != null)
@@ -100,6 +100,8 @@ namespace II_VI_Incorporated_SCM.Controllers.ESuggestion
             ViewBag.ID = SuggestionID;
             ViewBag.titi = _iESuggestionService.gettitlebyid(SuggestionID);
             ViewBag.ListUser = _iESuggestionService.GetDropdownlistUser();
+            ViewBag.Subject_Matter_Need = true;
+            ViewBag.Subject_Matter_List= _iESuggestionService.GetDropdownSubjectMatterList(); ;
             return View();
         }
         public ActionResult EditSponsor(string SuggestionID)
@@ -107,6 +109,8 @@ namespace II_VI_Incorporated_SCM.Controllers.ESuggestion
             ViewBag.ID = SuggestionID;
             ViewBag.titi = _iESuggestionService.gettitlebyid(SuggestionID);
             ViewBag.ListUser = _iESuggestionService.GetDropdownlistUser();
+            ViewBag.Subject_Matter_Need = true;
+            ViewBag.Subject_Matter_List=_iESuggestionService.GetDropdownSubjectMatterList();
             var model = _iESuggestionService.getSponsor(SuggestionID);
             return View(model);
         }
@@ -220,12 +224,57 @@ namespace II_VI_Incorporated_SCM.Controllers.ESuggestion
             return RedirectToAction("index", "ESuggestion");
         }
         [HttpPost]
-        public ActionResult SaveLeader(LeaderViewmodel model)
+        public ActionResult SaveLeader(LeaderViewmodel model, FormCollection filesave)
         {
+            HttpFileCollectionBase savefiles = Request.Files;
+            List<tbl_Inv_File_Attach> listAtt = new List<tbl_Inv_File_Attach>();
+            tbl_Inv_File_Attach attach = new tbl_Inv_File_Attach();
+            for (int i = 0; i < savefiles.Count; i++)
+            {
+                var item = savefiles[i];
+                DateTime date = DateTime.Now;
+                string relativePath = Server.MapPath(ConfigurationManager.AppSettings["uploadPath"]);
+                //string virtualPath, returnPath = date.Year + "-" + date.Month + "-" + date.Day + "-" + date.Hour + "-" +
+                //                     date.Minute;
+                string virtualPath, returnPath = "eSuggestion";
+                virtualPath = relativePath + returnPath;
+                //  string FolderPath = System.Web.HttpContext.Current.Server.MapPath(virtualPath);
+                //  string FolderPath = virtualPath;
+                if (!Directory.Exists(virtualPath))
+                    Directory.CreateDirectory(virtualPath);
+                string FileName = item.FileName;
+                if (FileName != "")
+                {
+                    if (Request.Browser.Browser.Contains("InternetExplorer") || Request.Browser.Browser.Contains("IE"))
+                    {
+                        FileName = FileName.Substring(FileName.LastIndexOf("\\") + 1);
+                    }
+                    item.SaveAs(Path.Combine(virtualPath, FileName));
+                    attach = new tbl_Inv_File_Attach();
+                    attach.Att_Path = FileName;
+                    attach.Sug_ID = model.Sug_ID;
+                    attach.Step = 5;
+                    listAtt.Add(attach);
+                }
+            }
+            model.OldEvidence = listAtt;
             bool result = _iESuggestionService.SaveLeader(model);
             return RedirectToAction("index", "ESuggestion");
         }
+        public FileContentResult DownloadFile(string Sug_ID, int Step)
+        {
+            string filePath = Server.MapPath(ConfigurationManager.AppSettings["uploadPath"]);
 
+                //List<tbl_Inv_File_Attach> sf = _iESuggestionService.getFileAttach(Sug_ID,Step);
+                //if (sf != null)
+                //{
+                //    string filePathFull = (filePath + sf.Att_Path);
+                //    byte[] file = GetMediaFileContent(filePathFull);
+                //    return File(file, MimeMapping.GetMimeMapping(sf.Att_Path), sf.Att_Path);
+                //}
+            
+            return null;
+        }
         public string SaveFile(HttpPostedFileBase file)
         {
             DateTime date = DateTime.Now;

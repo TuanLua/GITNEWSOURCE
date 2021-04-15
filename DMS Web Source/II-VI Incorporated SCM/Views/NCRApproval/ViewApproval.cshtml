@@ -167,7 +167,7 @@
                     </div>
 
                 </div>
-                <p style="text-align:right; padding:0px; margin:0px; font-size:20px;">NO.<span style="color: red"> @Model.NCR_NUM</span></p>
+                <p style="text-align:right; padding:0px; margin:0px; font-size:20px;">NO.<span style="color: red"> @Model.NCR_NUM</span>&nbsp;&nbsp;Loc:<span style="color: red">@Model.MRB_LOC</span></p>
                 <div class="table-responsive" style="overflow: hidden">
                     <table class="table table-striped table-bordered table-hover">
                         <colgroup>
@@ -396,7 +396,7 @@
                                             var count = 0;
                                             foreach (var item in Model.NCRDETs)
                                             {
-                                                var i = count + 1;
+                                                var i = @item.ITEM.AsInt() + 1;
                                                 <tr class="odd data-non-confirmity" id="data-confirmity-@item.ITEM" rev="@item.ITEM">
                                                     <td>
                                                         @i
