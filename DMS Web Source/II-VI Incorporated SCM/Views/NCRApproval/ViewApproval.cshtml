@@ -396,7 +396,8 @@
                                             var count = 0;
                                             foreach (var item in Model.NCRDETs)
                                             {
-                                                var i = @item.ITEM.AsInt() + 1;
+                                                //var i = @item.ITEM.AsInt() + 1;
+                                                var i = count + 1;
                                                 <tr class="odd data-non-confirmity" id="data-confirmity-@item.ITEM" rev="@item.ITEM">
                                                     <td>
                                                         @i

@@ -859,7 +859,7 @@ namespace II_VI_Incorporated_SCM.Services
         public List<NCR_DETViewModel> GetInresultProcessString(string NCR_NUM)
         {
             List<NCR_DETViewModel> listResult = new List<NCR_DETViewModel>();
-            var listrDets = _db.NCR_DET.Where(m => m.NCR_NUM.Trim() == NCR_NUM.Trim()).OrderBy(m => m.ITEM).ToList();
+            var listrDets = _db.NCR_DET.Where(m => m.NCR_NUM.Trim() == NCR_NUM.Trim()).OrderBy(m => m.ITEM.Length==1?"0"+m.ITEM:m.ITEM).ToList();
 
             if (listrDets != null)
             {
