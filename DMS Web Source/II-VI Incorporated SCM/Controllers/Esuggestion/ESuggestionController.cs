@@ -82,7 +82,21 @@ namespace II_VI_Incorporated_SCM.Controllers.ESuggestion
                     }
                 }
             }
-            return Json(lstESuggestion.ToDataSourceResult(request));
+            if (step == "Step5")
+            {
+                for(int i=0;i< lstESuggestion.Count;i++)
+                if (lstESuggestion[i].item_value != null && lstESuggestion[i].item_name=="Attach File")
+                {
+                    string[] arrListFie = lstESuggestion[i].item_value.Split('/');
+                    if (arrListFie.Length > 0) lstESuggestion[i].item_value = "";
+                    for (int j = 0; j < arrListFie.Length; j++)
+                    {
+
+                            llstESuggestion[j].item_value += $"<br/> <a target='_blank' href='{Url.Action("DownloadFile", "ESuggestion", new { filename = arrListFie[i] })}' >{arrListFie[i]}</a>"; ;
+                    }
+                }
+            }
+                return Json(lstESuggestion.ToDataSourceResult(request));
         }
         public ActionResult ProcessingSuggestion(string SuggestionID)
         {

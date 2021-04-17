@@ -581,6 +581,13 @@ namespace II_VI_Incorporated_SCM.Services
                     _db.SaveChanges();
                 }
 
+                var lstProcess = _db.tbl_Inv_Apr_Process.Where(x => x.Sug_ID == model.Sug_ID && x.Step_Idx == "5").ToList();
+                if (lstProcess.Count > 0)
+                {
+                    _db.tbl_Inv_Apr_Process.RemoveRange(lstProcess);
+                    _db.SaveChanges();
+                }
+
                 var listAtt = _db.tbl_Inv_File_Attach.Where(x => x.Sug_ID == model.Sug_ID && x.Step == 5).ToList();
                 if (listAtt.Count > 0)
                 {

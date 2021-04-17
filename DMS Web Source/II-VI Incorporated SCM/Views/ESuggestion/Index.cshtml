@@ -481,6 +481,7 @@
         let idDirector = model.Director;
         let Step_status = model.Step_Status;
         Subject_Need = model.Subject_Matter_Need;
+        let Comment = model.Comment;
             $('#SuggestionID').val(ID);
             $('#ESNum').val(ID);
             $('#Title').val(TT);
@@ -523,10 +524,15 @@
             });
             $("#popup").modal('show');
             
-            if (Subject_Need != true) {
-                $("#Comment").attr('disabled', 'disabled');
-                $("#btnAddEvidentIQC").attr('disabled', 'disabled');
-            }
+                if (Subject_Need != true) {
+                    $("#Comment").attr('disabled', 'disabled');
+                    $("#btnAddEvidentIQC").attr('disabled', 'disabled');
+                }
+                else {
+                    $("#Comment").val(Comment);
+                    $("#Comment").removeAttr('disabled', 'disabled');
+                    $("#btnAddEvidentIQC").removeAttr('disabled', 'disabled');
+                }
         }
 	//after assign task, no need to do any things, so remove condition "(Step_status.indexOf("Task") > 0 && role == "CIManager")"
         //else if ((step == "1" && role == "CIManager") || (Step_status.indexOf("Task") > 0 && role == "CIManager")) {//role == "CIApproval"
@@ -560,10 +566,21 @@
         var $formleader = $('#form-leader');
         $('#save').on('click', function () {
             let member = $('#listuser').val();
+            let Comment = $('#Comment').val();
+            let listRow = $('#tbEvidenceIQC tbody tr');
+            let rowlength = listRow.length;
+            let Subject_Need_Chk = true;
+            if (Subject_Need == true) {
+                if (Comment == '' || rowlength <= 0) {
+                    Subject_Need_Chk = false;
+                    bootbox.alert('Please input comment and add attach file!');
+                    //return;
+                }
+            }
             if (member == null) {
                 bootbox.alert('Please select member!');
             }
-            else {
+            else if (Subject_Need_Chk) {
                 var input = $("<input>", { type: "hidden", name: "Status", value: "Waiting" });
                 $formleader.append(input);
                 $formleader.submit();
