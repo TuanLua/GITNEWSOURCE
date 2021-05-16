@@ -31,7 +31,5 @@ namespace II_VI_Incorporated_SCM.Models
         public Nullable<bool> Fin_abi { get; set; }
         public string Fin_com { get; set; }
         public string Comment { get; set; }
-        public Nullable<bool> Subject_Matter_Need { get; set; }
-        public string Subject_Matter_Name { get; set; }
     }
 }

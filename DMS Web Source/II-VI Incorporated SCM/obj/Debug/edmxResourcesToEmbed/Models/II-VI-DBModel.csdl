@@ -1924,275 +1924,6 @@
       <Parameter Name="SearchValue" Mode="In" Type="String" />
       <Parameter Name="TaskStatus" Mode="In" Type="String" />
     </FunctionImport>
-    <EntitySet Name="C__MigrationHistory" EntityType="IQCTestModel.C__MigrationHistory" />
-    <EntitySet Name="ADD_INS" EntityType="IQCTestModel.ADD_INS" />
-    <EntitySet Name="ApplicationGroupRoles" EntityType="IQCTestModel.ApplicationGroupRole" />
-    <EntitySet Name="ApplicationGroups" EntityType="IQCTestModel.ApplicationGroup" />
-    <EntitySet Name="ApplicationUserGroups" EntityType="IQCTestModel.ApplicationUserGroup" />
-    <EntitySet Name="APPROVALs" EntityType="IQCTestModel.APPROVAL" />
-    <EntitySet Name="AspNetRoles" EntityType="IQCTestModel.AspNetRole" />
-    <EntitySet Name="AspNetUserClaims" EntityType="IQCTestModel.AspNetUserClaim" />
-    <EntitySet Name="AspNetUserLogins" EntityType="IQCTestModel.AspNetUserLogin" />
-    <EntitySet Name="AspNetUsers" EntityType="IQCTestModel.AspNetUser" />
-    <EntitySet Name="AspNetUsers_bk" EntityType="IQCTestModel.AspNetUsers_bk" />
-    <EntitySet Name="ASSIGNs" EntityType="IQCTestModel.ASSIGN" />
-    <EntitySet Name="ATTACHMENTs" EntityType="IQCTestModel.ATTACHMENT" />
-    <EntitySet Name="ATTCH_TEMP" EntityType="IQCTestModel.ATTCH_TEMP" />
-    <EntitySet Name="CCNs" EntityType="IQCTestModel.CCN" />
-    <EntitySet Name="CHANGED_SPL" EntityType="IQCTestModel.CHANGED_SPL" />
-    <EntitySet Name="ChangeItems" EntityType="IQCTestModel.ChangeItem" />
-    <EntitySet Name="CS" EntityType="IQCTestModel.C" />
-    <EntitySet Name="DESCRIPTIONs" EntityType="IQCTestModel.DESCRIPTION" />
-    <EntitySet Name="DETAILQUESTIONs" EntityType="IQCTestModel.DETAILQUESTION" />
-    <EntitySet Name="DIMENSION_STD_BY_PART" EntityType="IQCTestModel.DIMENSION_STD_BY_PART" />
-    <EntitySet Name="DISPOSITIONs" EntityType="IQCTestModel.DISPOSITION" />
-    <EntitySet Name="DOC_by_ITEM" EntityType="IQCTestModel.DOC_by_ITEM" />
-    <EntitySet Name="DOC_by_PO" EntityType="IQCTestModel.DOC_by_PO" />
-    <EntitySet Name="EEP_REPORT" EntityType="IQCTestModel.EEP_REPORT" />
-    <EntitySet Name="ESCAPING_PPM" EntityType="IQCTestModel.ESCAPING_PPM" />
-    <EntitySet Name="Families" EntityType="IQCTestModel.Family" />
-    <EntitySet Name="FIRSTLOTs" EntityType="IQCTestModel.FIRSTLOT" />
-    <EntitySet Name="FIRSTLOT_APPROVE" EntityType="IQCTestModel.FIRSTLOT_APPROVE" />
-    <EntitySet Name="FIRSTLOT_REJECT" EntityType="IQCTestModel.FIRSTLOT_REJECT" />
-    <EntitySet Name="FIXTURE_STD_BY_PART_NoUse" EntityType="IQCTestModel.FIXTURE_STD_BY_PART_NoUse" />
-    <EntitySet Name="FIXTURE_STD_BY_PART_OLD_NoUse" EntityType="IQCTestModel.FIXTURE_STD_BY_PART_OLD_NoUse" />
-    <EntitySet Name="INS_RESULT" EntityType="IQCTestModel.INS_RESULT" />
-    <EntitySet Name="INS_RESULT_DEFECT" EntityType="IQCTestModel.INS_RESULT_DEFECT" />
-    <EntitySet Name="INS_RESULT_FINAL" EntityType="IQCTestModel.INS_RESULT_FINAL" />
-    <EntitySet Name="INS_RESULT_MEASURE_BY_SAMPLING" EntityType="IQCTestModel.INS_RESULT_MEASURE_BY_SAMPLING" />
-    <EntitySet Name="INS_RESULT_PARTIAL" EntityType="IQCTestModel.INS_RESULT_PARTIAL" />
-    <EntitySet Name="INS_RESULT_VIS_ITEM" EntityType="IQCTestModel.INS_RESULT_VIS_ITEM" />
-    <EntitySet Name="INS_RESULT_VISUAL_PARTIAL" EntityType="IQCTestModel.INS_RESULT_VISUAL_PARTIAL" />
-    <EntitySet Name="IT_PRO_PROJECT" EntityType="IQCTestModel.IT_PRO_PROJECT" />
-    <EntitySet Name="IT_PRO_REFER" EntityType="IQCTestModel.IT_PRO_REFER" />
-    <EntitySet Name="LAST_BATCH_NO" EntityType="IQCTestModel.LAST_BATCH_NO" />
-    <EntitySet Name="LAST_DRAW_REV" EntityType="IQCTestModel.LAST_DRAW_REV" />
-    <EntitySet Name="LAST_SKIP_LOT_LEVEL" EntityType="IQCTestModel.LAST_SKIP_LOT_LEVEL" />
-    <EntitySet Name="LAST_SKIP_LOT_LEVEL_bk" EntityType="IQCTestModel.LAST_SKIP_LOT_LEVEL_bk" />
-    <EntitySet Name="LOGINs" EntityType="IQCTestModel.LOGIN" />
-    <EntitySet Name="MAILHISTORies" EntityType="IQCTestModel.MAILHISTORY" />
-    <EntitySet Name="MAINQUESTIONs" EntityType="IQCTestModel.MAINQUESTION" />
-    <EntitySet Name="MEASUREMENT_STD_BY_PART" EntityType="IQCTestModel.MEASUREMENT_STD_BY_PART" />
-    <EntitySet Name="MEETING_ATT" EntityType="IQCTestModel.MEETING_ATT" />
-    <EntitySet Name="MEETING_ATTENDANT" EntityType="IQCTestModel.MEETING_ATTENDANT" />
-    <EntitySet Name="MEETING_NOTE" EntityType="IQCTestModel.MEETING_NOTE" />
-    <EntitySet Name="NCs" EntityType="IQCTestModel.NC" />
-    <EntitySet Name="NC_BY_PART" EntityType="IQCTestModel.NC_BY_PART" />
-    <EntitySet Name="NC_BY_PART_OLD" EntityType="IQCTestModel.NC_BY_PART_OLD" />
-    <EntitySet Name="NC_BY_PRODUCT_GRP" EntityType="IQCTestModel.NC_BY_PRODUCT_GRP" />
-    <EntitySet Name="NC_CAT_NoUse" EntityType="IQCTestModel.NC_CAT_NoUse" />
-    <EntitySet Name="NC_GROUP" EntityType="IQCTestModel.NC_GROUP" />
-    <EntitySet Name="NC_PART" EntityType="IQCTestModel.NC_PART" />
-    <EntitySet Name="NCR_DET" EntityType="IQCTestModel.NCR_DET" />
-    <EntitySet Name="NCR_DET_History" EntityType="IQCTestModel.NCR_DET_History" />
-    <EntitySet Name="NCR_DIS" EntityType="IQCTestModel.NCR_DIS" />
-    <EntitySet Name="NCR_DIS_History" EntityType="IQCTestModel.NCR_DIS_History" />
-    <EntitySet Name="NCR_EVI" EntityType="IQCTestModel.NCR_EVI" />
-    <EntitySet Name="NCR_HDR" EntityType="IQCTestModel.NCR_HDR" />
-    <EntitySet Name="NCR_HDR_History" EntityType="IQCTestModel.NCR_HDR_History" />
-    <EntitySet Name="NCR_History" EntityType="IQCTestModel.NCR_History" />
-    <EntitySet Name="NCRDispositionDays" EntityType="IQCTestModel.NCRDispositionDay" />
-    <EntitySet Name="ONESUPPLLIER_PPMRB" EntityType="IQCTestModel.ONESUPPLLIER_PPMRB" />
-    <EntitySet Name="OrderDispositions" EntityType="IQCTestModel.OrderDisposition" />
-    <EntitySet Name="PANEL_EXCEL" EntityType="IQCTestModel.PANEL_EXCEL" />
-    <EntitySet Name="PANEL_RP" EntityType="IQCTestModel.PANEL_RP" />
-    <EntitySet Name="PART_DRAW_Nouse" EntityType="IQCTestModel.PART_DRAW_Nouse" />
-    <EntitySet Name="PART_DRW_OLD" EntityType="IQCTestModel.PART_DRW_OLD" />
-    <EntitySet Name="PART_INFO" EntityType="IQCTestModel.PART_INFO" />
-    <EntitySet Name="PART_INFO_TEMP" EntityType="IQCTestModel.PART_INFO_TEMP" />
-    <EntitySet Name="PART_INS_REQ" EntityType="IQCTestModel.PART_INS_REQ" />
-    <EntitySet Name="PART_INS_REQ_APPROVE" EntityType="IQCTestModel.PART_INS_REQ_APPROVE" />
-    <EntitySet Name="PART_INS_REQ_DOC" EntityType="IQCTestModel.PART_INS_REQ_DOC" />
-    <EntitySet Name="PART_INS_REQ_OLD" EntityType="IQCTestModel.PART_INS_REQ_OLD" />
-    <EntitySet Name="PATHs" EntityType="IQCTestModel.PATH" />
-    <EntitySet Name="PO_REV" EntityType="IQCTestModel.PO_REV" />
-    <EntitySet Name="PO_REV_Temp" EntityType="IQCTestModel.PO_REV_Temp" />
-    <EntitySet Name="RECEIVERs" EntityType="IQCTestModel.RECEIVER" />
-    <EntitySet Name="RECEIVER_Org" EntityType="IQCTestModel.RECEIVER_Org" />
-    <EntitySet Name="RECEIVER_TEMP" EntityType="IQCTestModel.RECEIVER_TEMP" />
-    <EntitySet Name="RESPONs" EntityType="IQCTestModel.RESPON" />
-    <EntitySet Name="REWORK_COST" EntityType="IQCTestModel.REWORK_COST" />
-    <EntitySet Name="RTVProcesses" EntityType="IQCTestModel.RTVProcess" />
-    <EntitySet Name="SCAR_Category" EntityType="IQCTestModel.SCAR_Category" />
-    <EntitySet Name="SCAR_INFO_BACKUP" EntityType="IQCTestModel.SCAR_INFO_BACKUP" />
-    <EntitySet Name="SCAR_RESULT_D0" EntityType="IQCTestModel.SCAR_RESULT_D0" />
-    <EntitySet Name="SCAR_RESULT_D1" EntityType="IQCTestModel.SCAR_RESULT_D1" />
-    <EntitySet Name="SCAR_RESULT_D2" EntityType="IQCTestModel.SCAR_RESULT_D2" />
-    <EntitySet Name="SCAR_RESULT_D3" EntityType="IQCTestModel.SCAR_RESULT_D3" />
-    <EntitySet Name="SCAR_RESULT_D4" EntityType="IQCTestModel.SCAR_RESULT_D4" />
-    <EntitySet Name="SCAR_RESULT_D5" EntityType="IQCTestModel.SCAR_RESULT_D5" />
-    <EntitySet Name="SCAR_RESULT_D6" EntityType="IQCTestModel.SCAR_RESULT_D6" />
-    <EntitySet Name="SCAR_RESULT_D7" EntityType="IQCTestModel.SCAR_RESULT_D7" />
-    <EntitySet Name="SCAREMAILs" EntityType="IQCTestModel.SCAREMAIL" />
-    <EntitySet Name="SCARINFOes" EntityType="IQCTestModel.SCARINFO" />
-    <EntitySet Name="SCARnNCRs" EntityType="IQCTestModel.SCARnNCR" />
-    <EntitySet Name="SCRAP_REASON" EntityType="IQCTestModel.SCRAP_REASON" />
-    <EntitySet Name="SCRAPCategories" EntityType="IQCTestModel.SCRAPCategory" />
-    <EntitySet Name="STATUS" EntityType="IQCTestModel.STATUS" />
-    <EntitySet Name="SUPPLIER_PPM" EntityType="IQCTestModel.SUPPLIER_PPM" />
-    <EntitySet Name="SUPPLIER_PPM_RP" EntityType="IQCTestModel.SUPPLIER_PPM_RP" />
-    <EntitySet Name="sysdiagrams" EntityType="IQCTestModel.sysdiagram" />
-    <EntitySet Name="TASK_APPROVE" EntityType="IQCTestModel.TASK_APPROVE" />
-    <EntitySet Name="TASK_CATEGORY" EntityType="IQCTestModel.TASK_CATEGORY" />
-    <EntitySet Name="TASK_PHASE" EntityType="IQCTestModel.TASK_PHASE" />
-    <EntitySet Name="TASKCOMMENTs" EntityType="IQCTestModel.TASKCOMMENT" />
-    <EntitySet Name="TASKDETAILs" EntityType="IQCTestModel.TASKDETAIL" />
-    <EntitySet Name="TASKDOCUMENTs" EntityType="IQCTestModel.TASKDOCUMENT" />
-    <EntitySet Name="TaskHis" EntityType="IQCTestModel.TaskHi" />
-    <EntitySet Name="TASKLISTs" EntityType="IQCTestModel.TASKLIST" />
-    <EntitySet Name="tbDashboard_Guide_Show" EntityType="IQCTestModel.tbDashboard_Guide_Show" />
-    <EntitySet Name="tbEvents" EntityType="IQCTestModel.tbEvent" />
-    <EntitySet Name="TbFixtures" EntityType="IQCTestModel.TbFixture" />
-    <EntitySet Name="tbl_Inv_Apr_Process" EntityType="IQCTestModel.tbl_Inv_Apr_Process" />
-    <EntitySet Name="tbl_Inv_BoardDirector" EntityType="IQCTestModel.tbl_Inv_BoardDirector" />
-    <EntitySet Name="tbl_Inv_Cost_Saving" EntityType="IQCTestModel.tbl_Inv_Cost_Saving" />
-    <EntitySet Name="tbl_Inv_Cost_To_Score" EntityType="IQCTestModel.tbl_Inv_Cost_To_Score" />
-    <EntitySet Name="tbl_Inv_Email_Remind" EntityType="IQCTestModel.tbl_Inv_Email_Remind" />
-    <EntitySet Name="tbl_Inv_IdeaType" EntityType="IQCTestModel.tbl_Inv_IdeaType" />
-    <EntitySet Name="tbl_Inv_ImpMethod" EntityType="IQCTestModel.tbl_Inv_ImpMethod" />
-    <EntitySet Name="tbl_Inv_Role" EntityType="IQCTestModel.tbl_Inv_Role" />
-    <EntitySet Name="tbl_Inv_Score_Percent" EntityType="IQCTestModel.tbl_Inv_Score_Percent" />
-    <EntitySet Name="tbl_Inv_Step1_SubmitSuggestion" EntityType="IQCTestModel.tbl_Inv_Step1_SubmitSuggestion" />
-    <EntitySet Name="tbl_Inv_Step2_CIAproval" EntityType="IQCTestModel.tbl_Inv_Step2_CIAproval" />
-    <EntitySet Name="tbl_Inv_Step5_ProLeaderApr" EntityType="IQCTestModel.tbl_Inv_Step5_ProLeaderApr" />
-    <EntitySet Name="tbl_PT_CheckSheet" EntityType="IQCTestModel.tbl_PT_CheckSheet" />
-    <EntitySet Name="tbl_PT_Infor" EntityType="IQCTestModel.tbl_PT_Infor" />
-    <EntitySet Name="tbl_PT_Status" EntityType="IQCTestModel.tbl_PT_Status" />
-    <EntitySet Name="tbl_PT_Work_Center" EntityType="IQCTestModel.tbl_PT_Work_Center" />
-    <EntitySet Name="tbl_RP_DataSource_Para" EntityType="IQCTestModel.tbl_RP_DataSource_Para" />
-    <EntitySet Name="tbl_RP_Report" EntityType="IQCTestModel.tbl_RP_Report" />
-    <EntitySet Name="tbl_RP_Report_Para" EntityType="IQCTestModel.tbl_RP_Report_Para" />
-    <EntitySet Name="tbl_RP_Setting_BarChart" EntityType="IQCTestModel.tbl_RP_Setting_BarChart" />
-    <EntitySet Name="tbl_RP_Setting_DataGrid" EntityType="IQCTestModel.tbl_RP_Setting_DataGrid" />
-    <EntitySet Name="tbl_RP_Setting_LineChart" EntityType="IQCTestModel.tbl_RP_Setting_LineChart" />
-    <EntitySet Name="tbl_RP_Store_Parameter" EntityType="IQCTestModel.tbl_RP_Store_Parameter" />
-    <EntitySet Name="tbl_RP_StoreProcedure" EntityType="IQCTestModel.tbl_RP_StoreProcedure" />
-    <EntitySet Name="tbl_SQE_Ass_Period" EntityType="IQCTestModel.tbl_SQE_Ass_Period" />
-    <EntitySet Name="tbl_SQE_Ass_Resp" EntityType="IQCTestModel.tbl_SQE_Ass_Resp" />
-    <EntitySet Name="tbl_SQE_Ass_Resp_Status" EntityType="IQCTestModel.tbl_SQE_Ass_Resp_Status" />
-    <EntitySet Name="tbl_SQE_Ass_Vendor" EntityType="IQCTestModel.tbl_SQE_Ass_Vendor" />
-    <EntitySet Name="tbl_SQE_Category" EntityType="IQCTestModel.tbl_SQE_Category" />
-    <EntitySet Name="tbl_SQE_Category_Target" EntityType="IQCTestModel.tbl_SQE_Category_Target" />
-    <EntitySet Name="tbl_SQE_Customer_Claim" EntityType="IQCTestModel.tbl_SQE_Customer_Claim" />
-    <EntitySet Name="tbl_SQE_Develop_AuditVisit_Attachment" EntityType="IQCTestModel.tbl_SQE_Develop_AuditVisit_Attachment" />
-    <EntitySet Name="tbl_SQE_Develop_Category" EntityType="IQCTestModel.tbl_SQE_Develop_Category" />
-    <EntitySet Name="tbl_SQE_Develop_Goal" EntityType="IQCTestModel.tbl_SQE_Develop_Goal" />
-    <EntitySet Name="tbl_SQE_Develop_ImprovePlan" EntityType="IQCTestModel.tbl_SQE_Develop_ImprovePlan" />
-    <EntitySet Name="tbl_SQE_Develop_ProblemDesc" EntityType="IQCTestModel.tbl_SQE_Develop_ProblemDesc" />
-    <EntitySet Name="tbl_SQE_Develop_SourceFrom" EntityType="IQCTestModel.tbl_SQE_Develop_SourceFrom" />
-    <EntitySet Name="tbl_SQE_Develop_Status" EntityType="IQCTestModel.tbl_SQE_Develop_Status" />
-    <EntitySet Name="tbl_SQE_Develop_VisitAudit" EntityType="IQCTestModel.tbl_SQE_Develop_VisitAudit" />
-    <EntitySet Name="tbl_SQE_PCN" EntityType="IQCTestModel.tbl_SQE_PCN" />
-    <EntitySet Name="tbl_SQE_PCN_Attached" EntityType="IQCTestModel.tbl_SQE_PCN_Attached" />
-    <EntitySet Name="tbl_SQE_PCN_Class" EntityType="IQCTestModel.tbl_SQE_PCN_Class" />
-    <EntitySet Name="tbl_SQE_PCN_Contact" EntityType="IQCTestModel.tbl_SQE_PCN_Contact" />
-    <EntitySet Name="tbl_SQE_Premium_Freight" EntityType="IQCTestModel.tbl_SQE_Premium_Freight" />
-    <EntitySet Name="tbl_SQE_Report_Result" EntityType="IQCTestModel.tbl_SQE_Report_Result" />
-    <EntitySet Name="tbl_SQE_Report_Type" EntityType="IQCTestModel.tbl_SQE_Report_Type" />
-    <EntitySet Name="tbl_SQE_Report_Weight" EntityType="IQCTestModel.tbl_SQE_Report_Weight" />
-    <EntitySet Name="tbl_SQE_Res_Item" EntityType="IQCTestModel.tbl_SQE_Res_Item" />
-    <EntitySet Name="tbl_SQE_Score_Ref" EntityType="IQCTestModel.tbl_SQE_Score_Ref" />
-    <EntitySet Name="tbl_SQE_Score_Reponsiveness" EntityType="IQCTestModel.tbl_SQE_Score_Reponsiveness" />
-    <EntitySet Name="tbl_SQE_SupplierLog" EntityType="IQCTestModel.tbl_SQE_SupplierLog" />
-    <EntitySet Name="tbl_SQE_SupplierLog_Attached" EntityType="IQCTestModel.tbl_SQE_SupplierLog_Attached" />
-    <EntitySet Name="tbl_SQE_SupplierLog_BusinessType" EntityType="IQCTestModel.tbl_SQE_SupplierLog_BusinessType" />
-    <EntitySet Name="tbl_SQE_SupplierLog_CoC" EntityType="IQCTestModel.tbl_SQE_SupplierLog_CoC" />
-    <EntitySet Name="tbl_SQE_SupplierLog_CoCItem" EntityType="IQCTestModel.tbl_SQE_SupplierLog_CoCItem" />
-    <EntitySet Name="tbl_SQE_SupplierLog_Commodity" EntityType="IQCTestModel.tbl_SQE_SupplierLog_Commodity" />
-    <EntitySet Name="tbl_SQE_SupplierLog_Contact" EntityType="IQCTestModel.tbl_SQE_SupplierLog_Contact" />
-    <EntitySet Name="tbl_SQE_SupplierLog_ISO" EntityType="IQCTestModel.tbl_SQE_SupplierLog_ISO" />
-    <EntitySet Name="tbl_SQE_SupplierLog_MaterialSupplied" EntityType="IQCTestModel.tbl_SQE_SupplierLog_MaterialSupplied" />
-    <EntitySet Name="tbl_SQE_SupplierLog_QMSItem" EntityType="IQCTestModel.tbl_SQE_SupplierLog_QMSItem" />
-    <EntitySet Name="tbl_SQE_SupplierLog_Status" EntityType="IQCTestModel.tbl_SQE_SupplierLog_Status" />
-    <EntitySet Name="tbl_SQE_Vendor_Score_Ref" EntityType="IQCTestModel.tbl_SQE_Vendor_Score_Ref" />
-    <EntitySet Name="tbl_TP_Family" EntityType="IQCTestModel.tbl_TP_Family" />
-    <EntitySet Name="tbl_TP_Section" EntityType="IQCTestModel.tbl_TP_Section" />
-    <EntitySet Name="tbLaborScans" EntityType="IQCTestModel.tbLaborScan" />
-    <EntitySet Name="tbTargetOTs" EntityType="IQCTestModel.tbTargetOT" />
-    <EntitySet Name="TBTOOLs" EntityType="IQCTestModel.TBTOOL" />
-    <EntitySet Name="TEMPLATE_DET" EntityType="IQCTestModel.TEMPLATE_DET" />
-    <EntitySet Name="TEMPLATE_HDR" EntityType="IQCTestModel.TEMPLATE_HDR" />
-    <EntitySet Name="UserDispositionApprovals" EntityType="IQCTestModel.UserDispositionApproval" />
-    <EntitySet Name="UserLogins" EntityType="IQCTestModel.UserLogin" />
-    <EntitySet Name="VARIABLE_ACT_BY_SPL" EntityType="IQCTestModel.VARIABLE_ACT_BY_SPL" />
-    <EntitySet Name="VARIABLE_STD_BY_PART_NoUse" EntityType="IQCTestModel.VARIABLE_STD_BY_PART_NoUse" />
-    <EntitySet Name="VENDORs" EntityType="IQCTestModel.VENDOR" />
-    <EntitySet Name="VNMaterialTraceabilities" EntityType="IQCTestModel.VNMaterialTraceability" />
-    <EntitySet Name="Attributes" EntityType="IQCTestModel.Attribute" />
-    <EntitySet Name="CHANGED_SPL_BK" EntityType="IQCTestModel.CHANGED_SPL_BK" />
-    <EntitySet Name="CS_HIS" EntityType="IQCTestModel.CS_HIS" />
-    <EntitySet Name="DESCRIPTION_Temp" EntityType="IQCTestModel.DESCRIPTION_Temp" />
-    <EntitySet Name="FIXTURE_ACT_BY_SPL_NoUse" EntityType="IQCTestModel.FIXTURE_ACT_BY_SPL_NoUse" />
-    <EntitySet Name="INS_RESULT_HIS" EntityType="IQCTestModel.INS_RESULT_HIS" />
-    <EntitySet Name="INS_RESULT_VISUAL_LOT" EntityType="IQCTestModel.INS_RESULT_VISUAL_LOT" />
-    <EntitySet Name="INSPECTORs" EntityType="IQCTestModel.INSPECTOR" />
-    <EntitySet Name="MEASUREMENT_STD_BY_PART_CHANGED_SPL" EntityType="IQCTestModel.MEASUREMENT_STD_BY_PART_CHANGED_SPL" />
-    <EntitySet Name="NCR_HDR_PUR" EntityType="IQCTestModel.NCR_HDR_PUR" />
-    <EntitySet Name="NCR_WH_OPEN_COMMENT" EntityType="IQCTestModel.NCR_WH_OPEN_COMMENT" />
-    <EntitySet Name="PART_INS_REQ_VISUAL" EntityType="IQCTestModel.PART_INS_REQ_VISUAL" />
-    <EntitySet Name="PART_REJECT" EntityType="IQCTestModel.PART_REJECT" />
-    <EntitySet Name="PARTIAL_INS_RESULT" EntityType="IQCTestModel.PARTIAL_INS_RESULT" />
-    <EntitySet Name="PARTIAL_NC" EntityType="IQCTestModel.PARTIAL_NC" />
-    <EntitySet Name="POes" EntityType="IQCTestModel.PO" />
-    <EntitySet Name="PO_BK" EntityType="IQCTestModel.PO_BK" />
-    <EntitySet Name="receiver_bk" EntityType="IQCTestModel.receiver_bk" />
-    <EntitySet Name="SKIP_LOT_LEVEL" EntityType="IQCTestModel.SKIP_LOT_LEVEL" />
-    <EntitySet Name="SKIP_LOT_LEVEL_bk" EntityType="IQCTestModel.SKIP_LOT_LEVEL_bk" />
-    <EntitySet Name="STDCOSTs" EntityType="IQCTestModel.STDCOST" />
-    <EntitySet Name="STDCOST_Temp" EntityType="IQCTestModel.STDCOST_Temp" />
-    <EntitySet Name="tbl_Inv_ScoreCost_4_Mem" EntityType="IQCTestModel.tbl_Inv_ScoreCost_4_Mem" />
-    <EntitySet Name="tbl_PT_Dept_PIC" EntityType="IQCTestModel.tbl_PT_Dept_PIC" />
-    <EntitySet Name="tbl_PT_Dept_PIC_BuyPart" EntityType="IQCTestModel.tbl_PT_Dept_PIC_BuyPart" />
-    <EntitySet Name="tbl_PT_TaskList" EntityType="IQCTestModel.tbl_PT_TaskList" />
-    <EntitySet Name="tbl_RP_Advance_Setting" EntityType="IQCTestModel.tbl_RP_Advance_Setting" />
-    <EntitySet Name="tbl_RP_Data_Source" EntityType="IQCTestModel.tbl_RP_Data_Source" />
-    <EntitySet Name="tbl_SQE_6Panel_TopNCPart" EntityType="IQCTestModel.tbl_SQE_6Panel_TopNCPart" />
-    <EntitySet Name="tbl_SQE_PCN_Status" EntityType="IQCTestModel.tbl_SQE_PCN_Status" />
-    <EntitySet Name="tbl_SQE_Supplier_Finish6Panel" EntityType="IQCTestModel.tbl_SQE_Supplier_Finish6Panel" />
-    <EntitySet Name="tbl_SQE_SupplierLog_QMS" EntityType="IQCTestModel.tbl_SQE_SupplierLog_QMS" />
-    <EntitySet Name="TemporaryUpsizedTable2" EntityType="IQCTestModel.TemporaryUpsizedTable2" />
-    <EntitySet Name="USER_PERMIT" EntityType="IQCTestModel.USER_PERMIT" />
-    <EntitySet Name="VENDOR_Temp" EntityType="IQCTestModel.VENDOR_Temp" />
-    <EntitySet Name="Work_Centers" EntityType="IQCTestModel.Work_Center" />
-    <EntitySet Name="DMS_WOLot" EntityType="IQCTestModel.DMS_WOLot" />
-    <EntitySet Name="PPM_RejectQty" EntityType="IQCTestModel.PPM_RejectQty" />
-    <EntitySet Name="v_AQL" EntityType="IQCTestModel.v_AQL" />
-    <EntitySet Name="V_AspNetUsers" EntityType="IQCTestModel.V_AspNetUsers" />
-    <EntitySet Name="v_INS_RESULT" EntityType="IQCTestModel.v_INS_RESULT" />
-    <EntitySet Name="V_Material_HadMake_FLupSerialNumber" EntityType="IQCTestModel.V_Material_HadMake_FLupSerialNumber" />
-    <EntitySet Name="v_Operator" EntityType="IQCTestModel.v_Operator" />
-    <EntitySet Name="V_WO_Issue" EntityType="IQCTestModel.V_WO_Issue" />
-    <EntitySet Name="vNCR_DET" EntityType="IQCTestModel.vNCR_DET" />
-    <EntitySet Name="vNCR_DET_2" EntityType="IQCTestModel.vNCR_DET_2" />
-    <EntitySet Name="vNCR_HDR" EntityType="IQCTestModel.vNCR_HDR" />
-    <AssociationSet Name="FK_dbo_ApplicationGroupRoles_dbo_ApplicationGroups_ApplicationGroupId" Association="IQCTestModel.FK_dbo_ApplicationGroupRoles_dbo_ApplicationGroups_ApplicationGroupId">
-      <End Role="ApplicationGroup" EntitySet="ApplicationGroups" />
-      <End Role="ApplicationGroupRole" EntitySet="ApplicationGroupRoles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_ApplicationUserGroups_dbo_ApplicationGroups_ApplicationGroupId" Association="IQCTestModel.FK_dbo_ApplicationUserGroups_dbo_ApplicationGroups_ApplicationGroupId">
-      <End Role="ApplicationGroup" EntitySet="ApplicationGroups" />
-      <End Role="ApplicationUserGroup" EntitySet="ApplicationUserGroups" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="IQCTestModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="IQCTestModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK__DETAILQUE__IDQUE__6521F869" Association="IQCTestModel.FK__DETAILQUE__IDQUE__6521F869">
-      <End Role="MAINQUESTION" EntitySet="MAINQUESTIONs" />
-      <End Role="DETAILQUESTION" EntitySet="DETAILQUESTIONs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__SCAREMAIL__SCAR___5E74FADA" Association="IQCTestModel.FK__SCAREMAIL__SCAR___5E74FADA">
-      <End Role="SCARINFO" EntitySet="SCARINFOes" />
-      <End Role="SCAREMAIL" EntitySet="SCAREMAILs" />
-    </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="IQCTestModel.AspNetUserRoles">
-      <End Role="AspNetRole" EntitySet="AspNetRoles" />
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-    </AssociationSet>
     <FunctionImport Name="DynamicPivot">
       <Parameter Name="Month" Mode="In" Type="DateTime" />
     </FunctionImport>
@@ -2455,25 +2186,291 @@
     <FunctionImport Name="sp_SQE_SupplierDevelopment_VisitAuditSum" ReturnType="Collection(IQCTestModel.sp_SQE_SupplierDevelopment_VisitAuditSum_Result)" />
     <FunctionImport Name="sp_SQE_Yearlist" ReturnType="Collection(IQCTestModel.sp_SQE_Yearlist_Result)" />
     <FunctionImport Name="sp_SQEDB_SupplierLog_Remind_ReEvaluation" />
-    <EntitySet Name="tbl_Inv_Step4_DirApr" EntityType="IQCTestModel.tbl_Inv_Step4_DirApr" />
-    <EntitySet Name="tbl_SOR_Attached_ForItemReview" EntityType="IQCTestModel.tbl_SOR_Attached_ForItemReview" />
-    <EntitySet Name="tbl_SOR_Cur_Review_List" EntityType="IQCTestModel.tbl_SOR_Cur_Review_List" />
-    <EntitySet Name="tbl_SOR_Family_Setup_Qty" EntityType="IQCTestModel.tbl_SOR_Family_Setup_Qty" />
-    <EntitySet Name="tbl_SOR_His_Review_List" EntityType="IQCTestModel.tbl_SOR_His_Review_List" />
-    <EntitySet Name="tbl_SOR_Item_Review" EntityType="IQCTestModel.tbl_SOR_Item_Review" />
-    <EntitySet Name="tbl_SOR_Review_Pic" EntityType="IQCTestModel.tbl_SOR_Review_Pic" />
     <FunctionImport Name="sp_SOR_GetSoOpen" ReturnType="Collection(IQCTestModel.sp_SOR_GetSoOpen_Result)" />
     <FunctionImport Name="sp_SOR_GetSoReview" ReturnType="Collection(IQCTestModel.sp_SOR_GetSoReview_Result)" />
     <FunctionImport Name="sp_SOR_GetSoReviewHist" ReturnType="Collection(IQCTestModel.sp_SOR_GetSoReviewHist_Result)" />
     <FunctionImport Name="sp_SOR_OTDFailByLine_Report" />
     <FunctionImport Name="sp_SOR_RemindReview" />
     <FunctionImport Name="sp_SOR_RiskShip_Report" />
-    <EntitySet Name="tbl_SOR_Cur_Review_Detail" EntityType="IQCTestModel.tbl_SOR_Cur_Review_Detail" />
-    <EntitySet Name="tbl_SOR_His_Review_Detail" EntityType="IQCTestModel.tbl_SOR_His_Review_Detail" />
-    <EntitySet Name="tbl_Inv_Step3_SponsorApr" EntityType="IQCTestModel.tbl_Inv_Step3_SponsorApr" />
-    <EntitySet Name="tbl_Inv_Subject_Matter_List" EntityType="IQCTestModel.tbl_Inv_Subject_Matter_List" />
     <FunctionImport Name="sp_Inv_SugList" ReturnType="Collection(IQCTestModel.sp_Inv_SugList_Result)" />
+    <EntitySet Name="C__MigrationHistory" EntityType="IQCTestModel.C__MigrationHistory" />
+    <EntitySet Name="ADD_INS" EntityType="IQCTestModel.ADD_INS" />
+    <EntitySet Name="ApplicationGroupRoles" EntityType="IQCTestModel.ApplicationGroupRole" />
+    <EntitySet Name="ApplicationGroups" EntityType="IQCTestModel.ApplicationGroup" />
+    <EntitySet Name="ApplicationUserGroups" EntityType="IQCTestModel.ApplicationUserGroup" />
+    <EntitySet Name="APPROVALs" EntityType="IQCTestModel.APPROVAL" />
+    <EntitySet Name="AspNetRoles" EntityType="IQCTestModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="IQCTestModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="IQCTestModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="IQCTestModel.AspNetUser" />
+    <EntitySet Name="AspNetUsers_bk" EntityType="IQCTestModel.AspNetUsers_bk" />
+    <EntitySet Name="ASSIGNs" EntityType="IQCTestModel.ASSIGN" />
+    <EntitySet Name="ATTACHMENTs" EntityType="IQCTestModel.ATTACHMENT" />
+    <EntitySet Name="ATTCH_TEMP" EntityType="IQCTestModel.ATTCH_TEMP" />
+    <EntitySet Name="CCNs" EntityType="IQCTestModel.CCN" />
+    <EntitySet Name="CHANGED_SPL" EntityType="IQCTestModel.CHANGED_SPL" />
+    <EntitySet Name="ChangeItems" EntityType="IQCTestModel.ChangeItem" />
+    <EntitySet Name="CS" EntityType="IQCTestModel.C" />
+    <EntitySet Name="DESCRIPTIONs" EntityType="IQCTestModel.DESCRIPTION" />
+    <EntitySet Name="DETAILQUESTIONs" EntityType="IQCTestModel.DETAILQUESTION" />
+    <EntitySet Name="DIMENSION_STD_BY_PART" EntityType="IQCTestModel.DIMENSION_STD_BY_PART" />
+    <EntitySet Name="DISPOSITIONs" EntityType="IQCTestModel.DISPOSITION" />
+    <EntitySet Name="DOC_by_ITEM" EntityType="IQCTestModel.DOC_by_ITEM" />
+    <EntitySet Name="DOC_by_PO" EntityType="IQCTestModel.DOC_by_PO" />
+    <EntitySet Name="EEP_REPORT" EntityType="IQCTestModel.EEP_REPORT" />
+    <EntitySet Name="ESCAPING_PPM" EntityType="IQCTestModel.ESCAPING_PPM" />
+    <EntitySet Name="Families" EntityType="IQCTestModel.Family" />
+    <EntitySet Name="FIRSTLOTs" EntityType="IQCTestModel.FIRSTLOT" />
+    <EntitySet Name="FIRSTLOT_APPROVE" EntityType="IQCTestModel.FIRSTLOT_APPROVE" />
+    <EntitySet Name="FIRSTLOT_REJECT" EntityType="IQCTestModel.FIRSTLOT_REJECT" />
+    <EntitySet Name="FIXTURE_STD_BY_PART_NoUse" EntityType="IQCTestModel.FIXTURE_STD_BY_PART_NoUse" />
+    <EntitySet Name="FIXTURE_STD_BY_PART_OLD_NoUse" EntityType="IQCTestModel.FIXTURE_STD_BY_PART_OLD_NoUse" />
+    <EntitySet Name="INS_RESULT" EntityType="IQCTestModel.INS_RESULT" />
+    <EntitySet Name="INS_RESULT_DEFECT" EntityType="IQCTestModel.INS_RESULT_DEFECT" />
+    <EntitySet Name="INS_RESULT_FINAL" EntityType="IQCTestModel.INS_RESULT_FINAL" />
+    <EntitySet Name="INS_RESULT_MEASURE_BY_SAMPLING" EntityType="IQCTestModel.INS_RESULT_MEASURE_BY_SAMPLING" />
+    <EntitySet Name="INS_RESULT_PARTIAL" EntityType="IQCTestModel.INS_RESULT_PARTIAL" />
+    <EntitySet Name="INS_RESULT_VIS_ITEM" EntityType="IQCTestModel.INS_RESULT_VIS_ITEM" />
+    <EntitySet Name="INS_RESULT_VISUAL_PARTIAL" EntityType="IQCTestModel.INS_RESULT_VISUAL_PARTIAL" />
+    <EntitySet Name="IT_PRO_PROJECT" EntityType="IQCTestModel.IT_PRO_PROJECT" />
+    <EntitySet Name="IT_PRO_REFER" EntityType="IQCTestModel.IT_PRO_REFER" />
+    <EntitySet Name="LAST_BATCH_NO" EntityType="IQCTestModel.LAST_BATCH_NO" />
+    <EntitySet Name="LAST_DRAW_REV" EntityType="IQCTestModel.LAST_DRAW_REV" />
+    <EntitySet Name="LAST_SKIP_LOT_LEVEL" EntityType="IQCTestModel.LAST_SKIP_LOT_LEVEL" />
+    <EntitySet Name="LAST_SKIP_LOT_LEVEL_bk" EntityType="IQCTestModel.LAST_SKIP_LOT_LEVEL_bk" />
+    <EntitySet Name="LOGINs" EntityType="IQCTestModel.LOGIN" />
+    <EntitySet Name="MAILHISTORies" EntityType="IQCTestModel.MAILHISTORY" />
+    <EntitySet Name="MAINQUESTIONs" EntityType="IQCTestModel.MAINQUESTION" />
+    <EntitySet Name="MEASUREMENT_STD_BY_PART" EntityType="IQCTestModel.MEASUREMENT_STD_BY_PART" />
+    <EntitySet Name="MEETING_ATT" EntityType="IQCTestModel.MEETING_ATT" />
+    <EntitySet Name="MEETING_ATTENDANT" EntityType="IQCTestModel.MEETING_ATTENDANT" />
+    <EntitySet Name="MEETING_NOTE" EntityType="IQCTestModel.MEETING_NOTE" />
+    <EntitySet Name="NCs" EntityType="IQCTestModel.NC" />
+    <EntitySet Name="NC_BY_PART" EntityType="IQCTestModel.NC_BY_PART" />
+    <EntitySet Name="NC_BY_PART_OLD" EntityType="IQCTestModel.NC_BY_PART_OLD" />
+    <EntitySet Name="NC_BY_PRODUCT_GRP" EntityType="IQCTestModel.NC_BY_PRODUCT_GRP" />
+    <EntitySet Name="NC_CAT_NoUse" EntityType="IQCTestModel.NC_CAT_NoUse" />
+    <EntitySet Name="NC_GROUP" EntityType="IQCTestModel.NC_GROUP" />
+    <EntitySet Name="NC_PART" EntityType="IQCTestModel.NC_PART" />
+    <EntitySet Name="NCR_DET" EntityType="IQCTestModel.NCR_DET" />
+    <EntitySet Name="NCR_DET_History" EntityType="IQCTestModel.NCR_DET_History" />
+    <EntitySet Name="NCR_DIS" EntityType="IQCTestModel.NCR_DIS" />
+    <EntitySet Name="NCR_DIS_History" EntityType="IQCTestModel.NCR_DIS_History" />
+    <EntitySet Name="NCR_EVI" EntityType="IQCTestModel.NCR_EVI" />
+    <EntitySet Name="NCR_HDR" EntityType="IQCTestModel.NCR_HDR" />
+    <EntitySet Name="NCR_HDR_History" EntityType="IQCTestModel.NCR_HDR_History" />
+    <EntitySet Name="NCR_History" EntityType="IQCTestModel.NCR_History" />
+    <EntitySet Name="NCRDispositionDays" EntityType="IQCTestModel.NCRDispositionDay" />
+    <EntitySet Name="ONESUPPLLIER_PPMRB" EntityType="IQCTestModel.ONESUPPLLIER_PPMRB" />
+    <EntitySet Name="OrderDispositions" EntityType="IQCTestModel.OrderDisposition" />
+    <EntitySet Name="PANEL_EXCEL" EntityType="IQCTestModel.PANEL_EXCEL" />
+    <EntitySet Name="PANEL_RP" EntityType="IQCTestModel.PANEL_RP" />
+    <EntitySet Name="PART_DRAW_Nouse" EntityType="IQCTestModel.PART_DRAW_Nouse" />
+    <EntitySet Name="PART_DRW_OLD" EntityType="IQCTestModel.PART_DRW_OLD" />
+    <EntitySet Name="PART_INFO" EntityType="IQCTestModel.PART_INFO" />
+    <EntitySet Name="PART_INFO_TEMP" EntityType="IQCTestModel.PART_INFO_TEMP" />
+    <EntitySet Name="PART_INS_REQ" EntityType="IQCTestModel.PART_INS_REQ" />
+    <EntitySet Name="PART_INS_REQ_APPROVE" EntityType="IQCTestModel.PART_INS_REQ_APPROVE" />
+    <EntitySet Name="PART_INS_REQ_DOC" EntityType="IQCTestModel.PART_INS_REQ_DOC" />
+    <EntitySet Name="PART_INS_REQ_OLD" EntityType="IQCTestModel.PART_INS_REQ_OLD" />
+    <EntitySet Name="PATHs" EntityType="IQCTestModel.PATH" />
+    <EntitySet Name="PO_REV" EntityType="IQCTestModel.PO_REV" />
+    <EntitySet Name="PO_REV_Temp" EntityType="IQCTestModel.PO_REV_Temp" />
+    <EntitySet Name="RECEIVERs" EntityType="IQCTestModel.RECEIVER" />
+    <EntitySet Name="RECEIVER_Org" EntityType="IQCTestModel.RECEIVER_Org" />
+    <EntitySet Name="RECEIVER_TEMP" EntityType="IQCTestModel.RECEIVER_TEMP" />
+    <EntitySet Name="RESPONs" EntityType="IQCTestModel.RESPON" />
+    <EntitySet Name="REWORK_COST" EntityType="IQCTestModel.REWORK_COST" />
+    <EntitySet Name="RTVProcesses" EntityType="IQCTestModel.RTVProcess" />
+    <EntitySet Name="SCAR_Category" EntityType="IQCTestModel.SCAR_Category" />
+    <EntitySet Name="SCAR_INFO_BACKUP" EntityType="IQCTestModel.SCAR_INFO_BACKUP" />
+    <EntitySet Name="SCAR_RESULT_D0" EntityType="IQCTestModel.SCAR_RESULT_D0" />
+    <EntitySet Name="SCAR_RESULT_D1" EntityType="IQCTestModel.SCAR_RESULT_D1" />
+    <EntitySet Name="SCAR_RESULT_D2" EntityType="IQCTestModel.SCAR_RESULT_D2" />
+    <EntitySet Name="SCAR_RESULT_D3" EntityType="IQCTestModel.SCAR_RESULT_D3" />
+    <EntitySet Name="SCAR_RESULT_D4" EntityType="IQCTestModel.SCAR_RESULT_D4" />
+    <EntitySet Name="SCAR_RESULT_D5" EntityType="IQCTestModel.SCAR_RESULT_D5" />
+    <EntitySet Name="SCAR_RESULT_D6" EntityType="IQCTestModel.SCAR_RESULT_D6" />
+    <EntitySet Name="SCAR_RESULT_D7" EntityType="IQCTestModel.SCAR_RESULT_D7" />
+    <EntitySet Name="SCAREMAILs" EntityType="IQCTestModel.SCAREMAIL" />
+    <EntitySet Name="SCARINFOes" EntityType="IQCTestModel.SCARINFO" />
+    <EntitySet Name="SCARnNCRs" EntityType="IQCTestModel.SCARnNCR" />
+    <EntitySet Name="SCRAP_REASON" EntityType="IQCTestModel.SCRAP_REASON" />
+    <EntitySet Name="SCRAPCategories" EntityType="IQCTestModel.SCRAPCategory" />
+    <EntitySet Name="STATUS" EntityType="IQCTestModel.STATUS" />
+    <EntitySet Name="SUPPLIER_PPM" EntityType="IQCTestModel.SUPPLIER_PPM" />
+    <EntitySet Name="SUPPLIER_PPM_RP" EntityType="IQCTestModel.SUPPLIER_PPM_RP" />
+    <EntitySet Name="TASK_APPROVE" EntityType="IQCTestModel.TASK_APPROVE" />
+    <EntitySet Name="TASK_CATEGORY" EntityType="IQCTestModel.TASK_CATEGORY" />
+    <EntitySet Name="TASK_PHASE" EntityType="IQCTestModel.TASK_PHASE" />
+    <EntitySet Name="TASKCOMMENTs" EntityType="IQCTestModel.TASKCOMMENT" />
+    <EntitySet Name="TASKDETAILs" EntityType="IQCTestModel.TASKDETAIL" />
+    <EntitySet Name="TASKDOCUMENTs" EntityType="IQCTestModel.TASKDOCUMENT" />
+    <EntitySet Name="TaskHis" EntityType="IQCTestModel.TaskHi" />
+    <EntitySet Name="TASKLISTs" EntityType="IQCTestModel.TASKLIST" />
+    <EntitySet Name="tbDashboard_Guide_Show" EntityType="IQCTestModel.tbDashboard_Guide_Show" />
+    <EntitySet Name="tbEvents" EntityType="IQCTestModel.tbEvent" />
+    <EntitySet Name="TbFixtures" EntityType="IQCTestModel.TbFixture" />
+    <EntitySet Name="tbl_Inv_Apr_Process" EntityType="IQCTestModel.tbl_Inv_Apr_Process" />
+    <EntitySet Name="tbl_Inv_BoardDirector" EntityType="IQCTestModel.tbl_Inv_BoardDirector" />
+    <EntitySet Name="tbl_Inv_Cost_Saving" EntityType="IQCTestModel.tbl_Inv_Cost_Saving" />
+    <EntitySet Name="tbl_Inv_Cost_To_Score" EntityType="IQCTestModel.tbl_Inv_Cost_To_Score" />
+    <EntitySet Name="tbl_Inv_Email_Remind" EntityType="IQCTestModel.tbl_Inv_Email_Remind" />
+    <EntitySet Name="tbl_Inv_IdeaType" EntityType="IQCTestModel.tbl_Inv_IdeaType" />
+    <EntitySet Name="tbl_Inv_ImpMethod" EntityType="IQCTestModel.tbl_Inv_ImpMethod" />
+    <EntitySet Name="tbl_Inv_Role" EntityType="IQCTestModel.tbl_Inv_Role" />
+    <EntitySet Name="tbl_Inv_Score_Percent" EntityType="IQCTestModel.tbl_Inv_Score_Percent" />
+    <EntitySet Name="tbl_Inv_Step1_SubmitSuggestion" EntityType="IQCTestModel.tbl_Inv_Step1_SubmitSuggestion" />
+    <EntitySet Name="tbl_Inv_Step2_CIAproval" EntityType="IQCTestModel.tbl_Inv_Step2_CIAproval" />
+    <EntitySet Name="tbl_Inv_Step3_SponsorApr" EntityType="IQCTestModel.tbl_Inv_Step3_SponsorApr" />
+    <EntitySet Name="tbl_Inv_Step4_DirApr" EntityType="IQCTestModel.tbl_Inv_Step4_DirApr" />
+    <EntitySet Name="tbl_Inv_Step5_ProLeaderApr" EntityType="IQCTestModel.tbl_Inv_Step5_ProLeaderApr" />
+    <EntitySet Name="tbl_PT_CheckSheet" EntityType="IQCTestModel.tbl_PT_CheckSheet" />
+    <EntitySet Name="tbl_PT_Infor" EntityType="IQCTestModel.tbl_PT_Infor" />
+    <EntitySet Name="tbl_PT_Status" EntityType="IQCTestModel.tbl_PT_Status" />
+    <EntitySet Name="tbl_PT_Work_Center" EntityType="IQCTestModel.tbl_PT_Work_Center" />
+    <EntitySet Name="tbl_RP_DataSource_Para" EntityType="IQCTestModel.tbl_RP_DataSource_Para" />
+    <EntitySet Name="tbl_RP_Report" EntityType="IQCTestModel.tbl_RP_Report" />
+    <EntitySet Name="tbl_RP_Report_Para" EntityType="IQCTestModel.tbl_RP_Report_Para" />
+    <EntitySet Name="tbl_RP_Setting_BarChart" EntityType="IQCTestModel.tbl_RP_Setting_BarChart" />
+    <EntitySet Name="tbl_RP_Setting_DataGrid" EntityType="IQCTestModel.tbl_RP_Setting_DataGrid" />
+    <EntitySet Name="tbl_RP_Setting_LineChart" EntityType="IQCTestModel.tbl_RP_Setting_LineChart" />
+    <EntitySet Name="tbl_RP_Store_Parameter" EntityType="IQCTestModel.tbl_RP_Store_Parameter" />
+    <EntitySet Name="tbl_RP_StoreProcedure" EntityType="IQCTestModel.tbl_RP_StoreProcedure" />
+    <EntitySet Name="tbl_SOR_Attached_ForItemReview" EntityType="IQCTestModel.tbl_SOR_Attached_ForItemReview" />
+    <EntitySet Name="tbl_SOR_Cur_Review_Detail" EntityType="IQCTestModel.tbl_SOR_Cur_Review_Detail" />
+    <EntitySet Name="tbl_SOR_Cur_Review_List" EntityType="IQCTestModel.tbl_SOR_Cur_Review_List" />
+    <EntitySet Name="tbl_SOR_Family_Setup_Qty" EntityType="IQCTestModel.tbl_SOR_Family_Setup_Qty" />
+    <EntitySet Name="tbl_SOR_His_Review_Detail" EntityType="IQCTestModel.tbl_SOR_His_Review_Detail" />
+    <EntitySet Name="tbl_SOR_His_Review_List" EntityType="IQCTestModel.tbl_SOR_His_Review_List" />
+    <EntitySet Name="tbl_SOR_Item_Review" EntityType="IQCTestModel.tbl_SOR_Item_Review" />
+    <EntitySet Name="tbl_SOR_Review_Pic" EntityType="IQCTestModel.tbl_SOR_Review_Pic" />
+    <EntitySet Name="tbl_SQE_Ass_Period" EntityType="IQCTestModel.tbl_SQE_Ass_Period" />
+    <EntitySet Name="tbl_SQE_Ass_Resp" EntityType="IQCTestModel.tbl_SQE_Ass_Resp" />
+    <EntitySet Name="tbl_SQE_Ass_Resp_Status" EntityType="IQCTestModel.tbl_SQE_Ass_Resp_Status" />
+    <EntitySet Name="tbl_SQE_Ass_Vendor" EntityType="IQCTestModel.tbl_SQE_Ass_Vendor" />
+    <EntitySet Name="tbl_SQE_Category" EntityType="IQCTestModel.tbl_SQE_Category" />
+    <EntitySet Name="tbl_SQE_Category_Target" EntityType="IQCTestModel.tbl_SQE_Category_Target" />
+    <EntitySet Name="tbl_SQE_Customer_Claim" EntityType="IQCTestModel.tbl_SQE_Customer_Claim" />
+    <EntitySet Name="tbl_SQE_Develop_AuditVisit_Attachment" EntityType="IQCTestModel.tbl_SQE_Develop_AuditVisit_Attachment" />
+    <EntitySet Name="tbl_SQE_Develop_Category" EntityType="IQCTestModel.tbl_SQE_Develop_Category" />
+    <EntitySet Name="tbl_SQE_Develop_Goal" EntityType="IQCTestModel.tbl_SQE_Develop_Goal" />
+    <EntitySet Name="tbl_SQE_Develop_ImprovePlan" EntityType="IQCTestModel.tbl_SQE_Develop_ImprovePlan" />
+    <EntitySet Name="tbl_SQE_Develop_ProblemDesc" EntityType="IQCTestModel.tbl_SQE_Develop_ProblemDesc" />
+    <EntitySet Name="tbl_SQE_Develop_SourceFrom" EntityType="IQCTestModel.tbl_SQE_Develop_SourceFrom" />
+    <EntitySet Name="tbl_SQE_Develop_Status" EntityType="IQCTestModel.tbl_SQE_Develop_Status" />
+    <EntitySet Name="tbl_SQE_Develop_VisitAudit" EntityType="IQCTestModel.tbl_SQE_Develop_VisitAudit" />
+    <EntitySet Name="tbl_SQE_PCN" EntityType="IQCTestModel.tbl_SQE_PCN" />
+    <EntitySet Name="tbl_SQE_PCN_Attached" EntityType="IQCTestModel.tbl_SQE_PCN_Attached" />
+    <EntitySet Name="tbl_SQE_PCN_Class" EntityType="IQCTestModel.tbl_SQE_PCN_Class" />
+    <EntitySet Name="tbl_SQE_PCN_Contact" EntityType="IQCTestModel.tbl_SQE_PCN_Contact" />
+    <EntitySet Name="tbl_SQE_Premium_Freight" EntityType="IQCTestModel.tbl_SQE_Premium_Freight" />
+    <EntitySet Name="tbl_SQE_Report_Result" EntityType="IQCTestModel.tbl_SQE_Report_Result" />
+    <EntitySet Name="tbl_SQE_Report_Type" EntityType="IQCTestModel.tbl_SQE_Report_Type" />
+    <EntitySet Name="tbl_SQE_Report_Weight" EntityType="IQCTestModel.tbl_SQE_Report_Weight" />
+    <EntitySet Name="tbl_SQE_Res_Item" EntityType="IQCTestModel.tbl_SQE_Res_Item" />
+    <EntitySet Name="tbl_SQE_Score_Ref" EntityType="IQCTestModel.tbl_SQE_Score_Ref" />
+    <EntitySet Name="tbl_SQE_Score_Reponsiveness" EntityType="IQCTestModel.tbl_SQE_Score_Reponsiveness" />
+    <EntitySet Name="tbl_SQE_SupplierLog" EntityType="IQCTestModel.tbl_SQE_SupplierLog" />
+    <EntitySet Name="tbl_SQE_SupplierLog_Attached" EntityType="IQCTestModel.tbl_SQE_SupplierLog_Attached" />
+    <EntitySet Name="tbl_SQE_SupplierLog_BusinessType" EntityType="IQCTestModel.tbl_SQE_SupplierLog_BusinessType" />
+    <EntitySet Name="tbl_SQE_SupplierLog_CoC" EntityType="IQCTestModel.tbl_SQE_SupplierLog_CoC" />
+    <EntitySet Name="tbl_SQE_SupplierLog_CoCItem" EntityType="IQCTestModel.tbl_SQE_SupplierLog_CoCItem" />
+    <EntitySet Name="tbl_SQE_SupplierLog_Commodity" EntityType="IQCTestModel.tbl_SQE_SupplierLog_Commodity" />
+    <EntitySet Name="tbl_SQE_SupplierLog_Contact" EntityType="IQCTestModel.tbl_SQE_SupplierLog_Contact" />
+    <EntitySet Name="tbl_SQE_SupplierLog_ISO" EntityType="IQCTestModel.tbl_SQE_SupplierLog_ISO" />
+    <EntitySet Name="tbl_SQE_SupplierLog_MaterialSupplied" EntityType="IQCTestModel.tbl_SQE_SupplierLog_MaterialSupplied" />
+    <EntitySet Name="tbl_SQE_SupplierLog_QMSItem" EntityType="IQCTestModel.tbl_SQE_SupplierLog_QMSItem" />
+    <EntitySet Name="tbl_SQE_SupplierLog_Status" EntityType="IQCTestModel.tbl_SQE_SupplierLog_Status" />
+    <EntitySet Name="tbl_SQE_Vendor_Score_Ref" EntityType="IQCTestModel.tbl_SQE_Vendor_Score_Ref" />
+    <EntitySet Name="tbl_TP_Family" EntityType="IQCTestModel.tbl_TP_Family" />
+    <EntitySet Name="tbl_TP_Section" EntityType="IQCTestModel.tbl_TP_Section" />
+    <EntitySet Name="tbLaborScans" EntityType="IQCTestModel.tbLaborScan" />
+    <EntitySet Name="tbTargetOTs" EntityType="IQCTestModel.tbTargetOT" />
+    <EntitySet Name="TBTOOLs" EntityType="IQCTestModel.TBTOOL" />
+    <EntitySet Name="TEMPLATE_DET" EntityType="IQCTestModel.TEMPLATE_DET" />
+    <EntitySet Name="TEMPLATE_HDR" EntityType="IQCTestModel.TEMPLATE_HDR" />
+    <EntitySet Name="UserDispositionApprovals" EntityType="IQCTestModel.UserDispositionApproval" />
+    <EntitySet Name="UserLogins" EntityType="IQCTestModel.UserLogin" />
+    <EntitySet Name="VARIABLE_ACT_BY_SPL" EntityType="IQCTestModel.VARIABLE_ACT_BY_SPL" />
+    <EntitySet Name="VARIABLE_STD_BY_PART_NoUse" EntityType="IQCTestModel.VARIABLE_STD_BY_PART_NoUse" />
+    <EntitySet Name="VENDORs" EntityType="IQCTestModel.VENDOR" />
+    <EntitySet Name="VNMaterialTraceabilities" EntityType="IQCTestModel.VNMaterialTraceability" />
+    <EntitySet Name="Attributes" EntityType="IQCTestModel.Attribute" />
+    <EntitySet Name="CHANGED_SPL_BK" EntityType="IQCTestModel.CHANGED_SPL_BK" />
+    <EntitySet Name="CS_HIS" EntityType="IQCTestModel.CS_HIS" />
+    <EntitySet Name="DESCRIPTION_Temp" EntityType="IQCTestModel.DESCRIPTION_Temp" />
+    <EntitySet Name="FIXTURE_ACT_BY_SPL_NoUse" EntityType="IQCTestModel.FIXTURE_ACT_BY_SPL_NoUse" />
+    <EntitySet Name="INS_RESULT_HIS" EntityType="IQCTestModel.INS_RESULT_HIS" />
+    <EntitySet Name="INS_RESULT_VISUAL_LOT" EntityType="IQCTestModel.INS_RESULT_VISUAL_LOT" />
+    <EntitySet Name="INSPECTORs" EntityType="IQCTestModel.INSPECTOR" />
+    <EntitySet Name="MEASUREMENT_STD_BY_PART_CHANGED_SPL" EntityType="IQCTestModel.MEASUREMENT_STD_BY_PART_CHANGED_SPL" />
+    <EntitySet Name="NCR_HDR_PUR" EntityType="IQCTestModel.NCR_HDR_PUR" />
+    <EntitySet Name="NCR_WH_OPEN_COMMENT" EntityType="IQCTestModel.NCR_WH_OPEN_COMMENT" />
+    <EntitySet Name="PART_INS_REQ_VISUAL" EntityType="IQCTestModel.PART_INS_REQ_VISUAL" />
+    <EntitySet Name="PART_REJECT" EntityType="IQCTestModel.PART_REJECT" />
+    <EntitySet Name="PARTIAL_INS_RESULT" EntityType="IQCTestModel.PARTIAL_INS_RESULT" />
+    <EntitySet Name="PARTIAL_NC" EntityType="IQCTestModel.PARTIAL_NC" />
+    <EntitySet Name="POes" EntityType="IQCTestModel.PO" />
+    <EntitySet Name="PO_BK" EntityType="IQCTestModel.PO_BK" />
+    <EntitySet Name="receiver_bk" EntityType="IQCTestModel.receiver_bk" />
+    <EntitySet Name="SKIP_LOT_LEVEL" EntityType="IQCTestModel.SKIP_LOT_LEVEL" />
+    <EntitySet Name="SKIP_LOT_LEVEL_bk" EntityType="IQCTestModel.SKIP_LOT_LEVEL_bk" />
+    <EntitySet Name="STDCOSTs" EntityType="IQCTestModel.STDCOST" />
+    <EntitySet Name="STDCOST_Temp" EntityType="IQCTestModel.STDCOST_Temp" />
     <EntitySet Name="tbl_Inv_File_Attach" EntityType="IQCTestModel.tbl_Inv_File_Attach" />
+    <EntitySet Name="tbl_Inv_ScoreCost_4_Mem" EntityType="IQCTestModel.tbl_Inv_ScoreCost_4_Mem" />
+    <EntitySet Name="tbl_PT_Dept_PIC" EntityType="IQCTestModel.tbl_PT_Dept_PIC" />
+    <EntitySet Name="tbl_PT_Dept_PIC_BuyPart" EntityType="IQCTestModel.tbl_PT_Dept_PIC_BuyPart" />
+    <EntitySet Name="tbl_PT_TaskList" EntityType="IQCTestModel.tbl_PT_TaskList" />
+    <EntitySet Name="tbl_RP_Advance_Setting" EntityType="IQCTestModel.tbl_RP_Advance_Setting" />
+    <EntitySet Name="tbl_RP_Data_Source" EntityType="IQCTestModel.tbl_RP_Data_Source" />
+    <EntitySet Name="tbl_SQE_6Panel_TopNCPart" EntityType="IQCTestModel.tbl_SQE_6Panel_TopNCPart" />
+    <EntitySet Name="tbl_SQE_PCN_Status" EntityType="IQCTestModel.tbl_SQE_PCN_Status" />
+    <EntitySet Name="tbl_SQE_Supplier_Finish6Panel" EntityType="IQCTestModel.tbl_SQE_Supplier_Finish6Panel" />
+    <EntitySet Name="tbl_SQE_SupplierLog_QMS" EntityType="IQCTestModel.tbl_SQE_SupplierLog_QMS" />
+    <EntitySet Name="TemporaryUpsizedTable2" EntityType="IQCTestModel.TemporaryUpsizedTable2" />
+    <EntitySet Name="USER_PERMIT" EntityType="IQCTestModel.USER_PERMIT" />
+    <EntitySet Name="VENDOR_Temp" EntityType="IQCTestModel.VENDOR_Temp" />
+    <EntitySet Name="Work_Centers" EntityType="IQCTestModel.Work_Center" />
+    <AssociationSet Name="FK_dbo_ApplicationGroupRoles_dbo_ApplicationGroups_ApplicationGroupId" Association="IQCTestModel.FK_dbo_ApplicationGroupRoles_dbo_ApplicationGroups_ApplicationGroupId">
+      <End Role="ApplicationGroup" EntitySet="ApplicationGroups" />
+      <End Role="ApplicationGroupRole" EntitySet="ApplicationGroupRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ApplicationUserGroups_dbo_ApplicationGroups_ApplicationGroupId" Association="IQCTestModel.FK_dbo_ApplicationUserGroups_dbo_ApplicationGroups_ApplicationGroupId">
+      <End Role="ApplicationGroup" EntitySet="ApplicationGroups" />
+      <End Role="ApplicationUserGroup" EntitySet="ApplicationUserGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="IQCTestModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="IQCTestModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DETAILQUE__IDQUE__68BD7F23" Association="IQCTestModel.FK__DETAILQUE__IDQUE__68BD7F23">
+      <End Role="MAINQUESTION" EntitySet="MAINQUESTIONs" />
+      <End Role="DETAILQUESTION" EntitySet="DETAILQUESTIONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DETAILQUE__IDQUE__7E8CC4B1" Association="IQCTestModel.FK__DETAILQUE__IDQUE__7E8CC4B1">
+      <End Role="MAINQUESTION" EntitySet="MAINQUESTIONs" />
+      <End Role="DETAILQUESTION" EntitySet="DETAILQUESTIONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SCAREMAIL__SCAR___5E74FADA" Association="IQCTestModel.FK__SCAREMAIL__SCAR___5E74FADA">
+      <End Role="SCARINFO" EntitySet="SCARINFOes" />
+      <End Role="SCAREMAIL" EntitySet="SCAREMAILs" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="IQCTestModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <FunctionImport Name="SOR_Review_Planner" />
+    <FunctionImport Name="sp_GetSoReview1" ReturnType="Collection(IQCTestModel.sp_GetSoReview1_Result)" />
+    <FunctionImport Name="sp_SOR_SoReviewDetail" ReturnType="Collection(IQCTestModel.sp_SOR_SoReviewDetail_Result)">
+      <Parameter Name="Sono" Mode="In" Type="String" />
+      <Parameter Name="DownloadDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="pGet_MEASUREMENT_STD_BY_PART_Result">
     <Property Type="String" Name="MEASURE_PARA" Nullable="false" MaxLength="50" />
@@ -4336,6 +4333,359 @@
     <Property Type="String" Name="PRIORITY" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="Department" Nullable="true" />
   </ComplexType>
+  <ComplexType Name="GetListOperIQC_Result">
+    <Property Type="String" Name="OperID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="OperName" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="p_AgingTimeAQL_Parts_Detail_New_Result">
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Aging" Nullable="true" />
+    <Property Type="String" Name="NCR" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="ITEM" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="REC_LINE" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="CCN" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="PO_NUM" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="ITEM_DESC" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="VEN_NAME" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="POSTING_DATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Notes" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="p_AgingTimeAQL_Parts_New_Result">
+    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="PartAVG" Nullable="true" />
+    <Property Type="Int32" Name="Target" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="pGet_MEASUREMENT_STD_BY_PART_bk_Result">
+    <Property Type="String" Name="MEASURE_PARA" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="EVA_METHOD" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TOOL_FIXTURE" Nullable="true" MaxLength="250" />
+    <Property Type="Double" Name="LVALUE" Nullable="true" />
+    <Property Type="Double" Name="UVALUE" Nullable="true" />
+    <Property Type="String" Name="unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="critial" Nullable="true" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="sp_DOC_by_ITEM_Rev2_Result">
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Item" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="VendorNo" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="CCN" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="RequiredDOC" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="PathDOC" Nullable="true" MaxLength="4000" />
+    <Property Type="DateTime" Name="ExpiredDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UploadDocDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UploadUser" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Verified" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="VerifiedDocDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="VerifiedDocUser" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="sp_GET_NCCode_byItem_Result">
+    <Property Type="String" Name="NC_CODE" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="NC_DESC" Nullable="true" MaxLength="271" />
+    <Property Type="String" Name="NC_GRP_CODE" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_GET_NCGroup_byItem_Result">
+    <Property Type="String" Name="NC_GRP_CODE" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="NC_GRP_DESC" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="sp_GetOperator_IQC_Result">
+    <Property Type="String" Name="OperatorID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="OperatorName" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="sp_GetSoReview_Result">
+    <Property Type="Int64" Name="REVIEW_ID" Nullable="false" />
+    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+    <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="SCHEDULE_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
+    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+    <Property Type="Double" Name="ONHAND_QTY" Nullable="true" />
+    <Property Type="String" Name="REVIEW_STATUS" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PLAN_SHIP_DATE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_Inv_Report_SUGGESTION_ANALYSIS_Result">
+    <Property Type="Int32" Name="Qty" Nullable="true" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_Inv_Report_Suggestion_ByMonth_Result">
+    <Property Type="String" Name="Sug_ID" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="Req_Dept" Nullable="true" MaxLength="30" />
+    <Property Type="DateTime" Name="Submit_date" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Inv_Report_Suggestion_ByPerson_Result">
+    <Property Type="String" Name="Rqtor_name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Inv_Report_Suggestion_Status_Result">
+    <Property Type="String" Name="Sug_id" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="sp_Report_MonthIQC_TEM_SumByPart_Result">
+    <Property Type="String" Name="VEN_NAME" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ITEM" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="LOT" Nullable="true" MaxLength="25" />
+    <Property Type="Double" Name="REC_Qty" Nullable="true" />
+    <Property Type="Double" Name="REJ_QTY" Nullable="true" />
+    <Property Type="Decimal" Name="Rate" Nullable="true" Precision="13" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_CustClaim_By_Month_Result">
+    <Property Type="String" Name="Month" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="Case" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_DetailScar_Result">
+    <Property Type="String" Name="Ref_" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Corrective_Action_Description" Nullable="true" />
+    <Property Type="String" Name="Target_Date" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Actual_Date" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_Freight_By_Month_Result">
+    <Property Type="String" Name="Month" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="Case" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_GetListVendor_Result">
+    <Property Type="String" Name="Value" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Text" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_OTD_By_Month_Result">
+    <Property Type="DateTime" Name="Month" Nullable="true" />
+    <Property Type="Double" Name="D_OTD" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_PPM_By_Month_Result">
+    <Property Type="DateTime" Name="Month" Nullable="true" />
+    <Property Type="Double" Name="Q_PPM" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_QualityPerformance_Result">
+    <Property Type="String" Name="Month" Nullable="true" MaxLength="4000" />
+    <Property Type="Double" Name="Rec_Qty" Nullable="true" />
+    <Property Type="Double" Name="Defect_Qty" Nullable="true" />
+    <Property Type="Double" Name="Target" Nullable="true" />
+    <Property Type="Double" Name="PPM" Nullable="true" />
+    <Property Type="Double" Name="PPM_YTD" Nullable="true" />
+    <Property Type="DateTime" Name="M_idx" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_ScoreJudment_Result">
+    <Property Type="Double" Name="Q_Score" Nullable="true" />
+    <Property Type="Double" Name="D_Score" Nullable="true" />
+    <Property Type="Double" Name="Cust_Score" Nullable="true" />
+    <Property Type="Int32" Name="Freight_Score" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_ScoringRef_Result">
+    <Property Type="String" Name="Performance" Nullable="false" MaxLength="13" />
+    <Property Type="Int32" Name="Weight" Nullable="false" />
+    <Property Type="String" Name="C5_Score_Very___Satisfied" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="C4_Score___Satisfied" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="C3_Score___Fairly_Satisfied" Nullable="false" MaxLength="11" />
+    <Property Type="String" Name="C2_Score___Dissatisfied" Nullable="false" MaxLength="11" />
+    <Property Type="String" Name="C1_Score___Very_Dissatisfied" Nullable="false" MaxLength="5" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_SupplierInfo_Result">
+    <Property Type="String" Name="Item" Nullable="false" MaxLength="17" />
+    <Property Type="String" Name="value" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_TopDefectPart_By_Month_Result">
+    <Property Type="String" Name="Part" Nullable="false" MaxLength="50" />
+    <Property Type="Double" Name="QTY" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_6Panel_TopDefectPart_By_YTD_Result">
+    <Property Type="String" Name="Part" Nullable="false" MaxLength="50" />
+    <Property Type="Double" Name="QTY" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_Auto6Panel_Result">
+    <Property Type="DateTime" Name="Month" Nullable="true" />
+    <Property Type="Double" Name="Q_PPM" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_GetListVendor_Result">
+    <Property Type="String" Name="Value" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Text" Nullable="true" MaxLength="231" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_GetSupplierInfo_Result">
+    <Property Type="String" Name="SupplierCode" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SupplierType" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_ListVendorDetail_Result">
+    <Property Type="String" Name="CCN" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="VENDOR" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="PUR_LOC" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="VEN_NAM" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="STATE" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="ZIP" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CTRY" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CONTACT" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="FAX" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="TEL" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="SQE_PIC" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BUYER_PIC" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="PRO_CLASS" Nullable="true" MaxLength="5" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_PCN_PartList_Result">
+    <Property Type="String" Name="Text" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Value" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_RA_ProductClass_Result">
+    <Property Type="String" Name="SupplierCode" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SupplierType" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="ProductClass" Nullable="true" MaxLength="5" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_SupplierDevelopment_FiscalYear_Result">
+    <Property Type="Int32" Name="Value" Nullable="true" />
+    <Property Type="Int32" Name="Text" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_SupplierDevelopment_NewPlan_Result">
+    <Property Type="Int64" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Supplier_Code" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Year" Nullable="true" />
+    <Property Type="Int32" Name="Month" Nullable="true" />
+    <Property Type="Boolean" Name="Visit_Plan" Nullable="true" />
+    <Property Type="String" Name="Visit_Actual" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Visit_Com" Nullable="true" MaxLength="1000" />
+    <Property Type="Boolean" Name="Audit_Plan" Nullable="true" />
+    <Property Type="String" Name="Audit_Actual" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Audit_Com" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_SupplierDevelopment_SearchPlan_Result">
+    <Property Type="Int64" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Supplier_Code" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Year" Nullable="true" />
+    <Property Type="Int32" Name="Month" Nullable="true" />
+    <Property Type="Boolean" Name="Visit_Plan" Nullable="true" />
+    <Property Type="String" Name="Visit_Actual" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Visit_Com" Nullable="true" MaxLength="1000" />
+    <Property Type="Boolean" Name="Audit_Plan" Nullable="true" />
+    <Property Type="String" Name="Audit_Actual" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Audit_Com" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_SupplierDevelopment_VisitAuditSum_Result">
+    <Property Type="String" Name="SupplierCode" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SupplierType" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="HasPlan" Nullable="false" MaxLength="3" />
+  </ComplexType>
+  <ComplexType Name="sp_SQE_Yearlist_Result">
+    <Property Type="Int32" Name="Value" Nullable="true" />
+    <Property Type="Int32" Name="Text" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SOR_GetSoOpen_Result">
+    <Property Type="Int64" Name="REVIEW_ID" Nullable="false" />
+    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+    <Property Type="String" Name="SO_NO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="SCHEDULE_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
+    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+    <Property Type="Double" Name="ONHAND_QTY" Nullable="true" />
+    <Property Type="String" Name="REVIEW_STATUS" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PLAN_SHIP_DATE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COMMENT" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SOR_GetSoReview_Result">
+    <Property Type="Int64" Name="REVIEW_ID" Nullable="false" />
+    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+    <Property Type="String" Name="SO_NO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="SCHEDULE_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
+    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+    <Property Type="Double" Name="ONHAND_QTY" Nullable="true" />
+    <Property Type="String" Name="REVIEW_STATUS" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PLAN_SHIP_DATE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COMMENT" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SOR_GetSoReviewHist_Result">
+    <Property Type="Int64" Name="REVIEW_ID" Nullable="false" />
+    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+    <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="SCHEDULE_DATE" Nullable="true" />
+    <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
+    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+    <Property Type="Double" Name="ONHAND_QTY" Nullable="true" />
+    <Property Type="String" Name="REVIEW_STATUS" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PLAN_SHIP_DATE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COMMENT" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Inv_SugList_Result">
+    <Property Type="String" Name="Sug_ID" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="Sug_Type" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sug_title" Nullable="true" />
+    <Property Type="String" Name="Cur_prob" Nullable="true" />
+    <Property Type="String" Name="Idea_impr" Nullable="true" />
+    <Property Type="String" Name="Cur_Step" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Exp_Start_Date" Nullable="true" />
+    <Property Type="DateTime" Name="Exp_End_date" Nullable="true" />
+    <Property Type="DateTime" Name="Submit_date" Nullable="true" />
+    <Property Type="String" Name="Submitter" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Requestor" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Rqtor_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Req_Dept" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Req_Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Att_File_Current" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Att_File_Idea" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Step_Status" Nullable="true" MaxLength="74" />
+    <Property Type="String" Name="Next_Approver" Nullable="true" />
+    <Property Type="String" Name="Coacher" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Sponsor" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="CIManager" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Director" Nullable="true" />
+    <Property Type="String" Name="Pro_Leader" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Member" Nullable="true" />
+    <Property Type="DateTime" Name="Action_Date" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Subject_Matter_Need" Nullable="true" />
+    <Property Type="String" Name="Comment" Nullable="true" />
+  </ComplexType>
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -4634,7 +4984,8 @@
     <Property Name="CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="WRTIEDATE" Type="DateTime" Precision="0" />
     <Property Name="WRITEBY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="MAINQUESTION" Relationship="IQCTestModel.FK__DETAILQUE__IDQUE__6521F869" FromRole="DETAILQUESTION" ToRole="MAINQUESTION" />
+    <NavigationProperty Name="MAINQUESTION" Relationship="IQCTestModel.FK__DETAILQUE__IDQUE__68BD7F23" FromRole="DETAILQUESTION" ToRole="MAINQUESTION" />
+    <NavigationProperty Name="MAINQUESTION1" Relationship="IQCTestModel.FK__DETAILQUE__IDQUE__7E8CC4B1" FromRole="DETAILQUESTION" ToRole="MAINQUESTION" />
   </EntityType>
   <EntityType Name="DIMENSION_STD_BY_PART">
     <Key>
@@ -5090,7 +5441,8 @@
     <Property Name="PUBLICQUESTION" Type="Boolean" />
     <Property Name="PUBLICDATE" Type="DateTime" Precision="0" />
     <Property Name="PUBLICBY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="DETAILQUESTIONs" Relationship="IQCTestModel.FK__DETAILQUE__IDQUE__6521F869" FromRole="MAINQUESTION" ToRole="DETAILQUESTION" />
+    <NavigationProperty Name="DETAILQUESTIONs" Relationship="IQCTestModel.FK__DETAILQUE__IDQUE__68BD7F23" FromRole="MAINQUESTION" ToRole="DETAILQUESTION" />
+    <NavigationProperty Name="DETAILQUESTIONs1" Relationship="IQCTestModel.FK__DETAILQUE__IDQUE__7E8CC4B1" FromRole="MAINQUESTION" ToRole="DETAILQUESTION" />
   </EntityType>
   <EntityType Name="MEASUREMENT_STD_BY_PART">
     <Key>
@@ -6110,16 +6462,6 @@
     <Property Name="JUN" Type="Double" Nullable="false" />
     <Property Name="Sort" Type="Int32" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="TASK_APPROVE">
     <Key>
       <PropertyRef Name="TASK_ID" />
@@ -6241,7 +6583,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Event" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
     <Property Name="Type" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="GroupEvent" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
@@ -6274,7 +6616,7 @@
     <Property Name="Step_Idx" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Action_Date" Type="DateTime" Precision="3" />
-    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbl_Inv_BoardDirector">
     <Key>
@@ -6392,7 +6734,44 @@
     <Property Name="Imp_Method" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="Sponsor" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Coacher" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_Inv_Step3_SponsorApr">
+    <Key>
+      <PropertyRef Name="Sug_ID" />
+    </Key>
+    <Property Name="Sug_ID" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="Pro_Leader" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Imp_Start" Type="DateTime" Precision="0" />
+    <Property Name="Imp_End" Type="DateTime" Precision="0" />
+    <Property Name="Tech_abi" Type="Boolean" />
+    <Property Name="Tech_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Eco_ben" Type="Boolean" />
+    <Property Name="Eco_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Legal_Rel" Type="Boolean" />
+    <Property Name="Legal_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Res_avai" Type="Boolean" />
+    <Property Name="Res_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Safe_Rel" Type="Boolean" />
+    <Property Name="Safe_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Fin_abi" Type="Boolean" />
+    <Property Name="Fin_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_Inv_Step4_DirApr">
+    <Key>
+      <PropertyRef Name="Sug_ID" />
+      <PropertyRef Name="Director" />
+    </Key>
+    <Property Name="Sug_ID" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="Director" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="App_eva" Type="Boolean" />
+    <Property Name="App_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Stra_Link" Type="Boolean" />
+    <Property Name="Stra_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Apr_Status" Type="Boolean" />
+    <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Date_Action" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_Inv_Step5_ProLeaderApr">
     <Key>
@@ -6584,6 +6963,132 @@
     <Property Name="Created_At" Type="DateTime" Precision="3" />
     <Property Name="Updated_By" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Updated_At" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_Attached_ForItemReview">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SO_NO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Download_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Item_Idx" Type="Int32" Nullable="false" />
+    <Property Name="Attached_File" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Attached_By" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Attached_At" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_Cur_Review_Detail">
+    <Key>
+      <PropertyRef Name="ITEM_REVIEW_ID" />
+    </Key>
+    <Property Name="ITEM_REVIEW_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SO_NO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOWNLOAD_DATE" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DEPT_REVIEW" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ITEM_REVIEW" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="RESULT" Type="Boolean" />
+    <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="REVIEW_AT" Type="DateTime" Precision="3" />
+    <Property Name="REVIEW_BY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ISLOCK" Type="Boolean" />
+    <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_Cur_Review_List">
+    <Key>
+      <PropertyRef Name="REVIEW_ID" />
+    </Key>
+    <Property Name="REVIEW_ID" Type="Int64" Nullable="false" />
+    <Property Name="DOWNLOAD_DATE" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SO_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ANALYST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SO_ON_HOLD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SHIP_TO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ITEM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NEW_REVIEW" Type="Boolean" />
+    <Property Name="LAST_BUILD_DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LAST_REVIEW_DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REQUIRED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="SCHEDULE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="PROMISE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="ORD_QTY" Type="Double" />
+    <Property Name="BLC_QTY" Type="Double" />
+    <Property Name="BLC_VALUE" Type="Double" />
+    <Property Name="ONHAND_QTY" Type="Double" />
+    <Property Name="REVIEW_STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PLAN_SHIP_DATE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_Family_Setup_Qty">
+    <Key>
+      <PropertyRef Name="Family_inx" />
+    </Key>
+    <Property Name="Family_inx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Family" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Setup_Qty" Type="Double" Nullable="false" />
+    <Property Name="Review_Completed" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_His_Review_Detail">
+    <Key>
+      <PropertyRef Name="ITEM_REVIEW_ID" />
+    </Key>
+    <Property Name="ITEM_REVIEW_ID" Type="Int64" Nullable="false" />
+    <Property Name="SO_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOWNLOAD_DATE" Type="DateTime" Precision="0" />
+    <Property Name="DEPT_REVIEW" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ITEM_REVIEW" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="RESULT" Type="Boolean" />
+    <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="REVIEW_AT" Type="DateTime" Precision="3" />
+    <Property Name="REVIEW_BY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_His_Review_List">
+    <Key>
+      <PropertyRef Name="REVIEW_ID" />
+    </Key>
+    <Property Name="REVIEW_ID" Type="Int64" Nullable="false" />
+    <Property Name="DOWNLOAD_DATE" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SO_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ANALYST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SO_ON_HOLD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SHIP_TO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ITEM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NEW_REVIEW" Type="Boolean" />
+    <Property Name="LAST_BUILD_DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LAST_REVIEW_DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REQUIRED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="SCHEDULE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="PROMISE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="ORD_QTY" Type="Double" />
+    <Property Name="BLC_QTY" Type="Double" />
+    <Property Name="BLC_VALUE" Type="Double" />
+    <Property Name="ONHAND_QTY" Type="Double" />
+    <Property Name="REVIEW_STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PLAN_SHIP_DATE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_Item_Review">
+    <Key>
+      <PropertyRef Name="Item_Idx" />
+    </Key>
+    <Property Name="Item_Idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dept_Rv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Item_Rv" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Default" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_Review_Pic">
+    <Key>
+      <PropertyRef Name="Pic_Inx" />
+    </Key>
+    <Property Name="Pic_Inx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dept_Rv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pic_Rv" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbl_SQE_Ass_Period">
     <Key>
@@ -7764,6 +8269,16 @@
     <Property Name="ANALYST" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="MAKE" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="tbl_Inv_File_Attach">
+    <Key>
+      <PropertyRef Name="Sug_ID" />
+      <PropertyRef Name="Att_Path" />
+      <PropertyRef Name="Att_Type" />
+    </Key>
+    <Property Name="Sug_ID" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="Att_Path" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Att_Type" Type="Byte" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbl_Inv_ScoreCost_4_Mem">
     <Key>
       <PropertyRef Name="Sug_ID" />
@@ -7966,178 +8481,6 @@
     <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="DMS_WOLot">
-    <Key>
-      <PropertyRef Name="Department" />
-    </Key>
-    <Property Name="Department" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-    <Property Name="ProductID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="WOCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Lot" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="PPM_RejectQty">
-    <Key>
-      <PropertyRef Name="NCR_NUM" />
-      <PropertyRef Name="SEC" />
-      <PropertyRef Name="MI_PART_NO" />
-      <PropertyRef Name="DRAW_REV" />
-      <PropertyRef Name="ITEM_DESC" />
-      <PropertyRef Name="REC_QTY" />
-    </Key>
-    <Property Name="NCR_NUM" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="SEC" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="MI_PART_NO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="ANALYST" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="DRAW_REV" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
-    <Property Name="PO_NUM" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="RECEIVER" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
-    <Property Name="LOT" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-    <Property Name="ITEM_DESC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="VENDOR" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="VEN_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="VEN_ADD" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
-    <Property Name="REC_QTY" Type="Double" Nullable="false" />
-    <Property Name="INS_QTY" Type="Double" />
-    <Property Name="REJ_QTY" Type="Double" />
-    <Property Name="DATEAPPROVAL" Type="DateTime" Precision="0" />
-    <Property Name="CCN" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-  </EntityType>
-  <EntityType Name="v_AQL">
-    <Key>
-      <PropertyRef Name="AQLName" />
-      <PropertyRef Name="Date" />
-    </Key>
-    <Property Name="AQLName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="LotFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="LotTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Accept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Reject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="V_AspNetUsers">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="FullName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="v_INS_RESULT">
-    <Key>
-      <PropertyRef Name="RECEIVER" />
-      <PropertyRef Name="ITEM" />
-      <PropertyRef Name="QTY" />
-      <PropertyRef Name="REC_QTY" />
-      <PropertyRef Name="REC_DATE" />
-      <PropertyRef Name="INS_DATE" />
-      <PropertyRef Name="SAMPLING_MEASURE" />
-      <PropertyRef Name="SAMPLING_VISUAL" />
-      <PropertyRef Name="ACC_QTY" />
-      <PropertyRef Name="REJ_QTY" />
-    </Key>
-    <Property Name="RECEIVER" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
-    <Property Name="ITEM" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="QTY" Type="Double" Nullable="false" />
-    <Property Name="REC_QTY" Type="Double" Nullable="false" />
-    <Property Name="INSP_STAT" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
-    <Property Name="STATUS" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-    <Property Name="REC_DATE" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="INS_DATE" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="SAMPLING_MEASURE" Type="Double" Nullable="false" />
-    <Property Name="SAMPLING_VISUAL" Type="Double" Nullable="false" />
-    <Property Name="AQL_MEASURE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="AQL_VISUAL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ACC_QTY" Type="Double" Nullable="false" />
-    <Property Name="REJ_QTY" Type="Double" Nullable="false" />
-  </EntityType>
-  <EntityType Name="V_Material_HadMake_FLupSerialNumber">
-    <Key>
-      <PropertyRef Name="WOCode" />
-      <PropertyRef Name="PartNumber" />
-      <PropertyRef Name="Revision" />
-      <PropertyRef Name="SerialNumber" />
-      <PropertyRef Name="MaterialID" />
-    </Key>
-    <Property Name="WOCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PartNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="Revision" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SerialNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="LotNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="Qty" Type="Decimal" Precision="38" Scale="3" />
-    <Property Name="ExpiryDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="v_Operator">
-    <Key>
-      <PropertyRef Name="OperatorID" />
-      <PropertyRef Name="DepartmentName" />
-    </Key>
-    <Property Name="OperatorID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="OperatorName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="LineName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="V_WO_Issue">
-    <Key>
-      <PropertyRef Name="MaterialID" />
-      <PropertyRef Name="WOCode" />
-    </Key>
-    <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="WOCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="LotNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="vNCR_DET">
-    <Key>
-      <PropertyRef Name="PartialID" />
-    </Key>
-    <Property Name="ID" Type="Int32" />
-    <Property Name="PartialID" Type="Int32" Nullable="false" />
-    <Property Name="Non_Conformances" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="NC_Qty" Type="Double" />
-    <Property Name="Defect" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Response" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Disposition" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="vNCR_DET_2">
-    <Key>
-      <PropertyRef Name="PartialID" />
-    </Key>
-    <Property Name="NCR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="RPT_DATE" Type="DateTime" Precision="3" />
-    <Property Name="ID" Type="Int32" />
-    <Property Name="PartialID" Type="Int32" Nullable="false" />
-    <Property Name="Non_Conformances" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="NC_Qty" Type="Double" />
-    <Property Name="Defect" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Response" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Disposition" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="vNCR_HDR">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="PN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="DESCR" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Supplier" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Supplier_code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="REV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Qty" Type="Double" />
-    <Property Name="Unit" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="RPT_DATE" Type="DateTime" Precision="3" />
-    <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="AQLM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="AQLV" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="SPL1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="SPL2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="NCR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IQA_Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="CA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="NCR_writen_Date" Type="DateTime" Precision="3" />
-  </EntityType>
   <Association Name="FK_dbo_ApplicationGroupRoles_dbo_ApplicationGroups_ApplicationGroupId">
     <End Type="IQCTestModel.ApplicationGroup" Role="ApplicationGroup" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -8194,7 +8537,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DETAILQUE__IDQUE__6521F869">
+  <Association Name="FK__DETAILQUE__IDQUE__68BD7F23">
+    <End Type="IQCTestModel.MAINQUESTION" Role="MAINQUESTION" Multiplicity="0..1" />
+    <End Type="IQCTestModel.DETAILQUESTION" Role="DETAILQUESTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAINQUESTION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DETAILQUESTION">
+        <PropertyRef Name="IDQUESTION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DETAILQUE__IDQUE__7E8CC4B1">
     <End Type="IQCTestModel.MAINQUESTION" Role="MAINQUESTION" Multiplicity="0..1" />
     <End Type="IQCTestModel.DETAILQUESTION" Role="DETAILQUESTION" Multiplicity="*" />
     <ReferentialConstraint>
@@ -8222,416 +8577,7 @@
     <End Type="IQCTestModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="IQCTestModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
   </Association>
-  <ComplexType Name="GetListOperIQC_Result">
-    <Property Type="String" Name="OperID" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="OperName" Nullable="true" MaxLength="250" />
-  </ComplexType>
-  <ComplexType Name="p_AgingTimeAQL_Parts_Detail_New_Result">
-    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="Aging" Nullable="true" />
-    <Property Type="String" Name="NCR" Nullable="true" MaxLength="8" />
-    <Property Type="String" Name="ITEM" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="REC_LINE" Nullable="false" MaxLength="6" />
-    <Property Type="String" Name="CCN" Nullable="false" MaxLength="2" />
-    <Property Type="String" Name="PO_NUM" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="ITEM_DESC" Nullable="false" MaxLength="500" />
-    <Property Type="String" Name="VEN_NAME" Nullable="false" MaxLength="200" />
-    <Property Type="DateTime" Name="POSTING_DATE" Nullable="false" Precision="23" />
-    <Property Type="String" Name="Notes" Nullable="true" MaxLength="4000" />
-  </ComplexType>
-  <ComplexType Name="p_AgingTimeAQL_Parts_New_Result">
-    <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="PartAVG" Nullable="true" />
-    <Property Type="Int32" Name="Target" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="pGet_MEASUREMENT_STD_BY_PART_bk_Result">
-    <Property Type="String" Name="MEASURE_PARA" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="EVA_METHOD" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="TOOL_FIXTURE" Nullable="true" MaxLength="250" />
-    <Property Type="Double" Name="LVALUE" Nullable="true" />
-    <Property Type="Double" Name="UVALUE" Nullable="true" />
-    <Property Type="String" Name="unit" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="critial" Nullable="true" MaxLength="1" />
-  </ComplexType>
-  <ComplexType Name="sp_DOC_by_ITEM_Rev2_Result">
-    <Property Type="Int64" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Item" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="4000" />
-    <Property Type="String" Name="VendorNo" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="CCN" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="RequiredDOC" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="PathDOC" Nullable="true" MaxLength="4000" />
-    <Property Type="DateTime" Name="ExpiredDate" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="UploadDocDate" Nullable="true" Precision="23" />
-    <Property Type="String" Name="UploadUser" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="Verified" Nullable="true" MaxLength="255" />
-    <Property Type="DateTime" Name="VerifiedDocDate" Nullable="true" Precision="23" />
-    <Property Type="String" Name="VerifiedDocUser" Nullable="true" MaxLength="255" />
-  </ComplexType>
-  <ComplexType Name="sp_GET_NCCode_byItem_Result">
-    <Property Type="String" Name="NC_CODE" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="NC_DESC" Nullable="true" MaxLength="271" />
-    <Property Type="String" Name="NC_GRP_CODE" Nullable="false" MaxLength="20" />
-  </ComplexType>
-  <ComplexType Name="sp_GET_NCGroup_byItem_Result">
-    <Property Type="String" Name="NC_GRP_CODE" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="NC_GRP_DESC" Nullable="true" MaxLength="250" />
-  </ComplexType>
-  <ComplexType Name="sp_GetOperator_IQC_Result">
-    <Property Type="String" Name="OperatorID" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="OperatorName" Nullable="true" MaxLength="1000" />
-  </ComplexType>
-  <ComplexType Name="sp_GetSoReview_Result">
-    <Property Type="Int64" Name="REVIEW_ID" Nullable="false" />
-    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
-    <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
-    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
-    <Property Type="DateTime" Name="SCHEDULE_DATE" Nullable="true" />
-    <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
-    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
-    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
-    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
-    <Property Type="Double" Name="ONHAND_QTY" Nullable="true" />
-    <Property Type="String" Name="REVIEW_STATUS" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="PLAN_SHIP_DATE" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="sp_Inv_Report_SUGGESTION_ANALYSIS_Result">
-    <Property Type="Int32" Name="Qty" Nullable="true" />
-    <Property Type="String" Name="Status" Nullable="false" MaxLength="20" />
-  </ComplexType>
-  <ComplexType Name="sp_Inv_Report_Suggestion_ByMonth_Result">
-    <Property Type="String" Name="Sug_ID" Nullable="false" MaxLength="14" />
-    <Property Type="String" Name="Req_Dept" Nullable="true" MaxLength="30" />
-    <Property Type="DateTime" Name="Submit_date" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_Inv_Report_Suggestion_ByPerson_Result">
-    <Property Type="String" Name="Rqtor_name" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="Total" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_Inv_Report_Suggestion_Status_Result">
-    <Property Type="String" Name="Sug_id" Nullable="false" MaxLength="14" />
-    <Property Type="String" Name="Column1" Nullable="false" MaxLength="12" />
-  </ComplexType>
-  <ComplexType Name="sp_Report_MonthIQC_TEM_SumByPart_Result">
-    <Property Type="String" Name="VEN_NAME" Nullable="false" MaxLength="200" />
-    <Property Type="String" Name="ITEM" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="LOT" Nullable="true" MaxLength="25" />
-    <Property Type="Double" Name="REC_Qty" Nullable="true" />
-    <Property Type="Double" Name="REJ_QTY" Nullable="true" />
-    <Property Type="Decimal" Name="Rate" Nullable="true" Precision="13" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_CustClaim_By_Month_Result">
-    <Property Type="String" Name="Month" Nullable="true" MaxLength="4000" />
-    <Property Type="Int32" Name="Case" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_DetailScar_Result">
-    <Property Type="String" Name="Ref_" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="Corrective_Action_Description" Nullable="true" />
-    <Property Type="String" Name="Target_Date" Nullable="true" MaxLength="4000" />
-    <Property Type="String" Name="Actual_Date" Nullable="true" MaxLength="4000" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_Freight_By_Month_Result">
-    <Property Type="String" Name="Month" Nullable="true" MaxLength="4000" />
-    <Property Type="Int32" Name="Case" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_GetListVendor_Result">
-    <Property Type="String" Name="Value" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="Text" Nullable="true" MaxLength="200" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_OTD_By_Month_Result">
-    <Property Type="DateTime" Name="Month" Nullable="true" />
-    <Property Type="Double" Name="D_OTD" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_PPM_By_Month_Result">
-    <Property Type="DateTime" Name="Month" Nullable="true" />
-    <Property Type="Double" Name="Q_PPM" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_QualityPerformance_Result">
-    <Property Type="String" Name="Month" Nullable="true" MaxLength="4000" />
-    <Property Type="Double" Name="Rec_Qty" Nullable="true" />
-    <Property Type="Double" Name="Defect_Qty" Nullable="true" />
-    <Property Type="Double" Name="Target" Nullable="true" />
-    <Property Type="Double" Name="PPM" Nullable="true" />
-    <Property Type="Double" Name="PPM_YTD" Nullable="true" />
-    <Property Type="DateTime" Name="M_idx" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_ScoreJudment_Result">
-    <Property Type="Double" Name="Q_Score" Nullable="true" />
-    <Property Type="Double" Name="D_Score" Nullable="true" />
-    <Property Type="Double" Name="Cust_Score" Nullable="true" />
-    <Property Type="Int32" Name="Freight_Score" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_ScoringRef_Result">
-    <Property Type="String" Name="Performance" Nullable="false" MaxLength="13" />
-    <Property Type="Int32" Name="Weight" Nullable="false" />
-    <Property Type="String" Name="C5_Score_Very___Satisfied" Nullable="false" MaxLength="6" />
-    <Property Type="String" Name="C4_Score___Satisfied" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="C3_Score___Fairly_Satisfied" Nullable="false" MaxLength="11" />
-    <Property Type="String" Name="C2_Score___Dissatisfied" Nullable="false" MaxLength="11" />
-    <Property Type="String" Name="C1_Score___Very_Dissatisfied" Nullable="false" MaxLength="5" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_SupplierInfo_Result">
-    <Property Type="String" Name="Item" Nullable="false" MaxLength="17" />
-    <Property Type="String" Name="value" Nullable="true" MaxLength="200" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_TopDefectPart_By_Month_Result">
-    <Property Type="String" Name="Part" Nullable="false" MaxLength="50" />
-    <Property Type="Double" Name="QTY" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_6Panel_TopDefectPart_By_YTD_Result">
-    <Property Type="String" Name="Part" Nullable="false" MaxLength="50" />
-    <Property Type="Double" Name="QTY" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_Auto6Panel_Result">
-    <Property Type="DateTime" Name="Month" Nullable="true" />
-    <Property Type="Double" Name="Q_PPM" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_GetListVendor_Result">
-    <Property Type="String" Name="Value" Nullable="false" MaxLength="16" />
-    <Property Type="String" Name="Text" Nullable="true" MaxLength="231" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_GetSupplierInfo_Result">
-    <Property Type="String" Name="SupplierCode" Nullable="true" MaxLength="4000" />
-    <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="SupplierType" Nullable="false" MaxLength="12" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_ListVendorDetail_Result">
-    <Property Type="String" Name="CCN" Nullable="false" MaxLength="2" />
-    <Property Type="String" Name="VENDOR" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="PUR_LOC" Nullable="false" MaxLength="6" />
-    <Property Type="String" Name="VEN_NAM" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="STATE" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="ZIP" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="CTRY" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="CONTACT" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="FAX" Nullable="true" MaxLength="12" />
-    <Property Type="String" Name="TEL" Nullable="true" MaxLength="12" />
-    <Property Type="String" Name="SQE_PIC" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="BUYER_PIC" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="PRO_CLASS" Nullable="true" MaxLength="5" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_PCN_PartList_Result">
-    <Property Type="String" Name="Text" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Value" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_RA_ProductClass_Result">
-    <Property Type="String" Name="SupplierCode" Nullable="true" MaxLength="4000" />
-    <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="SupplierType" Nullable="false" MaxLength="12" />
-    <Property Type="String" Name="ProductClass" Nullable="true" MaxLength="5" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_SupplierDevelopment_FiscalYear_Result">
-    <Property Type="Int32" Name="Value" Nullable="true" />
-    <Property Type="Int32" Name="Text" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_SupplierDevelopment_NewPlan_Result">
-    <Property Type="Int64" Name="ID" Nullable="true" />
-    <Property Type="String" Name="Supplier_Code" Nullable="true" MaxLength="10" />
-    <Property Type="Int32" Name="Year" Nullable="true" />
-    <Property Type="Int32" Name="Month" Nullable="true" />
-    <Property Type="Boolean" Name="Visit_Plan" Nullable="true" />
-    <Property Type="String" Name="Visit_Actual" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Visit_Com" Nullable="true" MaxLength="1000" />
-    <Property Type="Boolean" Name="Audit_Plan" Nullable="true" />
-    <Property Type="String" Name="Audit_Actual" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Audit_Com" Nullable="true" MaxLength="1000" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_SupplierDevelopment_SearchPlan_Result">
-    <Property Type="Int64" Name="ID" Nullable="true" />
-    <Property Type="String" Name="Supplier_Code" Nullable="true" MaxLength="10" />
-    <Property Type="Int32" Name="Year" Nullable="true" />
-    <Property Type="Int32" Name="Month" Nullable="true" />
-    <Property Type="Boolean" Name="Visit_Plan" Nullable="true" />
-    <Property Type="String" Name="Visit_Actual" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Visit_Com" Nullable="true" MaxLength="1000" />
-    <Property Type="Boolean" Name="Audit_Plan" Nullable="true" />
-    <Property Type="String" Name="Audit_Actual" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Audit_Com" Nullable="true" MaxLength="1000" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_SupplierDevelopment_VisitAuditSum_Result">
-    <Property Type="String" Name="SupplierCode" Nullable="true" MaxLength="4000" />
-    <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="SupplierType" Nullable="false" MaxLength="12" />
-    <Property Type="String" Name="HasPlan" Nullable="false" MaxLength="3" />
-  </ComplexType>
-  <ComplexType Name="sp_SQE_Yearlist_Result">
-    <Property Type="Int32" Name="Value" Nullable="true" />
-    <Property Type="Int32" Name="Text" Nullable="true" />
-  </ComplexType>
-  <EntityType Name="tbl_Inv_Step4_DirApr">
-    <Key>
-      <PropertyRef Name="Sug_ID" />
-      <PropertyRef Name="Director" />
-    </Key>
-    <Property Name="Sug_ID" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
-    <Property Name="Director" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="App_eva" Type="Boolean" />
-    <Property Name="App_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Stra_Link" Type="Boolean" />
-    <Property Name="Stra_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Apr_Status" Type="Boolean" />
-    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Date_Action" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="tbl_SOR_Attached_ForItemReview">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SO_NO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Download_Date" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Item_Idx" Type="Int32" Nullable="false" />
-    <Property Name="Attached_File" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <Property Name="LINE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Attached_By" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Attached_At" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="tbl_SOR_Cur_Review_List">
-    <Key>
-      <PropertyRef Name="REVIEW_ID" />
-    </Key>
-    <Property Name="REVIEW_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DOWNLOAD_DATE" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="SO_NO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ANALYST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SO_ON_HOLD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SHIP_TO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ITEM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="FAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="NEW_REVIEW" Type="Boolean" />
-    <Property Name="LAST_BUILD_DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="LAST_REVIEW_DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="REQUIRED_DATE" Type="DateTime" Precision="0" />
-    <Property Name="SCHEDULE_DATE" Type="DateTime" Precision="0" />
-    <Property Name="PROMISE_DATE" Type="DateTime" Precision="0" />
-    <Property Name="ORD_QTY" Type="Double" />
-    <Property Name="BLC_QTY" Type="Double" />
-    <Property Name="BLC_VALUE" Type="Double" />
-    <Property Name="ONHAND_QTY" Type="Double" />
-    <Property Name="REVIEW_STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PLAN_SHIP_DATE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="tbl_SOR_Family_Setup_Qty">
-    <Key>
-      <PropertyRef Name="Family_inx" />
-    </Key>
-    <Property Name="Family_inx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Family" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Setup_Qty" Type="Double" Nullable="false" />
-    <Property Name="Review_Completed" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="tbl_SOR_His_Review_List">
-    <Key>
-      <PropertyRef Name="REVIEW_ID" />
-    </Key>
-    <Property Name="REVIEW_ID" Type="Int64" Nullable="false" />
-    <Property Name="DOWNLOAD_DATE" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="SO_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ANALYST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SO_ON_HOLD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SHIP_TO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ITEM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="FAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="NEW_REVIEW" Type="Boolean" />
-    <Property Name="LAST_BUILD_DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="LAST_REVIEW_DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="DR_REV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="REQUIRED_DATE" Type="DateTime" Precision="0" />
-    <Property Name="SCHEDULE_DATE" Type="DateTime" Precision="0" />
-    <Property Name="PROMISE_DATE" Type="DateTime" Precision="0" />
-    <Property Name="ORD_QTY" Type="Double" />
-    <Property Name="BLC_QTY" Type="Double" />
-    <Property Name="BLC_VALUE" Type="Double" />
-    <Property Name="ONHAND_QTY" Type="Double" />
-    <Property Name="REVIEW_STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PLAN_SHIP_DATE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="tbl_SOR_Item_Review">
-    <Key>
-      <PropertyRef Name="Item_Idx" />
-    </Key>
-    <Property Name="Item_Idx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Dept_Rv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Item_Rv" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <Property Name="Default" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="tbl_SOR_Review_Pic">
-    <Key>
-      <PropertyRef Name="Pic_Inx" />
-    </Key>
-    <Property Name="Pic_Inx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Dept_Rv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Pic_Rv" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <ComplexType Name="sp_SOR_GetSoOpen_Result">
-    <Property Type="Int64" Name="REVIEW_ID" Nullable="false" />
-    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
-    <Property Type="String" Name="SO_NO" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
-    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
-    <Property Type="DateTime" Name="SCHEDULE_DATE" Nullable="true" />
-    <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
-    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
-    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
-    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
-    <Property Type="Double" Name="ONHAND_QTY" Nullable="true" />
-    <Property Type="String" Name="REVIEW_STATUS" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="PLAN_SHIP_DATE" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="COMMENT" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_SOR_GetSoReview_Result">
-    <Property Type="Int64" Name="REVIEW_ID" Nullable="false" />
-    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
-    <Property Type="String" Name="SO_NO" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
-    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
-    <Property Type="DateTime" Name="SCHEDULE_DATE" Nullable="true" />
-    <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
-    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
-    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
-    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
-    <Property Type="Double" Name="ONHAND_QTY" Nullable="true" />
-    <Property Type="String" Name="REVIEW_STATUS" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="PLAN_SHIP_DATE" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="COMMENT" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_SOR_GetSoReviewHist_Result">
+  <ComplexType Name="sp_GetSoReview1_Result">
     <Property Type="Int64" Name="REVIEW_ID" Nullable="false" />
     <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
     <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
@@ -8656,107 +8602,18 @@
     <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="COMMENT" Nullable="true" />
   </ComplexType>
-  <EntityType Name="tbl_SOR_Cur_Review_Detail">
-    <Key>
-      <PropertyRef Name="ITEM_REVIEW_ID" />
-    </Key>
-    <Property Name="ITEM_REVIEW_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SO_NO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="DOWNLOAD_DATE" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="DEPT_REVIEW" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ITEM_REVIEW" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <Property Name="RESULT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="REVIEW_AT" Type="DateTime" Precision="3" />
-    <Property Name="REVIEW_BY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="ISLOCK" Type="Boolean" />
-    <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="tbl_SOR_His_Review_Detail">
-    <Key>
-      <PropertyRef Name="ITEM_REVIEW_ID" />
-    </Key>
-    <Property Name="ITEM_REVIEW_ID" Type="Int64" Nullable="false" />
-    <Property Name="SO_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="DOWNLOAD_DATE" Type="DateTime" Precision="0" />
-    <Property Name="DEPT_REVIEW" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ITEM_REVIEW" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <Property Name="RESULT" Type="String" Unicode="true" MaxLength="50" FixedLength="false" />
-    <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="REVIEW_AT" Type="DateTime" Precision="3" />
-    <Property Name="REVIEW_BY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="tbl_Inv_Step3_SponsorApr">
-    <Key>
-      <PropertyRef Name="Sug_ID" />
-    </Key>
-    <Property Name="Sug_ID" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
-    <Property Name="Pro_Leader" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Imp_Start" Type="DateTime" Precision="0" />
-    <Property Name="Imp_End" Type="DateTime" Precision="0" />
-    <Property Name="Tech_abi" Type="Boolean" />
-    <Property Name="Tech_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Eco_ben" Type="Boolean" />
-    <Property Name="Eco_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Legal_Rel" Type="Boolean" />
-    <Property Name="Legal_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Res_avai" Type="Boolean" />
-    <Property Name="Res_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Safe_Rel" Type="Boolean" />
-    <Property Name="Safe_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Fin_abi" Type="Boolean" />
-    <Property Name="Fin_com" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Subject_Matter_Need" Type="Boolean" />
-    <Property Name="Subject_Matter_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="tbl_Inv_Subject_Matter_List">
-    <Key>
-      <PropertyRef Name="Subject_Matter_ID" />
-    </Key>
-    <Property Name="Subject_Matter_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Subject_Matter_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Feild" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Area" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <ComplexType Name="sp_Inv_SugList_Result">
-    <Property Type="String" Name="Sug_ID" Nullable="false" MaxLength="14" />
-    <Property Type="String" Name="Sug_Type" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Sug_title" Nullable="true" />
-    <Property Type="String" Name="Cur_prob" Nullable="true" />
-    <Property Type="String" Name="Idea_impr" Nullable="true" />
-    <Property Type="String" Name="Cur_Step" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="Exp_Start_Date" Nullable="true" />
-    <Property Type="DateTime" Name="Exp_End_date" Nullable="true" />
-    <Property Type="DateTime" Name="Submit_date" Nullable="true" />
-    <Property Type="String" Name="Submitter" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Requestor" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="Rqtor_name" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Req_Dept" Nullable="true" MaxLength="30" />
-    <Property Type="String" Name="Req_Email" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Att_File_Current" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="Att_File_Idea" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="Step_Status" Nullable="true" MaxLength="74" />
-    <Property Type="String" Name="Next_Approver" Nullable="true" />
-    <Property Type="String" Name="Coacher" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Sponsor" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="CIManager" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Director" Nullable="true" />
-    <Property Type="String" Name="Pro_Leader" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Member" Nullable="true" />
-    <Property Type="DateTime" Name="Action_Date" Nullable="true" Precision="23" />
-    <Property Type="Boolean" Name="Subject_Matter_Need" Nullable="true" />
-    <Property Type="String" Name="Comment" Nullable="true" />
+  <ComplexType Name="sp_SOR_SoReviewDetail_Result">
+    <Property Type="Int64" Name="ITEM_REVIEW_ID" Nullable="false" />
+    <Property Type="String" Name="SO_NO" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+    <Property Type="String" Name="DEPT_REVIEW" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ITEM_REVIEW" Nullable="false" MaxLength="1000" />
+    <Property Type="Boolean" Name="RESULT" Nullable="true" />
+    <Property Type="String" Name="COMMENT" Nullable="true" />
+    <Property Type="DateTime" Name="REVIEW_AT" Nullable="true" Precision="23" />
+    <Property Type="String" Name="REVIEW_BY" Nullable="true" MaxLength="128" />
+    <Property Type="Boolean" Name="ISLOCK" Nullable="true" />
+    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Comment1" Nullable="true" />
   </ComplexType>
-  <EntityType Name="tbl_Inv_File_Attach">
-    <Key>
-      <PropertyRef Name="Att_ID" />
-    </Key>
-    <Property Name="Att_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Sug_ID" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
-    <Property Name="Step" Type="Byte" Nullable="false" />
-    <Property Name="Att_Path" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <Property Name="Att_Type" Type="Byte" />
-  </EntityType>
 </Schema>

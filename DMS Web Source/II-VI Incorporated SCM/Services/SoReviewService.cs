@@ -1,5 +1,6 @@
 ﻿using II_VI_Incorporated_SCM.Models;
 using II_VI_Incorporated_SCM.Models.SOReview;
+using II_VI_Incorporated_SCM.Models.TaskManagement;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,7 +28,7 @@ namespace II_VI_Incorporated_SCM.Services
         Result LockSoReview(string SoNo,string item,DateTime date,string islock);
         List<SoReviewDetail> GetSoReviewDetail(string soNo, DateTime dateReview, string status, string item);
 
-        List<tbl_SOR_Attached_ForItemReview> GetListFileItem(string SoNo, DateTime datedownload, long ID,string item);
+        List<tbl_SOR_Attached_ForItemReview> GetListFileItem(string SoNo);
 
         Result UpdateDataSoReview(SoReviewDetail picData, int picID);
 
@@ -40,6 +41,8 @@ namespace II_VI_Incorporated_SCM.Services
         tbl_SOR_Attached_ForItemReview GetFileWithFileID(int fileId);
 
         Result DeleteDataFileofItemReview(string id);
+
+        Result AddTaskForSoReview(string SoNo, string itemreview, string userID, string Assignee, string item, string taskname);
         #endregion
 
         #region MasterData
@@ -79,6 +82,19 @@ namespace II_VI_Incorporated_SCM.Services
         //List<sp_SOR_RiskShip_Report_Result> SOR_RiskShip_Report1_Result();
         #endregion
 
+
+        #region New Requirement
+        List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart);
+        Result UpdateDataSoReviewResult(ListSOItemReviewModel picData,string idUser);
+
+        List<SelectListItem> GetDropdownlistSOreview();
+
+        List<TaskmanagementViewmodel> GetListTaskSoreview();
+
+         string SORReviewPlanner();
+
+        List<SelectListItem> GetDropdownItembySOreview(string soNo);
+        #endregion
     }
     public class SoReviewService : ISoReviewService
     {
@@ -138,10 +154,10 @@ namespace II_VI_Incorporated_SCM.Services
             var data = _db.sp_SOR_Release();
             return true;
         }
-        public bool GetIsLockBySo(string SO,DateTime date ,string line)
+        public bool GetIsLockBySo(string SO, DateTime date, string line)
         {
             var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.SO_NO == SO && x.DOWNLOAD_DATE == date && x.LINE == line && x.ISLOCK == true).ToList();
-            if(data.Count > 0)
+            if (data.Count > 0)
             {
                 return true;
             }
@@ -150,11 +166,11 @@ namespace II_VI_Incorporated_SCM.Services
                 return false;
             }
         }
-        public List<SoReviewDetail> GetSoReviewDetail(string soNo, DateTime dateReview, string status,string item1)
+        public List<SoReviewDetail> GetSoReviewDetail(string soNo, DateTime dateReview, string status, string item1)
         {
-            var current =  _db.tbl_SOR_Cur_Review_Detail.Where(x =>x.SO_NO == soNo && x.DOWNLOAD_DATE == dateReview && x.LINE.Trim() == item1 )                    
+            var current = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.SO_NO == soNo && x.DOWNLOAD_DATE == dateReview && x.LINE.Trim() == item1)
                       .ToList();
-            var top1 =  _db.tbl_SOR_His_Review_Detail.Where(x => x.SO_NO == soNo && x.DOWNLOAD_DATE == dateReview && x.LINE.Trim() == item1).ToList().OrderBy(x => x.DOWNLOAD_DATE)?.FirstOrDefault();
+            var top1 = _db.tbl_SOR_His_Review_Detail.Where(x => x.SO_NO == soNo && x.DOWNLOAD_DATE == dateReview && x.LINE.Trim() == item1).ToList().OrderBy(x => x.DOWNLOAD_DATE)?.FirstOrDefault();
             if (top1 != null)
             {
                 var history = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.SO_NO == top1.SO_NO && x.DOWNLOAD_DATE == top1.DOWNLOAD_DATE && x.LINE.Trim() == item1).ToList();
@@ -171,65 +187,66 @@ namespace II_VI_Incorporated_SCM.Services
                                 Comment = c.COMMENT == null ? "" : c.COMMENT,
                                 ReviewResult = c.RESULT,
                                 LastComment = p.COMMENT,
-                                LastReview = p.RESULT,
+                                //LastReview = p.RESULT,
                                 IsLock = c.ISLOCK == true ? "True" : "False"
                             }).ToList();
-                foreach (var item in data)
-                {
-                    if (item.ReviewResult == null)
-                    {
-                        item.ReviewResult = "";
-                    }
+              //  foreach (var item in data)
+                //{
+                //    if (item.ReviewResult == null)
+                //    {
+                //        item.ReviewResult = "";
+                //    }
 
-                }
+                //}
                 return data;
             }
             else
             {
-                var datacurrent = current.Where(x=>x.SO_NO == soNo && x.DOWNLOAD_DATE == dateReview && x.LINE.Trim() == item1)
-                    .Select( x=> new SoReviewDetail
-                                  {
-                                      ID = x.ITEM_REVIEW_ID,
-                                      SONO = x.SO_NO,
-                                      ItemReview = x.ITEM_REVIEW,
-                                      DeptReview = x.DEPT_REVIEW.Trim(),
-                                      Comment = x.COMMENT == null ? "" : x.COMMENT,
-                                      ReviewResult = x.RESULT,
-                                      LastComment = null,
-                                      IsLock = x.ISLOCK == true ? "True" : "False"
-                    }).ToList();
-                foreach (var item in datacurrent)
-                {
-                    if(item.ReviewResult == null)
+                var datacurrent = current.Where(x => x.SO_NO == soNo && x.DOWNLOAD_DATE == dateReview && x.LINE.Trim() == item1)
+                    .Select(x => new SoReviewDetail
                     {
-                        item.ReviewResult = "";
-                    }
-                    
-                }
+                        ID = x.ITEM_REVIEW_ID,
+                        SONO = x.SO_NO,
+                        ItemReview = x.ITEM_REVIEW,
+                        DeptReview = x.DEPT_REVIEW.Trim(),
+                        Comment = x.COMMENT == null ? "" : x.COMMENT,
+                        ReviewResult = x.RESULT,
+                        LastComment = null,
+                        IsLock = x.ISLOCK == true ? "True" : "False"
+                    }).ToList();
+                //foreach (var item in datacurrent)
+                //{
+                //    if (item.ReviewResult == null)
+                //    {
+                //        item.ReviewResult = "";
+                //    }
+
+                //}
                 return datacurrent;
             }
-               
+
         }
 
         public string GetDepart(string userID)
         {
             var user = _db.tbl_SOR_Review_Pic.Where(x => x.Pic_Rv == userID).FirstOrDefault();
-            if (user != null) {
-             return   user.Dept_Rv;
+            if (user != null)
+            {
+                return user.Dept_Rv;
             }
             else
             {
                 return "";
             }
         }
-        public Result LockSoReview(string SoNo,string item,DateTime date,string isLock)
+        public Result LockSoReview(string SoNo, string item, DateTime date, string isLock)
         {
             var _log = new LogWriter("Updatedata");
             using (var tranj = _db.Database.BeginTransaction())
             {
                 try
                 {
-                    
+
                     var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.SO_NO == SoNo && x.DOWNLOAD_DATE == date && x.LINE == item).ToList();
                     if (data != null && isLock == "False")
                     {
@@ -245,7 +262,7 @@ namespace II_VI_Incorporated_SCM.Services
                             message = "Lock Data sucess!",
                         };
                     }
-                    else if(data != null && isLock == "True")
+                    else if (data != null && isLock == "True")
                     {
                         foreach (var item1 in data)
                         {
@@ -281,10 +298,10 @@ namespace II_VI_Incorporated_SCM.Services
                 }
             }
         }
-        public List<tbl_SOR_Attached_ForItemReview> GetListFileItem(string SoNo,DateTime datedownload ,long ID,string item)
+        public List<tbl_SOR_Attached_ForItemReview> GetListFileItem(string So)
         {
             // get date certification
-            var data = _db.tbl_SOR_Attached_ForItemReview.Where(x => x.SO_NO == SoNo && x.Download_Date == datedownload && x.Item_Idx == ID && x.LINE.Trim() == item).ToList();
+            var data = _db.tbl_SOR_Attached_ForItemReview.ToList();
             return data;
         }
 
@@ -305,7 +322,7 @@ namespace II_VI_Incorporated_SCM.Services
                     var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == id).FirstOrDefault();
                     if (data != null)
                     {
-                        data.RESULT = "Y";
+                        data.RESULT = false;
                         _db.SaveChanges();
                     }
                     tranj.Commit();
@@ -328,16 +345,17 @@ namespace II_VI_Incorporated_SCM.Services
             }
         }
 
-        public Result AddTaskForItemReview(string SoNo, string Date, string itemreview, string userID,string Assignee,string item,string taskname, int id)
+        public Result AddTaskForItemReview(string SoNo, string Date, string itemreview, string userID, string Assignee, string item, string taskname, int id)
         {
             var _log = new LogWriter("Updatedata");
             using (var tranj = _db.Database.BeginTransaction())
             {
                 try
                 {
-                   var currentTaskListID = 0;
-                    var taskNO = SoNo +"-" + Date + "-" + item;
+                    var currentTaskListID = 0;
+                    var taskNO = SoNo + "-" + Date + "-" + item;
                     var ckTaskList = _db.TASKLISTs.FirstOrDefault(x => x.Reference.Trim().Equals(taskNO.Trim()) && x.TYPE == "SoReview");
+
                     if (ckTaskList != null)
                     {
                         TASKDETAIL taskDetail = new TASKDETAIL
@@ -360,10 +378,10 @@ namespace II_VI_Incorporated_SCM.Services
                         var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == id).FirstOrDefault();
                         if (data != null)
                         {
-                            data.RESULT = "N";
+                            data.RESULT = false;
                         }
                         _db.SaveChanges();
-                           tranj.Commit();
+                        tranj.Commit();
                         return new Result
                         {
                             success = true,
@@ -483,7 +501,7 @@ namespace II_VI_Incorporated_SCM.Services
                         bool isNotUpdate = false;
                         foreach (var item in data)
                         {
-                            if(item.RESULT == null)
+                            if (item.RESULT == null)
                             {
                                 isNotUpdate = true;
                             }
@@ -538,7 +556,7 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 try
                 {
-                    if(picData.IsLock == "True")
+                    if (picData.IsLock == "True")
                     {
                         return new Result
                         {
@@ -548,9 +566,9 @@ namespace II_VI_Incorporated_SCM.Services
                         };
                     }
                     var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picID).FirstOrDefault();
-                    if(data != null)
+                    if (data != null)
                     {
-                       
+
                         data.COMMENT = picData.Comment;
                         data.RESULT = picData.ReviewResult;
                         _db.SaveChanges();
@@ -664,7 +682,7 @@ namespace II_VI_Incorporated_SCM.Services
                     var dataInsert = new tbl_SOR_Item_Review();
                     dataInsert.Dept_Rv = picData.Dept;
                     dataInsert.Item_Rv = picData.ItemReview;
-                  //  dataInsert.Default = picData.Isdefault;
+                    //  dataInsert.Default = picData.Isdefault;
                     _db.tbl_SOR_Item_Review.Add(dataInsert);
                     _db.SaveChanges();
                     tranj.Commit();
@@ -696,7 +714,7 @@ namespace II_VI_Incorporated_SCM.Services
                     var data = _db.tbl_SOR_Item_Review.Where(x => x.Item_Idx == picID).FirstOrDefault();
                     data.Dept_Rv = picData.Dept;
                     data.Item_Rv = picData.ItemReview;
-                  //  data.Default = picData.Isdefault;
+                    //  data.Default = picData.Isdefault;
                     _db.SaveChanges();
                     tranj.Commit();
                     return new Result
@@ -753,9 +771,9 @@ namespace II_VI_Incorporated_SCM.Services
             var picData = _db.tbl_SOR_Family_Setup_Qty.
                           Select(x => new FamilyReviewmodel
                           {
-                             ID = x.Family_inx,
-                            Family = x.Family,
-                            MaxQty = x.Setup_Qty
+                              ID = x.Family_inx,
+                              Family = x.Family,
+                              MaxQty = x.Setup_Qty
                           }).ToList();
             return picData;
         }
@@ -882,6 +900,238 @@ namespace II_VI_Incorporated_SCM.Services
         //    List<sp_SOR_RiskShip_Report_Result> data = _db.sp_SOR_RiskShip_Report().ToList();
         //    return data;
         //}
+
+        #region Update Lst Data
+
+        public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart)
+        {
+            var data = (from a in _db.tbl_SOR_Cur_Review_List
+                        join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
+                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart)
+                        select new ListSOItemReviewModel
+                        {
+                            SONO = a.SO_NO,
+                            ItemReview = b.ITEM_REVIEW,
+                            ReviewResult = b.RESULT,
+                            Comment = b.COMMENT,
+                            LastReview = null,
+                            LastComment = null,
+                            ID = b.ITEM_REVIEW_ID,
+                            IsLock = b.ISLOCK
+                        }).ToList();
+            return data;
+            #endregion
+        }
+
+
+
         #endregion
+        #region Update Result Review
+
+        public Result UpdateDataSoReviewResult(ListSOItemReviewModel picData, string idUser)
+        {
+            var _log = new LogWriter("Updatedata");
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    if (picData.IsLock == true)
+                    {
+                        return new Result
+                        {
+                            success = false,
+                            message = "Item review locked by Planner!",
+                            obj = -1
+                        };
+                    }
+                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID).FirstOrDefault();
+                    if (data != null)
+                    {
+                        data.COMMENT = picData.Comment;
+                        data.RESULT = picData.ReviewResult;
+                        _db.SaveChanges();
+                        tranj.Commit();
+                        return new Result
+                        {
+                            success = true,
+                        };
+                    }
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception Updatedata!",
+                        obj = -1
+                    };
+                }
+                catch (Exception ex)
+                {
+                    tranj.Rollback();
+                    _log.LogWrite(ex.ToString());
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception Updatedata!",
+                        obj = -1
+                    };
+                }
+            }
+        }
+
+        public List<SelectListItem> GetDropdownlistSOreview()
+        {
+            List<SelectListItem> listuser = _db.tbl_SOR_Cur_Review_List.Where(x => x.REVIEW_STATUS != "Done").Select(x => new SelectListItem
+            {
+                Value = x.SO_NO,
+                Text = x.SO_NO.Trim(),
+            }).ToList();
+            return listuser;
+        }
+        public List<SelectListItem> GetDropdownItembySOreview(string soNo)
+        {
+            List<SelectListItem> listuser = _db.tbl_SOR_Cur_Review_List.Where(x => x.REVIEW_STATUS != "Done" && x.SO_NO == soNo).Select(x => new SelectListItem
+            {
+                Value = x.REVIEW_ID.ToString(),
+                Text = x.ITEM.Trim(),
+            }).ToList();
+            return listuser;
+        }
+        public string SORReviewPlanner()
+        {
+            var data = _db.SOR_Review_Planner();
+            return "";
+        }
+
+
+        public List<TaskmanagementViewmodel> GetListTaskSoreview()
+        {
+            var result = from task in _db.TASKLISTs
+                         join taskdetail in _db.TASKDETAILs on task.TopicID equals taskdetail.TopicID
+                         join asp in _db.AspNetUsers on taskdetail.OWNER equals asp.Id
+                         into joined
+                         from j in joined.DefaultIfEmpty()
+                         join asp1 in _db.AspNetUsers on taskdetail.ASSIGNEE equals asp1.Id
+                          into joined1
+                         from j1 in joined1.DefaultIfEmpty()
+                         join asp2 in _db.AspNetUsers on taskdetail.APPROVE equals asp2.Id
+                        into joined2
+                         from j2 in joined2.DefaultIfEmpty()
+                         where (task.TYPE == "SoReview")
+                         select (new TaskmanagementViewmodel
+                         {
+                             RefNUMBER = task.Topic,
+                             Taskname = taskdetail.TASKNAME,
+                             TaskDescription = taskdetail.DESCRIPTION,
+                             Owner = j.FullName,
+                             Assignee = j1.FullName,
+                             Approve = j2.FullName,
+                             StartDay = taskdetail.EstimateStartDate,
+                             DueDate = taskdetail.EstimateEndDate,
+                             Status = taskdetail.STATUS,
+                             ActualStarDay = taskdetail.ActualStartDate,
+                             ActualEndDay = taskdetail.ActualEndDate,
+                             Priority = taskdetail.PRIORITY,
+                             Taskno = task.TopicID,
+                             TaskDetailID = taskdetail.IDTask,
+                         });
+
+            return result.ToList();
+        }
+
+        public Result AddTaskForSoReview(string SoNo,string itemreview, string userID, string Assignee, string item, string taskname)
+        {
+            var _log = new LogWriter("Updatedata");
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var currentTaskListID = 0;
+                    var taskNO = SoNo + item;
+                    var ckTaskList = _db.TASKLISTs.FirstOrDefault(x => x.Reference.Trim().Equals(taskNO.Trim()) && x.TYPE == "SoReview");
+                    if (ckTaskList == null)
+                    {
+                        var TaskList = new TASKLIST
+                        {
+                            Topic = taskNO,
+                            TYPE = "Soreview",
+                            WRITEDATE = DateTime.Now,
+                            WRITTENBY = userID,
+                            Reference = taskNO,
+                            Level = 1
+                        };
+
+                        _db.TASKLISTs.Add(TaskList);
+                        _db.SaveChanges();
+
+                        TASKDETAIL taskDetail = new TASKDETAIL
+                        {
+                            TopicID = TaskList.TopicID,
+                            TASKNAME = itemreview,
+                            DESCRIPTION = taskname,
+                            OWNER = userID,
+                            ASSIGNEE = Assignee,
+                            APPROVE = userID,
+                            EstimateStartDate = DateTime.Now,
+                            EstimateEndDate = DateTime.Now.AddDays(7),
+                            ActualStartDate = DateTime.Now,
+                            ActualEndDate = DateTime.Now.AddDays(7),
+                            CreatedDate = DateTime.Now,
+                            STATUS = "Create",
+                            Level = 1
+                        };
+                        _db.TASKDETAILs.Add(taskDetail);
+                    }
+                    else 
+                    {
+                        TASKDETAIL taskDetail = new TASKDETAIL
+                        {
+                            TopicID = ckTaskList.TopicID,
+                            TASKNAME = itemreview,
+                            DESCRIPTION = taskname,
+                            OWNER = userID,
+                            ASSIGNEE = Assignee,
+                            APPROVE = userID,
+                            EstimateStartDate = DateTime.Now,
+                            EstimateEndDate = DateTime.Now.AddDays(7),
+                            ActualStartDate = DateTime.Now,
+                            ActualEndDate = DateTime.Now.AddDays(7),
+                            CreatedDate = DateTime.Now,
+                            STATUS = "Create",
+                            Level = 1
+                        };
+                        _db.TASKDETAILs.Add(taskDetail);
+                     
+                        _db.SaveChanges();
+                        tranj.Commit();
+                        return new Result
+                        {
+                            success = true,
+                            message = "Create task success!",
+                            obj = -1
+                        };
+                    }
+                    return new Result
+                    {
+                        success = false,
+                        message = "Task has created!",
+                        obj = -1
+                    };
+                }
+                catch (Exception ex)
+                {
+                    tranj.Rollback();
+                    _log.LogWrite(ex.ToString());
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception Updatedata!",
+                        obj = -1
+                    };
+                }
+            }
+        }
+
+
+        #endregion
+
     }
 }

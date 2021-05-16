@@ -4,6 +4,7 @@ using II_VI_Incorporated_SCM.Services;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -79,7 +80,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
                 {
                     if (item1.DeptReview.Contains("HIGH_VOLUME"))
                     {
-                        lstFile = _iSoReviewService.GetListFileItem(SoNo, dt, item1.ID, item);
+                     //   lstFile = _iSoReviewService.GetListFileItem(SoNo, dt, item1.ID, item);
                     }
 
                 }
@@ -118,10 +119,9 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             return View(data);
         }
         [HttpPost]
-        public JsonResult AddTaskForItemReview(string SoNo, string Date, string itemreview, string assignee, string item, string taskname, string itemreviewID)
+        public JsonResult AddTaskForItemReview(string SoNo, string itemreview, string assignee, string item, string taskname)
         {
-            int ID = Convert.ToInt32(itemreviewID);
-            Result res = _iSoReviewService.AddTaskForItemReview(SoNo, Date, itemreview, User.Identity.GetUserId(), assignee, item, taskname,ID);
+            Result res = _iSoReviewService.AddTaskForSoReview(SoNo, itemreview, User.Identity.GetUserId(), assignee, item, taskname);
             return Json(new { res.success, message = res.message, obj = res.obj });
         }
         public JsonResult ReadTaksMantSoReview([DataSourceRequest] DataSourceRequest request, string taskNo)
@@ -129,7 +129,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             return Json(_iTaskManagementService.GetListTaskMantSoreviewByID(taskNo).ToDataSourceResult(request));
         }
         [HttpPost]
-        public JsonResult UpdateSoReview(string id, string reviewresult, string comment, string islock, string item)
+        public JsonResult UpdateSoReview(string id, bool reviewresult, string comment, string islock, string item)
         {
             int ID = Convert.ToInt32(id);
 
@@ -291,20 +291,19 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         }
 
         [HttpPost]
-        public ActionResult AddFileforItemReview(string SO_NO, string Date, string File, string ID, string item)
+        public ActionResult AddFileforItemReview(string SO_NO, string File, string ID, string item)
         {
             DateTime date = DateTime.Now;
             string returnPath = date.Year + "-" + date.Month + "-" + date.Day + "-" + date.Hour + "-" +
                                  date.Minute;
             int id = int.Parse(ID);
-            DateTime dates = DateTime.Parse(Date);
             if (File != null)
             {
                 var datafiles = new tbl_SOR_Attached_ForItemReview
                 {
                     SO_NO = SO_NO,
                     Attached_File = returnPath + "/" + File,
-                    Download_Date = dates,
+                    Download_Date = date,
                     Item_Idx = id,
                     LINE = item
                 };
@@ -475,6 +474,84 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         //}
         #endregion
 
+        #region New Code
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Editing_Update([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")] List<sp_SOR_GetSoReview_Result> products)
+        {
+            if (products != null && ModelState.IsValid)
+            {
+                foreach (var product in products)
+                {
+                  //  productService.Update(product);
+                }
+            }
+
+            return Json(products.ToDataSourceResult(request, ModelState));
+        }
+        [HttpPost]
+        public JsonResult SaveDataSoReviewResult(string lstData)
+        {
+            var obj = JsonConvert.DeserializeObject<List<ListSOItemReviewModel>>(lstData);
+            Result res = new Result();
+            var idUser = User.Identity.GetUserId();
+            if (lstData != null && ModelState.IsValid)
+            {
+                foreach (var data in obj)
+                {
+                    res = _iSoReviewService.UpdateDataSoReviewResult(data, idUser);
+                }
+            }
+           return Json(new { res.success, message = res.message, obj = res.obj });
+        }
+
+        public ActionResult ListSoReviewByUserLogin()
+        {
+            return View();
+        }
+
+        public ActionResult ListSoReViewRead([DataSourceRequest] DataSourceRequest request)
+        {
+             var idUser = User.Identity.GetUserId();
+           var depart =  _iSoReviewService.GetDepart(idUser);
+            var data = _iSoReviewService.GetListSOReviewByUserLogin(depart);
+            return Json(data.ToDataSourceResult(request));
+        }
+        //List SO Review
+        [HttpPost]
+        public JsonResult GetListSoReviewAddTask()
+        {
+            var result = _iSoReviewService.GetDropdownlistSOreview();
+            return Json(result);
+        }
+        [HttpPost]
+        public JsonResult GetListItemSoReviewBySo(string SoNo)
+        {
+            var result = _iSoReviewService.GetDropdownItembySOreview(SoNo);
+            return Json(result);
+        }
+        public ActionResult ListSoReviewPlanner()
+        {
+            var result = _iSoReviewService.SORReviewPlanner();
+            return View();
+        }
+
+        public ActionResult ListTaskmanagementSOReview()
+        {
+            return View();
+        }
+        public ActionResult ListFilemanagementSOReview()
+        {
+            string SoNo = "";
+           var lstFile = _iSoReviewService.GetListFileItem(SoNo);
+            return View(lstFile);
+        }
+
+              public JsonResult GetListTaskSoreview([DataSourceRequest] DataSourceRequest request)
+        {
+
+            return Json(_iSoReviewService.GetListTaskSoreview().ToDataSourceResult(request));
+        }
+        #endregion
     }
 }

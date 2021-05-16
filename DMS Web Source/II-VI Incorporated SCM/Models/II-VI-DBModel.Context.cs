@@ -134,7 +134,6 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual DbSet<STATUS> STATUS { get; set; }
         public virtual DbSet<SUPPLIER_PPM> SUPPLIER_PPM { get; set; }
         public virtual DbSet<SUPPLIER_PPM_RP> SUPPLIER_PPM_RP { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TASK_APPROVE> TASK_APPROVE { get; set; }
         public virtual DbSet<TASK_CATEGORY> TASK_CATEGORY { get; set; }
         public virtual DbSet<TASK_PHASE> TASK_PHASE { get; set; }
@@ -157,6 +156,8 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual DbSet<tbl_Inv_Score_Percent> tbl_Inv_Score_Percent { get; set; }
         public virtual DbSet<tbl_Inv_Step1_SubmitSuggestion> tbl_Inv_Step1_SubmitSuggestion { get; set; }
         public virtual DbSet<tbl_Inv_Step2_CIAproval> tbl_Inv_Step2_CIAproval { get; set; }
+        public virtual DbSet<tbl_Inv_Step3_SponsorApr> tbl_Inv_Step3_SponsorApr { get; set; }
+        public virtual DbSet<tbl_Inv_Step4_DirApr> tbl_Inv_Step4_DirApr { get; set; }
         public virtual DbSet<tbl_Inv_Step5_ProLeaderApr> tbl_Inv_Step5_ProLeaderApr { get; set; }
         public virtual DbSet<tbl_PT_CheckSheet> tbl_PT_CheckSheet { get; set; }
         public virtual DbSet<tbl_PT_Infor> tbl_PT_Infor { get; set; }
@@ -170,6 +171,14 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual DbSet<tbl_RP_Setting_LineChart> tbl_RP_Setting_LineChart { get; set; }
         public virtual DbSet<tbl_RP_Store_Parameter> tbl_RP_Store_Parameter { get; set; }
         public virtual DbSet<tbl_RP_StoreProcedure> tbl_RP_StoreProcedure { get; set; }
+        public virtual DbSet<tbl_SOR_Attached_ForItemReview> tbl_SOR_Attached_ForItemReview { get; set; }
+        public virtual DbSet<tbl_SOR_Cur_Review_Detail> tbl_SOR_Cur_Review_Detail { get; set; }
+        public virtual DbSet<tbl_SOR_Cur_Review_List> tbl_SOR_Cur_Review_List { get; set; }
+        public virtual DbSet<tbl_SOR_Family_Setup_Qty> tbl_SOR_Family_Setup_Qty { get; set; }
+        public virtual DbSet<tbl_SOR_His_Review_Detail> tbl_SOR_His_Review_Detail { get; set; }
+        public virtual DbSet<tbl_SOR_His_Review_List> tbl_SOR_His_Review_List { get; set; }
+        public virtual DbSet<tbl_SOR_Item_Review> tbl_SOR_Item_Review { get; set; }
+        public virtual DbSet<tbl_SOR_Review_Pic> tbl_SOR_Review_Pic { get; set; }
         public virtual DbSet<tbl_SQE_Ass_Period> tbl_SQE_Ass_Period { get; set; }
         public virtual DbSet<tbl_SQE_Ass_Resp> tbl_SQE_Ass_Resp { get; set; }
         public virtual DbSet<tbl_SQE_Ass_Resp_Status> tbl_SQE_Ass_Resp_Status { get; set; }
@@ -243,6 +252,7 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual DbSet<SKIP_LOT_LEVEL_bk> SKIP_LOT_LEVEL_bk { get; set; }
         public virtual DbSet<STDCOST> STDCOSTs { get; set; }
         public virtual DbSet<STDCOST_Temp> STDCOST_Temp { get; set; }
+        public virtual DbSet<tbl_Inv_File_Attach> tbl_Inv_File_Attach { get; set; }
         public virtual DbSet<tbl_Inv_ScoreCost_4_Mem> tbl_Inv_ScoreCost_4_Mem { get; set; }
         public virtual DbSet<tbl_PT_Dept_PIC> tbl_PT_Dept_PIC { get; set; }
         public virtual DbSet<tbl_PT_Dept_PIC_BuyPart> tbl_PT_Dept_PIC_BuyPart { get; set; }
@@ -257,29 +267,6 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual DbSet<USER_PERMIT> USER_PERMIT { get; set; }
         public virtual DbSet<VENDOR_Temp> VENDOR_Temp { get; set; }
         public virtual DbSet<Work_Center> Work_Centers { get; set; }
-        public virtual DbSet<DMS_WOLot> DMS_WOLot { get; set; }
-        public virtual DbSet<PPM_RejectQty> PPM_RejectQty { get; set; }
-        public virtual DbSet<v_AQL> v_AQL { get; set; }
-        public virtual DbSet<V_AspNetUsers> V_AspNetUsers { get; set; }
-        public virtual DbSet<v_INS_RESULT> v_INS_RESULT { get; set; }
-        public virtual DbSet<V_Material_HadMake_FLupSerialNumber> V_Material_HadMake_FLupSerialNumber { get; set; }
-        public virtual DbSet<v_Operator> v_Operator { get; set; }
-        public virtual DbSet<V_WO_Issue> V_WO_Issue { get; set; }
-        public virtual DbSet<vNCR_DET> vNCR_DET { get; set; }
-        public virtual DbSet<vNCR_DET_2> vNCR_DET_2 { get; set; }
-        public virtual DbSet<vNCR_HDR> vNCR_HDR { get; set; }
-        public virtual DbSet<tbl_Inv_Step4_DirApr> tbl_Inv_Step4_DirApr { get; set; }
-        public virtual DbSet<tbl_SOR_Attached_ForItemReview> tbl_SOR_Attached_ForItemReview { get; set; }
-        public virtual DbSet<tbl_SOR_Cur_Review_List> tbl_SOR_Cur_Review_List { get; set; }
-        public virtual DbSet<tbl_SOR_Family_Setup_Qty> tbl_SOR_Family_Setup_Qty { get; set; }
-        public virtual DbSet<tbl_SOR_His_Review_List> tbl_SOR_His_Review_List { get; set; }
-        public virtual DbSet<tbl_SOR_Item_Review> tbl_SOR_Item_Review { get; set; }
-        public virtual DbSet<tbl_SOR_Review_Pic> tbl_SOR_Review_Pic { get; set; }
-        public virtual DbSet<tbl_SOR_Cur_Review_Detail> tbl_SOR_Cur_Review_Detail { get; set; }
-        public virtual DbSet<tbl_SOR_His_Review_Detail> tbl_SOR_His_Review_Detail { get; set; }
-        public virtual DbSet<tbl_Inv_Step3_SponsorApr> tbl_Inv_Step3_SponsorApr { get; set; }
-        public virtual DbSet<tbl_Inv_Subject_Matter_List> tbl_Inv_Subject_Matter_List { get; set; }
-        public virtual DbSet<tbl_Inv_File_Attach> tbl_Inv_File_Attach { get; set; }
     
         [DbFunction("Entities", "f_NCR_DET_1")]
         public virtual IQueryable<f_NCR_DET_1_Result> f_NCR_DET_1()
@@ -8046,6 +8033,29 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual ObjectResult<sp_Inv_SugList_Result> sp_Inv_SugList()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Inv_SugList_Result>("sp_Inv_SugList");
+        }
+    
+        public virtual int SOR_Review_Planner()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SOR_Review_Planner");
+        }
+    
+        public virtual ObjectResult<sp_GetSoReview1_Result> sp_GetSoReview1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetSoReview1_Result>("sp_GetSoReview1");
+        }
+    
+        public virtual ObjectResult<sp_SOR_SoReviewDetail_Result> sp_SOR_SoReviewDetail(string sono, Nullable<System.DateTime> downloadDate)
+        {
+            var sonoParameter = sono != null ?
+                new ObjectParameter("Sono", sono) :
+                new ObjectParameter("Sono", typeof(string));
+    
+            var downloadDateParameter = downloadDate.HasValue ?
+                new ObjectParameter("DownloadDate", downloadDate) :
+                new ObjectParameter("DownloadDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SOR_SoReviewDetail_Result>("sp_SOR_SoReviewDetail", sonoParameter, downloadDateParameter);
         }
     }
 }

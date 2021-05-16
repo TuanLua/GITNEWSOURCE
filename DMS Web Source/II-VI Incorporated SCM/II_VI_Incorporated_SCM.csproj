@@ -319,9 +319,6 @@
     <Compile Include="Models\DISPOSITION.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DMS_WOLot.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DOC_by_ITEM.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
@@ -654,9 +651,6 @@
     <Compile Include="Models\PO_REV_Temp.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PPM_RejectQty.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Producttranfer\ProductViewModel.cs" />
     <Compile Include="Models\pSKIP_LOT_LEVEL_Result.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
@@ -780,6 +774,7 @@
     <Compile Include="Models\SOReview\FamilyReviewmodel.cs" />
     <Compile Include="Models\SOReview\FileUploadSoviewmodel.cs" />
     <Compile Include="Models\SOReview\ItemReviewmodel.cs" />
+    <Compile Include="Models\SOReview\ListSOItemReviewModel.cs" />
     <Compile Include="Models\SOReview\PICReviewmodel.cs" />
     <Compile Include="Models\SOReview\SoReviewDetail.cs" />
     <Compile Include="Models\SplitString_Result.cs">
@@ -921,6 +916,9 @@
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_GetOperator_IQC_Result.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetSoReview1_Result.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_GetSoReview_Result.cs">
@@ -1082,6 +1080,9 @@
     <Compile Include="Models\sp_SOR_GetSoReview_Result.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_SOR_SoReviewDetail_Result.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_SQE_6Panel_CustClaim_By_Month_Result.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
@@ -1205,9 +1206,6 @@
     <Compile Include="Models\SUPPLIER_PPM_RP.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TASKCOMMENT.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
@@ -1299,9 +1297,6 @@
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Inv_Step5_ProLeaderApr.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_Inv_Subject_Matter_List.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_PT_CheckSheet.cs">
@@ -1550,34 +1545,7 @@
     <Compile Include="Models\VENDOR_Temp.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\vNCR_DET.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\vNCR_DET_2.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\vNCR_HDR.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\VNMaterialTraceability.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\v_AQL.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\V_AspNetUsers.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\v_INS_RESULT.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\V_Material_HadMake_FLupSerialNumber.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\v_Operator.cs">
-      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\V_WO_Issue.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Work_Center.cs">
@@ -3989,6 +3957,10 @@
     <Content Include="Views\SOReview\RiskShipByValue.cshtml" />
     <Content Include="Views\SOReview\SOReviewDetail.cshtml" />
     <Content Include="Views\SOReview\SOReviewList.cshtml" />
+    <Content Include="Views\SOReview\ListSoReviewByUserLogin.cshtml" />
+    <Content Include="Views\SOReview\ListSoReviewPlanner.cshtml" />
+    <Content Include="Views\SOReview\ListTaskmanagementSOReview.cshtml" />
+    <Content Include="Views\SOReview\ListFilemanagementSOReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />

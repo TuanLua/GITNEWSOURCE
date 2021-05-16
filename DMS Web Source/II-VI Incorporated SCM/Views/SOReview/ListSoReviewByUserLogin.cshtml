@@ -1,0 +1,365 @@
+﻿@using II_VI_Incorporated_SCM.Models.SOReview
+@using II_VI_Incorporated_SCM.Services
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "SOReviewList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .k-grid td {
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .k-grid table {
+        table-layout: fixed;
+    }
+
+    .CRNo:hover {
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .CRNo {
+        color: blue;
+    }
+</style>
+<h3>Review SO </h3>
+<div class="container-fluid" style="text-align:right">
+    <button class="btn btn-sm btn-info" id="add-task">Add Task</button>
+    <button class="btn btn-sm btn-info" id="add-file">Add File</button>
+    <button class="btn btn-sm btn-warning" id="view-file">View List File</button>
+    <button class="btn btn-sm btn-warning" id="view-task">View Task List</button>
+    <button class="btn btn-sm btn-success" id="save">Save</button>
+</div>
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-18 col-md-12">
+            @(Html.Kendo().Grid<ListSOItemReviewModel>()
+                                                      .Name("gridSoReview")
+                                                      .Columns(columns =>
+                                                      {
+                                                          columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
+                                                          columns.Bound(p => p.ItemReview).Title("Item Review").Width(400).Editable("true");
+                                                          columns.Bound(p => p.ReviewResult).Title("Review Result").Width(120).Editable("false");
+                                                          columns.Bound(p => p.Comment).Title("Comment").Width(200).Editable("false");
+                                                          columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
+                                                          columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");
+                                                      })
+                                                      .Sortable()
+                                                      .Scrollable()
+                                                      .Editable(editable => editable.Mode(GridEditMode.InCell))
+                                                    .Filterable()
+                                                         .Excel(excel => excel
+                                                    .FileName("So Review List.xlsx")
+                                                    .ProxyURL(Url.Action("Excel_Export_Save", "Grid")))
+                                                         .Pageable(m => m.PageSizes(new List<object> { 5, 10, 20, 50, "All" }).Refresh(true))
+                                                      .HtmlAttributes(new { style = "height:750px;" })
+                                                      .DataSource(dataSource => dataSource
+                                                          .Ajax()
+                                                          .PageSize(30)
+                                                              .ServerOperation(false)
+                                                            .Events(events => events.Error("error_handler"))
+                                                          .Model(model => model.Id(p => p.SONO))
+                                                          .Read(read => read.Action("ListSoReViewRead", "SOReview"))
+                                                      ))
+        </div>
+    </div>
+</div>
+<div id="popup" class="modal fade" tabindex="-1" role="dialog" aria - labelledby="basicModal" aria - hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add File</h4>
+            </div>
+            <div class="modal-body">
+                <br />
+                <div class="form-horizontal col-md-offset-1">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">So No</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="soNoFile" style="width:100%" id="soNoFile"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Item Review</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="itemreviewFile" style="width:100%" id="itemreviewFile"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">File</label>
+                        <div class="col-md-6">
+                            <input type="file" id="file" class="form-control boder-opal">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="save-file" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupTask" class="modal fade" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Task</h4>
+            </div>
+            <div class="modal-body">
+                <br />
+                <div class="form-horizontal col-md-offset-1">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Assignee:</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="user" style="width:100%" id="user"></select>
+                        </div>
+                        <input type="hidden" id="reviewitemname" name="reviewitemname" />
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Task Name</label>
+                        <div class="col-md-6">
+                            <input class="form-control" style="width:100%" id="taskname" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">So No</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="user"  style="width:100%" id="soNo"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Item Review</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="user" style="width:100%" id="itemreview"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-addtask" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var isSave = true;
+    var message = "";
+                $(document).ready(function () {
+                    $.post('@Url.Action("GetListUser", "SoReview")',
+                        function (result) {
+                            $.each(result, function (i, item) {
+                                $('#user').append($('<option>', {
+                                    value: item.Value,
+                                    text: item.Text
+                                }));
+                            });
+                        }).fail(function () {
+                            bootbox.alert('Please contact to Administrator!');
+                        }).always(function () {
+                        });
+                    $("#user").select2();
+
+                    $.post('@Url.Action("GetListSoReviewAddTask", "SoReview")',
+                        function (result) {
+                            $.each(result, function (i, item) {
+                                $('#soNo').append($('<option>', {
+                                    value: item.Value,
+                                    text: item.Text
+                                }));
+                                $('#soNoFile').append($('<option>', {
+                                    value: item.Value,
+                                    text: item.Text
+                                }));
+                            });
+                        }).fail(function () {
+                            bootbox.alert('Please contact to Administrator!');
+                        }).always(function () {
+                        });
+                    $("#soNo").select2();
+                    $("#soNoFile").select2();
+
+
+                });
+    $(".k-header").kendoTooltip({
+        content: function (e) {
+            var target = e.target; // element for which the tooltip is shown
+            return $(target).text();
+        },
+        position: "top"
+    });
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+    $(document).ready(function () {
+
+    $('#save').click(function () {
+             var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
+             var arrResult = [];
+             data.forEach(function (item) {
+                 if (item.ReviewResult == false && (item.Comment == null || item.Comment == "")) {
+                     isSave = false;
+                     message = "Please input Comment for Item result is false!";
+                 }
+                 arrResult.push(item)
+            })
+        var lstData = JSON.stringify(arrResult);
+             if (!isSave) {
+                 bootbox.alert(message);
+                 isSave = true;
+                 return;
+             }
+             else {
+                  $.blockUI();
+                 $.post('@Url.Action("SaveDataSoReviewResult", "SoReview")', { lstData: lstData },
+                     function (result) {
+                         if (result) {
+                             bootbox.alert('Save result sucess!', function () {
+                                            window.location.href = "@Url.Action("ListSoReviewByUserLogin", "SoReview")";
+                                        });
+                         }
+                         $.unblockUI();
+                     }).fail(function () {
+                         $.unblockUI();
+                         bootbox.alert('Please contact to Administrator!');
+                     }).always(function () {
+                         $.unblockUI();
+                     });
+             }
+        });
+    });
+    $('#add-task').on('click', function () {
+        $('#popupTask').modal('show');
+    });
+    $('#add-file').on('click', function () {
+        $('#popup').modal('show');
+    });
+
+     $('#save-file').on('click', function () {
+         let filesave = $('#file').get(0).files;
+         let ID = $('#itemreviewFile').val()
+        let name = '';
+        if (filesave.length > 0) {
+            name = filesave[0].name;
+        }
+        var formData = new FormData();
+        formData.append("file", filesave[0]);
+            if (name != '') {
+                        $.ajax({ url: '@Url.Action("SaveFileADDINItem", "SoReview")', method: 'post', data: formData, contentType: false, processData: false })
+                        }
+          $.ajax({
+                            url: '@Url.Action("AddFileforItemReview", "SoReview")',
+              type: "POST",
+              data: { SO_NO: '@ViewBag.SoNo', Date: '@ViewBag.Date', File: name, ID:ID ,item: '@ViewBag.Item'},
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.success) {
+                                    bootbox.alert('Add File sucess!', function () {
+                                        $('#popup').modal('hide');
+                                        window.location.reload();
+                                    });
+                                }
+                                else {
+                                    bootbox.alert(result.message);
+                                }
+                            }
+                        });
+     })
+
+     $('#btn-addtask').on('click', function () {
+         var SoNo = $('#soNo').val();
+        var itemreview = $('#itemreview').val();
+        var assignee = $('#user').val();
+        var taskname = $('#taskname').val();
+        if (assignee == null || assignee == "") {
+            bootbox.alert("Please select assignee!");
+            return;
+        }
+        else if (taskname == null || taskname == "") {
+            bootbox.alert("Please input Task Name!");
+            return;
+        }
+        else {
+            $.ajax({
+                url: '@Url.Action("AddTaskForItemReview", "SOReview")',
+                type: "POST",
+                data: { SoNo: SoNo, itemreview: itemreview, assignee: assignee, item: '@ViewBag.Item', taskname: taskname},
+                dataType: "json",
+                success: function (result) {
+                    if (result.success) {
+                        bootbox.alert('Add Task sucess!', function () {
+                            $('#popupTask').modal('hide');
+                            window.location.reload();
+                        });
+                    }
+                    else {
+                        bootbox.alert(result.message);
+                        $('#popupTask').modal('hide');
+                    }
+                }
+            });
+        }
+
+     });
+    $('#view-task').on('click', function () {
+        window.open("@Url.Action("ListTaskmanagementSOReview", "SoReview")", "_blank");
+    });
+    $('#view-file').on('click', function () {
+        window.open("@Url.Action("ListFilemanagementSOReview", "SoReview")", "_blank");
+    });
+    $('#soNo').on('change', function () {
+        var soNo = $('#soNo').val();
+        $.ajax({
+            url: '@Url.Action("GetListItemSoReviewBySo", "SOReview")',
+            type: "POST",
+            data: { SoNo: soNo },
+            dataType: "json",
+            success: function (result) {
+                $.each(result, function (i, item) {
+                    $('#itemreview').append($('<option>', {
+                        value: item.Text,
+                        text: item.Text
+                    }));
+                });
+            }
+        });
+    });
+
+    $('#soNoFile').on('change', function () {
+        var soNo = $('#soNoFile').val();
+        $.ajax({
+            url: '@Url.Action("GetListItemSoReviewBySo", "SOReview")',
+            type: "POST",
+            data: { SoNo: soNo },
+            dataType: "json",
+            success: function (result) {
+                $.each(result, function (i, item) {
+                    $('#itemreviewFile').append($('<option>', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            }
+        });
+    });
+</script>

@@ -51,6 +51,9 @@
         </div>
     </div>
 </div>
+<div style="text-align:center">
+    <button class="btn btn-sm btn-success" id="save">Save</button>
+</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-18 col-md-12">
@@ -79,8 +82,13 @@
                                                           columns.Bound(p => p.LINE).Width(0);
                                                           columns.Bound(p => p.COMMENT).Width(0);
                                                       }).ToolBar(tools => tools.Excel())
+                                                      //.ToolBar(toolbar =>
+                                                      //{
+                                                      //    toolbar.Save();
+                                                      //})
                                                       .Sortable()
                                                       .Scrollable()
+                                                      .Editable(editable => editable.Mode(GridEditMode.InCell))
                                                     .Filterable()
                                                          .Excel(excel => excel
                                                     .FileName("So Review List.xlsx")
@@ -90,10 +98,12 @@
                                                       .DataSource(dataSource => dataSource
                                                           .Ajax()
                                                           .PageSize(10)
+                                                              .ServerOperation(false)
+                                                            .Events(events => events.Error("error_handler"))
+                                                          .Model(model => model.Id(p => p.REVIEW_ID))
                                                           .Read(read => read.Action("SoReViewListRead", "SOReview"))
-                                                      //  .Filter(f => f.Add(a => a.REVIEW_STATUS).IsEqualTo("Open"))
                                                        .Sort(sort => sort.Add("DOWNLOAD_DATE").Descending())
-
+                                                      //    .Update("Editing_Update", "SOReview")
                                                       ))
         </div>
     </div>
@@ -202,7 +212,7 @@
             $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SO_NO", operator: "contains", value: searchText });
             $('#search').val("");
         }
-       
+
         $('#popup').modal('hide');
 
     }
@@ -245,4 +255,49 @@
         $('#search').val("");
         $('a.k-grid-filter').removeClass('k-state-active')
     })
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+    var isSave = true;
+     $(document).ready(function () {
+         $('#save').click(function () {
+             debugger;
+            var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
+            var chartSeries = [];
+             data.forEach(function (item) {
+
+                 if (item.FAI == null) {
+                     isSave = false;
+                 }
+                chartSeries.push(item)
+            })
+             var abc = JSON.stringify(chartSeries);
+             if (!isSave) {
+                 bootbox.alert("xxxxx");
+                 return;
+             }
+             else {
+                  $.blockUI();
+                 $.post('@Url.Action("SaveNCRDispositionDay", "SoReview")', { ListDay: abc },
+                     function (result) {
+                         $.unblockUI();
+                     }).fail(function () {
+                         $.unblockUI();
+                         bootbox.alert('Please contact to Administrator!');
+                     }).always(function () {
+                         $.unblockUI();
+                     });
+             }
+        });
+    });
 </script>

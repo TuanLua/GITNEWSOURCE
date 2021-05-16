@@ -48,7 +48,6 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="pImp_Receiver" FunctionName="IQCTestModel.Store.pImp_Receiver" />
     <FunctionImportMapping FunctionImportName="pImp_Receiver_Auto" FunctionName="IQCTestModel.Store.pImp_Receiver_Auto" />
-    <FunctionImportMapping FunctionImportName="pImp_Receiver_test" FunctionName="IQCTestModel.Store.pImp_Receiver_test" />
     <FunctionImportMapping FunctionImportName="pList_CHECKSHEET_by_Reverse" FunctionName="IQCTestModel.Store.pList_CHECKSHEET_by_Reverse">
       <ResultMapping>
         <ComplexTypeMapping TypeName="IQCTestModel.pList_CHECKSHEET_by_Reverse_Result">
@@ -243,15 +242,12 @@
     <FunctionImportMapping FunctionImportName="pSKIP_LOT_LEVEL_BK" FunctionName="IQCTestModel.Store.pSKIP_LOT_LEVEL_BK" />
     <FunctionImportMapping FunctionImportName="pUpdate_INS_RESULT" FunctionName="IQCTestModel.Store.pUpdate_INS_RESULT" />
     <FunctionImportMapping FunctionImportName="pUpdate_INS_RESULT_WhenChangeSample" FunctionName="IQCTestModel.Store.pUpdate_INS_RESULT_WhenChangeSample" />
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="IQCTestModel.Store.sp_alterdiagram" />
     <FunctionImportMapping FunctionImportName="sp_ChartH" FunctionName="IQCTestModel.Store.sp_ChartH" />
     <FunctionImportMapping FunctionImportName="sp_ChartHG" FunctionName="IQCTestModel.Store.sp_ChartHG" />
     <FunctionImportMapping FunctionImportName="sp_CheckAttRequireDOC" FunctionName="IQCTestModel.Store.sp_CheckAttRequireDOC" />
     <FunctionImportMapping FunctionImportName="sp_CheckInputAttRequireDOC" FunctionName="IQCTestModel.Store.sp_CheckInputAttRequireDOC" />
     <FunctionImportMapping FunctionImportName="sp_CheckMachine_Skill_Oper" FunctionName="IQCTestModel.Store.sp_CheckMachine_Skill_Oper" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="IQCTestModel.Store.sp_creatediagram" />
     <FunctionImportMapping FunctionImportName="sp_Delete" FunctionName="IQCTestModel.Store.sp_Delete" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="IQCTestModel.Store.sp_dropdiagram" />
     <FunctionImportMapping FunctionImportName="sp_GET_ListNC" FunctionName="IQCTestModel.Store.sp_GET_ListNC">
       <ResultMapping>
         <ComplexTypeMapping TypeName="IQCTestModel.sp_GET_ListNC_Result">
@@ -347,8 +343,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="IQCTestModel.Store.sp_helpdiagramdefinition" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="IQCTestModel.Store.sp_helpdiagrams" />
     <FunctionImportMapping FunctionImportName="sp_IMPROVEMENT_TRACKING" FunctionName="IQCTestModel.Store.sp_IMPROVEMENT_TRACKING" />
     <FunctionImportMapping FunctionImportName="sp_IMPROVEMENT_TRACKINGAQL" FunctionName="IQCTestModel.Store.sp_IMPROVEMENT_TRACKINGAQL" />
     <FunctionImportMapping FunctionImportName="sp_LAST_DRAW_REV_Update" FunctionName="IQCTestModel.Store.sp_LAST_DRAW_REV_Update" />
@@ -443,7 +437,6 @@
     <FunctionImportMapping FunctionImportName="sp_PerAccess" FunctionName="IQCTestModel.Store.sp_PerAccess" />
     <FunctionImportMapping FunctionImportName="sp_RemindFollowUpBy26Marlow" FunctionName="IQCTestModel.Store.sp_RemindFollowUpBy26Marlow" />
     <FunctionImportMapping FunctionImportName="sp_RemindSupplierResponse" FunctionName="IQCTestModel.Store.sp_RemindSupplierResponse" />
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="IQCTestModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_Report_LotRejectRate" FunctionName="IQCTestModel.Store.sp_Report_LotRejectRate">
       <ResultMapping>
         <ComplexTypeMapping TypeName="IQCTestModel.sp_Report_LotRejectRate_Result">
@@ -737,7 +730,6 @@
     <FunctionImportMapping FunctionImportName="sp_TEMP_PDF_PART_Insert_AttachDOC" FunctionName="IQCTestModel.Store.sp_TEMP_PDF_PART_Insert_AttachDOC" />
     <FunctionImportMapping FunctionImportName="sp_TrainferApprovers" FunctionName="IQCTestModel.Store.sp_TrainferApprovers" />
     <FunctionImportMapping FunctionImportName="SP_UPDATE_PART_INS_REQ" FunctionName="IQCTestModel.Store.SP_UPDATE_PART_INS_REQ" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="IQCTestModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="spSendEmail" FunctionName="IQCTestModel.Store.spSendEmail" />
     <FunctionImportMapping FunctionImportName="VisualResult_Search_Item" FunctionName="IQCTestModel.Store.VisualResult_Search_Item" />
     <FunctionImportMapping FunctionImportName="pClearSample" FunctionName="IQCTestModel.Store.pClearSample" />
@@ -1431,6 +1423,511 @@
           <ScalarProperty Name="STATUS" ColumnName="STATUS" />
           <ScalarProperty Name="PRIORITY" ColumnName="PRIORITY" />
           <ScalarProperty Name="Department" ColumnName="Department" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DynamicPivot" FunctionName="IQCTestModel.Store.DynamicPivot" />
+    <FunctionImportMapping FunctionImportName="GetListOperIQC" FunctionName="IQCTestModel.Store.GetListOperIQC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.GetListOperIQC_Result">
+          <ScalarProperty Name="OperID" ColumnName="OperID" />
+          <ScalarProperty Name="OperName" ColumnName="OperName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="p_AgingTimeAQL_Parts_Detail_New" FunctionName="IQCTestModel.Store.p_AgingTimeAQL_Parts_Detail_New">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.p_AgingTimeAQL_Parts_Detail_New_Result">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Aging" ColumnName="Aging" />
+          <ScalarProperty Name="NCR" ColumnName="NCR" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="REC_LINE" ColumnName="REC_LINE" />
+          <ScalarProperty Name="CCN" ColumnName="CCN" />
+          <ScalarProperty Name="PO_NUM" ColumnName="PO_NUM" />
+          <ScalarProperty Name="ITEM_DESC" ColumnName="ITEM_DESC" />
+          <ScalarProperty Name="VEN_NAME" ColumnName="VEN_NAME" />
+          <ScalarProperty Name="POSTING_DATE" ColumnName="POSTING_DATE" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="p_AgingTimeAQL_Parts_New" FunctionName="IQCTestModel.Store.p_AgingTimeAQL_Parts_New">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.p_AgingTimeAQL_Parts_New_Result">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="PartAVG" ColumnName="PartAVG" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="p_Remind_Purchase_Order_Status" FunctionName="IQCTestModel.Store.p_Remind_Purchase_Order_Status" />
+    <FunctionImportMapping FunctionImportName="pGet_MEASUREMENT_STD_BY_PART_bk" FunctionName="IQCTestModel.Store.pGet_MEASUREMENT_STD_BY_PART_bk">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.pGet_MEASUREMENT_STD_BY_PART_bk_Result">
+          <ScalarProperty Name="MEASURE_PARA" ColumnName="MEASURE_PARA" />
+          <ScalarProperty Name="EVA_METHOD" ColumnName="EVA_METHOD" />
+          <ScalarProperty Name="TOOL_FIXTURE" ColumnName="TOOL_FIXTURE" />
+          <ScalarProperty Name="LVALUE" ColumnName="LVALUE" />
+          <ScalarProperty Name="UVALUE" ColumnName="UVALUE" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="critial" ColumnName="critial" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Chart_Labor_RealTime_Rev2" FunctionName="IQCTestModel.Store.sp_Chart_Labor_RealTime_Rev2" />
+    <FunctionImportMapping FunctionImportName="sp_GET_ListNC_Rev2" FunctionName="IQCTestModel.Store.sp_GET_ListNC_Rev2" />
+    <FunctionImportMapping FunctionImportName="sp_GET_NCCode_byItem" FunctionName="IQCTestModel.Store.sp_GET_NCCode_byItem">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_GET_NCCode_byItem_Result">
+          <ScalarProperty Name="NC_CODE" ColumnName="NC_CODE" />
+          <ScalarProperty Name="NC_DESC" ColumnName="NC_DESC" />
+          <ScalarProperty Name="NC_GRP_CODE" ColumnName="NC_GRP_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GET_NCGroup_byItem" FunctionName="IQCTestModel.Store.sp_GET_NCGroup_byItem">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_GET_NCGroup_byItem_Result">
+          <ScalarProperty Name="NC_GRP_CODE" ColumnName="NC_GRP_CODE" />
+          <ScalarProperty Name="NC_GRP_DESC" ColumnName="NC_GRP_DESC" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetOperator_IQC" FunctionName="IQCTestModel.Store.sp_GetOperator_IQC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_GetOperator_IQC_Result">
+          <ScalarProperty Name="OperatorID" ColumnName="OperatorID" />
+          <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetProduct_byLine" FunctionName="IQCTestModel.Store.sp_GetProduct_byLine" />
+    <FunctionImportMapping FunctionImportName="sp_InsertPART_INFO_TEMP" FunctionName="IQCTestModel.Store.sp_InsertPART_INFO_TEMP" />
+    <FunctionImportMapping FunctionImportName="sp_Inv_Report_SUGGESTION_ANALYSIS" FunctionName="IQCTestModel.Store.sp_Inv_Report_SUGGESTION_ANALYSIS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_Inv_Report_SUGGESTION_ANALYSIS_Result">
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Inv_Report_Suggestion_ByMonth" FunctionName="IQCTestModel.Store.sp_Inv_Report_Suggestion_ByMonth">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_Inv_Report_Suggestion_ByMonth_Result">
+          <ScalarProperty Name="Sug_ID" ColumnName="Sug_ID" />
+          <ScalarProperty Name="Req_Dept" ColumnName="Req_Dept" />
+          <ScalarProperty Name="Submit_date" ColumnName="Submit_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Inv_Report_Suggestion_ByPerson" FunctionName="IQCTestModel.Store.sp_Inv_Report_Suggestion_ByPerson">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_Inv_Report_Suggestion_ByPerson_Result">
+          <ScalarProperty Name="Rqtor_name" ColumnName="Rqtor_name" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Inv_Report_Suggestion_Status" FunctionName="IQCTestModel.Store.sp_Inv_Report_Suggestion_Status">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_Inv_Report_Suggestion_Status_Result">
+          <ScalarProperty Name="Sug_id" ColumnName="Sug_id" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LaborScan_RealTime" FunctionName="IQCTestModel.Store.sp_LaborScan_RealTime" />
+    <FunctionImportMapping FunctionImportName="sp_LaborScan_Rev2" FunctionName="IQCTestModel.Store.sp_LaborScan_Rev2" />
+    <FunctionImportMapping FunctionImportName="sp_PT_Complete_BuyPart" FunctionName="IQCTestModel.Store.sp_PT_Complete_BuyPart" />
+    <FunctionImportMapping FunctionImportName="sp_RemindSupplierLog_Re_Evaluation" FunctionName="IQCTestModel.Store.sp_RemindSupplierLog_Re_Evaluation" />
+    <FunctionImportMapping FunctionImportName="sp_Report_Labor_OPERATION_TIME_Rev2" FunctionName="IQCTestModel.Store.sp_Report_Labor_OPERATION_TIME_Rev2" />
+    <FunctionImportMapping FunctionImportName="sp_Report_Labor_OverTimeCheck_Rev2" FunctionName="IQCTestModel.Store.sp_Report_Labor_OverTimeCheck_Rev2" />
+    <FunctionImportMapping FunctionImportName="sp_Report_Labor_RealTime_ProcessGroup_Rev2" FunctionName="IQCTestModel.Store.sp_Report_Labor_RealTime_ProcessGroup_Rev2" />
+    <FunctionImportMapping FunctionImportName="sp_Report_LABOR_UTILIZATION_Rev2" FunctionName="IQCTestModel.Store.sp_Report_LABOR_UTILIZATION_Rev2" />
+    <FunctionImportMapping FunctionImportName="sp_Report_Labor_WORKING_HOURS_BY_WO_BY_EMPLOYEES_Rev2" FunctionName="IQCTestModel.Store.sp_Report_Labor_WORKING_HOURS_BY_WO_BY_EMPLOYEES_Rev2" />
+    <FunctionImportMapping FunctionImportName="sp_Report_LABOR_WorkingTime_Rev2" FunctionName="IQCTestModel.Store.sp_Report_LABOR_WorkingTime_Rev2" />
+    <FunctionImportMapping FunctionImportName="sp_Report_MonthIQC_TEM_SumByPart" FunctionName="IQCTestModel.Store.sp_Report_MonthIQC_TEM_SumByPart">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_Report_MonthIQC_TEM_SumByPart_Result">
+          <ScalarProperty Name="VEN_NAME" ColumnName="VEN_NAME" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="LOT" ColumnName="LOT" />
+          <ScalarProperty Name="REC_Qty" ColumnName="REC_Qty" />
+          <ScalarProperty Name="REJ_QTY" ColumnName="REJ_QTY" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ReportWHOpenNCRforMRBmeeting_AddCom" FunctionName="IQCTestModel.Store.sp_ReportWHOpenNCRforMRBmeeting_AddCom" />
+    <FunctionImportMapping FunctionImportName="sp_SOR_Release" FunctionName="IQCTestModel.Store.sp_SOR_Release" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_CustClaim_By_Month" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_CustClaim_By_Month">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_CustClaim_By_Month_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Case" ColumnName="Case" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_DefectDetail" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_DefectDetail" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_DeliveryPerformance" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_DeliveryPerformance" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_DetailScar" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_DetailScar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_DetailScar_Result">
+          <ScalarProperty Name="Ref_" ColumnName="Ref#" />
+          <ScalarProperty Name="Corrective_Action_Description" ColumnName="Corrective Action Description" />
+          <ScalarProperty Name="Target_Date" ColumnName="Target Date" />
+          <ScalarProperty Name="Actual_Date" ColumnName="Actual Date" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_Freight_By_Month" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_Freight_By_Month">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_Freight_By_Month_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Case" ColumnName="Case" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_GetListVendor" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_GetListVendor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_GetListVendor_Result">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_OTD_By_Month" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_OTD_By_Month">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_OTD_By_Month_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="D_OTD" ColumnName="D_OTD" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_Performance" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_Performance" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_PPM_By_Month" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_PPM_By_Month">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_PPM_By_Month_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Q_PPM" ColumnName="Q_PPM" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_QualityPerformance" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_QualityPerformance">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_QualityPerformance_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Rec_Qty" ColumnName="Rec Qty" />
+          <ScalarProperty Name="Defect_Qty" ColumnName="Defect Qty" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="PPM" ColumnName="PPM" />
+          <ScalarProperty Name="PPM_YTD" ColumnName="PPM YTD" />
+          <ScalarProperty Name="M_idx" ColumnName="M_idx" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_ScoreJudment" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_ScoreJudment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_ScoreJudment_Result">
+          <ScalarProperty Name="Q_Score" ColumnName="Q Score" />
+          <ScalarProperty Name="D_Score" ColumnName="D Score" />
+          <ScalarProperty Name="Cust_Score" ColumnName="Cust Score" />
+          <ScalarProperty Name="Freight_Score" ColumnName="Freight Score" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_ScoringRef" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_ScoringRef">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_ScoringRef_Result">
+          <ScalarProperty Name="Performance" ColumnName="Performance" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="C5_Score_Very___Satisfied" ColumnName="5 Score Very - Satisfied" />
+          <ScalarProperty Name="C4_Score___Satisfied" ColumnName="4 Score - Satisfied" />
+          <ScalarProperty Name="C3_Score___Fairly_Satisfied" ColumnName="3 Score - Fairly Satisfied" />
+          <ScalarProperty Name="C2_Score___Dissatisfied" ColumnName="2 Score - Dissatisfied" />
+          <ScalarProperty Name="C1_Score___Very_Dissatisfied" ColumnName="1 Score - Very Dissatisfied" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_SupplierInfo" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_SupplierInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_SupplierInfo_Result">
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="value" ColumnName="value" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_TopDefectPart_By_Month" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_TopDefectPart_By_Month">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_TopDefectPart_By_Month_Result">
+          <ScalarProperty Name="Part" ColumnName="Part" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_TopDefectPart_By_YTD" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_TopDefectPart_By_YTD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_TopDefectPart_By_YTD_Result">
+          <ScalarProperty Name="Part" ColumnName="Part" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_UpdatePerformance" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_UpdatePerformance" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_Auto6Panel" FunctionName="IQCTestModel.Store.sp_SQE_Auto6Panel">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_Auto6Panel_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Q_PPM" ColumnName="Q_PPM" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_GetListVendor" FunctionName="IQCTestModel.Store.sp_SQE_GetListVendor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_GetListVendor_Result">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_GetSupplierInfo" FunctionName="IQCTestModel.Store.sp_SQE_GetSupplierInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_GetSupplierInfo_Result">
+          <ScalarProperty Name="SupplierCode" ColumnName="SupplierCode" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="SupplierType" ColumnName="SupplierType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_ListVendorDetail" FunctionName="IQCTestModel.Store.sp_SQE_ListVendorDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_ListVendorDetail_Result">
+          <ScalarProperty Name="CCN" ColumnName="CCN" />
+          <ScalarProperty Name="VENDOR" ColumnName="VENDOR" />
+          <ScalarProperty Name="PUR_LOC" ColumnName="PUR_LOC" />
+          <ScalarProperty Name="VEN_NAM" ColumnName="VEN_NAM" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="STATE" ColumnName="STATE" />
+          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+          <ScalarProperty Name="CTRY" ColumnName="CTRY" />
+          <ScalarProperty Name="CONTACT" ColumnName="CONTACT" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="FAX" ColumnName="FAX" />
+          <ScalarProperty Name="TEL" ColumnName="TEL" />
+          <ScalarProperty Name="SQE_PIC" ColumnName="SQE_PIC" />
+          <ScalarProperty Name="BUYER_PIC" ColumnName="BUYER_PIC" />
+          <ScalarProperty Name="PRO_CLASS" ColumnName="PRO_CLASS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_Part_OTD" FunctionName="IQCTestModel.Store.sp_SQE_Part_OTD" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_Part_PPM" FunctionName="IQCTestModel.Store.sp_SQE_Part_PPM" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_PCN_PartList" FunctionName="IQCTestModel.Store.sp_SQE_PCN_PartList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_PCN_PartList_Result">
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_RA_ProductClass" FunctionName="IQCTestModel.Store.sp_SQE_RA_ProductClass">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_RA_ProductClass_Result">
+          <ScalarProperty Name="SupplierCode" ColumnName="SupplierCode" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="SupplierType" ColumnName="SupplierType" />
+          <ScalarProperty Name="ProductClass" ColumnName="ProductClass" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_RemindSupplierLog_DueDate" FunctionName="IQCTestModel.Store.sp_SQE_RemindSupplierLog_DueDate" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_RemindSupplierLog_Re_Evaluation" FunctionName="IQCTestModel.Store.sp_SQE_RemindSupplierLog_Re_Evaluation" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_RemindSupplierLog_Re_Examined" FunctionName="IQCTestModel.Store.sp_SQE_RemindSupplierLog_Re_Examined" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_Risk_Assessment" FunctionName="IQCTestModel.Store.sp_SQE_Risk_Assessment" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelop_Scar" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelop_Scar" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_CheckPlan" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_CheckPlan" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_FiscalYear" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_FiscalYear">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_SupplierDevelopment_FiscalYear_Result">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_NewPlan" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_NewPlan">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_SupplierDevelopment_NewPlan_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Supplier_Code" ColumnName="Supplier_Code" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Visit_Plan" ColumnName="Visit_Plan" />
+          <ScalarProperty Name="Visit_Actual" ColumnName="Visit_Actual" />
+          <ScalarProperty Name="Visit_Com" ColumnName="Visit_Com" />
+          <ScalarProperty Name="Audit_Plan" ColumnName="Audit_Plan" />
+          <ScalarProperty Name="Audit_Actual" ColumnName="Audit_Actual" />
+          <ScalarProperty Name="Audit_Com" ColumnName="Audit_Com" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_RiskAssessment" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_RiskAssessment" />
+    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_SearchPlan" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_SearchPlan">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_SupplierDevelopment_SearchPlan_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Supplier_Code" ColumnName="Supplier_Code" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Visit_Plan" ColumnName="Visit_Plan" />
+          <ScalarProperty Name="Visit_Actual" ColumnName="Visit_Actual" />
+          <ScalarProperty Name="Visit_Com" ColumnName="Visit_Com" />
+          <ScalarProperty Name="Audit_Plan" ColumnName="Audit_Plan" />
+          <ScalarProperty Name="Audit_Actual" ColumnName="Audit_Actual" />
+          <ScalarProperty Name="Audit_Com" ColumnName="Audit_Com" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_VisitAuditSum" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_VisitAuditSum">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_SupplierDevelopment_VisitAuditSum_Result">
+          <ScalarProperty Name="SupplierCode" ColumnName="SupplierCode" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="SupplierType" ColumnName="SupplierType" />
+          <ScalarProperty Name="HasPlan" ColumnName="HasPlan" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQE_Yearlist" FunctionName="IQCTestModel.Store.sp_SQE_Yearlist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_Yearlist_Result">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SQEDB_SupplierLog_Remind_ReEvaluation" FunctionName="IQCTestModel.Store.sp_SQEDB_SupplierLog_Remind_ReEvaluation" />
+    <FunctionImportMapping FunctionImportName="sp_SOR_GetSoOpen" FunctionName="IQCTestModel.Store.sp_SOR_GetSoOpen">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetSoOpen_Result">
+          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
+          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
+          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
+          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="FAI" ColumnName="FAI" />
+          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
+          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
+          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
+          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
+          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
+          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
+          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
+          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
+          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
+          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
+          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
+          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
+          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SOR_GetSoReview" FunctionName="IQCTestModel.Store.sp_SOR_GetSoReview">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetSoReview_Result">
+          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
+          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
+          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
+          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="FAI" ColumnName="FAI" />
+          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
+          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
+          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
+          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
+          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
+          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
+          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
+          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
+          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
+          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
+          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
+          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
+          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SOR_GetSoReviewHist" FunctionName="IQCTestModel.Store.sp_SOR_GetSoReviewHist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetSoReviewHist_Result">
+          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
+          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
+          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
+          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="FAI" ColumnName="FAI" />
+          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
+          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
+          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
+          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
+          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
+          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
+          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
+          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
+          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
+          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
+          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
+          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
+          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SOR_OTDFailByLine_Report" FunctionName="IQCTestModel.Store.sp_SOR_OTDFailByLine_Report" />
+    <FunctionImportMapping FunctionImportName="sp_SOR_RiskShip_Report" FunctionName="IQCTestModel.Store.sp_SOR_RiskShip_Report" />
+    <FunctionImportMapping FunctionImportName="sp_Inv_SugList" FunctionName="IQCTestModel.Store.sp_Inv_SugList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_Inv_SugList_Result">
+          <ScalarProperty Name="Sug_ID" ColumnName="Sug_ID" />
+          <ScalarProperty Name="Sug_Type" ColumnName="Sug_Type" />
+          <ScalarProperty Name="Sug_title" ColumnName="Sug_title" />
+          <ScalarProperty Name="Cur_prob" ColumnName="Cur_prob" />
+          <ScalarProperty Name="Idea_impr" ColumnName="Idea_impr" />
+          <ScalarProperty Name="Cur_Step" ColumnName="Cur_Step" />
+          <ScalarProperty Name="Exp_Start_Date" ColumnName="Exp_Start_Date" />
+          <ScalarProperty Name="Exp_End_date" ColumnName="Exp_End_date" />
+          <ScalarProperty Name="Submit_date" ColumnName="Submit_date" />
+          <ScalarProperty Name="Submitter" ColumnName="Submitter" />
+          <ScalarProperty Name="Requestor" ColumnName="Requestor" />
+          <ScalarProperty Name="Rqtor_name" ColumnName="Rqtor_name" />
+          <ScalarProperty Name="Req_Dept" ColumnName="Req_Dept" />
+          <ScalarProperty Name="Req_Email" ColumnName="Req_Email" />
+          <ScalarProperty Name="Att_File_Current" ColumnName="Att_File_Current" />
+          <ScalarProperty Name="Att_File_Idea" ColumnName="Att_File_Idea" />
+          <ScalarProperty Name="Step_Status" ColumnName="Step_Status" />
+          <ScalarProperty Name="Next_Approver" ColumnName="Next_Approver" />
+          <ScalarProperty Name="Coacher" ColumnName="Coacher" />
+          <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
+          <ScalarProperty Name="CIManager" ColumnName="CIManager" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
+          <ScalarProperty Name="Pro_Leader" ColumnName="Pro_Leader" />
+          <ScalarProperty Name="Member" ColumnName="Member" />
+          <ScalarProperty Name="Action_Date" ColumnName="Action_Date" />
+          <ScalarProperty Name="Subject_Matter_Need" ColumnName="Subject_Matter_Need" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -3174,17 +3671,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="IQCTestModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="definition" ColumnName="definition" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TASK_APPROVE">
       <EntityTypeMapping TypeName="IQCTestModel.TASK_APPROVE">
         <MappingFragment StoreEntitySet="TASK_APPROVE">
@@ -3472,6 +3958,44 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Inv_Step3_SponsorApr">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_Inv_Step3_SponsorApr">
+        <MappingFragment StoreEntitySet="tbl_Inv_Step3_SponsorApr">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Fin_com" ColumnName="Fin_com" />
+          <ScalarProperty Name="Fin_abi" ColumnName="Fin_abi" />
+          <ScalarProperty Name="Safe_com" ColumnName="Safe_com" />
+          <ScalarProperty Name="Safe_Rel" ColumnName="Safe_Rel" />
+          <ScalarProperty Name="Res_com" ColumnName="Res_com" />
+          <ScalarProperty Name="Res_avai" ColumnName="Res_avai" />
+          <ScalarProperty Name="Legal_com" ColumnName="Legal_com" />
+          <ScalarProperty Name="Legal_Rel" ColumnName="Legal_Rel" />
+          <ScalarProperty Name="Eco_com" ColumnName="Eco_com" />
+          <ScalarProperty Name="Eco_ben" ColumnName="Eco_ben" />
+          <ScalarProperty Name="Tech_com" ColumnName="Tech_com" />
+          <ScalarProperty Name="Tech_abi" ColumnName="Tech_abi" />
+          <ScalarProperty Name="Imp_End" ColumnName="Imp_End" />
+          <ScalarProperty Name="Imp_Start" ColumnName="Imp_Start" />
+          <ScalarProperty Name="Pro_Leader" ColumnName="Pro_Leader" />
+          <ScalarProperty Name="Sug_ID" ColumnName="Sug_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Inv_Step4_DirApr">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_Inv_Step4_DirApr">
+        <MappingFragment StoreEntitySet="tbl_Inv_Step4_DirApr">
+          <ScalarProperty Name="Date_Action" ColumnName="Date_Action" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Apr_Status" ColumnName="Apr_Status" />
+          <ScalarProperty Name="Stra_com" ColumnName="Stra_com" />
+          <ScalarProperty Name="Stra_Link" ColumnName="Stra_Link" />
+          <ScalarProperty Name="App_com" ColumnName="App_com" />
+          <ScalarProperty Name="App_eva" ColumnName="App_eva" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
+          <ScalarProperty Name="Sug_ID" ColumnName="Sug_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbl_Inv_Step5_ProLeaderApr">
       <EntityTypeMapping TypeName="IQCTestModel.tbl_Inv_Step5_ProLeaderApr">
         <MappingFragment StoreEntitySet="tbl_Inv_Step5_ProLeaderApr">
@@ -3670,6 +4194,140 @@
           <ScalarProperty Name="SP_Description" ColumnName="SP_Description" />
           <ScalarProperty Name="SP_Name" ColumnName="SP_Name" />
           <ScalarProperty Name="SP_ID" ColumnName="SP_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_Attached_ForItemReview">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Attached_ForItemReview">
+        <MappingFragment StoreEntitySet="tbl_SOR_Attached_ForItemReview">
+          <ScalarProperty Name="Attached_At" ColumnName="Attached_At" />
+          <ScalarProperty Name="Attached_By" ColumnName="Attached_By" />
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="Attached_File" ColumnName="Attached_File" />
+          <ScalarProperty Name="Item_Idx" ColumnName="Item_Idx" />
+          <ScalarProperty Name="Download_Date" ColumnName="Download_Date" />
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_Cur_Review_Detail">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Cur_Review_Detail">
+        <MappingFragment StoreEntitySet="tbl_SOR_Cur_Review_Detail">
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="ISLOCK" ColumnName="ISLOCK" />
+          <ScalarProperty Name="REVIEW_BY" ColumnName="REVIEW_BY" />
+          <ScalarProperty Name="REVIEW_AT" ColumnName="REVIEW_AT" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+          <ScalarProperty Name="ITEM_REVIEW" ColumnName="ITEM_REVIEW" />
+          <ScalarProperty Name="DEPT_REVIEW" ColumnName="DEPT_REVIEW" />
+          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_Cur_Review_List">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Cur_Review_List">
+        <MappingFragment StoreEntitySet="tbl_SOR_Cur_Review_List">
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
+          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
+          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
+          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
+          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
+          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
+          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
+          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
+          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
+          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
+          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
+          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
+          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
+          <ScalarProperty Name="FAI" ColumnName="FAI" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
+          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
+          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_Family_Setup_Qty">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Family_Setup_Qty">
+        <MappingFragment StoreEntitySet="tbl_SOR_Family_Setup_Qty">
+          <ScalarProperty Name="Review_Completed" ColumnName="Review_Completed" />
+          <ScalarProperty Name="Setup_Qty" ColumnName="Setup_Qty" />
+          <ScalarProperty Name="Family" ColumnName="Family" />
+          <ScalarProperty Name="Family_inx" ColumnName="Family_inx" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_His_Review_Detail">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_His_Review_Detail">
+        <MappingFragment StoreEntitySet="tbl_SOR_His_Review_Detail">
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="REVIEW_BY" ColumnName="REVIEW_BY" />
+          <ScalarProperty Name="REVIEW_AT" ColumnName="REVIEW_AT" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+          <ScalarProperty Name="ITEM_REVIEW" ColumnName="ITEM_REVIEW" />
+          <ScalarProperty Name="DEPT_REVIEW" ColumnName="DEPT_REVIEW" />
+          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_His_Review_List">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_His_Review_List">
+        <MappingFragment StoreEntitySet="tbl_SOR_His_Review_List">
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
+          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
+          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
+          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
+          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
+          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
+          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
+          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
+          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
+          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
+          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
+          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
+          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
+          <ScalarProperty Name="FAI" ColumnName="FAI" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
+          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
+          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_Item_Review">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Item_Review">
+        <MappingFragment StoreEntitySet="tbl_SOR_Item_Review">
+          <ScalarProperty Name="Default" ColumnName="Default" />
+          <ScalarProperty Name="Item_Rv" ColumnName="Item_Rv" />
+          <ScalarProperty Name="Dept_Rv" ColumnName="Dept_Rv" />
+          <ScalarProperty Name="Item_Idx" ColumnName="Item_Idx" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_Review_Pic">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Review_Pic">
+        <MappingFragment StoreEntitySet="tbl_SOR_Review_Pic">
+          <ScalarProperty Name="Pic_Rv" ColumnName="Pic_Rv" />
+          <ScalarProperty Name="Dept_Rv" ColumnName="Dept_Rv" />
+          <ScalarProperty Name="Pic_Inx" ColumnName="Pic_Inx" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -4819,6 +5477,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Inv_File_Attach">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_Inv_File_Attach">
+        <MappingFragment StoreEntitySet="tbl_Inv_File_Attach">
+          <ScalarProperty Name="Att_Type" ColumnName="Att_Type" />
+          <ScalarProperty Name="Att_Path" ColumnName="Att_Path" />
+          <ScalarProperty Name="Sug_ID" ColumnName="Sug_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbl_Inv_ScoreCost_4_Mem">
       <EntityTypeMapping TypeName="IQCTestModel.tbl_Inv_ScoreCost_4_Mem">
         <MappingFragment StoreEntitySet="tbl_Inv_ScoreCost_4_Mem">
@@ -5012,168 +5679,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DMS_WOLot">
-      <EntityTypeMapping TypeName="IQCTestModel.DMS_WOLot">
-        <MappingFragment StoreEntitySet="DMS_WOLot">
-          <ScalarProperty Name="Lot" ColumnName="Lot" />
-          <ScalarProperty Name="WOCode" ColumnName="WOCode" />
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-          <ScalarProperty Name="Department" ColumnName="Department" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PPM_RejectQty">
-      <EntityTypeMapping TypeName="IQCTestModel.PPM_RejectQty">
-        <MappingFragment StoreEntitySet="PPM_RejectQty">
-          <ScalarProperty Name="CCN" ColumnName="CCN" />
-          <ScalarProperty Name="DATEAPPROVAL" ColumnName="DATEAPPROVAL" />
-          <ScalarProperty Name="REJ_QTY" ColumnName="REJ_QTY" />
-          <ScalarProperty Name="INS_QTY" ColumnName="INS_QTY" />
-          <ScalarProperty Name="REC_QTY" ColumnName="REC_QTY" />
-          <ScalarProperty Name="VEN_ADD" ColumnName="VEN_ADD" />
-          <ScalarProperty Name="VEN_NAME" ColumnName="VEN_NAME" />
-          <ScalarProperty Name="VENDOR" ColumnName="VENDOR" />
-          <ScalarProperty Name="ITEM_DESC" ColumnName="ITEM_DESC" />
-          <ScalarProperty Name="LOT" ColumnName="LOT" />
-          <ScalarProperty Name="RECEIVER" ColumnName="RECEIVER" />
-          <ScalarProperty Name="PO_NUM" ColumnName="PO_NUM" />
-          <ScalarProperty Name="DRAW_REV" ColumnName="DRAW_REV" />
-          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
-          <ScalarProperty Name="MI_PART_NO" ColumnName="MI_PART_NO" />
-          <ScalarProperty Name="SEC" ColumnName="SEC" />
-          <ScalarProperty Name="NCR_NUM" ColumnName="NCR_NUM" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="v_AQL">
-      <EntityTypeMapping TypeName="IQCTestModel.v_AQL">
-        <MappingFragment StoreEntitySet="v_AQL">
-          <ScalarProperty Name="Reject" ColumnName="Reject" />
-          <ScalarProperty Name="Accept" ColumnName="Accept" />
-          <ScalarProperty Name="Size" ColumnName="Size" />
-          <ScalarProperty Name="LotTo" ColumnName="LotTo" />
-          <ScalarProperty Name="LotFrom" ColumnName="LotFrom" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="AQLName" ColumnName="AQLName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="V_AspNetUsers">
-      <EntityTypeMapping TypeName="IQCTestModel.V_AspNetUsers">
-        <MappingFragment StoreEntitySet="V_AspNetUsers">
-          <ScalarProperty Name="FullName" ColumnName="FullName" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="v_INS_RESULT">
-      <EntityTypeMapping TypeName="IQCTestModel.v_INS_RESULT">
-        <MappingFragment StoreEntitySet="v_INS_RESULT">
-          <ScalarProperty Name="REJ_QTY" ColumnName="REJ_QTY" />
-          <ScalarProperty Name="ACC_QTY" ColumnName="ACC_QTY" />
-          <ScalarProperty Name="AQL_VISUAL" ColumnName="AQL_VISUAL" />
-          <ScalarProperty Name="AQL_MEASURE" ColumnName="AQL_MEASURE" />
-          <ScalarProperty Name="SAMPLING_VISUAL" ColumnName="SAMPLING_VISUAL" />
-          <ScalarProperty Name="SAMPLING_MEASURE" ColumnName="SAMPLING_MEASURE" />
-          <ScalarProperty Name="INS_DATE" ColumnName="INS_DATE" />
-          <ScalarProperty Name="REC_DATE" ColumnName="REC_DATE" />
-          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-          <ScalarProperty Name="INSP_STAT" ColumnName="INSP_STAT" />
-          <ScalarProperty Name="REC_QTY" ColumnName="REC_QTY" />
-          <ScalarProperty Name="QTY" ColumnName="QTY" />
-          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
-          <ScalarProperty Name="RECEIVER" ColumnName="RECEIVER" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="V_Material_HadMake_FLupSerialNumber">
-      <EntityTypeMapping TypeName="IQCTestModel.V_Material_HadMake_FLupSerialNumber">
-        <MappingFragment StoreEntitySet="V_Material_HadMake_FLupSerialNumber">
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-          <ScalarProperty Name="Qty" ColumnName="Qty" />
-          <ScalarProperty Name="LotNumber" ColumnName="LotNumber" />
-          <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
-          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-          <ScalarProperty Name="Revision" ColumnName="Revision" />
-          <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
-          <ScalarProperty Name="WOCode" ColumnName="WOCode" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="v_Operator">
-      <EntityTypeMapping TypeName="IQCTestModel.v_Operator">
-        <MappingFragment StoreEntitySet="v_Operator">
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="LineName" ColumnName="LineName" />
-          <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
-          <ScalarProperty Name="OperatorID" ColumnName="OperatorID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="V_WO_Issue">
-      <EntityTypeMapping TypeName="IQCTestModel.V_WO_Issue">
-        <MappingFragment StoreEntitySet="V_WO_Issue">
-          <ScalarProperty Name="LotNumber" ColumnName="LotNumber" />
-          <ScalarProperty Name="WOCode" ColumnName="WOCode" />
-          <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="vNCR_DET">
-      <EntityTypeMapping TypeName="IQCTestModel.vNCR_DET">
-        <MappingFragment StoreEntitySet="vNCR_DET">
-          <ScalarProperty Name="Remark" ColumnName="Remark" />
-          <ScalarProperty Name="Disposition" ColumnName="Disposition" />
-          <ScalarProperty Name="Response" ColumnName="Response" />
-          <ScalarProperty Name="Defect" ColumnName="Defect" />
-          <ScalarProperty Name="NC_Qty" ColumnName="NC_Qty" />
-          <ScalarProperty Name="Non_Conformances" ColumnName="Non_Conformances" />
-          <ScalarProperty Name="PartialID" ColumnName="PartialID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="vNCR_DET_2">
-      <EntityTypeMapping TypeName="IQCTestModel.vNCR_DET_2">
-        <MappingFragment StoreEntitySet="vNCR_DET_2">
-          <ScalarProperty Name="Disposition" ColumnName="Disposition" />
-          <ScalarProperty Name="Response" ColumnName="Response" />
-          <ScalarProperty Name="Defect" ColumnName="Defect" />
-          <ScalarProperty Name="NC_Qty" ColumnName="NC_Qty" />
-          <ScalarProperty Name="Non_Conformances" ColumnName="Non_Conformances" />
-          <ScalarProperty Name="PartialID" ColumnName="PartialID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="RPT_DATE" ColumnName="RPT_DATE" />
-          <ScalarProperty Name="NCR" ColumnName="NCR" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="vNCR_HDR">
-      <EntityTypeMapping TypeName="IQCTestModel.vNCR_HDR">
-        <MappingFragment StoreEntitySet="vNCR_HDR">
-          <ScalarProperty Name="NCR_writen_Date" ColumnName="NCR_writen_Date" />
-          <ScalarProperty Name="CA" ColumnName="CA" />
-          <ScalarProperty Name="IQA_Status" ColumnName="IQA_Status" />
-          <ScalarProperty Name="NCR" ColumnName="NCR" />
-          <ScalarProperty Name="SPL2" ColumnName="SPL2" />
-          <ScalarProperty Name="SPL1" ColumnName="SPL1" />
-          <ScalarProperty Name="AQLV" ColumnName="AQLV" />
-          <ScalarProperty Name="AQLM" ColumnName="AQLM" />
-          <ScalarProperty Name="Remark" ColumnName="Remark" />
-          <ScalarProperty Name="RPT_DATE" ColumnName="RPT_DATE" />
-          <ScalarProperty Name="Unit" ColumnName="Unit" />
-          <ScalarProperty Name="Qty" ColumnName="Qty" />
-          <ScalarProperty Name="REV" ColumnName="REV" />
-          <ScalarProperty Name="Supplier_code" ColumnName="Supplier_code" />
-          <ScalarProperty Name="Supplier" ColumnName="Supplier" />
-          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
-          <ScalarProperty Name="PN" ColumnName="PN" />
-          <ScalarProperty Name="PO" ColumnName="PO" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="IQCTestModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetUser">
         <ScalarProperty Name="Id" ColumnName="UserId" />
@@ -5182,527 +5687,10 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="DynamicPivot" FunctionName="IQCTestModel.Store.DynamicPivot" />
-    <FunctionImportMapping FunctionImportName="GetListOperIQC" FunctionName="IQCTestModel.Store.GetListOperIQC">
+    <FunctionImportMapping FunctionImportName="SOR_Review_Planner" FunctionName="IQCTestModel.Store.SOR_Review_Planner" />
+    <FunctionImportMapping FunctionImportName="sp_GetSoReview1" FunctionName="IQCTestModel.Store.sp_GetSoReview">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.GetListOperIQC_Result">
-          <ScalarProperty Name="OperID" ColumnName="OperID" />
-          <ScalarProperty Name="OperName" ColumnName="OperName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="p_AgingTimeAQL_Parts_Detail_New" FunctionName="IQCTestModel.Store.p_AgingTimeAQL_Parts_Detail_New">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.p_AgingTimeAQL_Parts_Detail_New_Result">
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Aging" ColumnName="Aging" />
-          <ScalarProperty Name="NCR" ColumnName="NCR" />
-          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
-          <ScalarProperty Name="REC_LINE" ColumnName="REC_LINE" />
-          <ScalarProperty Name="CCN" ColumnName="CCN" />
-          <ScalarProperty Name="PO_NUM" ColumnName="PO_NUM" />
-          <ScalarProperty Name="ITEM_DESC" ColumnName="ITEM_DESC" />
-          <ScalarProperty Name="VEN_NAME" ColumnName="VEN_NAME" />
-          <ScalarProperty Name="POSTING_DATE" ColumnName="POSTING_DATE" />
-          <ScalarProperty Name="Notes" ColumnName="Notes" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="p_AgingTimeAQL_Parts_New" FunctionName="IQCTestModel.Store.p_AgingTimeAQL_Parts_New">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.p_AgingTimeAQL_Parts_New_Result">
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="PartAVG" ColumnName="PartAVG" />
-          <ScalarProperty Name="Target" ColumnName="Target" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="p_Remind_Purchase_Order_Status" FunctionName="IQCTestModel.Store.p_Remind_Purchase_Order_Status" />
-    <FunctionImportMapping FunctionImportName="pGet_MEASUREMENT_STD_BY_PART_bk" FunctionName="IQCTestModel.Store.pGet_MEASUREMENT_STD_BY_PART_bk">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.pGet_MEASUREMENT_STD_BY_PART_bk_Result">
-          <ScalarProperty Name="MEASURE_PARA" ColumnName="MEASURE_PARA" />
-          <ScalarProperty Name="EVA_METHOD" ColumnName="EVA_METHOD" />
-          <ScalarProperty Name="TOOL_FIXTURE" ColumnName="TOOL_FIXTURE" />
-          <ScalarProperty Name="LVALUE" ColumnName="LVALUE" />
-          <ScalarProperty Name="UVALUE" ColumnName="UVALUE" />
-          <ScalarProperty Name="unit" ColumnName="unit" />
-          <ScalarProperty Name="critial" ColumnName="critial" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Chart_Labor_RealTime_Rev2" FunctionName="IQCTestModel.Store.sp_Chart_Labor_RealTime_Rev2" />
-    <FunctionImportMapping FunctionImportName="sp_DOC_by_ITEM_Rev2" FunctionName="IQCTestModel.Store.sp_DOC_by_ITEM_Rev2">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_DOC_by_ITEM_Rev2_Result">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Item" ColumnName="Item" />
-          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
-          <ScalarProperty Name="VendorNo" ColumnName="VendorNo" />
-          <ScalarProperty Name="CCN" ColumnName="CCN" />
-          <ScalarProperty Name="RequiredDOC" ColumnName="RequiredDOC" />
-          <ScalarProperty Name="PathDOC" ColumnName="PathDOC" />
-          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
-          <ScalarProperty Name="UploadDocDate" ColumnName="UploadDocDate" />
-          <ScalarProperty Name="UploadUser" ColumnName="UploadUser" />
-          <ScalarProperty Name="Verified" ColumnName="Verified" />
-          <ScalarProperty Name="VerifiedDocDate" ColumnName="VerifiedDocDate" />
-          <ScalarProperty Name="VerifiedDocUser" ColumnName="VerifiedDocUser" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_GET_ListNC_Rev2" FunctionName="IQCTestModel.Store.sp_GET_ListNC_Rev2" />
-    <FunctionImportMapping FunctionImportName="sp_GET_NCCode_byItem" FunctionName="IQCTestModel.Store.sp_GET_NCCode_byItem">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_GET_NCCode_byItem_Result">
-          <ScalarProperty Name="NC_CODE" ColumnName="NC_CODE" />
-          <ScalarProperty Name="NC_DESC" ColumnName="NC_DESC" />
-          <ScalarProperty Name="NC_GRP_CODE" ColumnName="NC_GRP_CODE" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_GET_NCGroup_byItem" FunctionName="IQCTestModel.Store.sp_GET_NCGroup_byItem">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_GET_NCGroup_byItem_Result">
-          <ScalarProperty Name="NC_GRP_CODE" ColumnName="NC_GRP_CODE" />
-          <ScalarProperty Name="NC_GRP_DESC" ColumnName="NC_GRP_DESC" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_GetOperator_IQC" FunctionName="IQCTestModel.Store.sp_GetOperator_IQC">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_GetOperator_IQC_Result">
-          <ScalarProperty Name="OperatorID" ColumnName="OperatorID" />
-          <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_GetProduct_byLine" FunctionName="IQCTestModel.Store.sp_GetProduct_byLine" />
-    <FunctionImportMapping FunctionImportName="sp_InsertPART_INFO_TEMP" FunctionName="IQCTestModel.Store.sp_InsertPART_INFO_TEMP" />
-    <FunctionImportMapping FunctionImportName="sp_Inv_Report_SUGGESTION_ANALYSIS" FunctionName="IQCTestModel.Store.sp_Inv_Report_SUGGESTION_ANALYSIS">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_Inv_Report_SUGGESTION_ANALYSIS_Result">
-          <ScalarProperty Name="Qty" ColumnName="Qty" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Inv_Report_Suggestion_ByMonth" FunctionName="IQCTestModel.Store.sp_Inv_Report_Suggestion_ByMonth">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_Inv_Report_Suggestion_ByMonth_Result">
-          <ScalarProperty Name="Sug_ID" ColumnName="Sug_ID" />
-          <ScalarProperty Name="Req_Dept" ColumnName="Req_Dept" />
-          <ScalarProperty Name="Submit_date" ColumnName="Submit_date" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Inv_Report_Suggestion_ByPerson" FunctionName="IQCTestModel.Store.sp_Inv_Report_Suggestion_ByPerson">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_Inv_Report_Suggestion_ByPerson_Result">
-          <ScalarProperty Name="Rqtor_name" ColumnName="Rqtor_name" />
-          <ScalarProperty Name="Total" ColumnName="Total" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_Inv_Report_Suggestion_Status" FunctionName="IQCTestModel.Store.sp_Inv_Report_Suggestion_Status">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_Inv_Report_Suggestion_Status_Result">
-          <ScalarProperty Name="Sug_id" ColumnName="Sug_id" />
-          <ScalarProperty Name="Column1" ColumnName="Column1" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_LaborScan_RealTime" FunctionName="IQCTestModel.Store.sp_LaborScan_RealTime" />
-    <FunctionImportMapping FunctionImportName="sp_LaborScan_Rev2" FunctionName="IQCTestModel.Store.sp_LaborScan_Rev2" />
-    <FunctionImportMapping FunctionImportName="sp_PT_Complete_BuyPart" FunctionName="IQCTestModel.Store.sp_PT_Complete_BuyPart" />
-    <FunctionImportMapping FunctionImportName="sp_RemindSupplierLog_Re_Evaluation" FunctionName="IQCTestModel.Store.sp_RemindSupplierLog_Re_Evaluation" />
-    <FunctionImportMapping FunctionImportName="sp_Report_Labor_OPERATION_TIME_Rev2" FunctionName="IQCTestModel.Store.sp_Report_Labor_OPERATION_TIME_Rev2" />
-    <FunctionImportMapping FunctionImportName="sp_Report_Labor_OverTimeCheck_Rev2" FunctionName="IQCTestModel.Store.sp_Report_Labor_OverTimeCheck_Rev2" />
-    <FunctionImportMapping FunctionImportName="sp_Report_Labor_RealTime_ProcessGroup_Rev2" FunctionName="IQCTestModel.Store.sp_Report_Labor_RealTime_ProcessGroup_Rev2" />
-    <FunctionImportMapping FunctionImportName="sp_Report_LABOR_UTILIZATION_Rev2" FunctionName="IQCTestModel.Store.sp_Report_LABOR_UTILIZATION_Rev2" />
-    <FunctionImportMapping FunctionImportName="sp_Report_Labor_WORKING_HOURS_BY_WO_BY_EMPLOYEES_Rev2" FunctionName="IQCTestModel.Store.sp_Report_Labor_WORKING_HOURS_BY_WO_BY_EMPLOYEES_Rev2" />
-    <FunctionImportMapping FunctionImportName="sp_Report_LABOR_WorkingTime_Rev2" FunctionName="IQCTestModel.Store.sp_Report_LABOR_WorkingTime_Rev2" />
-    <FunctionImportMapping FunctionImportName="sp_Report_MonthIQC_TEM_SumByPart" FunctionName="IQCTestModel.Store.sp_Report_MonthIQC_TEM_SumByPart">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_Report_MonthIQC_TEM_SumByPart_Result">
-          <ScalarProperty Name="VEN_NAME" ColumnName="VEN_NAME" />
-          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
-          <ScalarProperty Name="LOT" ColumnName="LOT" />
-          <ScalarProperty Name="REC_Qty" ColumnName="REC_Qty" />
-          <ScalarProperty Name="REJ_QTY" ColumnName="REJ_QTY" />
-          <ScalarProperty Name="Rate" ColumnName="Rate" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_ReportWHOpenNCRforMRBmeeting_AddCom" FunctionName="IQCTestModel.Store.sp_ReportWHOpenNCRforMRBmeeting_AddCom" />
-    <FunctionImportMapping FunctionImportName="sp_SOR_Release" FunctionName="IQCTestModel.Store.sp_SOR_Release" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_CustClaim_By_Month" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_CustClaim_By_Month">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_CustClaim_By_Month_Result">
-          <ScalarProperty Name="Month" ColumnName="Month" />
-          <ScalarProperty Name="Case" ColumnName="Case" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_DefectDetail" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_DefectDetail" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_DeliveryPerformance" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_DeliveryPerformance" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_DetailScar" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_DetailScar">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_DetailScar_Result">
-          <ScalarProperty Name="Ref_" ColumnName="Ref#" />
-          <ScalarProperty Name="Corrective_Action_Description" ColumnName="Corrective Action Description" />
-          <ScalarProperty Name="Target_Date" ColumnName="Target Date" />
-          <ScalarProperty Name="Actual_Date" ColumnName="Actual Date" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_Freight_By_Month" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_Freight_By_Month">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_Freight_By_Month_Result">
-          <ScalarProperty Name="Month" ColumnName="Month" />
-          <ScalarProperty Name="Case" ColumnName="Case" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_GetListVendor" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_GetListVendor">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_GetListVendor_Result">
-          <ScalarProperty Name="Value" ColumnName="Value" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_OTD_By_Month" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_OTD_By_Month">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_OTD_By_Month_Result">
-          <ScalarProperty Name="Month" ColumnName="Month" />
-          <ScalarProperty Name="D_OTD" ColumnName="D_OTD" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_Performance" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_Performance" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_PPM_By_Month" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_PPM_By_Month">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_PPM_By_Month_Result">
-          <ScalarProperty Name="Month" ColumnName="Month" />
-          <ScalarProperty Name="Q_PPM" ColumnName="Q_PPM" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_QualityPerformance" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_QualityPerformance">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_QualityPerformance_Result">
-          <ScalarProperty Name="Month" ColumnName="Month" />
-          <ScalarProperty Name="Rec_Qty" ColumnName="Rec Qty" />
-          <ScalarProperty Name="Defect_Qty" ColumnName="Defect Qty" />
-          <ScalarProperty Name="Target" ColumnName="Target" />
-          <ScalarProperty Name="PPM" ColumnName="PPM" />
-          <ScalarProperty Name="PPM_YTD" ColumnName="PPM YTD" />
-          <ScalarProperty Name="M_idx" ColumnName="M_idx" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_ScoreJudment" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_ScoreJudment">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_ScoreJudment_Result">
-          <ScalarProperty Name="Q_Score" ColumnName="Q Score" />
-          <ScalarProperty Name="D_Score" ColumnName="D Score" />
-          <ScalarProperty Name="Cust_Score" ColumnName="Cust Score" />
-          <ScalarProperty Name="Freight_Score" ColumnName="Freight Score" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_ScoringRef" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_ScoringRef">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_ScoringRef_Result">
-          <ScalarProperty Name="Performance" ColumnName="Performance" />
-          <ScalarProperty Name="Weight" ColumnName="Weight" />
-          <ScalarProperty Name="C5_Score_Very___Satisfied" ColumnName="5 Score Very - Satisfied" />
-          <ScalarProperty Name="C4_Score___Satisfied" ColumnName="4 Score - Satisfied" />
-          <ScalarProperty Name="C3_Score___Fairly_Satisfied" ColumnName="3 Score - Fairly Satisfied" />
-          <ScalarProperty Name="C2_Score___Dissatisfied" ColumnName="2 Score - Dissatisfied" />
-          <ScalarProperty Name="C1_Score___Very_Dissatisfied" ColumnName="1 Score - Very Dissatisfied" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_SupplierInfo" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_SupplierInfo">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_SupplierInfo_Result">
-          <ScalarProperty Name="Item" ColumnName="Item" />
-          <ScalarProperty Name="value" ColumnName="value" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_TopDefectPart_By_Month" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_TopDefectPart_By_Month">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_TopDefectPart_By_Month_Result">
-          <ScalarProperty Name="Part" ColumnName="Part" />
-          <ScalarProperty Name="QTY" ColumnName="QTY" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_TopDefectPart_By_YTD" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_TopDefectPart_By_YTD">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_6Panel_TopDefectPart_By_YTD_Result">
-          <ScalarProperty Name="Part" ColumnName="Part" />
-          <ScalarProperty Name="QTY" ColumnName="QTY" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_6Panel_UpdatePerformance" FunctionName="IQCTestModel.Store.sp_SQE_6Panel_UpdatePerformance" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_Auto6Panel" FunctionName="IQCTestModel.Store.sp_SQE_Auto6Panel">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_Auto6Panel_Result">
-          <ScalarProperty Name="Month" ColumnName="Month" />
-          <ScalarProperty Name="Q_PPM" ColumnName="Q_PPM" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_GetListVendor" FunctionName="IQCTestModel.Store.sp_SQE_GetListVendor">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_GetListVendor_Result">
-          <ScalarProperty Name="Value" ColumnName="Value" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_GetSupplierInfo" FunctionName="IQCTestModel.Store.sp_SQE_GetSupplierInfo">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_GetSupplierInfo_Result">
-          <ScalarProperty Name="SupplierCode" ColumnName="SupplierCode" />
-          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
-          <ScalarProperty Name="SupplierType" ColumnName="SupplierType" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_ListVendorDetail" FunctionName="IQCTestModel.Store.sp_SQE_ListVendorDetail">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_ListVendorDetail_Result">
-          <ScalarProperty Name="CCN" ColumnName="CCN" />
-          <ScalarProperty Name="VENDOR" ColumnName="VENDOR" />
-          <ScalarProperty Name="PUR_LOC" ColumnName="PUR_LOC" />
-          <ScalarProperty Name="VEN_NAM" ColumnName="VEN_NAM" />
-          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
-          <ScalarProperty Name="STATE" ColumnName="STATE" />
-          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
-          <ScalarProperty Name="CTRY" ColumnName="CTRY" />
-          <ScalarProperty Name="CONTACT" ColumnName="CONTACT" />
-          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-          <ScalarProperty Name="FAX" ColumnName="FAX" />
-          <ScalarProperty Name="TEL" ColumnName="TEL" />
-          <ScalarProperty Name="SQE_PIC" ColumnName="SQE_PIC" />
-          <ScalarProperty Name="BUYER_PIC" ColumnName="BUYER_PIC" />
-          <ScalarProperty Name="PRO_CLASS" ColumnName="PRO_CLASS" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_Part_OTD" FunctionName="IQCTestModel.Store.sp_SQE_Part_OTD" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_Part_PPM" FunctionName="IQCTestModel.Store.sp_SQE_Part_PPM" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_PCN_PartList" FunctionName="IQCTestModel.Store.sp_SQE_PCN_PartList">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_PCN_PartList_Result">
-          <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="Value" ColumnName="Value" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_RA_ProductClass" FunctionName="IQCTestModel.Store.sp_SQE_RA_ProductClass">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_RA_ProductClass_Result">
-          <ScalarProperty Name="SupplierCode" ColumnName="SupplierCode" />
-          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
-          <ScalarProperty Name="SupplierType" ColumnName="SupplierType" />
-          <ScalarProperty Name="ProductClass" ColumnName="ProductClass" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_RemindSupplierLog_DueDate" FunctionName="IQCTestModel.Store.sp_SQE_RemindSupplierLog_DueDate" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_RemindSupplierLog_Re_Evaluation" FunctionName="IQCTestModel.Store.sp_SQE_RemindSupplierLog_Re_Evaluation" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_RemindSupplierLog_Re_Examined" FunctionName="IQCTestModel.Store.sp_SQE_RemindSupplierLog_Re_Examined" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_Risk_Assessment" FunctionName="IQCTestModel.Store.sp_SQE_Risk_Assessment" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelop_Scar" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelop_Scar" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_CheckPlan" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_CheckPlan" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_FiscalYear" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_FiscalYear">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_SupplierDevelopment_FiscalYear_Result">
-          <ScalarProperty Name="Value" ColumnName="Value" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_NewPlan" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_NewPlan">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_SupplierDevelopment_NewPlan_Result">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Supplier_Code" ColumnName="Supplier_Code" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="Month" ColumnName="Month" />
-          <ScalarProperty Name="Visit_Plan" ColumnName="Visit_Plan" />
-          <ScalarProperty Name="Visit_Actual" ColumnName="Visit_Actual" />
-          <ScalarProperty Name="Visit_Com" ColumnName="Visit_Com" />
-          <ScalarProperty Name="Audit_Plan" ColumnName="Audit_Plan" />
-          <ScalarProperty Name="Audit_Actual" ColumnName="Audit_Actual" />
-          <ScalarProperty Name="Audit_Com" ColumnName="Audit_Com" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_RiskAssessment" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_RiskAssessment" />
-    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_SearchPlan" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_SearchPlan">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_SupplierDevelopment_SearchPlan_Result">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Supplier_Code" ColumnName="Supplier_Code" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="Month" ColumnName="Month" />
-          <ScalarProperty Name="Visit_Plan" ColumnName="Visit_Plan" />
-          <ScalarProperty Name="Visit_Actual" ColumnName="Visit_Actual" />
-          <ScalarProperty Name="Visit_Com" ColumnName="Visit_Com" />
-          <ScalarProperty Name="Audit_Plan" ColumnName="Audit_Plan" />
-          <ScalarProperty Name="Audit_Actual" ColumnName="Audit_Actual" />
-          <ScalarProperty Name="Audit_Com" ColumnName="Audit_Com" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_SupplierDevelopment_VisitAuditSum" FunctionName="IQCTestModel.Store.sp_SQE_SupplierDevelopment_VisitAuditSum">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_SupplierDevelopment_VisitAuditSum_Result">
-          <ScalarProperty Name="SupplierCode" ColumnName="SupplierCode" />
-          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
-          <ScalarProperty Name="SupplierType" ColumnName="SupplierType" />
-          <ScalarProperty Name="HasPlan" ColumnName="HasPlan" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQE_Yearlist" FunctionName="IQCTestModel.Store.sp_SQE_Yearlist">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SQE_Yearlist_Result">
-          <ScalarProperty Name="Value" ColumnName="Value" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SQEDB_SupplierLog_Remind_ReEvaluation" FunctionName="IQCTestModel.Store.sp_SQEDB_SupplierLog_Remind_ReEvaluation" />
-    <EntitySetMapping Name="tbl_Inv_Step4_DirApr">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_Inv_Step4_DirApr">
-        <MappingFragment StoreEntitySet="tbl_Inv_Step4_DirApr">
-          <ScalarProperty Name="Date_Action" ColumnName="Date_Action" />
-          <ScalarProperty Name="Comment" ColumnName="Comment" />
-          <ScalarProperty Name="Apr_Status" ColumnName="Apr_Status" />
-          <ScalarProperty Name="Stra_com" ColumnName="Stra_com" />
-          <ScalarProperty Name="Stra_Link" ColumnName="Stra_Link" />
-          <ScalarProperty Name="App_com" ColumnName="App_com" />
-          <ScalarProperty Name="App_eva" ColumnName="App_eva" />
-          <ScalarProperty Name="Director" ColumnName="Director" />
-          <ScalarProperty Name="Sug_ID" ColumnName="Sug_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_SOR_Attached_ForItemReview">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Attached_ForItemReview">
-        <MappingFragment StoreEntitySet="tbl_SOR_Attached_ForItemReview">
-          <ScalarProperty Name="Attached_At" ColumnName="Attached_At" />
-          <ScalarProperty Name="Attached_By" ColumnName="Attached_By" />
-          <ScalarProperty Name="LINE" ColumnName="LINE" />
-          <ScalarProperty Name="Attached_File" ColumnName="Attached_File" />
-          <ScalarProperty Name="Item_Idx" ColumnName="Item_Idx" />
-          <ScalarProperty Name="Download_Date" ColumnName="Download_Date" />
-          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_SOR_Cur_Review_List">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Cur_Review_List">
-        <MappingFragment StoreEntitySet="tbl_SOR_Cur_Review_List">
-          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-          <ScalarProperty Name="LINE" ColumnName="LINE" />
-          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
-          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
-          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
-          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
-          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
-          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
-          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
-          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
-          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
-          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
-          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
-          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
-          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
-          <ScalarProperty Name="FAI" ColumnName="FAI" />
-          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
-          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
-          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
-          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
-          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
-          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
-          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_SOR_Family_Setup_Qty">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Family_Setup_Qty">
-        <MappingFragment StoreEntitySet="tbl_SOR_Family_Setup_Qty">
-          <ScalarProperty Name="Review_Completed" ColumnName="Review_Completed" />
-          <ScalarProperty Name="Setup_Qty" ColumnName="Setup_Qty" />
-          <ScalarProperty Name="Family" ColumnName="Family" />
-          <ScalarProperty Name="Family_inx" ColumnName="Family_inx" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_SOR_His_Review_List">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_His_Review_List">
-        <MappingFragment StoreEntitySet="tbl_SOR_His_Review_List">
-          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-          <ScalarProperty Name="LINE" ColumnName="LINE" />
-          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
-          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
-          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
-          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
-          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
-          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
-          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
-          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
-          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
-          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
-          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
-          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
-          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
-          <ScalarProperty Name="FAI" ColumnName="FAI" />
-          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
-          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
-          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
-          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
-          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
-          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
-          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_SOR_Item_Review">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Item_Review">
-        <MappingFragment StoreEntitySet="tbl_SOR_Item_Review">
-          <ScalarProperty Name="Default" ColumnName="Default" />
-          <ScalarProperty Name="Item_Rv" ColumnName="Item_Rv" />
-          <ScalarProperty Name="Dept_Rv" ColumnName="Dept_Rv" />
-          <ScalarProperty Name="Item_Idx" ColumnName="Item_Idx" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_SOR_Review_Pic">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Review_Pic">
-        <MappingFragment StoreEntitySet="tbl_SOR_Review_Pic">
-          <ScalarProperty Name="Pic_Rv" ColumnName="Pic_Rv" />
-          <ScalarProperty Name="Dept_Rv" ColumnName="Dept_Rv" />
-          <ScalarProperty Name="Pic_Inx" ColumnName="Pic_Inx" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="sp_SOR_GetSoOpen" FunctionName="IQCTestModel.Store.sp_SOR_GetSoOpen">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetSoOpen_Result">
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_GetSoReview1_Result">
           <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
           <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
           <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
@@ -5729,177 +5717,23 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SOR_GetSoReview" FunctionName="IQCTestModel.Store.sp_SOR_GetSoReview">
+    <FunctionImportMapping FunctionImportName="sp_SOR_SoReviewDetail" FunctionName="IQCTestModel.Store.sp_SOR_SoReviewDetail">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetSoReview_Result">
-          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
-          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_SoReviewDetail_Result">
+          <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
           <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
-          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
-          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
-          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
-          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
-          <ScalarProperty Name="FAI" ColumnName="FAI" />
-          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
-          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
-          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
-          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
-          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
-          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
-          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
-          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
-          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
-          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
-          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
-          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
-          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
-          <ScalarProperty Name="LINE" ColumnName="LINE" />
-          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SOR_GetSoReviewHist" FunctionName="IQCTestModel.Store.sp_SOR_GetSoReviewHist">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetSoReviewHist_Result">
-          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
           <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
-          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
-          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
-          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
-          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
-          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
-          <ScalarProperty Name="FAI" ColumnName="FAI" />
-          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
-          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
-          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
-          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
-          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
-          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
-          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
-          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
-          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
-          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
-          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
-          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
-          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
-          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="DEPT_REVIEW" ColumnName="DEPT_REVIEW" />
+          <ScalarProperty Name="ITEM_REVIEW" ColumnName="ITEM_REVIEW" />
+          <ScalarProperty Name="RESULT" ColumnName="RESULT" />
           <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SOR_OTDFailByLine_Report" FunctionName="IQCTestModel.Store.sp_SOR_OTDFailByLine_Report" />
-    <FunctionImportMapping FunctionImportName="sp_SOR_RiskShip_Report" FunctionName="IQCTestModel.Store.sp_SOR_RiskShip_Report" />
-    <EntitySetMapping Name="tbl_SOR_Cur_Review_Detail">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Cur_Review_Detail">
-        <MappingFragment StoreEntitySet="tbl_SOR_Cur_Review_Detail">
-          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="REVIEW_AT" ColumnName="REVIEW_AT" />
+          <ScalarProperty Name="REVIEW_BY" ColumnName="REVIEW_BY" />
           <ScalarProperty Name="ISLOCK" ColumnName="ISLOCK" />
-          <ScalarProperty Name="REVIEW_BY" ColumnName="REVIEW_BY" />
-          <ScalarProperty Name="REVIEW_AT" ColumnName="REVIEW_AT" />
-          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-          <ScalarProperty Name="RESULT" ColumnName="RESULT" />
-          <ScalarProperty Name="ITEM_REVIEW" ColumnName="ITEM_REVIEW" />
-          <ScalarProperty Name="DEPT_REVIEW" ColumnName="DEPT_REVIEW" />
-          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
-          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
-          <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_SOR_His_Review_Detail">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_His_Review_Detail">
-        <MappingFragment StoreEntitySet="tbl_SOR_His_Review_Detail">
           <ScalarProperty Name="LINE" ColumnName="LINE" />
-          <ScalarProperty Name="REVIEW_BY" ColumnName="REVIEW_BY" />
-          <ScalarProperty Name="REVIEW_AT" ColumnName="REVIEW_AT" />
-          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-          <ScalarProperty Name="RESULT" ColumnName="RESULT" />
-          <ScalarProperty Name="ITEM_REVIEW" ColumnName="ITEM_REVIEW" />
-          <ScalarProperty Name="DEPT_REVIEW" ColumnName="DEPT_REVIEW" />
-          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
-          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
-          <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_Inv_Step3_SponsorApr">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_Inv_Step3_SponsorApr">
-        <MappingFragment StoreEntitySet="tbl_Inv_Step3_SponsorApr">
-          <ScalarProperty Name="Subject_Matter_Name" ColumnName="Subject_Matter_Name" />
-          <ScalarProperty Name="Subject_Matter_Need" ColumnName="Subject_Matter_Need" />
-          <ScalarProperty Name="Comment" ColumnName="Comment" />
-          <ScalarProperty Name="Fin_com" ColumnName="Fin_com" />
-          <ScalarProperty Name="Fin_abi" ColumnName="Fin_abi" />
-          <ScalarProperty Name="Safe_com" ColumnName="Safe_com" />
-          <ScalarProperty Name="Safe_Rel" ColumnName="Safe_Rel" />
-          <ScalarProperty Name="Res_com" ColumnName="Res_com" />
-          <ScalarProperty Name="Res_avai" ColumnName="Res_avai" />
-          <ScalarProperty Name="Legal_com" ColumnName="Legal_com" />
-          <ScalarProperty Name="Legal_Rel" ColumnName="Legal_Rel" />
-          <ScalarProperty Name="Eco_com" ColumnName="Eco_com" />
-          <ScalarProperty Name="Eco_ben" ColumnName="Eco_ben" />
-          <ScalarProperty Name="Tech_com" ColumnName="Tech_com" />
-          <ScalarProperty Name="Tech_abi" ColumnName="Tech_abi" />
-          <ScalarProperty Name="Imp_End" ColumnName="Imp_End" />
-          <ScalarProperty Name="Imp_Start" ColumnName="Imp_Start" />
-          <ScalarProperty Name="Pro_Leader" ColumnName="Pro_Leader" />
-          <ScalarProperty Name="Sug_ID" ColumnName="Sug_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbl_Inv_Subject_Matter_List">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_Inv_Subject_Matter_List">
-        <MappingFragment StoreEntitySet="tbl_Inv_Subject_Matter_List">
-          <ScalarProperty Name="Area" ColumnName="Area" />
-          <ScalarProperty Name="Feild" ColumnName="Feild" />
-          <ScalarProperty Name="Subject_Matter_Name" ColumnName="Subject_Matter_Name" />
-          <ScalarProperty Name="Subject_Matter_ID" ColumnName="Subject_Matter_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="sp_Inv_SugList" FunctionName="IQCTestModel.Store.sp_Inv_SugList">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_Inv_SugList_Result">
-          <ScalarProperty Name="Sug_ID" ColumnName="Sug_ID" />
-          <ScalarProperty Name="Sug_Type" ColumnName="Sug_Type" />
-          <ScalarProperty Name="Sug_title" ColumnName="Sug_title" />
-          <ScalarProperty Name="Cur_prob" ColumnName="Cur_prob" />
-          <ScalarProperty Name="Idea_impr" ColumnName="Idea_impr" />
-          <ScalarProperty Name="Cur_Step" ColumnName="Cur_Step" />
-          <ScalarProperty Name="Exp_Start_Date" ColumnName="Exp_Start_Date" />
-          <ScalarProperty Name="Exp_End_date" ColumnName="Exp_End_date" />
-          <ScalarProperty Name="Submit_date" ColumnName="Submit_date" />
-          <ScalarProperty Name="Submitter" ColumnName="Submitter" />
-          <ScalarProperty Name="Requestor" ColumnName="Requestor" />
-          <ScalarProperty Name="Rqtor_name" ColumnName="Rqtor_name" />
-          <ScalarProperty Name="Req_Dept" ColumnName="Req_Dept" />
-          <ScalarProperty Name="Req_Email" ColumnName="Req_Email" />
-          <ScalarProperty Name="Att_File_Current" ColumnName="Att_File_Current" />
-          <ScalarProperty Name="Att_File_Idea" ColumnName="Att_File_Idea" />
-          <ScalarProperty Name="Step_Status" ColumnName="Step_Status" />
-          <ScalarProperty Name="Next_Approver" ColumnName="Next_Approver" />
-          <ScalarProperty Name="Coacher" ColumnName="Coacher" />
-          <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
-          <ScalarProperty Name="CIManager" ColumnName="CIManager" />
-          <ScalarProperty Name="Director" ColumnName="Director" />
-          <ScalarProperty Name="Pro_Leader" ColumnName="Pro_Leader" />
-          <ScalarProperty Name="Member" ColumnName="Member" />
-          <ScalarProperty Name="Action_Date" ColumnName="Action_Date" />
-          <ScalarProperty Name="Subject_Matter_Need" ColumnName="Subject_Matter_Need" />
-          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Comment1" ColumnName="Comment1" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="tbl_Inv_File_Attach">
-      <EntityTypeMapping TypeName="IQCTestModel.tbl_Inv_File_Attach">
-        <MappingFragment StoreEntitySet="tbl_Inv_File_Attach">
-          <ScalarProperty Name="Att_Type" ColumnName="Att_Type" />
-          <ScalarProperty Name="Att_Path" ColumnName="Att_Path" />
-          <ScalarProperty Name="Step" ColumnName="Step" />
-          <ScalarProperty Name="Sug_ID" ColumnName="Sug_ID" />
-          <ScalarProperty Name="Att_ID" ColumnName="Att_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
