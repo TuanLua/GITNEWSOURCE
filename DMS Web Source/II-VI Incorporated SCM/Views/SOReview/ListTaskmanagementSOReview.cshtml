@@ -115,7 +115,7 @@
                                                                   .Ajax()
                                                                   .PageSize(10)
                                                                   .Read(read => read.Action("GetListTaskSoreview", "SoReview", new {date= ViewBag.Date }))
-                                                                   .Sort(sort => sort.Add("INSDATEs").Ascending())
+                                                                   .Sort(sort => sort.Add("INSDATEs").Descending())
                                                               ))
         </div>
     </div>

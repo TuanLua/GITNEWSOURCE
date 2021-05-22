@@ -291,7 +291,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         }
 
         [HttpPost]
-        public ActionResult AddFileforItemReview(string SO_NO,string Date, string File, string ID, string item)
+        public ActionResult AddFileforItemReview(string SO_NO,string Date, string File, string ID, string line)
         {
             DateTime date = DateTime.Now;
             string returnPath = date.Year + "-" + date.Month + "-" + date.Day + "-" + date.Hour + "-" +
@@ -306,7 +306,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
                     Attached_File = returnPath + "/" + File,
                     Download_Date = dates,
                     Item_Idx = id,
-                    LINE = item
+                    LINE = line
                 };
                 Result res = _iSoReviewService.SaveFileAttachedItemReview(datafiles,id);
                 return Json(new { success = res.success, message = res.obj });
@@ -545,6 +545,12 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         public JsonResult GetListItemSoReviewBySo(string SoNo)
         {
             var result = _iSoReviewService.GetDropdownItembySOreview(SoNo);
+            return Json(result);
+        }
+        [HttpPost]
+        public JsonResult GetListLineSoReviewBySo(string SoNo)
+        {
+            var result = _iSoReviewService.GetDropdownLinebySOreview(SoNo);
             return Json(result);
         }
         public ActionResult ListSoReviewPlanner()

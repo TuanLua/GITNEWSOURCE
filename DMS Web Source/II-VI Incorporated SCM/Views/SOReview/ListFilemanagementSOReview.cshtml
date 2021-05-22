@@ -6,6 +6,7 @@
     <thead>
         <tr>
             <th>So No</th>
+            <th>Line</th>
             <th>File Name</th>
             <th></th>
         </tr>
@@ -13,20 +14,23 @@
     <tbody id="tbodyEvidenceInProcess" @*style="display:none"*@>
         @foreach (var evi in Model)
         {
-            <tr id="@evi.ID">
-                <td width="30%;" style="text-align: left !important;">
-                    @evi.SO_NO
-                </td>
-                <td width="80%;" style="text-align: left !important;">
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="@Url.Action("DownloadFile", "SoReview", new { fileId = evi.ID })"><i class="fa fa-file-pdf-o"> &nbsp; @evi.Attached_File.Split('/')[1] </i></a>
-                    <input type="hidden" name="EVIID" value="@evi.ID" class="old-evi" />
-                </td>
-                @if (ViewBag.Status == "Released")
-                {
-                    <td><button onclick="deleteEvedenceRowInProcess(this)" type="button" class="btn btn-danger pull-right">Delete</button></td>
-                }
-            </tr>
+        <tr id="@evi.ID">
+            <td width="30%;" style="text-align: left !important;">
+                @evi.SO_NO
+            </td>
+            <td width="30%;" style="text-align: left !important;">
+                @evi.LINE
+            </td>
+            <td width="80%;" style="text-align: left !important;">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("DownloadFile", "SoReview", new { fileId = evi.ID })"><i class="fa fa-file-pdf-o"> &nbsp; @evi.Attached_File.Split('/')[1] </i></a>
+                <input type="hidden" name="EVIID" value="@evi.ID" class="old-evi" />
+            </td>
+            @if (ViewBag.Status == "Released")
+            {
+                <td><button onclick="deleteEvedenceRowInProcess(this)" type="button" class="btn btn-danger pull-right">Delete</button></td>
+            }
+        </tr>
         }
     </tbody>
 </table>

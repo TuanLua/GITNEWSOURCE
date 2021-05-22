@@ -98,6 +98,8 @@ namespace II_VI_Incorporated_SCM.Services
 
 
         Result UpdateDataPlannerSoReviewResult(ListSOItemReviewModel picData, string idUser);
+
+        List<SelectListItem> GetDropdownLinebySOreview(string soNo);
         #endregion
     }
     public class SoReviewService : ISoReviewService
@@ -1039,6 +1041,15 @@ namespace II_VI_Incorporated_SCM.Services
             }).ToList();
             return listuser;
         }
+        public List<SelectListItem> GetDropdownLinebySOreview(string soNo)
+        {
+            List<SelectListItem> listuser = _db.tbl_SOR_Cur_Review_List.Where(x => x.REVIEW_STATUS != "Done" && x.SO_NO == soNo).Select(x => new SelectListItem
+            {
+                Value = x.LINE.ToString(),
+                Text = x.LINE.Trim(),
+            }).ToList();
+            return listuser;
+        }
         public string SORReviewPlanner()
         {
             var data = _db.SOR_Review_Planner();
@@ -1059,7 +1070,7 @@ namespace II_VI_Incorporated_SCM.Services
                          join asp2 in _db.AspNetUsers on taskdetail.APPROVE equals asp2.Id
                         into joined2
                          from j2 in joined2.DefaultIfEmpty()
-                         where (task.TYPE == "SoReview" && task.WRITEDATE == date)
+                         where (task.TYPE == "SoReview")
                          select (new TaskmanagementViewmodel
                          {
                              RefNUMBER = task.Topic,
@@ -1076,6 +1087,7 @@ namespace II_VI_Incorporated_SCM.Services
                              Priority = taskdetail.PRIORITY,
                              Taskno = task.TopicID,
                              TaskDetailID = taskdetail.IDTask,
+                             INSDATEs = taskdetail.CreatedDate
                          });
 
             return result.ToList();

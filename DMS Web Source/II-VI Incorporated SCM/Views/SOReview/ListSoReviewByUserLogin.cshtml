@@ -68,7 +68,7 @@
         </div>
     </div>
 </div>
-<div id="popup" class="modal fade" tabindex="-1" role="dialog" aria - labelledby="basicModal" aria - hidden="true">
+<div id="popup" class="modal fade"  role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -91,6 +91,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-md-3">Line</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="line" style="width:100%" id="line"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-md-3">File</label>
                         <div class="col-md-6">
                             <input type="file" id="file" class="form-control boder-opal">
@@ -106,7 +112,7 @@
     </div>
 </div>
 
-<div id="popupTask" class="modal fade" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div id="popupTask" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -121,8 +127,6 @@
                         <div class="col-md-6">
                             <select class="form-control" name="user" style="width:100%" id="user"></select>
                         </div>
-                        <input type="hidden" id="reviewitemname" name="reviewitemname" />
-
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3">Task Name</label>
@@ -133,13 +137,19 @@
                     <div class="form-group">
                         <label class="control-label col-md-3">So No</label>
                         <div class="col-md-6">
-                            <select class="form-control" name="user"  style="width:100%" id="soNo"></select>
+                            <select class="form-control" name="soNo" style="width:100%" id="soNo"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3">Item Review</label>
                         <div class="col-md-6">
-                            <select class="form-control" name="user" style="width:100%" id="itemreview"></select>
+                            <select class="form-control" name="itemreview" style="width:100%" id="itemreview"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Line</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="linetask" style="width:100%" id="linetask"></select>
                         </div>
                     </div>
                 </div>
@@ -167,6 +177,8 @@
                             bootbox.alert('Please contact to Administrator!');
                         }).always(function () {
                         });
+                    var $newOption = $("<option selected='selected'></option>").val("").text("")
+                    $("#user").append($newOption).trigger('change');
                     $("#user").select2();
 
                     $.post('@Url.Action("GetListSoReviewAddTask", "SoReview")',
@@ -217,7 +229,6 @@
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
              var arrResult = [];
         data.forEach(function (item) {
-            debugger
                  if (item.ReviewResult == false && (item.Comment == null || item.Comment == "")) {
                      isSave = false;
                      message = "Please input Comment for Item result is false!";
@@ -261,10 +272,22 @@
         $('#popup').modal('show');
     });
 
-     $('#save-file').on('click', function () {
-         let filesave = $('#file').get(0).files;
-         let ID = $('#itemreviewFile').val();
-                 let date = '@ViewBag.DownloadDate';
+    $('#save-file').on('click', function () {
+        let file = $('#file').val();
+        var SoNo = $('#soNo').val();
+        let ID = $('#itemreviewFile').val();
+        let line = $('#line').val();
+        if (file == "") {
+            bootbox.alert("Please input file");
+            return;
+        }
+        else if (ID == null) {
+            bootbox.alert("Please select item!");
+            return;
+        }
+        else {
+        let filesave = $('#file').get(0).files;
+        let date = '@ViewBag.DownloadDate';
         let name = '';
         if (filesave.length > 0) {
             name = filesave[0].name;
@@ -277,7 +300,7 @@
           $.ajax({
                             url: '@Url.Action("AddFileforItemReview", "SoReview")',
               type: "POST",
-              data: { SO_NO: '@ViewBag.SoNo', Date: date, File: name, ID:ID ,item: '@ViewBag.Item'},
+              data: { SO_NO: SoNo, Date: date, File: name, ID: ID, line: line},
                             dataType: "json",
                             success: function (result) {
                                 if (result.success) {
@@ -290,14 +313,17 @@
                                     bootbox.alert(result.message);
                                 }
                             }
-                        });
+          });
+        }
      })
 
-     $('#btn-addtask').on('click', function () {
+    $('#btn-addtask').on('click', function () {
          var SoNo = $('#soNo').val();
         var itemreview = $('#itemreview').val();
         var assignee = $('#user').val();
         var taskname = $('#taskname').val();
+        let line = $('#linetask').val();
+         let date = '@ViewBag.DownloadDate';
         if (assignee == null || assignee == "") {
             bootbox.alert("Please select assignee!");
             return;
@@ -306,11 +332,15 @@
             bootbox.alert("Please input Task Name!");
             return;
         }
+        else if (itemreview  == null) {
+            bootbox.alert("Please select item review!");
+            return;
+        }
         else {
             $.ajax({
                 url: '@Url.Action("AddTaskForItemReview", "SOReview")',
                 type: "POST",
-                data: { SoNo: SoNo, itemreview: itemreview, assignee: assignee, item: '@ViewBag.Item', taskname: taskname, downloaddate: date},
+                data: { SoNo: SoNo, itemreview: itemreview, assignee: assignee, item: line, taskname: taskname, downloaddate: date},
                 dataType: "json",
                 success: function (result) {
                     if (result.success) {
@@ -352,6 +382,20 @@
                 });
             }
         });
+           $.ajax({
+                            url: '@Url.Action("GetListLineSoReviewBySo", "SOReview")',
+                            type: "POST",
+                            data: { SoNo: soNo },
+                            dataType: "json",
+                            success: function (result) {
+                                $.each(result, function (i, item) {
+                                    $('#linetask').append($('<option>', {
+                                        value: item.Value,
+                                        text: item.Text
+                                    }));
+                                });
+                            }
+                        });
     });
 
     $('#soNoFile').on('change', function () {
@@ -370,6 +414,21 @@
                 });
             }
         });
+                $.ajax({
+                            url: '@Url.Action("GetListLineSoReviewBySo", "SOReview")',
+                            type: "POST",
+                            data: { SoNo: soNo },
+                            dataType: "json",
+                            success: function (result) {
+                                $.each(result, function (i, item) {
+                                    $('#line').append($('<option>', {
+                                        value: item.Value,
+                                        text: item.Text
+                                    }));
+                                });
+                            }
+                });
+
     });
 
     $(function () {
