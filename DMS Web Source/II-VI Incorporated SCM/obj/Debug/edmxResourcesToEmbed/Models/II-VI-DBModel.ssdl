@@ -3226,7 +3226,7 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="DOWNLOAD_DATE" Type="date" Nullable="false" />
     <Property Name="DEPT_REVIEW" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="ITEM_REVIEW" Type="nvarchar" MaxLength="1000" Nullable="false" />
-    <Property Name="RESULT" Type="bit" />
+    <Property Name="RESULT" Type="varchar" MaxLength="10" />
     <Property Name="COMMENT" Type="nvarchar(max)" />
     <Property Name="REVIEW_AT" Type="datetime" />
     <Property Name="REVIEW_BY" Type="nvarchar" MaxLength="128" />
@@ -3279,7 +3279,7 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="DOWNLOAD_DATE" Type="date" />
     <Property Name="DEPT_REVIEW" Type="varchar" MaxLength="50" />
     <Property Name="ITEM_REVIEW" Type="nvarchar" MaxLength="1000" />
-    <Property Name="RESULT" Type="bit" />
+    <Property Name="RESULT" Type="varchar" MaxLength="10" />
     <Property Name="COMMENT" Type="nvarchar(max)" />
     <Property Name="REVIEW_AT" Type="datetime" />
     <Property Name="REVIEW_BY" Type="nvarchar" MaxLength="128" />

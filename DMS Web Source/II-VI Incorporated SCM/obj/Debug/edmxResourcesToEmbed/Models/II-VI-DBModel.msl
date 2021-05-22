@@ -1931,6 +1931,54 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SOR_Review_Planner" FunctionName="IQCTestModel.Store.SOR_Review_Planner" />
+    <FunctionImportMapping FunctionImportName="sp_GetSoReview1" FunctionName="IQCTestModel.Store.sp_GetSoReview">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_GetSoReview1_Result">
+          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
+          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
+          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
+          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="FAI" ColumnName="FAI" />
+          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
+          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
+          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
+          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
+          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
+          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
+          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
+          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
+          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
+          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
+          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
+          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
+          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SOR_SoReviewDetail" FunctionName="IQCTestModel.Store.sp_SOR_SoReviewDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_SoReviewDetail_Result">
+          <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+          <ScalarProperty Name="DEPT_REVIEW" ColumnName="DEPT_REVIEW" />
+          <ScalarProperty Name="ITEM_REVIEW" ColumnName="ITEM_REVIEW" />
+          <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="REVIEW_AT" ColumnName="REVIEW_AT" />
+          <ScalarProperty Name="REVIEW_BY" ColumnName="REVIEW_BY" />
+          <ScalarProperty Name="ISLOCK" ColumnName="ISLOCK" />
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="Comment1" ColumnName="Comment1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <EntitySetMapping Name="C__MigrationHistory">
       <EntityTypeMapping TypeName="IQCTestModel.C__MigrationHistory">
         <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -5687,53 +5735,5 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="SOR_Review_Planner" FunctionName="IQCTestModel.Store.SOR_Review_Planner" />
-    <FunctionImportMapping FunctionImportName="sp_GetSoReview1" FunctionName="IQCTestModel.Store.sp_GetSoReview">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_GetSoReview1_Result">
-          <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
-          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
-          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
-          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
-          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
-          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
-          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
-          <ScalarProperty Name="FAI" ColumnName="FAI" />
-          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
-          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
-          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
-          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
-          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
-          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
-          <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
-          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
-          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
-          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
-          <ScalarProperty Name="ONHAND_QTY" ColumnName="ONHAND_QTY" />
-          <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
-          <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
-          <ScalarProperty Name="LINE" ColumnName="LINE" />
-          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_SOR_SoReviewDetail" FunctionName="IQCTestModel.Store.sp_SOR_SoReviewDetail">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_SoReviewDetail_Result">
-          <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
-          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
-          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
-          <ScalarProperty Name="DEPT_REVIEW" ColumnName="DEPT_REVIEW" />
-          <ScalarProperty Name="ITEM_REVIEW" ColumnName="ITEM_REVIEW" />
-          <ScalarProperty Name="RESULT" ColumnName="RESULT" />
-          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-          <ScalarProperty Name="REVIEW_AT" ColumnName="REVIEW_AT" />
-          <ScalarProperty Name="REVIEW_BY" ColumnName="REVIEW_BY" />
-          <ScalarProperty Name="ISLOCK" ColumnName="ISLOCK" />
-          <ScalarProperty Name="LINE" ColumnName="LINE" />
-          <ScalarProperty Name="Comment1" ColumnName="Comment1" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -25,16 +25,16 @@ namespace II_VI_Incorporated_SCM.Services
 
         List<sp_SOR_GetSoReviewHist_Result> GetListSoReviewHistory();
         string GetDepart(string userID);
-        Result LockSoReview(string SoNo,string item,DateTime date,string islock);
+        Result LockSoReview(string SoNo, string item, DateTime date, string islock);
         List<SoReviewDetail> GetSoReviewDetail(string soNo, DateTime dateReview, string status, string item);
 
-        List<tbl_SOR_Attached_ForItemReview> GetListFileItem(string SoNo);
+        List<tbl_SOR_Attached_ForItemReview> GetListFileItem(DateTime date);
 
         Result UpdateDataSoReview(SoReviewDetail picData, int picID);
 
         Result UpdateSoReviewFinish(SoReviewDetail picData);
 
-        Result AddTaskForItemReview(string SoNo, string Date, string itemreview, string userID,string assignee,string item,string taskname, int id);
+        Result AddTaskForItemReview(string SoNo, string Date, string itemreview, string userID, string assignee, string item, string taskname, int id);
 
         Result SaveFileAttachedItemReview(tbl_SOR_Attached_ForItemReview picData, int id);
 
@@ -85,15 +85,19 @@ namespace II_VI_Incorporated_SCM.Services
 
         #region New Requirement
         List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart);
-        Result UpdateDataSoReviewResult(ListSOItemReviewModel picData,string idUser);
+        List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart);
+        Result UpdateDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
 
         List<SelectListItem> GetDropdownlistSOreview();
 
-        List<TaskmanagementViewmodel> GetListTaskSoreview();
+        List<TaskmanagementViewmodel> GetListTaskSoreview(DateTime date);
 
-         string SORReviewPlanner();
+        string SORReviewPlanner();
 
         List<SelectListItem> GetDropdownItembySOreview(string soNo);
+
+
+        Result UpdateDataPlannerSoReviewResult(ListSOItemReviewModel picData, string idUser);
         #endregion
     }
     public class SoReviewService : ISoReviewService
@@ -190,7 +194,7 @@ namespace II_VI_Incorporated_SCM.Services
                                 //LastReview = p.RESULT,
                                 IsLock = c.ISLOCK == true ? "True" : "False"
                             }).ToList();
-              //  foreach (var item in data)
+                //  foreach (var item in data)
                 //{
                 //    if (item.ReviewResult == null)
                 //    {
@@ -298,10 +302,11 @@ namespace II_VI_Incorporated_SCM.Services
                 }
             }
         }
-        public List<tbl_SOR_Attached_ForItemReview> GetListFileItem(string So)
+        public List<tbl_SOR_Attached_ForItemReview> GetListFileItem(DateTime date)
         {
+
             // get date certification
-            var data = _db.tbl_SOR_Attached_ForItemReview.ToList();
+            var data = _db.tbl_SOR_Attached_ForItemReview.Where(x => x.Download_Date == date).ToList();
             return data;
         }
 
@@ -319,12 +324,6 @@ namespace II_VI_Incorporated_SCM.Services
                 {
                     _db.tbl_SOR_Attached_ForItemReview.Add(picData);
                     _db.SaveChanges();
-                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == id).FirstOrDefault();
-                    if (data != null)
-                    {
-                        data.RESULT = false;
-                        _db.SaveChanges();
-                    }
                     tranj.Commit();
                     return new Result
                     {
@@ -378,7 +377,7 @@ namespace II_VI_Incorporated_SCM.Services
                         var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == id).FirstOrDefault();
                         if (data != null)
                         {
-                            data.RESULT = false;
+                            data.RESULT = "";
                         }
                         _db.SaveChanges();
                         tranj.Commit();
@@ -907,7 +906,7 @@ namespace II_VI_Incorporated_SCM.Services
         {
             var data = (from a in _db.tbl_SOR_Cur_Review_List
                         join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
-                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart)
+                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart /*&& b.RESULT != 'N/A'*/)
                         select new ListSOItemReviewModel
                         {
                             SONO = a.SO_NO,
@@ -917,12 +916,57 @@ namespace II_VI_Incorporated_SCM.Services
                             LastReview = null,
                             LastComment = null,
                             ID = b.ITEM_REVIEW_ID,
-                            IsLock = b.ISLOCK
-                        }).ToList();
-            return data;
-            #endregion
-        }
+                            IsLock = b.ISLOCK,
+                            DateDownLoad = b.DOWNLOAD_DATE
 
+                        }).Distinct().ToList();
+            return data;
+        }
+        #endregion
+
+        public List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart)
+        {
+            var data = (from a in _db.tbl_SOR_Cur_Review_List
+                        join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
+                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO && a.LINE == b.LINE)
+                        select new ListSOItemReviewModel
+                        {
+                            SONO = a.SO_NO,
+                            ItemReview = b.ITEM_REVIEW,
+                            ReviewResult = b.RESULT,
+                            Comment = a.COMMENT,
+                            Line = b.LINE,
+                            DateDownLoad = a.DOWNLOAD_DATE,
+                            PlanShipDate = a.PLAN_SHIP_DATE,
+                            TBD = a.PLAN_SHIP_DATE == "TBD" ? true : false
+                        }).ToList();
+            var datasFinal = (from cc in data
+                              group cc by new
+                              {
+                                  cc.SONO,
+                                  cc.Line
+                              }
+                         into myGroup
+                              select new ListSOItemReviewModel
+                              {
+                                  SONO = myGroup.Key.SONO,
+                                  Comment = myGroup.Max(x => x.Comment),
+                                  Line = myGroup.Max(x => x.Line),
+                                  DateDownLoad = myGroup.Max(x => x.DateDownLoad),
+                                  PlanShipDate = myGroup.Max(x => x.PlanShipDate),
+                                  TBD = myGroup.Max(x => x.TBD),
+                                  #region list item Review
+                                  CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResult),
+                                  Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity ").Max(x => x.ReviewResult),
+                                  RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResult),
+                                  Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResult),
+                                  Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResult),
+                                  ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResult),
+                                  Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResult),
+                                  #endregion
+                              }).Distinct().ToList();
+            return datasFinal;
+        }
 
 
         #endregion
@@ -1002,7 +1046,7 @@ namespace II_VI_Incorporated_SCM.Services
         }
 
 
-        public List<TaskmanagementViewmodel> GetListTaskSoreview()
+        public List<TaskmanagementViewmodel> GetListTaskSoreview(DateTime date)
         {
             var result = from task in _db.TASKLISTs
                          join taskdetail in _db.TASKDETAILs on task.TopicID equals taskdetail.TopicID
@@ -1015,7 +1059,7 @@ namespace II_VI_Incorporated_SCM.Services
                          join asp2 in _db.AspNetUsers on taskdetail.APPROVE equals asp2.Id
                         into joined2
                          from j2 in joined2.DefaultIfEmpty()
-                         where (task.TYPE == "SoReview")
+                         where (task.TYPE == "SoReview" && task.WRITEDATE == date)
                          select (new TaskmanagementViewmodel
                          {
                              RefNUMBER = task.Topic,
@@ -1037,7 +1081,7 @@ namespace II_VI_Incorporated_SCM.Services
             return result.ToList();
         }
 
-        public Result AddTaskForSoReview(string SoNo,string itemreview, string userID, string Assignee, string item, string taskname)
+        public Result AddTaskForSoReview(string SoNo, string itemreview, string userID, string Assignee, string item, string taskname)
         {
             var _log = new LogWriter("Updatedata");
             using (var tranj = _db.Database.BeginTransaction())
@@ -1080,7 +1124,7 @@ namespace II_VI_Incorporated_SCM.Services
                         };
                         _db.TASKDETAILs.Add(taskDetail);
                     }
-                    else 
+                    else
                     {
                         TASKDETAIL taskDetail = new TASKDETAIL
                         {
@@ -1099,7 +1143,7 @@ namespace II_VI_Incorporated_SCM.Services
                             Level = 1
                         };
                         _db.TASKDETAILs.Add(taskDetail);
-                     
+
                         _db.SaveChanges();
                         tranj.Commit();
                         return new Result
@@ -1131,6 +1175,52 @@ namespace II_VI_Incorporated_SCM.Services
         }
 
 
+        public Result UpdateDataPlannerSoReviewResult(ListSOItemReviewModel picData, string idUser)
+        {
+            var _log = new LogWriter("Updatedata");
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim()).FirstOrDefault();
+                    if (dataSoreview != null)
+                    {
+                        if (picData.TBD == true)
+                        {
+                            dataSoreview.PLAN_SHIP_DATE = "TBD";
+                        }
+                        else 
+                        {
+                            dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
+                        }
+                        dataSoreview.REVIEW_STATUS = "Done";
+                        dataSoreview.COMMENT = picData.Comment;
+                        _db.SaveChanges();
+                        tranj.Commit();
+                        return new Result
+                        {
+                            success = true,
+                        };
+                    }
+                    else
+                        return new Result
+                        {
+                            success = false,
+                        };
+                }
+                catch (Exception ex)
+                {
+                    tranj.Rollback();
+                    _log.LogWrite(ex.ToString());
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception Updatedata!",
+                        obj = -1
+                    };
+                }
+            }
+        }
         #endregion
 
     }

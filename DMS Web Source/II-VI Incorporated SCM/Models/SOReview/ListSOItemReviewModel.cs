@@ -15,7 +15,7 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
 
         public string DeptReview { get; set; }
 
-        public bool? ReviewResult { get; set; }
+        public string ReviewResult { get; set; }
 
         public string Comment { get; set; }
 
@@ -24,7 +24,24 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public string LastComment { get; set; }
 
         public string PlanShipDate { get; set; }
+
+        public bool TBD { get; set; }
         public bool? IsLock { get; set; }
         public string Item { get; set; }
+        public string Line { get; set; }
+
+        public string ResolutionOwner { get; set; }
+
+        #region Item Review List
+        public string CoCofRoHS { get; set; }
+
+        public string Capacity { get; set; }
+        public string RawMaterial { get; set; }
+        public string Builtless { get; set; }
+        public string Carrier { get; set; }
+        public string ServiceTypeShipping { get; set; }
+        public string Special { get; set; }
+
+        #endregion
     }
 }

@@ -114,7 +114,7 @@
                                                               .DataSource(dataSource => dataSource
                                                                   .Ajax()
                                                                   .PageSize(10)
-                                                                  .Read(read => read.Action("GetListTaskSoreview", "SoReview"))
+                                                                  .Read(read => read.Action("GetListTaskSoreview", "SoReview", new {date= ViewBag.Date }))
                                                                    .Sort(sort => sort.Add("INSDATEs").Ascending())
                                                               ))
         </div>

@@ -43,7 +43,7 @@
                                                       {
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
                                                           columns.Bound(p => p.ItemReview).Title("Item Review").Width(400).Editable("true");
-                                                          columns.Bound(p => p.ReviewResult).Title("Review Result").Width(120).Editable("false");
+                                                          columns.Bound(p => p.ReviewResult).Title("Review Result").Width(120).Editable("false").Template(@<text></text>).ClientTemplate("<input type='checkbox' #= ReviewResult == true ? checked='checked':'' # class='form-control itemresult' />");
                                                           columns.Bound(p => p.Comment).Title("Comment").Width(200).Editable("false");
                                                           columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
                                                           columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");
@@ -216,7 +216,8 @@
     $('#save').click(function () {
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
              var arrResult = [];
-             data.forEach(function (item) {
+        data.forEach(function (item) {
+            debugger
                  if (item.ReviewResult == false && (item.Comment == null || item.Comment == "")) {
                      isSave = false;
                      message = "Please input Comment for Item result is false!";
@@ -249,15 +250,21 @@
         });
     });
     $('#add-task').on('click', function () {
+        $('#itemreview').val('');
+        $('#user').val('');
+        $('#taskname').val('');
         $('#popupTask').modal('show');
     });
     $('#add-file').on('click', function () {
+        $('#itemreviewFile').val('');
+        $('#file').val('');
         $('#popup').modal('show');
     });
 
      $('#save-file').on('click', function () {
          let filesave = $('#file').get(0).files;
-         let ID = $('#itemreviewFile').val()
+         let ID = $('#itemreviewFile').val();
+                 let date = '@ViewBag.DownloadDate';
         let name = '';
         if (filesave.length > 0) {
             name = filesave[0].name;
@@ -270,7 +277,7 @@
           $.ajax({
                             url: '@Url.Action("AddFileforItemReview", "SoReview")',
               type: "POST",
-              data: { SO_NO: '@ViewBag.SoNo', Date: '@ViewBag.Date', File: name, ID:ID ,item: '@ViewBag.Item'},
+              data: { SO_NO: '@ViewBag.SoNo', Date: date, File: name, ID:ID ,item: '@ViewBag.Item'},
                             dataType: "json",
                             success: function (result) {
                                 if (result.success) {
@@ -303,7 +310,7 @@
             $.ajax({
                 url: '@Url.Action("AddTaskForItemReview", "SOReview")',
                 type: "POST",
-                data: { SoNo: SoNo, itemreview: itemreview, assignee: assignee, item: '@ViewBag.Item', taskname: taskname},
+                data: { SoNo: SoNo, itemreview: itemreview, assignee: assignee, item: '@ViewBag.Item', taskname: taskname, downloaddate: date},
                 dataType: "json",
                 success: function (result) {
                     if (result.success) {
@@ -322,10 +329,12 @@
 
      });
     $('#view-task').on('click', function () {
-        window.open("@Url.Action("ListTaskmanagementSOReview", "SoReview")", "_blank");
+        var date = '@ViewBag.DownloadDate';
+        window.open("@Url.Action("ListTaskmanagementSOReview", "SoReview")" + "?date=" + date,"_blank");
     });
     $('#view-file').on('click', function () {
-        window.open("@Url.Action("ListFilemanagementSOReview", "SoReview")", "_blank");
+        var date = '@ViewBag.DownloadDate';
+        window.open("@Url.Action("ListFilemanagementSOReview", "SoReview")" + "?date=" + date, "_blank");
     });
     $('#soNo').on('change', function () {
         var soNo = $('#soNo').val();
@@ -362,4 +371,13 @@
             }
         });
     });
+
+    $(function () {
+        $('#gridSoReview').on('click', '.itemresult', function () {
+            var checked = $(this).is(':checked');
+            var grid = $('#gridSoReview').data().kendoGrid;
+            var dataItem = grid.dataItem($(this).closest('tr'));
+            dataItem.set('ReviewResult', checked);
+        })
+    })
 </script>

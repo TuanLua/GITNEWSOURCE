@@ -27,9 +27,10 @@
 </style>
 <h3>Review SO by Planner </h3>
 <div class="container-fluid" style="text-align:right">
-    <button class="btn btn-sm btn-info" id="add-task">Add Task</button>
-    <button class="btn btn-sm btn-warning" id="add-file">Add File</button>
-    <button class="btn btn-sm btn-success" id="save">Save</button>
+    @if (ViewBag.IsPlanner == true)
+    {
+        <button class="btn btn-sm btn-success" id="save">Save</button>
+    }
 </div>
 <br />
 <div class="container-fluid">
@@ -40,11 +41,19 @@
                                                       .Columns(columns =>
                                                       {
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
-                                                          columns.Bound(p => p.ItemReview).Title("Item Review").Width(400).Editable("true");
-                                                          columns.Bound(p => p.ReviewResult).Title("Review Result").Width(120).Editable("false");
+                                                          columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(100).Format("{0:dd-MMM-yy}").Editable("true");
+                                                          columns.Bound(p => p.Line).Title("Line").Width(100).Editable("true");
+                                                          columns.Bound(p => p.CoCofRoHS).Title("CoC of RoHS, Reach").Width(120).Editable("true");
+                                                          columns.Bound(p => p.Capacity).Title("Capacity").Width(120).Editable("true");
+                                                          columns.Bound(p => p.RawMaterial).Title("Raw Material & consumable").Width(120).Editable("true");
+                                                          columns.Bound(p => p.Builtless).Title("Built less than 6 months").Width(120).Editable("true");
+                                                          columns.Bound(p => p.Carrier).Title("Carrier (Fedex, DHL, Schenker,…)").Width(120).Editable("true");
+                                                          columns.Bound(p => p.ServiceTypeShipping).Title("Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Width(120).Editable("true");
+                                                          columns.Bound(p => p.Special).Title("Special request (BSO, IOR, COO…)").Width(120).Editable("true");
+                                                          columns.Bound(p => p.PlanShipDate).Title("PlanShip Date").Width(200).Format("{0:dd-MMM-yy}").Editable("false");
+                                                          columns.Bound(p => p.TBD).Title("TBD").Width(100).Editable("false").Template(@<text></text>).ClientTemplate("<input type='checkbox' #= TBD == true ? checked='checked':'' # class='form-control itemresult' />");
                                                           columns.Bound(p => p.Comment).Title("Comment").Width(200).Editable("false");
-                                                          columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
-                                                          columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");
+                                                          columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("true");
                                                       })
                                                       .Sortable()
                                                       .Scrollable()
@@ -59,9 +68,8 @@
                                                           .Ajax()
                                                           .PageSize(30)
                                                               .ServerOperation(false)
-                                                            .Events(events => events.Error("error_handler"))
                                                           .Model(model => model.Id(p => p.SONO))
-                                                          .Read(read => read.Action("ListSoReViewRead", "SOReview"))
+                                                          .Read(read => read.Action("ListSoReviewPlannerRead", "SOReview"))
                                                       ))
         </div>
     </div>
@@ -143,6 +151,7 @@
         </div>
     </div>
 </div>
+
 <script>
     var isSave = true;
     var message = "";
@@ -184,48 +193,37 @@
         },
         position: "top"
     });
-
-    function error_handler(e) {
-        if (e.errors) {
-            var message = "Errors:\n";
-            $.each(e.errors, function (key, value) {
-                if ('errors' in value) {
-                    $.each(value.errors, function () {
-                        message += this + "\n";
-                    });
-                }
-            });
-            alert(message);
-        }
-    }
-
     $(document).ready(function () {
-
+       
     $('#save').click(function () {
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
-             var arrResult = [];
-             data.forEach(function (item) {
-                 debugger
-                 if (item.ReviewResult == false && (item.Comment == null || item.Comment == "")) {
-                     debugger;
-                     isSave = false;
-                     message = "Please input Comment for Item result is false!";
-                 }
-                 arrResult.push(item)
+        var arrResult = [];
+        var isSave = true;
+        data.forEach(function (item) {
+            var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
+            item.DateDownLoad = partdate;
+            if (item.TBD == false && (item.PlanShipDate == null || item.PlanShipDate == "" || item.PlanShipDate == "TBD")) {
+                isSave = false;
+            }
+            else {
+                arrResult.push(item)
+            }
             })
         var lstData = JSON.stringify(arrResult);
              if (!isSave) {
-                 bootbox.alert(message);
+                 bootbox.alert("Please input Plan Ship Date or check TBD (if uncheck TBD please input Plan Ship Date other value) !");
                  isSave = true;
                  return;
              }
              else {
                   $.blockUI();
-                 $.post('@Url.Action("SaveDataSoReviewResult", "SoReview")', { lstData: lstData },
+                 $.post('@Url.Action("SaveDataPlannerSoReviewResult", "SoReview")', { lstData: lstData },
                      function (result) {
                          if (result) {
-                             bootbox.alert('Save result sucess!');
-                         }
+                             bootbox.alert('Save result sucess!', function () {
+                                 window.location.href = "@Url.Action("ListSoReviewPlanner", "SoReview")";
+                             });
+                         }  
                          $.unblockUI();
                      }).fail(function () {
                          $.unblockUI();
@@ -236,13 +234,20 @@
              }
         });
     });
+
+    function convertUTCDateToLocalDate(date) {
+        var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+        return newDate;
+    }
+
     $('#add-task').on('click', function () {
         $('#popupTask').modal('show');
     });
+
     $('#add-file').on('click', function () {
         $('#popup').modal('show');
     });
-
+   
      $('#save-file').on('click', function () {
         let filesave = $('#file').get(0).files;
         let name = '';
@@ -313,5 +318,39 @@
             });
         }
 
+     });
+
+    $(function () {
+        $('#gridSoReview').on('click', '.itemresult', function () {
+            var checked = $(this).is(':checked');
+            var grid = $('#gridSoReview').data().kendoGrid;
+            var dataItem = grid.dataItem($(this).closest('tr'));
+            dataItem.set('TBD', checked);
+        })
+    })
+    $(function () {
+        $('#gridSoReview').on('click', '.datetimepicker', function () {
+            $('.datetimepicker').datepicker({
+                format: 'dd-M-yyyy',
+                autoclose: true
+            });
+        })
+    })
+    $(function () {
+        $('#gridSoReview').on('change', '.datetimepicker', function () {
+            var value = $(this).val();
+            var grid = $('#gridSoReview').data().kendoGrid;
+            var dataItem = grid.dataItem($(this).closest('tr'));
+            dataItem.set('PlanShipDate', value);
+
+        })
+    })
+    $(document).ready(function () {
+        $('#gridSoReview').on('click', '.datetimepicker', function () {
+            $('.datetimepicker').datepicker({
+                format: 'dd-M-yyyy',
+                autoclose: true
+            });
+        })
     });
 </script>
