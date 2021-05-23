@@ -908,7 +908,7 @@ namespace II_VI_Incorporated_SCM.Services
         {
             var data = (from a in _db.tbl_SOR_Cur_Review_List
                         join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
-                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart /*&& b.RESULT != 'N/A'*/)
+                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart && b.RESULT != "N/A")
                         select new ListSOItemReviewModel
                         {
                             SONO = a.SO_NO,
@@ -930,12 +930,12 @@ namespace II_VI_Incorporated_SCM.Services
         {
             var data = (from a in _db.tbl_SOR_Cur_Review_List
                         join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
-                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO && a.LINE == b.LINE)
+                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO && a.LINE == b.LINE && b.RESULT != "N/A")
                         select new ListSOItemReviewModel
                         {
                             SONO = a.SO_NO,
                             ItemReview = b.ITEM_REVIEW,
-                            ReviewResult = b.RESULT,
+                            ReviewResult = b.RESULT == null ? null : b.RESULT == "1" ? "True" : "False" ,
                             Comment = a.COMMENT,
                             Line = b.LINE,
                             DateDownLoad = a.DOWNLOAD_DATE,
