@@ -26,11 +26,15 @@
     }
 </style>
 <h3>Review SO </h3>
+<div class="container-fluid" style="text-align:left">
+    <button class="btn btn-sm btn-warning" id="view-file">View List File</button>
+    <button class="btn btn-sm btn-warning" id="view-task">View Task List</button>
+</div>
+
 <div class="container-fluid" style="text-align:right">
     <button class="btn btn-sm btn-info" id="add-task">Add Task</button>
     <button class="btn btn-sm btn-info" id="add-file">Add File</button>
-    <button class="btn btn-sm btn-warning" id="view-file">View List File</button>
-    <button class="btn btn-sm btn-warning" id="view-task">View Task List</button>
+
     <button class="btn btn-sm btn-success" id="save">Save</button>
 </div>
 <br />
@@ -68,7 +72,7 @@
         </div>
     </div>
 </div>
-<div id="popup" class="modal fade"  role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="basicModal" aria-hidden="true">
+<div id="popup" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -85,17 +89,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3">Item Review</label>
-                        <div class="col-md-6">
-                            <select class="form-control" name="itemreviewFile" style="width:100%" id="itemreviewFile"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="control-label col-md-3">Line</label>
                         <div class="col-md-6">
                             <select class="form-control" name="line" style="width:100%" id="line"></select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Item Review</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="itemreviewFile" style="width:100%" id="itemreviewFile"></select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="control-label col-md-3">File</label>
                         <div class="col-md-6">
@@ -141,17 +146,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3">Item Review</label>
-                        <div class="col-md-6">
-                            <select class="form-control" name="itemreview" style="width:100%" id="itemreview"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="control-label col-md-3">Line</label>
                         <div class="col-md-6">
                             <select class="form-control" name="linetask" style="width:100%" id="linetask"></select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Item Review</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="itemreview" style="width:100%" id="itemreview"></select>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btn-addtask" class="btn btn-success">Save</button>

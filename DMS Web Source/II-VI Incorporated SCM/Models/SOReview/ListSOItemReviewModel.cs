@@ -15,7 +15,9 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
 
         public string DeptReview { get; set; }
 
-        public string ReviewResult { get; set; }
+        public bool? ReviewResult { get; set; }
+
+        public string ReviewResultText { get; set; }
 
         public string Comment { get; set; }
 

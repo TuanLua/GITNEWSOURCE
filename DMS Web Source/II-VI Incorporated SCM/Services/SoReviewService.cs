@@ -913,7 +913,7 @@ namespace II_VI_Incorporated_SCM.Services
                         {
                             SONO = a.SO_NO,
                             ItemReview = b.ITEM_REVIEW,
-                            ReviewResult = b.RESULT,
+                            ReviewResult = b.RESULT =="1" ? true : false ,
                             Comment = b.COMMENT,
                             LastReview = null,
                             LastComment = null,
@@ -935,7 +935,7 @@ namespace II_VI_Incorporated_SCM.Services
                         {
                             SONO = a.SO_NO,
                             ItemReview = b.ITEM_REVIEW,
-                            ReviewResult = b.RESULT == null ? null : b.RESULT == "1" ? "True" : "False" ,
+                            ReviewResultText = b.RESULT == null ? null : b.RESULT == "1" ? "True" : "False",
                             Comment = a.COMMENT,
                             Line = b.LINE,
                             DateDownLoad = a.DOWNLOAD_DATE,
@@ -958,13 +958,13 @@ namespace II_VI_Incorporated_SCM.Services
                                   PlanShipDate = myGroup.Max(x => x.PlanShipDate),
                                   TBD = myGroup.Max(x => x.TBD),
                                   #region list item Review
-                                  CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResult),
-                                  Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity ").Max(x => x.ReviewResult),
-                                  RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResult),
-                                  Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResult),
-                                  Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResult),
-                                  ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResult),
-                                  Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResult),
+                                  CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResultText),
+                                  Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity ").Max(x => x.ReviewResultText),
+                                  RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResultText),
+                                  Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResultText),
+                                  Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResultText),
+                                  ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResultText),
+                                  Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
                                   #endregion
                               }).Distinct().ToList();
             return datasFinal;
@@ -992,9 +992,15 @@ namespace II_VI_Incorporated_SCM.Services
                     }
                     var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID).FirstOrDefault();
                     if (data != null)
-                    {
+                    {   if(picData.ReviewResult == true)
+                        {
+                            data.RESULT = "1";
+                        }
+                        else
+                        {
+                            data.RESULT = "0";
+                        }
                         data.COMMENT = picData.Comment;
-                        data.RESULT = picData.ReviewResult;
                         _db.SaveChanges();
                         tranj.Commit();
                         return new Result
