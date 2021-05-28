@@ -4279,6 +4279,8 @@
     <EntitySetMapping Name="tbl_SOR_Cur_Review_List">
       <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Cur_Review_List">
         <MappingFragment StoreEntitySet="tbl_SOR_Cur_Review_List">
+          <ScalarProperty Name="TBD" ColumnName="TBD" />
+          <ScalarProperty Name="ResolutionOwner" ColumnName="ResolutionOwner" />
           <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
           <ScalarProperty Name="LINE" ColumnName="LINE" />
           <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
@@ -4334,6 +4336,8 @@
     <EntitySetMapping Name="tbl_SOR_His_Review_List">
       <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_His_Review_List">
         <MappingFragment StoreEntitySet="tbl_SOR_His_Review_List">
+          <ScalarProperty Name="TBD" ColumnName="TBD" />
+          <ScalarProperty Name="ResolutionOwner" ColumnName="ResolutionOwner" />
           <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
           <ScalarProperty Name="LINE" ColumnName="LINE" />
           <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />

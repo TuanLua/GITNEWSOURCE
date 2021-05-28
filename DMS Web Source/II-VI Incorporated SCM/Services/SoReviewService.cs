@@ -518,7 +518,7 @@ namespace II_VI_Incorporated_SCM.Services
                         else
                         {
                             var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO == picData.SONO && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE == picData.Item).FirstOrDefault();
-                            dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
+                      //      dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
                             dataSoreview.REVIEW_STATUS = "Done";
                             dataSoreview.COMMENT = picData.Comment;
                             _db.SaveChanges();
@@ -940,7 +940,8 @@ namespace II_VI_Incorporated_SCM.Services
                             Line = b.LINE,
                             DateDownLoad = a.DOWNLOAD_DATE,
                             PlanShipDate = a.PLAN_SHIP_DATE,
-                            TBD = a.PLAN_SHIP_DATE == "TBD" ? true : false
+                            TBD = a.TBD == "TBD" ? true : false,
+                            ID = a.REVIEW_ID
                         }).ToList();
             var datasFinal = (from cc in data
                               group cc by new
@@ -951,6 +952,7 @@ namespace II_VI_Incorporated_SCM.Services
                          into myGroup
                               select new ListSOItemReviewModel
                               {
+                                  ID = myGroup.Max(x=>x.ID),
                                   SONO = myGroup.Key.SONO,
                                   Comment = myGroup.Max(x => x.Comment),
                                   Line = myGroup.Max(x => x.Line),
@@ -1035,7 +1037,7 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 Value = x.SO_NO,
                 Text = x.SO_NO.Trim(),
-            }).ToList();
+            }).Distinct().ToList();
             return listuser;
         }
         public List<SelectListItem> GetDropdownItembySOreview(string soNo)
@@ -1044,7 +1046,7 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 Value = x.REVIEW_ID.ToString(),
                 Text = x.ITEM.Trim(),
-            }).ToList();
+            }).Distinct().ToList();
             return listuser;
         }
         public List<SelectListItem> GetDropdownLinebySOreview(string soNo)
@@ -1053,7 +1055,7 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 Value = x.LINE.ToString(),
                 Text = x.LINE.Trim(),
-            }).ToList();
+            }).Distinct().ToList();
             return listuser;
         }
         public string SORReviewPlanner()
@@ -1203,15 +1205,11 @@ namespace II_VI_Incorporated_SCM.Services
                     var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim()).FirstOrDefault();
                     if (dataSoreview != null)
                     {
-                        if (picData.TBD == true)
-                        {
-                            dataSoreview.PLAN_SHIP_DATE = "TBD";
-                        }
-                        else 
-                        {
-                            dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
-                        }
+                        
+                        dataSoreview.ResolutionOwner = picData.ResolutionOwner;
+                        dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
                         dataSoreview.REVIEW_STATUS = "Done";
+                        dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
                         dataSoreview.COMMENT = picData.Comment;
                         _db.SaveChanges();
                         tranj.Commit();

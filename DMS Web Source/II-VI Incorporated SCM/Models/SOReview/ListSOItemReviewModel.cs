@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -24,8 +25,8 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public bool? LastReview { get; set; }
 
         public string LastComment { get; set; }
-
-        public string PlanShipDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? PlanShipDate { get; set; }
 
         public bool TBD { get; set; }
         public bool? IsLock { get; set; }

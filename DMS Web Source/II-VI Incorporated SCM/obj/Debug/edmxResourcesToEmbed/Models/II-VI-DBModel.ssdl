@@ -3257,9 +3257,11 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="BLC_VALUE" Type="float" />
     <Property Name="ONHAND_QTY" Type="float" />
     <Property Name="REVIEW_STATUS" Type="nvarchar" MaxLength="50" />
-    <Property Name="PLAN_SHIP_DATE" Type="nvarchar" MaxLength="50" />
+    <Property Name="PLAN_SHIP_DATE" Type="date" />
     <Property Name="LINE" Type="nvarchar" MaxLength="50" />
     <Property Name="COMMENT" Type="nvarchar(max)" />
+    <Property Name="ResolutionOwner" Type="nvarchar" MaxLength="128" />
+    <Property Name="TBD" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tbl_SOR_Family_Setup_Qty">
     <Key>
@@ -3309,9 +3311,11 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="BLC_VALUE" Type="float" />
     <Property Name="ONHAND_QTY" Type="float" />
     <Property Name="REVIEW_STATUS" Type="nvarchar" MaxLength="50" />
-    <Property Name="PLAN_SHIP_DATE" Type="nvarchar" MaxLength="50" />
+    <Property Name="PLAN_SHIP_DATE" Type="date" />
     <Property Name="LINE" Type="nvarchar" MaxLength="50" />
     <Property Name="COMMENT" Type="nvarchar(max)" />
+    <Property Name="ResolutionOwner" Type="nvarchar" MaxLength="128" />
+    <Property Name="TBD" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tbl_SOR_Item_Review">
     <Key>

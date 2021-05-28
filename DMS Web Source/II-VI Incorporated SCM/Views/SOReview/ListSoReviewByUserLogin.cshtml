@@ -26,16 +26,18 @@
     }
 </style>
 <h3>Review SO </h3>
-<div class="container-fluid" style="text-align:left">
-    <button class="btn btn-sm btn-warning" id="view-file">View List File</button>
-    <button class="btn btn-sm btn-warning" id="view-task">View Task List</button>
-</div>
+<div class="container-fluid row">
+    <div class="col-sm-6" style="text-align:left">
+        <button class="btn btn-sm btn-warning" id="view-file">View List File</button>
+        <button class="btn btn-sm btn-warning" id="view-task">View Task List</button>
+    </div>
 
-<div class="container-fluid" style="text-align:right">
-    <button class="btn btn-sm btn-info" id="add-task">Add Task</button>
-    <button class="btn btn-sm btn-info" id="add-file">Add File</button>
+    <div class="col-sm-6" style="text-align:right">
+        <button class="btn btn-sm btn-info" id="add-task">Add Task</button>
+        <button class="btn btn-sm btn-info" id="add-file">Add File</button>
 
-    <button class="btn btn-sm btn-success" id="save">Save</button>
+        <button class="btn btn-sm btn-success" id="save">Save</button>
+    </div>
 </div>
 <br />
 <div class="container-fluid">
@@ -47,8 +49,8 @@
                                                       {
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
                                                           columns.Bound(p => p.ItemReview).Title("Item Review").Width(400).Editable("true");
-                                                          columns.Bound(p => p.ReviewResult).Title("Review Result").Width(120).Editable("false").Template(@<text></text>).ClientTemplate("<input type='checkbox' #= ReviewResult == true ? checked='checked':'' # class='form-control itemresult' />");
-                                                          columns.Bound(p => p.Comment).Title("Comment").Width(200).Editable("false");
+                                                          columns.Bound(p => p.ReviewResult).Title("Review Result").Width(120).Editable("false");
+                                                          columns.Bound(p=> p.Comment).Title("Comment").Width(200).Editable("false");
                                                           columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
                                                           columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");
                                                       })
@@ -374,6 +376,8 @@
     });
     $('#soNo').on('change', function () {
         var soNo = $('#soNo').val();
+        $('#itemreview').html('');
+        $('#linetask').html('');
         $.ajax({
             url: '@Url.Action("GetListItemSoReviewBySo", "SOReview")',
             type: "POST",
@@ -406,6 +410,8 @@
 
     $('#soNoFile').on('change', function () {
         var soNo = $('#soNoFile').val();
+        $('#itemreviewFile').html('');
+        $('#line').html('');
         $.ajax({
             url: '@Url.Action("GetListItemSoReviewBySo", "SOReview")',
             type: "POST",
@@ -437,12 +443,4 @@
 
     });
 
-    $(function () {
-        $('#gridSoReview').on('click', '.itemresult', function () {
-            var checked = $(this).is(':checked');
-            var grid = $('#gridSoReview').data().kendoGrid;
-            var dataItem = grid.dataItem($(this).closest('tr'));
-            dataItem.set('ReviewResult', checked);
-        })
-    })
 </script>

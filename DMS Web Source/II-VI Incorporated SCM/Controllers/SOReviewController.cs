@@ -1,4 +1,5 @@
-﻿using II_VI_Incorporated_SCM.Models;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using II_VI_Incorporated_SCM.Models;
 using II_VI_Incorporated_SCM.Models.SOReview;
 using II_VI_Incorporated_SCM.Services;
 using Kendo.Mvc.Extensions;
@@ -558,10 +559,11 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             ViewBag.IsPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.Planner);
             return View();
         }
+        [AcceptVerbs("Get", "Post")]
         public ActionResult ListSoReviewPlannerRead([DataSourceRequest] DataSourceRequest request)
         {
             var result = _iSoReviewService.GetListSOReviewByPlanner("");
-            return Json(result.ToDataSourceResult(request));
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
         public ActionResult ListTaskmanagementSOReview(string date)
         {

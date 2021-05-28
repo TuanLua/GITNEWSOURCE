@@ -27,19 +27,19 @@
 </style>
 <h3>Review SO by Planner </h3>
 <div class="container-fluid" style="text-align:right">
-    @if (ViewBag.IsPlanner == true)
-    {
-        <button class="btn btn-sm btn-success" id="save">Save</button>
-    }
+    @* @if (ViewBag.IsPlanner == true)*@
+    @*  {*@
+    <button class="btn btn-sm btn-success" id="save">Save</button>
+    @*  }*@
 </div>
 <br />
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-18 col-md-12">
-            @(Html.Kendo().Grid<ListSOItemReviewModel>()
-                                                      .Name("gridSoReview")
-                                                      .Columns(columns =>
-                                                      {
+        <div class="row">
+            <div class="col-xs-18 col-md-12">
+                @(Html.Kendo().Grid<ListSOItemReviewModel>()
+                                                          .Name("gridSoReview")
+                                                          .Columns(columns =>
+                                                          {
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
                                                           columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(100).Format("{0:dd-MMM-yy}").Editable("true");
                                                           columns.Bound(p => p.Line).Title("Line").Width(100).Editable("true");
@@ -50,30 +50,30 @@
                                                           columns.Bound(p => p.Carrier).Title("Carrier (Fedex, DHL, Schenker,…)").Width(120).Editable("true");
                                                           columns.Bound(p => p.ServiceTypeShipping).Title("Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Width(120).Editable("true");
                                                           columns.Bound(p => p.Special).Title("Special request (BSO, IOR, COO…)").Width(120).Editable("true");
-                                                          columns.Bound(p => p.PlanShipDate).Title("PlanShip Date").Width(200).Format("{0:dd-MMM-yy}").Editable("false");
+                                                          columns.Bound(p => p.PlanShipDate).Title("Plan Ship Date").Width(200).Editable("false").Format("{0:dd-MMM-yy}");
                                                           columns.Bound(p => p.TBD).Title("TBD").Width(100).Editable("false").Template(@<text></text>).ClientTemplate("<input type='checkbox' #= TBD == true ? checked='checked':'' # class='form-control itemresult' />");
                                                           columns.Bound(p => p.Comment).Title("Comment").Width(200).Editable("false");
-                                                          columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("true");
-                                                      })
-                                                      .Sortable()
-                                                      .Scrollable()
-                                                      .Editable(editable => editable.Mode(GridEditMode.InCell))
-                                                    .Filterable()
-                                                         .Excel(excel => excel
-                                                    .FileName("So Review List.xlsx")
-                                                    .ProxyURL(Url.Action("Excel_Export_Save", "Grid")))
-                                                         .Pageable(m => m.PageSizes(new List<object> { 5, 10, 20, 50, "All" }).Refresh(true))
-                                                      .HtmlAttributes(new { style = "height:750px;" })
-                                                      .DataSource(dataSource => dataSource
-                                                          .Ajax()
-                                                          .PageSize(30)
-                                                              .ServerOperation(false)
-                                                          .Model(model => model.Id(p => p.SONO))
-                                                          .Read(read => read.Action("ListSoReviewPlannerRead", "SOReview"))
-                                                      ))
+                                                          columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("false");
+                                                          })
+                                                          .Sortable()
+                                                          .Scrollable()
+                                                          .Editable(editable => editable.Mode(GridEditMode.InCell))
+                                                        .Filterable()
+                                                             .Excel(excel => excel
+                                                        .FileName("So Review List.xlsx")
+                                                        .ProxyURL(Url.Action("Excel_Export_Save", "Grid")))
+                                                             .Pageable(m => m.PageSizes(new List<object> { 5, 10, 20, 50, "All" }).Refresh(true))
+                                                          .HtmlAttributes(new { style = "height:750px;" })
+                                                          .DataSource(dataSource => dataSource
+                                                              .Ajax()
+                                                              .PageSize(30)
+                                                                  .ServerOperation(false)
+                                                              .Model(model => model.Id(p => p.SONO))
+                                                              .Read(read => read.Action("ListSoReviewPlannerRead", "SOReview"))
+                                                          ))
+            </div>
         </div>
     </div>
-</div>
 <div id="popup" class="modal fade" tabindex="-1" role="dialog" aria - labelledby="basicModal" aria - hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -139,7 +139,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3">Item Review</label>
                         <div class="col-md-6">
-                            <input class="form-control" style="width:100%" id="taskname" />
+                            <input class="form-control" style="width:100%" id="itemreview" />
                         </div>
                     </div>
                 </div>
@@ -151,206 +151,188 @@
         </div>
     </div>
 </div>
+    <script>
+            var isSave = true;
+            var message = "";
+            $(document).ready(function () {
 
-<script>
-    var isSave = true;
-    var message = "";
-                $(document).ready(function () {
-                    $.post('@Url.Action("GetListUser", "SoReview")',
-                        function (result) {
-                            $.each(result, function (i, item) {
-                                $('#user').append($('<option>', {
-                                    value: item.Value,
-                                    text: item.Text
-                                }));
-                            });
-                        }).fail(function () {
-                            bootbox.alert('Please contact to Administrator!');
-                        }).always(function () {
-                        });
-                    $("#user").select2();
-
-                    $.post('@Url.Action("GetListSoReviewAddTask", "SoReview")',
-                        function (result) {
-                            $.each(result, function (i, item) {
-                                $('#soNo').append($('<option>', {
-                                    value: item.Value,
-                                    text: item.Text
-                                }));
-                            });
-                        }).fail(function () {
-                            bootbox.alert('Please contact to Administrator!');
-                        }).always(function () {
-                        });
-                    $("#soNo").select2();
-
-
-                });
-    $(".k-header").kendoTooltip({
-        content: function (e) {
-            var target = e.target; // element for which the tooltip is shown
-            return $(target).text();
-        },
-        position: "top"
-    });
-    $(document).ready(function () {
-       
-    $('#save').click(function () {
-             var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
-        var arrResult = [];
-        var isSave = true;
-        data.forEach(function (item) {
-            var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
-            item.DateDownLoad = partdate;
-            if (item.TBD == false && (item.PlanShipDate == null || item.PlanShipDate == "" || item.PlanShipDate == "TBD")) {
-                isSave = false;
-            }
-            else {
-                arrResult.push(item)
-            }
-            })
-        var lstData = JSON.stringify(arrResult);
-             if (!isSave) {
-                 bootbox.alert("Please input Plan Ship Date or check TBD (if uncheck TBD please input Plan Ship Date other value) !");
-                 isSave = true;
-                 return;
-             }
-             else {
-                  $.blockUI();
-                 $.post('@Url.Action("SaveDataPlannerSoReviewResult", "SoReview")', { lstData: lstData },
-                     function (result) {
-                         if (result) {
-                             bootbox.alert('Save result sucess!', function () {
-                                 window.location.href = "@Url.Action("ListSoReviewPlanner", "SoReview")";
-                             });
-                         }  
-                         $.unblockUI();
-                     }).fail(function () {
-                         $.unblockUI();
-                         bootbox.alert('Please contact to Administrator!');
-                     }).always(function () {
-                         $.unblockUI();
-                     });
-             }
-        });
-    });
-
-    function convertUTCDateToLocalDate(date) {
-        var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
-        return newDate;
-    }
-
-    $('#add-task').on('click', function () {
-        $('#popupTask').modal('show');
-    });
-
-    $('#add-file').on('click', function () {
-        $('#popup').modal('show');
-    });
-   
-     $('#save-file').on('click', function () {
-        let filesave = $('#file').get(0).files;
-        let name = '';
-        if (filesave.length > 0) {
-            name = filesave[0].name;
-        }
-        var formData = new FormData();
-        formData.append("file", filesave[0]);
-            if (name != '') {
-                        $.ajax({ url: '@Url.Action("SaveFileADDINItem", "SoReview")', method: 'post', data: formData, contentType: false, processData: false })
-                        }
-          $.ajax({
-                            url: '@Url.Action("AddFileforItemReview", "SoReview")',
-              type: "POST",
-              data: { SO_NO: '@ViewBag.SoNo', Date: '@ViewBag.Date', File: name, ID: $('#iditemreview').val(),item: '@ViewBag.Item'},
-                            dataType: "json",
-                            success: function (result) {
-                                if (result.success) {
-                                    bootbox.alert('Add File sucess!', function () {
-                                        $('#popup').modal('hide');
-                                        window.location.reload();
+                            $.post('@Url.Action("GetListUser", "SoReview")',
+                                function (result) {
+                                    $.each(result, function (i, item) {
+                                        $('#user').append($('<option>', {
+                                            value: item.Value,
+                                            text: item.Text
+                                        }));
                                     });
-                                }
-                                else {
-                                    bootbox.alert(result.message);
-                                }
-                            }
-                        });
-     })
+                                }).fail(function () {
+                                    bootbox.alert('Please contact to Administrator!');
+                                }).always(function () {
+                                });
+                            $("#user").select2();
 
-     $('#btn-addtask').on('click', function () {
-        var SoNo = '@ViewBag.SoNo';
-        var Date = '@ViewBag.Date';
-        var topic = '@ViewBag.SoNo' + "-" + Date  + "-" + '@ViewBag.Item';
-        var itemreview = $('#reviewitemname').val();
-        var assignee = $('#user').val();
-        var taskname = $('#taskname').val();
-        if (assignee == null || assignee == "") {
-            bootbox.alert("Please select assignee!");
-            return;
-        }
-        else if (taskname == null || taskname == "") {
-            bootbox.alert("Please input Task Name!");
-            return;
-        }
-        else {
-            $.ajax({
-                url: '@Url.Action("AddTaskForItemReview", "SOReview")',
-                type: "POST",
-                data: { SoNo: SoNo, Date: Date, itemreview: itemreview, assignee: assignee, item: '@ViewBag.Item', taskname: taskname, itemreviewID: itemreviewID},
-                dataType: "json",
-                success: function (result) {
-                    if (result.success) {
-                        bootbox.alert('Add Task sucess!', function () {
-                            $('#popupTask').modal('hide');
-                            window.location.reload();
+                            $.post('@Url.Action("GetListSoReviewAddTask", "SoReview")',
+                                function (result) {
+                                    $.each(result, function (i, item) {
+                                        $('#soNo').append($('<option>', {
+                                            value: item.Value,
+                                            text: item.Text
+                                        }));
+                                    });
+                                }).fail(function () {
+                                    bootbox.alert('Please contact to Administrator!');
+                                }).always(function () {
+                                });
+                            $("#soNo").select2();
+
                         });
+            $(".k-header").kendoTooltip({
+                content: function (e) {
+                    var target = e.target; // element for which the tooltip is shown
+                    return $(target).text();
+                },
+                position: "top"
+            });
+            $(document).ready(function () {
+
+            $('#save').click(function () {
+                     var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
+                var arrResult = [];
+                var isSave = true;
+                data.forEach(function (item) {
+                    var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
+                    item.DateDownLoad = partdate;
+                    debugger
+                    if (item.PlanShipDate != null) {
+                        var parstDate = convertUTCDateToLocalDate(item.PlanShipDate);
+                        item.PlanShipDate = parstDate;
+                    }
+                    if (item.TBD == true && (item.PlanShipDate != null && item.PlanShipDate != "")) {
+                        isSave = false;
                     }
                     else {
-                        bootbox.alert(result.message);
-                        $('#popupTask').modal('hide');
-
-                //call data source task list when select
-             //  $("#gridTaskDetail").data("kendoGrid").dataSource.transport.options.read.url = '@Url.Action("ReadTaksMantSoReview", "Soreview")' + '?taskNo=' + topic;
-             //  $("#gridTaskDetail").data("kendoGrid").dataSource.read();
+                        arrResult.push(item)
                     }
+                    })
+                var lstData = JSON.stringify(arrResult);
+                     if (!isSave) {
+                         bootbox.alert("Please input Plan Ship Date or check TBD (if uncheck TBD please input Plan Ship Date other value) !");
+                         isSave = true;
+                         return;
+                     }
+                     else {
+                          $.blockUI();
+                         $.post('@Url.Action("SaveDataPlannerSoReviewResult", "SoReview")', { lstData: lstData },
+                             function (result) {
+                                 if (result) {
+                                     bootbox.alert('Save result sucess!', function () {
+                                         window.location.href = "@Url.Action("ListSoReviewPlanner", "SoReview")";
+                                     });
+                                 }
+                                 $.unblockUI();
+                             }).fail(function () {
+                                 $.unblockUI();
+                                 bootbox.alert('Please contact to Administrator!');
+                             }).always(function () {
+                                 $.unblockUI();
+                             });
+                     }
+                });
+            });
+
+            function convertUTCDateToLocalDate(date) {
+                var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+                return newDate;
+            }
+
+            $('#add-task').on('click', function () {
+                $('#popupTask').modal('show');
+            });
+
+            $('#add-file').on('click', function () {
+                $('#popup').modal('show');
+            });
+
+             $('#save-file').on('click', function () {
+                let filesave = $('#file').get(0).files;
+                let name = '';
+                if (filesave.length > 0) {
+                    name = filesave[0].name;
                 }
-            });
-        }
+                var formData = new FormData();
+                formData.append("file", filesave[0]);
+                    if (name != '') {
+                                $.ajax({ url: '@Url.Action("SaveFileADDINItem", "SoReview")', method: 'post', data: formData, contentType: false, processData: false })
+                                }
+                  $.ajax({
+                                    url: '@Url.Action("AddFileforItemReview", "SoReview")',
+                      type: "POST",
+                      data: { SO_NO: '@ViewBag.SoNo', Date: '@ViewBag.Date', File: name, ID: $('Urliditemreview').val(),item: '@ViewBag.Item'},
+                                    dataType: "json",
+                                    success: function (result) {
+                                        if (result.success) {
+                                            bootbox.alert('Add File sucess!', function () {
+                                                $('#popup').modal('hide');
+                                                window.location.reload();
+                                            });
+                                        }
+                                        else {
+                                            bootbox.alert(result.message);
+                                        }
+                                    }
+                                });
+             })
 
-     });
+             $('#btn-addtask').on('click', function () {
+                var SoNo = '@ViewBag.SoNo';
+                var Date = '@ViewBag.Date';
+                var topic = '@ViewBag.SoNo' + "-" + Date  + "-" + '@ViewBag.Item';
+                var itemreview = $('#reviewitemname').val();
+                var assignee = $('#user').val();
+                var taskname = $('#taskname').val();
+                if (assignee == null || assignee == "") {
+                    bootbox.alert("Please select assignee!");
+                    return;
+                }
+                else if (taskname == null || taskname == "") {
+                    bootbox.alert("Please input Task Name!");
+                    return;
+                }
+                else {
+                    $.ajax({
+                        url: '@Url.Action("AddTaskForItemReview", "SOReview")',
+                        type: "POST",
+                        data: { SoNo: SoNo, Date: Date, itemreview: itemreview, assignee: assignee, item: '@ViewBag.Item', taskname: taskname, itemreviewID: itemreviewID},
+                        dataType: "json",
+                        success: function (result) {
+                            if (result.success) {
+                                bootbox.alert('Add Task sucess!', function () {
+                                    $('#popupTask').modal('hide');
+                                    window.location.reload();
+                                });
+                            }
+                            else {
+                                bootbox.alert(result.message);
+                                $('#popupTask').modal('hide');
 
-    $(function () {
-        $('#gridSoReview').on('click', '.itemresult', function () {
-            var checked = $(this).is(':checked');
-            var grid = $('#gridSoReview').data().kendoGrid;
-            var dataItem = grid.dataItem($(this).closest('tr'));
-            dataItem.set('TBD', checked);
-        })
-    })
-    $(function () {
-        $('#gridSoReview').on('click', '.datetimepicker', function () {
-            $('.datetimepicker').datepicker({
-                format: 'dd-M-yyyy',
-                autoclose: true
-            });
-        })
-    })
-    $(function () {
-        $('#gridSoReview').on('change', '.datetimepicker', function () {
-            var value = $(this).val();
-            var grid = $('#gridSoReview').data().kendoGrid;
-            var dataItem = grid.dataItem($(this).closest('tr'));
-            dataItem.set('PlanShipDate', value);
+                        //call data source task list when select
+                     //  $("#gridTaskDetail").data("kendoGrid").dataSource.transport.options.read.url = '@Url.Action("ReadTaksMantSoReview", "Soreview")' + '?taskNo=' + topic;
+                     //  $("#gridTaskDetail").data("kendoGrid").dataSource.read();
+                            }
+                        }
+                    });
+                }
 
-        })
-    })
-    $(document).ready(function () {
-        $('#gridSoReview').on('click', '.datetimepicker', function () {
-            $('.datetimepicker').datepicker({
-                format: 'dd-M-yyyy',
-                autoclose: true
-            });
-        })
-    });
-</script>
+             });
+
+            $(function () {
+                $('#gridSoReview').on('click', '.itemresult', function () {
+                    var checked = $(this).is(':checked');
+                    var grid = $('#gridSoReview').data().kendoGrid;
+                    var dataItem = grid.dataItem($(this).closest('tr'));
+                    dataItem.set('TBD', checked);
+                })
+            })
+
+        </script>
+
+

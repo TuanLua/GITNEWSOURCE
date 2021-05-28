@@ -3262,9 +3262,11 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
           <Property Name="BLC_VALUE" Type="float" />
           <Property Name="ONHAND_QTY" Type="float" />
           <Property Name="REVIEW_STATUS" Type="nvarchar" MaxLength="50" />
-          <Property Name="PLAN_SHIP_DATE" Type="nvarchar" MaxLength="50" />
+          <Property Name="PLAN_SHIP_DATE" Type="date" />
           <Property Name="LINE" Type="nvarchar" MaxLength="50" />
           <Property Name="COMMENT" Type="nvarchar(max)" />
+          <Property Name="ResolutionOwner" Type="nvarchar" MaxLength="128" />
+          <Property Name="TBD" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbl_SOR_Family_Setup_Qty">
           <Key>
@@ -3314,9 +3316,11 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
           <Property Name="BLC_VALUE" Type="float" />
           <Property Name="ONHAND_QTY" Type="float" />
           <Property Name="REVIEW_STATUS" Type="nvarchar" MaxLength="50" />
-          <Property Name="PLAN_SHIP_DATE" Type="nvarchar" MaxLength="50" />
+          <Property Name="PLAN_SHIP_DATE" Type="date" />
           <Property Name="LINE" Type="nvarchar" MaxLength="50" />
           <Property Name="COMMENT" Type="nvarchar(max)" />
+          <Property Name="ResolutionOwner" Type="nvarchar" MaxLength="128" />
+          <Property Name="TBD" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbl_SOR_Item_Review">
           <Key>
@@ -13542,9 +13546,11 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <Property Name="BLC_VALUE" Type="Double" />
           <Property Name="ONHAND_QTY" Type="Double" />
           <Property Name="REVIEW_STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PLAN_SHIP_DATE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PLAN_SHIP_DATE" Type="DateTime" Precision="0" />
           <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResolutionOwner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TBD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_SOR_Family_Setup_Qty">
           <Key>
@@ -13594,9 +13600,11 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <Property Name="BLC_VALUE" Type="Double" />
           <Property Name="ONHAND_QTY" Type="Double" />
           <Property Name="REVIEW_STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PLAN_SHIP_DATE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PLAN_SHIP_DATE" Type="DateTime" Precision="0" />
           <Property Name="LINE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResolutionOwner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TBD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_SOR_Item_Review">
           <Key>
@@ -19386,6 +19394,8 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <EntitySetMapping Name="tbl_SOR_Cur_Review_List">
             <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Cur_Review_List">
               <MappingFragment StoreEntitySet="tbl_SOR_Cur_Review_List">
+                <ScalarProperty Name="TBD" ColumnName="TBD" />
+                <ScalarProperty Name="ResolutionOwner" ColumnName="ResolutionOwner" />
                 <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
                 <ScalarProperty Name="LINE" ColumnName="LINE" />
                 <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
@@ -19441,6 +19451,8 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <EntitySetMapping Name="tbl_SOR_His_Review_List">
             <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_His_Review_List">
               <MappingFragment StoreEntitySet="tbl_SOR_His_Review_List">
+                <ScalarProperty Name="TBD" ColumnName="TBD" />
+                <ScalarProperty Name="ResolutionOwner" ColumnName="ResolutionOwner" />
                 <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
                 <ScalarProperty Name="LINE" ColumnName="LINE" />
                 <ScalarProperty Name="PLAN_SHIP_DATE" ColumnName="PLAN_SHIP_DATE" />
