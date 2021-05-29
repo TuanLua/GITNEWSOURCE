@@ -519,6 +519,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
                 date = data.FirstOrDefault().DateDownLoad;
             }
             ViewBag.DownloadDate = date;
+            ViewData["ReviewResultText"] = _iSoReviewService.GetReviewResult();
             return View();
         }
 

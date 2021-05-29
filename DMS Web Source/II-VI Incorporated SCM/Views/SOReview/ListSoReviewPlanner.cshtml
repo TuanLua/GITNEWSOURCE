@@ -34,9 +34,9 @@
 </div>
 <br />
 <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-18 col-md-12">
-                @(Html.Kendo().Grid<ListSOItemReviewModel>()
+    <div class="row">
+        <div class="col-xs-18 col-md-12">
+            @(Html.Kendo().Grid<ListSOItemReviewModel>()
                                                           .Name("gridSoReview")
                                                           .Columns(columns =>
                                                           {
@@ -71,9 +71,12 @@
                                                               .Model(model => model.Id(p => p.SONO))
                                                               .Read(read => read.Action("ListSoReviewPlannerRead", "SOReview"))
                                                           ))
-            </div>
         </div>
     </div>
+</div>
+
+
+
 <div id="popup" class="modal fade" tabindex="-1" role="dialog" aria - labelledby="basicModal" aria - hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -151,7 +154,7 @@
         </div>
     </div>
 </div>
-    <script>
+<script>
             var isSave = true;
             var message = "";
             $(document).ready(function () {
@@ -201,7 +204,6 @@
                 data.forEach(function (item) {
                     var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
                     item.DateDownLoad = partdate;
-                    debugger
                     if (item.PlanShipDate != null) {
                         var parstDate = convertUTCDateToLocalDate(item.PlanShipDate);
                         item.PlanShipDate = parstDate;
@@ -333,6 +335,6 @@
                 })
             })
 
-        </script>
+</script>
 
 

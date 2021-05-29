@@ -50,6 +50,7 @@
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
                                                           columns.Bound(p => p.ItemReview).Title("Item Review").Width(400).Editable("true");
                                                           columns.Bound(p => p.ReviewResult).Title("Review Result").Width(120).Editable("false");
+                                                         // columns.Bound(p => p.ReviewResultText).Title("Review Result").Width(120).Editable("false").ClientTemplate("#=ReviewResultText#");
                                                           columns.Bound(p=> p.Comment).Title("Comment").Width(200).Editable("false");
                                                           columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
                                                           columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");
@@ -169,6 +170,13 @@
         </div>
     </div>
 </div>
+@*@Html.Partial("ResultpartialView");*@
+@*@(Html.Kendo().DropDownList()
+    .Name("ReviewResultText") // The name of the widget has to be the same as the name of the property.
+    .DataValueField("Value") // The value of the drop-down is taken from the EmployeeID property.
+    .DataTextField("Text") // The text of the items is taken from the EmployeeName property.
+    .BindTo((System.Collections.IEnumerable)ViewData["ReviewResultText"]) // A list of all employees which is populated in the controller.
+)*@
 <script>
     var isSave = true;
     var message = "";
@@ -237,11 +245,14 @@
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
              var arrResult = [];
         data.forEach(function (item) {
-                 if (item.ReviewResult == false && (item.Comment == null || item.Comment == "")) {
-                     isSave = false;
-                     message = "Please input Comment for Item result is false!";
-                 }
-                 arrResult.push(item)
+            debugger
+            if (item.ReviewResult == false && (item.Comment == null || item.Comment == "")) {
+                isSave = false;
+                message = "Please input Comment for Item result is false!";
+            }
+            else if (item.ReviewResult != null) {
+                arrResult.push(item)
+            }
             })
         var lstData = JSON.stringify(arrResult);
              if (!isSave) {

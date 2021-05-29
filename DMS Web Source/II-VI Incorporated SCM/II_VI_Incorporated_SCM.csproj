@@ -3961,6 +3961,7 @@
     <Content Include="Views\SOReview\ListSoReviewPlanner.cshtml" />
     <Content Include="Views\SOReview\ListTaskmanagementSOReview.cshtml" />
     <Content Include="Views\SOReview\ListFilemanagementSOReview.cshtml" />
+    <Content Include="Views\SOReview\ResultpartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />

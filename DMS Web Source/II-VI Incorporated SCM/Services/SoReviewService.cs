@@ -906,6 +906,7 @@ namespace II_VI_Incorporated_SCM.Services
 
         public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart)
         {
+            bool? flag = null;
             var data = (from a in _db.tbl_SOR_Cur_Review_List
                         join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                         where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart && b.RESULT != "N/A")
@@ -913,7 +914,8 @@ namespace II_VI_Incorporated_SCM.Services
                         {
                             SONO = a.SO_NO,
                             ItemReview = b.ITEM_REVIEW,
-                            ReviewResult = b.RESULT =="1" ? true : false ,
+                            ReviewResult = b.RESULT == null ? flag : ( b.RESULT =="1" ? true : false),
+                            ReviewResultText = b.RESULT,
                             Comment = b.COMMENT,
                             LastReview = null,
                             LastComment = null,
@@ -941,7 +943,8 @@ namespace II_VI_Incorporated_SCM.Services
                             DateDownLoad = a.DOWNLOAD_DATE,
                             PlanShipDate = a.PLAN_SHIP_DATE,
                             TBD = a.TBD == "TBD" ? true : false,
-                            ID = a.REVIEW_ID
+                            ID = a.REVIEW_ID,
+                            ResolutionOwner = a.ResolutionOwner
                         }).ToList();
             var datasFinal = (from cc in data
                               group cc by new
@@ -959,6 +962,7 @@ namespace II_VI_Incorporated_SCM.Services
                                   DateDownLoad = myGroup.Max(x => x.DateDownLoad),
                                   PlanShipDate = myGroup.Max(x => x.PlanShipDate),
                                   TBD = myGroup.Max(x => x.TBD),
+                                  ResolutionOwner = myGroup.Max(x=>x.ResolutionOwner),
                                   #region list item Review
                                   CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResultText),
                                   Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity ").Max(x => x.ReviewResultText),
