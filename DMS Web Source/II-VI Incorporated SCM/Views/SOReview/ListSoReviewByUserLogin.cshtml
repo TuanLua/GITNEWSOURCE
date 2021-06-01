@@ -40,6 +40,13 @@
     </div>
 </div>
 <br />
+<div class="container-fluid row">
+    <div class="col-sm-6" style="text-align:left">
+        <button class="btn btn-sm btn-info" id="view-review">List Review</button>
+        <button class="btn btn-sm btn-success" id="view-all">View All</button>
+    </div>
+
+</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-18 col-md-12">
@@ -50,7 +57,7 @@
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
                                                           columns.Bound(p => p.ItemReview).Title("Item Review").Width(400).Editable("true");
                                                           columns.Bound(p => p.ReviewResult).Title("Review Result").Width(120).Editable("false");
-                                                         // columns.Bound(p => p.ReviewResultText).Title("Review Result").Width(120).Editable("false").ClientTemplate("#=ReviewResultText#");
+                                                          // columns.Bound(p => p.ReviewResultText).Title("Review Result").Width(120).Editable("false").ClientTemplate("#=ReviewResultText#");
                                                           columns.Bound(p=> p.Comment).Title("Comment").Width(200).Editable("false");
                                                           columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
                                                           columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");
@@ -70,7 +77,7 @@
                                                               .ServerOperation(false)
                                                             .Events(events => events.Error("error_handler"))
                                                           .Model(model => model.Id(p => p.SONO))
-                                                          .Read(read => read.Action("ListSoReViewRead", "SOReview"))
+                                                          .Read(read => read.Action("ListSoReViewRead", "SOReview",new {isFilter = false}))
                                                       ))
         </div>
     </div>
@@ -245,7 +252,6 @@
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
              var arrResult = [];
         data.forEach(function (item) {
-            debugger
             if (item.ReviewResult == false && (item.Comment == null || item.Comment == "")) {
                 isSave = false;
                 message = "Please input Comment for Item result is false!";
@@ -453,5 +459,14 @@
                 });
 
     });
-
+    $('#view-review').on('click', function () {
+        let Grid = $("#gridSoReview").data("kendoGrid");
+        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=true';
+        Grid.dataSource.read();
+    })
+     $('#view-all').on('click', function () {
+        let Grid = $("#gridSoReview").data("kendoGrid");
+        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=false';
+        Grid.dataSource.read();
+    })
 </script>

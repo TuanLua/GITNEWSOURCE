@@ -27,12 +27,15 @@
 </style>
 <h3>Review SO by Planner </h3>
 <div class="container-fluid" style="text-align:right">
-    @* @if (ViewBag.IsPlanner == true)*@
-    @*  {*@
+     @if (ViewBag.IsPlanner == true)
+      {
     <button class="btn btn-sm btn-success" id="save">Save</button>
-    @*  }*@
+      }
 </div>
-<br />
+<div class="col-sm-6" style="text-align:left">
+    <button class="btn btn-sm btn-info" id="view-review">List Review</button>
+    <button class="btn btn-sm btn-success" id="view-all">View All</button>
+</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-18 col-md-12">
@@ -43,17 +46,27 @@
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
                                                           columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(100).Format("{0:dd-MMM-yy}").Editable("true");
                                                           columns.Bound(p => p.Line).Title("Line").Width(100).Editable("true");
-                                                          columns.Bound(p => p.CoCofRoHS).Title("CoC of RoHS, Reach").Width(120).Editable("true");
-                                                          columns.Bound(p => p.Capacity).Title("Capacity").Width(120).Editable("true");
-                                                          columns.Bound(p => p.RawMaterial).Title("Raw Material & consumable").Width(120).Editable("true");
-                                                          columns.Bound(p => p.Builtless).Title("Built less than 6 months").Width(120).Editable("true");
-                                                          columns.Bound(p => p.Carrier).Title("Carrier (Fedex, DHL, Schenker,…)").Width(120).Editable("true");
-                                                          columns.Bound(p => p.ServiceTypeShipping).Title("Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Width(120).Editable("true");
-                                                          columns.Bound(p => p.Special).Title("Special request (BSO, IOR, COO…)").Width(120).Editable("true");
                                                           columns.Bound(p => p.PlanShipDate).Title("Plan Ship Date").Width(200).Editable("false").Format("{0:dd-MMM-yy}");
-                                                          columns.Bound(p => p.TBD).Title("TBD").Width(100).Editable("false").Template(@<text></text>).ClientTemplate("<input type='checkbox' #= TBD == true ? checked='checked':'' # class='form-control itemresult' />");
-                                                          columns.Bound(p => p.Comment).Title("Comment").Width(200).Editable("false");
-                                                          columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("false");
+                                                          columns.Bound(p => p.TBD).Title("TBD").Width(100).Editable("false")
+                                                              .Template(@<text></text>).ClientTemplate("<input type='checkbox' #= TBD == true ? checked='checked':'' # class='form-control itemresult' />");
+                                                              columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("false");
+                                                              columns.Bound(p => p.Comment).Title("Comment").Width(200).Editable("false");
+                                                              columns.Bound(p => p.CoCofRoHS).Title("CoC of RoHS, Reach").Width(120).Editable("true");
+                                                              columns.Bound(p => p.CoCofRoHSComment).Title("CoCofRoHS Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.Capacity).Title("Capacity").Width(120).Editable("true");
+                                                              columns.Bound(p => p.CapacityComment).Title("Capacity Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.RawMaterial).Title("Raw Material & consumable").Width(120).Editable("true");
+                                                              columns.Bound(p => p.RawMaterialComment).Title("Raw Material & consumable Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.Builtless).Title("Built less than 6 months").Width(120).Editable("true");
+                                                              columns.Bound(p => p.BuiltlessComment).Title("Built less than 6 months Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.Carrier).Title("Carrier (Fedex, DHL, Schenker,…)").Width(120).Editable("true");
+                                                              columns.Bound(p => p.CarrierComment).Title("Carrier (Fedex, DHL, Schenker,…) Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.ServiceTypeShipping).Title("Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
+                                                              .Width(120).Editable("true");
+                                                              columns.Bound(p => p.ServiceTypeShippingComment).Title("Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…) Comment")
+                                                             .Width(120).Editable("true");
+                                                              columns.Bound(p => p.Special).Title("Special request (BSO, IOR, COO…)").Width(120).Editable("true");
+                                                              columns.Bound(p => p.SpecialComment).Title("Special request (BSO, IOR, COO…) Comment").Width(120).Editable("true");
                                                           })
                                                           .Sortable()
                                                           .Scrollable()
@@ -69,7 +82,7 @@
                                                               .PageSize(30)
                                                                   .ServerOperation(false)
                                                               .Model(model => model.Id(p => p.SONO))
-                                                              .Read(read => read.Action("ListSoReviewPlannerRead", "SOReview"))
+                                                              .Read(read => read.Action("ListSoReviewPlannerRead", "SOReview",new { isFilter = false }))
                                                           ))
         </div>
     </div>
@@ -211,7 +224,7 @@
                     if (item.TBD == true && (item.PlanShipDate != null && item.PlanShipDate != "")) {
                         isSave = false;
                     }
-                    else {
+                    else if (item.PlanShipDate != null && item.TBD == false) {
                         arrResult.push(item)
                     }
                     })
@@ -334,7 +347,16 @@
                     dataItem.set('TBD', checked);
                 })
             })
-
+     $('#view-review').on('click', function () {
+        let Grid = $("#gridSoReview").data("kendoGrid");
+        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=true';
+        Grid.dataSource.read();
+    })
+     $('#view-all').on('click', function () {
+        let Grid = $("#gridSoReview").data("kendoGrid");
+        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=false';
+        Grid.dataSource.read();
+    })
 </script>
 
 

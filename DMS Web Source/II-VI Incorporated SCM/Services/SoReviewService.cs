@@ -84,8 +84,8 @@ namespace II_VI_Incorporated_SCM.Services
 
 
         #region New Requirement
-        List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart);
-        List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart);
+        List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,bool isFilter);
+        List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, bool isFilter);
         Result UpdateDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
 
         List<SelectListItem> GetDropdownlistSOreview();
@@ -904,76 +904,168 @@ namespace II_VI_Incorporated_SCM.Services
 
         #region Update Lst Data
 
-        public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart)
+        public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,bool isFilter)
         {
             bool? flag = null;
-            var data = (from a in _db.tbl_SOR_Cur_Review_List
-                        join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
-                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart && b.RESULT != "N/A")
-                        select new ListSOItemReviewModel
-                        {
-                            SONO = a.SO_NO,
-                            ItemReview = b.ITEM_REVIEW,
-                            ReviewResult = b.RESULT == null ? flag : ( b.RESULT =="1" ? true : false),
-                            ReviewResultText = b.RESULT,
-                            Comment = b.COMMENT,
-                            LastReview = null,
-                            LastComment = null,
-                            ID = b.ITEM_REVIEW_ID,
-                            IsLock = b.ISLOCK,
-                            DateDownLoad = b.DOWNLOAD_DATE
+            if (isFilter)
+            {
+                var data = (from a in _db.tbl_SOR_Cur_Review_List
+                            join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
+                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart && b.RESULT != "N/A" && b.RESULT == null)
+                            select new ListSOItemReviewModel
+                            {
+                                SONO = a.SO_NO,
+                                ItemReview = b.ITEM_REVIEW,
+                                ReviewResult = b.RESULT == null ? flag : (b.RESULT == "Y" ? true : false),
+                                ReviewResultText = b.RESULT,
+                                Comment = b.COMMENT,
+                                LastReview = null,
+                                LastComment = null,
+                                ID = b.ITEM_REVIEW_ID,
+                                IsLock = b.ISLOCK,
+                                DateDownLoad = b.DOWNLOAD_DATE
 
-                        }).Distinct().ToList();
-            return data;
+                            }).Distinct().ToList();
+                return data;
+            }
+            else
+            {
+                var data = (from a in _db.tbl_SOR_Cur_Review_List
+                            join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
+                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart && b.RESULT != "N/A")
+                            select new ListSOItemReviewModel
+                            {
+                                SONO = a.SO_NO,
+                                ItemReview = b.ITEM_REVIEW,
+                                ReviewResult = b.RESULT == null ? flag : (b.RESULT == "Y" ? true : false),
+                                ReviewResultText = b.RESULT,
+                                Comment = b.COMMENT,
+                                LastReview = null,
+                                LastComment = null,
+                                ID = b.ITEM_REVIEW_ID,
+                                IsLock = b.ISLOCK,
+                                DateDownLoad = b.DOWNLOAD_DATE
+
+                            }).Distinct().ToList();
+                return data;
+            }
         }
         #endregion
 
-        public List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart)
+        public List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, bool isFilter)
         {
-            var data = (from a in _db.tbl_SOR_Cur_Review_List
-                        join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
-                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO && a.LINE == b.LINE && b.RESULT != "N/A")
-                        select new ListSOItemReviewModel
-                        {
-                            SONO = a.SO_NO,
-                            ItemReview = b.ITEM_REVIEW,
-                            ReviewResultText = b.RESULT == null ? null : b.RESULT == "1" ? "True" : "False",
-                            Comment = a.COMMENT,
-                            Line = b.LINE,
-                            DateDownLoad = a.DOWNLOAD_DATE,
-                            PlanShipDate = a.PLAN_SHIP_DATE,
-                            TBD = a.TBD == "TBD" ? true : false,
-                            ID = a.REVIEW_ID,
-                            ResolutionOwner = a.ResolutionOwner
-                        }).ToList();
-            var datasFinal = (from cc in data
-                              group cc by new
-                              {
-                                  cc.SONO,
-                                  cc.Line
-                              }
-                         into myGroup
-                              select new ListSOItemReviewModel
-                              {
-                                  ID = myGroup.Max(x=>x.ID),
-                                  SONO = myGroup.Key.SONO,
-                                  Comment = myGroup.Max(x => x.Comment),
-                                  Line = myGroup.Max(x => x.Line),
-                                  DateDownLoad = myGroup.Max(x => x.DateDownLoad),
-                                  PlanShipDate = myGroup.Max(x => x.PlanShipDate),
-                                  TBD = myGroup.Max(x => x.TBD),
-                                  ResolutionOwner = myGroup.Max(x=>x.ResolutionOwner),
-                                  #region list item Review
-                                  CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResultText),
-                                  Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity ").Max(x => x.ReviewResultText),
-                                  RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResultText),
-                                  Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResultText),
-                                  Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResultText),
-                                  ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResultText),
-                                  Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
-                                  #endregion
-                              }).Distinct().ToList();
-            return datasFinal;
+            if (isFilter)
+            {
+                var data = (from a in _db.tbl_SOR_Cur_Review_List
+                            join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
+                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO && a.LINE == b.LINE && b.RESULT != "N/A" && (a.PLAN_SHIP_DATE == null && a.TBD == null))
+                            select new ListSOItemReviewModel
+                            {
+                                SONO = a.SO_NO,
+                                ItemReview = b.ITEM_REVIEW,
+                                ReviewResultText = b.RESULT == null ? null : b.RESULT == "Y" ? "True" : "False",
+                                Comment = a.COMMENT,
+                                Line = b.LINE,
+                                DateDownLoad = a.DOWNLOAD_DATE,
+                                PlanShipDate = a.PLAN_SHIP_DATE,
+                                TBD = a.TBD == "TBD" ? true : false,
+                                ID = a.REVIEW_ID,
+                                Allcomment = b.COMMENT,
+                                ResolutionOwner = a.ResolutionOwner
+                            }).ToList();
+                var datasFinal = (from cc in data
+                                  group cc by new
+                                  {
+                                      cc.SONO,
+                                      cc.Line
+                                  }
+                             into myGroup
+                                  select new ListSOItemReviewModel
+                                  {
+                                      ID = myGroup.Max(x => x.ID),
+                                      SONO = myGroup.Key.SONO,
+                                      Comment = myGroup.Max(x => x.Comment),
+                                      Line = myGroup.Max(x => x.Line),
+                                      DateDownLoad = myGroup.Max(x => x.DateDownLoad),
+                                      PlanShipDate = myGroup.Max(x => x.PlanShipDate),
+                                      TBD = myGroup.Max(x => x.TBD),
+                                      ResolutionOwner = myGroup.Max(x => x.ResolutionOwner),
+                                      #region list item Review
+                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResultText),
+                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.Allcomment),
+                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.ReviewResultText),
+                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.Allcomment),
+                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResultText),
+                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.Allcomment),
+                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResultText),
+                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.Allcomment),
+                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResultText),
+                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.Allcomment),
+                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResultText),
+                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
+                                      .Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.Allcomment),
+                                      #endregion
+                                  }).Distinct().ToList();
+                return datasFinal;
+            }
+            else
+            {
+                var data = (from a in _db.tbl_SOR_Cur_Review_List
+                            join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
+                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO && a.LINE == b.LINE && b.RESULT != "N/A")
+                            select new ListSOItemReviewModel
+                            {
+                                SONO = a.SO_NO,
+                                ItemReview = b.ITEM_REVIEW,
+                                ReviewResultText = b.RESULT == null ? null : b.RESULT == "Y" ? "True" : "False",
+                                Comment = a.COMMENT,
+                                Line = b.LINE,
+                                DateDownLoad = a.DOWNLOAD_DATE,
+                                PlanShipDate = a.PLAN_SHIP_DATE,
+                                TBD = a.TBD == "TBD" ? true : false,
+                                ID = a.REVIEW_ID,
+                                Allcomment = b.COMMENT,
+                                ResolutionOwner = a.ResolutionOwner
+                            }).ToList();
+                var datasFinal = (from cc in data
+                                  group cc by new
+                                  {
+                                      cc.SONO,
+                                      cc.Line
+                                  }
+                             into myGroup
+                                  select new ListSOItemReviewModel
+                                  {
+                                      ID = myGroup.Max(x => x.ID),
+                                      SONO = myGroup.Key.SONO,
+                                      Comment = myGroup.Max(x => x.Comment),
+                                      Line = myGroup.Max(x => x.Line),
+                                      DateDownLoad = myGroup.Max(x => x.DateDownLoad),
+                                      PlanShipDate = myGroup.Max(x => x.PlanShipDate),
+                                      TBD = myGroup.Max(x => x.TBD),
+                                      ResolutionOwner = myGroup.Max(x => x.ResolutionOwner),
+                                      #region list item Review
+                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResultText),
+                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.Allcomment),
+                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.ReviewResultText),
+                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.Allcomment),
+                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResultText),
+                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.Allcomment),
+                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResultText),
+                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.Allcomment),
+                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResultText),
+                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.Allcomment),
+                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResultText),
+                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
+                                      .Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.Allcomment),
+                                      #endregion
+                                  }).Distinct().ToList();
+                return datasFinal;
+            }
         }
 
 
@@ -1000,11 +1092,11 @@ namespace II_VI_Incorporated_SCM.Services
                     if (data != null)
                     {   if(picData.ReviewResult == true)
                         {
-                            data.RESULT = "1";
+                            data.RESULT = "Y";
                         }
                         else
                         {
-                            data.RESULT = "0";
+                            data.RESULT = "N";
                         }
                         data.COMMENT = picData.Comment;
                         _db.SaveChanges();
@@ -1046,11 +1138,14 @@ namespace II_VI_Incorporated_SCM.Services
         }
         public List<SelectListItem> GetDropdownItembySOreview(string soNo)
         {
-            List<SelectListItem> listuser = _db.tbl_SOR_Cur_Review_List.Where(x => x.REVIEW_STATUS != "Done" && x.SO_NO == soNo).Select(x => new SelectListItem
+            List<SelectListItem> listuser = (from  a in _db.tbl_SOR_Cur_Review_List 
+                                             join v in _db.tbl_SOR_Cur_Review_Detail  on a.REVIEW_ID equals v.ITEM_REVIEW_ID
+                                             where(a.REVIEW_STATUS != "Done" && a.SO_NO == soNo)
+                                             select( new SelectListItem
             {
-                Value = x.REVIEW_ID.ToString(),
-                Text = x.ITEM.Trim(),
-            }).Distinct().ToList();
+                Value = a.REVIEW_ID.ToString(),
+                Text = v.ITEM_REVIEW.Trim(),
+            })).Distinct().ToList();
             return listuser;
         }
         public List<SelectListItem> GetDropdownLinebySOreview(string soNo)

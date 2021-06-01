@@ -512,7 +512,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         {
             var idUser = User.Identity.GetUserId();
             var depart = _iSoReviewService.GetDepart(idUser);
-            var data = _iSoReviewService.GetListSOReviewByUserLogin(depart);
+            var data = _iSoReviewService.GetListSOReviewByUserLogin(depart, false);
             var date = DateTime.Now;
             if (data.Count > 0)
             {
@@ -523,11 +523,11 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             return View();
         }
 
-        public ActionResult ListSoReViewRead([DataSourceRequest] DataSourceRequest request)
+        public ActionResult ListSoReViewRead([DataSourceRequest] DataSourceRequest request,bool isFilter)
         {
              var idUser = User.Identity.GetUserId();
            var depart =  _iSoReviewService.GetDepart(idUser);
-            var data = _iSoReviewService.GetListSOReviewByUserLogin(depart);
+            var data = _iSoReviewService.GetListSOReviewByUserLogin(depart, isFilter);
             var date = DateTime.Now;
             if(data.Count > 0)
             {
@@ -561,9 +561,9 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             return View();
         }
         [AcceptVerbs("Get", "Post")]
-        public ActionResult ListSoReviewPlannerRead([DataSourceRequest] DataSourceRequest request)
+        public ActionResult ListSoReviewPlannerRead([DataSourceRequest] DataSourceRequest request, bool isFilter)
         {
-            var result = _iSoReviewService.GetListSOReviewByPlanner("");
+            var result = _iSoReviewService.GetListSOReviewByPlanner("", isFilter);
             return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
         public ActionResult ListTaskmanagementSOReview(string date)

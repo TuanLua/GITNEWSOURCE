@@ -33,18 +33,25 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public string Item { get; set; }
         public string Line { get; set; }
 
+        public string Allcomment { get; set; }
         public string ResolutionOwner { get; set; }
 
         #region Item Review List
         public string CoCofRoHS { get; set; }
+        public string CoCofRoHSComment { get; set; }
 
         public string Capacity { get; set; }
+        public string CapacityComment { get; set; }
         public string RawMaterial { get; set; }
+        public string RawMaterialComment { get; set; }
         public string Builtless { get; set; }
+        public string BuiltlessComment { get; set; }
         public string Carrier { get; set; }
+        public string CarrierComment { get; set; }
         public string ServiceTypeShipping { get; set; }
+        public string ServiceTypeShippingComment { get; set; }
         public string Special { get; set; }
-
+        public string SpecialComment { get; set; }
         #endregion
     }
 }
