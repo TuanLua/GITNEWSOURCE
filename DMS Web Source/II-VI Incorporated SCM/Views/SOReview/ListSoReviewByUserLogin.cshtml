@@ -220,6 +220,10 @@
                             bootbox.alert('Please contact to Administrator!');
                         }).always(function () {
                         });
+                    var $newOption1 = $("<option selected='selected'></option>").val("").text("");
+                    var $newOption2 = $("<option selected='selected'></option>").val("").text("");
+                    $("#soNo").append($newOption1).trigger('change');
+                    $("#soNoFile").append($newOption2).trigger('change');
                     $("#soNo").select2();
                     $("#soNoFile").select2();
 
