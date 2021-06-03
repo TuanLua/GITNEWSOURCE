@@ -36,6 +36,13 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public string Allcomment { get; set; }
         public string ResolutionOwner { get; set; }
 
+        public string SOHold { get; set; }
+
+        public string LastBuild { get; set; }
+
+        public string LastWeeks { get; set; }
+
+        public string DrawRevision { get; set; }
         #region Item Review List
         public string CoCofRoHS { get; set; }
         public string CoCofRoHSComment { get; set; }

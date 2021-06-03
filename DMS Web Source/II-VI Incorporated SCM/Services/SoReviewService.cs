@@ -971,7 +971,11 @@ namespace II_VI_Incorporated_SCM.Services
                                 TBD = a.TBD == "TBD" ? true : false,
                                 ID = a.REVIEW_ID,
                                 Allcomment = b.COMMENT,
-                                ResolutionOwner = a.ResolutionOwner
+                                ResolutionOwner = a.ResolutionOwner,
+                                SOHold = a.SO_ON_HOLD,
+                                DrawRevision = a.DR_REV,
+                               LastBuild = a.LAST_BUILD_DR_REV,
+                               LastWeeks = a.LAST_REVIEW_DR_REV
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -985,6 +989,10 @@ namespace II_VI_Incorporated_SCM.Services
                                       ID = myGroup.Max(x => x.ID),
                                       SONO = myGroup.Key.SONO,
                                       Comment = myGroup.Max(x => x.Comment),
+                                      SOHold = myGroup.Max(x => x.SOHold),
+                                      DrawRevision = myGroup.Max(x => x.DrawRevision),
+                                      LastBuild = myGroup.Max(x => x.LastBuild),
+                                      LastWeeks = myGroup.Max(x => x.LastWeeks),
                                       Line = myGroup.Max(x => x.Line),
                                       DateDownLoad = myGroup.Max(x => x.DateDownLoad),
                                       PlanShipDate = myGroup.Max(x => x.PlanShipDate),
@@ -1027,7 +1035,11 @@ namespace II_VI_Incorporated_SCM.Services
                                 TBD = a.TBD == "TBD" ? true : false,
                                 ID = a.REVIEW_ID,
                                 Allcomment = b.COMMENT,
-                                ResolutionOwner = a.ResolutionOwner
+                                ResolutionOwner = a.ResolutionOwner,
+                                SOHold = a.SO_ON_HOLD,
+                                DrawRevision = a.DR_REV,
+                                LastBuild = a.LAST_BUILD_DR_REV,
+                                LastWeeks = a.LAST_REVIEW_DR_REV
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -1041,6 +1053,10 @@ namespace II_VI_Incorporated_SCM.Services
                                       ID = myGroup.Max(x => x.ID),
                                       SONO = myGroup.Key.SONO,
                                       Comment = myGroup.Max(x => x.Comment),
+                                      SOHold = myGroup.Max(x => x.SOHold),
+                                      DrawRevision = myGroup.Max(x => x.DrawRevision),
+                                      LastBuild = myGroup.Max(x => x.LastBuild),
+                                      LastWeeks = myGroup.Max(x => x.LastWeeks),
                                       Line = myGroup.Max(x => x.Line),
                                       DateDownLoad = myGroup.Max(x => x.DateDownLoad),
                                       PlanShipDate = myGroup.Max(x => x.PlanShipDate),
