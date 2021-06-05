@@ -92,7 +92,7 @@ namespace II_VI_Incorporated_SCM.Controllers.ESuggestion
                     for (int j = 0; j < arrListFie.Length; j++)
                     {
 
-                            llstESuggestion[j].item_value += $"<br/> <a target='_blank' href='{Url.Action("DownloadFile", "ESuggestion", new { filename = arrListFie[i] })}' >{arrListFie[i]}</a>"; ;
+                            lstESuggestion[j].item_value += $"<br/> <a target='_blank' href='{Url.Action("DownloadFile", "ESuggestion", new { filename = arrListFie[i] })}' >{arrListFie[i]}</a>"; ;
                     }
                 }
             }
@@ -267,7 +267,7 @@ namespace II_VI_Incorporated_SCM.Controllers.ESuggestion
                     attach = new tbl_Inv_File_Attach();
                     attach.Att_Path = FileName;
                     attach.Sug_ID = model.Sug_ID;
-                    attach.Step = 5;
+               //     attach.Step = 5;
                     listAtt.Add(attach);
                 }
             }
