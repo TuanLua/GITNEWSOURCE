@@ -75,7 +75,7 @@
                                                           columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
                                                           columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
                                                           columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
-                                                      })
+                                                      }).ToolBar(tools => tools.Excel())
                                                       .Sortable()
                                                       .Scrollable()
                                                       .Editable(editable => editable.Mode(GridEditMode.InCell))

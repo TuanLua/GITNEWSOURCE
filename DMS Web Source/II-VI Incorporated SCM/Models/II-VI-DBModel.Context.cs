@@ -8058,13 +8058,13 @@ namespace II_VI_Incorporated_SCM.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SOR_SoReviewDetail_Result>("sp_SOR_SoReviewDetail", sonoParameter, downloadDateParameter);
         }
     
-        public virtual ObjectResult<sp_tbl_SOR_GetListSoreviewbyUserLogin_Result1> sp_tbl_SOR_GetListSoreviewbyUserLogin(string depart)
+        public virtual ObjectResult<sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2> sp_tbl_SOR_GetListSoreviewbyUserLogin(string depart)
         {
             var departParameter = depart != null ?
                 new ObjectParameter("Depart", depart) :
                 new ObjectParameter("Depart", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_tbl_SOR_GetListSoreviewbyUserLogin_Result1>("sp_tbl_SOR_GetListSoreviewbyUserLogin", departParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2>("sp_tbl_SOR_GetListSoreviewbyUserLogin", departParameter);
         }
     }
 }

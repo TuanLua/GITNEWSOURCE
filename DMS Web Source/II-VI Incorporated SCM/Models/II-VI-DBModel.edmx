@@ -8436,7 +8436,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <FunctionImport Name="sp_tbl_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result1)">
+          <FunctionImport Name="sp_tbl_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2)">
             <Parameter Name="Depart" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
@@ -14635,6 +14635,30 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <Property Type="String" Name="LAST_RESULT" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="LAST_COMMENT" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2">
+          <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+          <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+          <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+          <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="ITEM_REVIEW_ID" Nullable="false" />
+          <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+          <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+          <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+          <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ITEM_REVIEW" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="RESULT" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="COMMENT" Nullable="true" />
+          <Property Type="String" Name="LAST_RESULT" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="LAST_COMMENT" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -20381,7 +20405,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_tbl_SOR_GetListSoreviewbyUserLogin" FunctionName="IQCTestModel.Store.sp_tbl_SOR_GetListSoreviewbyUserLogin">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result1">
+              <ComplexTypeMapping TypeName="IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2">
                 <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
                 <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
                 <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
@@ -20390,6 +20414,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
                 <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
                 <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
                 <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
+                <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
                 <ScalarProperty Name="FAI" ColumnName="FAI" />
                 <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
                 <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />

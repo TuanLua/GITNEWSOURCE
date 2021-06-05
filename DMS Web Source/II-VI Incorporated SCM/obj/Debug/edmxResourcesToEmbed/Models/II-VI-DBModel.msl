@@ -5741,7 +5741,7 @@
     </AssociationSetMapping>
     <FunctionImportMapping FunctionImportName="sp_tbl_SOR_GetListSoreviewbyUserLogin" FunctionName="IQCTestModel.Store.sp_tbl_SOR_GetListSoreviewbyUserLogin">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result1">
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2">
           <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
           <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
           <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
@@ -5750,6 +5750,7 @@
           <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
           <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
           <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
+          <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
           <ScalarProperty Name="FAI" ColumnName="FAI" />
           <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
           <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />

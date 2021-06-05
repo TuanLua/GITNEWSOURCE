@@ -79,7 +79,7 @@
                                                              .Width(120).Editable("true");
                                                               columns.Bound(p => p.Special).Title("IM-EX-Special request (BSO, IOR, COO…)").Width(120).Editable("true");
                                                               columns.Bound(p => p.SpecialComment).Title("IM-EX - Comment").Width(120).Editable("true");
-                                                          })
+                                                          }).ToolBar(tools => tools.Excel())
                                                           .Sortable()
                                                           .Scrollable()
                                                           .Editable(editable => editable.Mode(GridEditMode.InCell))
@@ -358,6 +358,7 @@
                     var grid = $('#gridSoReview').data().kendoGrid;
                     var dataItem = grid.dataItem($(this).closest('tr'));
                     dataItem.set('TBD', checked);
+                    dataItem.set('PlanShipDate', null);
                 })
             })
      $('#view-review').on('click', function () {

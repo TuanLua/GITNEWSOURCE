@@ -923,8 +923,8 @@ namespace II_VI_Incorporated_SCM.Services
                              Comment = x.COMMENT,
                              LastReview = x.LAST_RESULT == null ? flag : (x.LAST_RESULT == "Y" ? true : false),
                              LastComment = x.LAST_COMMENT,
-                               // ID = x.ITEM_REVIEW,
-                               Key = x.SO_NO + x.ITEM + x.LINE,
+                              ID = x.ITEM_REVIEW_ID,
+                              Key = x.SO_NO + x.ITEM + x.LINE,
                              DateDownLoad = x.DOWNLOAD_DATE,
                              ReviewResult1 = x.RESULT == null ? flag : (x.RESULT == "N" ? true : false),
                              SOHold = x.SO_ON_HOLD,
@@ -956,8 +956,8 @@ namespace II_VI_Incorporated_SCM.Services
                         Comment = x.COMMENT,
                         LastReview = x.LAST_RESULT == null ? flag : (x.LAST_RESULT == "Y" ? true : false),
                         LastComment = x.LAST_COMMENT,
-                        //ID = x.ITEM_REVIEW,
-                        Key = x.SO_NO + x.ITEM + x.LINE,
+                         ID = x.ITEM_REVIEW_ID,
+                         Key = x.SO_NO + x.ITEM + x.LINE,
                         DateDownLoad = x.DOWNLOAD_DATE,
                         ReviewResult1 = x.RESULT == null ? flag : (x.RESULT == "N" ? true : false),
                         SOHold = x.SO_ON_HOLD,
@@ -1175,6 +1175,8 @@ namespace II_VI_Incorporated_SCM.Services
                             data.RESULT = "N";
                         }
                         data.COMMENT = picData.Comment;
+                        data.REVIEW_BY = idUser;
+                        data.REVIEW_AT = DateTime.Now;
                         _db.SaveChanges();
                         tranj.Commit();
                         return new Result
