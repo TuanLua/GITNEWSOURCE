@@ -907,48 +907,76 @@ namespace II_VI_Incorporated_SCM.Services
         public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,bool isFilter)
         {
             bool? flag = null;
+            var result = _db.sp_tbl_SOR_GetListSoreviewbyUserLogin(depart).ToList();
+            List<ListSOItemReviewModel> data = new List<ListSOItemReviewModel>();
             if (isFilter)
             {
-                var data = (from a in _db.tbl_SOR_Cur_Review_List
-                            join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
-                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart && b.RESULT != "N/A" && b.RESULT == null)
-                            select new ListSOItemReviewModel
-                            {
-                                SONO = a.SO_NO,
-                                ItemReview = b.ITEM_REVIEW,
-                                ReviewResult = b.RESULT == null ? flag : (b.RESULT == "Y" ? true : false),
-                                ReviewResultText = b.RESULT,
-                                Comment = b.COMMENT,
-                                LastReview = null,
-                                LastComment = null,
-                                ID = b.ITEM_REVIEW_ID,
-                                IsLock = b.ISLOCK,
-                                DateDownLoad = b.DOWNLOAD_DATE
-
-                            }).Distinct().ToList();
-                return data;
+                if(result != null)
+                {
+                    data =
+                         result.Where(x => x.RESULT != "N/A" && x.RESULT == null).Select(x => new ListSOItemReviewModel
+                         {
+                             SONO = x.SO_NO,
+                             ItemReview = x.ITEM_REVIEW,
+                             ReviewResult = x.RESULT == null ? flag : (x.RESULT == "Y" ? true : false),
+                             ReviewResultText = x.RESULT,
+                             Comment = x.COMMENT,
+                             LastReview = x.LAST_RESULT == null ? flag : (x.LAST_RESULT == "Y" ? true : false),
+                             LastComment = x.LAST_COMMENT,
+                               // ID = x.ITEM_REVIEW,
+                               Key = x.SO_NO + x.ITEM + x.LINE,
+                             DateDownLoad = x.DOWNLOAD_DATE,
+                             ReviewResult1 = x.RESULT == null ? flag : (x.RESULT == "N" ? true : false),
+                             SOHold = x.SO_ON_HOLD,
+                             DrawRevision = x.DR_REV,
+                             LastBuild = x.LAST_BUILD_DR_REV,
+                             LastWeeks = x.LAST_REVIEW_DR_REV,
+                             BalanceQty = x.BLC_QTY,
+                             BalanceValue = x.BLC_VALUE,
+                             ShipToLocation = x.SHIP_TO,
+                             NewSoReviewLW = x.NEW_REVIEW,
+                             FAI = x.FAI,
+                             OrderQty = x.ORD_QTY,
+                             RequiredDate = x.REQUIRED_DATE,
+                             ITEM = x.ITEM
+                         }).Distinct().ToList();
+                    return data;
+                }
             }
             else
             {
-                var data = (from a in _db.tbl_SOR_Cur_Review_List
-                            join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
-                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.LINE == b.LINE && b.DEPT_REVIEW == depart && b.RESULT != "N/A")
-                            select new ListSOItemReviewModel
-                            {
-                                SONO = a.SO_NO,
-                                ItemReview = b.ITEM_REVIEW,
-                                ReviewResult = b.RESULT == null ? flag : (b.RESULT == "Y" ? true : false),
-                                ReviewResultText = b.RESULT,
-                                Comment = b.COMMENT,
-                                LastReview = null,
-                                LastComment = null,
-                                ID = b.ITEM_REVIEW_ID,
-                                IsLock = b.ISLOCK,
-                                DateDownLoad = b.DOWNLOAD_DATE
-
-                            }).Distinct().ToList();
-                return data;
+                if(result != null)
+                {
+                     data = result.Where(x => x.RESULT != "N/A").Select(x => new ListSOItemReviewModel
+                    {
+                        SONO = x.SO_NO,
+                        ItemReview = x.ITEM_REVIEW,
+                        ReviewResult = x.RESULT == null ? flag : (x.RESULT == "Y" ? true : false),
+                        ReviewResultText = x.RESULT,
+                        Comment = x.COMMENT,
+                        LastReview = x.LAST_RESULT == null ? flag : (x.LAST_RESULT == "Y" ? true : false),
+                        LastComment = x.LAST_COMMENT,
+                        //ID = x.ITEM_REVIEW,
+                        Key = x.SO_NO + x.ITEM + x.LINE,
+                        DateDownLoad = x.DOWNLOAD_DATE,
+                        ReviewResult1 = x.RESULT == null ? flag : (x.RESULT == "N" ? true : false),
+                        SOHold = x.SO_ON_HOLD,
+                        DrawRevision = x.DR_REV,
+                        LastBuild = x.LAST_BUILD_DR_REV,
+                        LastWeeks = x.LAST_REVIEW_DR_REV,
+                        BalanceQty = x.BLC_QTY,
+                        BalanceValue = x.BLC_VALUE,
+                        ShipToLocation = x.SHIP_TO,
+                        NewSoReviewLW = x.NEW_REVIEW,
+                        FAI = x.FAI,
+                        OrderQty = x.ORD_QTY,
+                        RequiredDate = x.REQUIRED_DATE,
+                        ITEM = x.ITEM
+                    }).Distinct().ToList();
+                    return data;
+                }
             }
+            return data;
         }
         #endregion
 
@@ -975,7 +1003,15 @@ namespace II_VI_Incorporated_SCM.Services
                                 SOHold = a.SO_ON_HOLD,
                                 DrawRevision = a.DR_REV,
                                LastBuild = a.LAST_BUILD_DR_REV,
-                               LastWeeks = a.LAST_REVIEW_DR_REV
+                               LastWeeks = a.LAST_REVIEW_DR_REV,
+                                BalanceQty = a.BLC_QTY,
+                                BalanceValue = a.BLC_VALUE,
+                                ShipToLocation = a.SHIP_TO,
+                                NewSoReviewLW = a.NEW_REVIEW,
+                                FAI = a.FAI,
+                                OrderQty = a.ORD_QTY,
+                                RequiredDate = a.REQUIRED_DATE,
+                                ITEM = a.ITEM
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -993,6 +1029,14 @@ namespace II_VI_Incorporated_SCM.Services
                                       DrawRevision = myGroup.Max(x => x.DrawRevision),
                                       LastBuild = myGroup.Max(x => x.LastBuild),
                                       LastWeeks = myGroup.Max(x => x.LastWeeks),
+                                      BalanceQty = myGroup.Max(x => x.BalanceQty),
+                                      BalanceValue = myGroup.Max(x => x.BalanceValue),
+                                      ShipToLocation = myGroup.Max(x => x.ShipToLocation),
+                                      NewSoReviewLW = myGroup.Max(x => x.NewSoReviewLW),
+                                      FAI = myGroup.Max(x => x.FAI),
+                                      OrderQty = myGroup.Max(x => x.OrderQty),
+                                      RequiredDate = myGroup.Max(x => x.RequiredDate),
+                                      ITEM = myGroup.Max(x => x.ITEM),
                                       Line = myGroup.Max(x => x.Line),
                                       DateDownLoad = myGroup.Max(x => x.DateDownLoad),
                                       PlanShipDate = myGroup.Max(x => x.PlanShipDate),
@@ -1039,7 +1083,15 @@ namespace II_VI_Incorporated_SCM.Services
                                 SOHold = a.SO_ON_HOLD,
                                 DrawRevision = a.DR_REV,
                                 LastBuild = a.LAST_BUILD_DR_REV,
-                                LastWeeks = a.LAST_REVIEW_DR_REV
+                                LastWeeks = a.LAST_REVIEW_DR_REV,
+                                BalanceQty = a.BLC_QTY,
+                                BalanceValue = a.BLC_VALUE,
+                                ShipToLocation = a.SHIP_TO,
+                                NewSoReviewLW = a.NEW_REVIEW,
+                                FAI = a.FAI,
+                                OrderQty = a.ORD_QTY,
+                                RequiredDate = a.REQUIRED_DATE,
+                                ITEM = a.ITEM
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -1057,7 +1109,15 @@ namespace II_VI_Incorporated_SCM.Services
                                       DrawRevision = myGroup.Max(x => x.DrawRevision),
                                       LastBuild = myGroup.Max(x => x.LastBuild),
                                       LastWeeks = myGroup.Max(x => x.LastWeeks),
+                                      BalanceQty = myGroup.Max(x => x.BalanceQty),
+                                      BalanceValue = myGroup.Max(x => x.BalanceValue),
+                                      ShipToLocation = myGroup.Max(x => x.ShipToLocation),
+                                      NewSoReviewLW = myGroup.Max(x => x.NewSoReviewLW),
+                                      FAI = myGroup.Max(x => x.FAI),
+                                      OrderQty = myGroup.Max(x => x.OrderQty),
+                                      RequiredDate = myGroup.Max(x => x.RequiredDate),
                                       Line = myGroup.Max(x => x.Line),
+                                      ITEM = myGroup.Max(x => x.ITEM),
                                       DateDownLoad = myGroup.Max(x => x.DateDownLoad),
                                       PlanShipDate = myGroup.Max(x => x.PlanShipDate),
                                       TBD = myGroup.Max(x => x.TBD),

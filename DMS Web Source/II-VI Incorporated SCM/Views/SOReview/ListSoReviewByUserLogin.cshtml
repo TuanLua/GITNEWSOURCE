@@ -55,12 +55,26 @@
                                                       .Columns(columns =>
                                                       {
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
-                                                          columns.Bound(p => p.ItemReview).Title("Item Review").Width(400).Editable("true");
-                                                          columns.Bound(p => p.ReviewResult).Title("Review Result").Width(120).Editable("false");
-                                                          // columns.Bound(p => p.ReviewResultText).Title("Review Result").Width(120).Editable("false").ClientTemplate("#=ReviewResultText#");
+                                                          columns.Bound(p => p.ItemReview).Title("Item Review").Width(300).Editable("true");
+                                                          columns.Bound(p => p.ReviewResult).Title("Review Result Yes").Width(120).Editable("false")
+                                                          .Template(@<text></text>).ClientTemplate("<input type='radio' name='#=Key#'  #= ReviewResult == true ? checked='checked':'' # class='form-control ReviewResult' />");
+                                                          columns.Bound(p => p.ReviewResult1).Title("Review Result No").Width(120).Editable("false")
+                                                          .Template(@<text></text>).ClientTemplate("<input  name='#=Key#'  type='radio' #= ReviewResult1 == true ? checked='checked':'' # class='form-control ReviewResult1' />");;
                                                           columns.Bound(p=> p.Comment).Title("Comment").Width(200).Editable("false");
                                                           columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
                                                           columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");
+                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
+                                                          columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
+                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
+                                                          columns.Bound(p => p.NewSoReviewLW).Title("New SO vs last week").Width(100).Editable("true");
+                                                          columns.Bound(p => p.FAI).Title("FAI").Width(100).Editable("true");
+                                                          columns.Bound(p => p.LastBuild).Title("Last Build Dr Rev").Width(100).Editable("true");
+                                                          columns.Bound(p => p.LastWeeks).Title("Last week Drw Revison Ref ").Width(100).Editable("true");
+                                                          columns.Bound(p => p.DrawRevision).Title("Drw Revision(*)").Width(120).Editable("true");
+                                                          columns.Bound(p => p.RequiredDate).Title("Required Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
+                                                          columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
+                                                          columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
+                                                          columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
                                                       })
                                                       .Sortable()
                                                       .Scrollable()
@@ -82,6 +96,7 @@
         </div>
     </div>
 </div>
+ 
 <div id="popup" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -179,11 +194,11 @@
 </div>
 @*@Html.Partial("ResultpartialView");*@
 @*@(Html.Kendo().DropDownList()
-    .Name("ReviewResultText") // The name of the widget has to be the same as the name of the property.
-    .DataValueField("Value") // The value of the drop-down is taken from the EmployeeID property.
-    .DataTextField("Text") // The text of the items is taken from the EmployeeName property.
-    .BindTo((System.Collections.IEnumerable)ViewData["ReviewResultText"]) // A list of all employees which is populated in the controller.
-)*@
+        .Name("ReviewResultText") // The name of the widget has to be the same as the name of the property.
+        .DataValueField("Value") // The value of the drop-down is taken from the EmployeeID property.
+        .DataTextField("Text") // The text of the items is taken from the EmployeeName property.
+        .BindTo((System.Collections.IEnumerable)ViewData["ReviewResultText"]) // A list of all employees which is populated in the controller.
+    )*@
 <script>
     var isSave = true;
     var message = "";
@@ -256,11 +271,11 @@
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
              var arrResult = [];
         data.forEach(function (item) {
-            if (item.ReviewResult == false && (item.Comment == null || item.Comment == "")) {
+            if (item.ReviewResult1 == true && (item.Comment == null || item.Comment == "")) {
                 isSave = false;
                 message = "Please input Comment for Item result is false!";
             }
-            else if (item.ReviewResult != null) {
+            else if (item.ReviewResult != null && item.ReviewResult1 != null) {
                 arrResult.push(item)
             }
             })
@@ -472,5 +487,25 @@
         let Grid = $("#gridSoReview").data("kendoGrid");
         Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=false';
         Grid.dataSource.read();
+     })
+
+
+    $(function () {
+        $('#gridSoReview').on('click', '.ReviewResult', function () {
+            var checked = $(this).is(':checked');
+            var grid = $('#gridSoReview').data().kendoGrid;
+            var dataItem = grid.dataItem($(this).closest('tr'));
+            dataItem.set('ReviewResult', checked);
+            dataItem.set('ReviewResult1', false);
+        })
+    })
+    $(function () {
+        $('#gridSoReview').on('click', '.ReviewResult1', function () {
+            var checked = $(this).is(':checked');
+            var grid = $('#gridSoReview').data().kendoGrid;
+            var dataItem = grid.dataItem($(this).closest('tr'));
+            dataItem.set('ReviewResult1', checked);
+            dataItem.set('ReviewResult', false);
+        })
     })
 </script>

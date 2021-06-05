@@ -1188,6 +1188,12 @@
     <Compile Include="Models\sp_Task_Statistical_ByUser_Result.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_tbl_SOR_GetListSoreviewbyUserLogin_Result.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_tbl_SOR_GetListSoreviewbyUserLogin_Result1.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\STATUS.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>

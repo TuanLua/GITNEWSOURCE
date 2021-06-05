@@ -5739,5 +5739,32 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_tbl_SOR_GetListSoreviewbyUserLogin" FunctionName="IQCTestModel.Store.sp_tbl_SOR_GetListSoreviewbyUserLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result1">
+          <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+          <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+          <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
+          <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
+          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
+          <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
+          <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
+          <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
+          <ScalarProperty Name="FAI" ColumnName="FAI" />
+          <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
+          <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
+          <ScalarProperty Name="LINE" ColumnName="LINE" />
+          <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
+          <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
+          <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="ITEM_REVIEW" ColumnName="ITEM_REVIEW" />
+          <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="LAST_RESULT" ColumnName="LAST RESULT" />
+          <ScalarProperty Name="LAST_COMMENT" ColumnName="LAST COMMENT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

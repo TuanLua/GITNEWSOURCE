@@ -27,10 +27,10 @@
 </style>
 <h3>Review SO by Planner </h3>
 <div class="container-fluid" style="text-align:right">
-     @if (ViewBag.IsPlanner == true)
-      {
+     @*@if (ViewBag.IsPlanner == true)
+      {*@
     <button class="btn btn-sm btn-success" id="save">Save</button>
-      }
+      @*}*@
 </div>
 <div class="col-sm-6" style="text-align:left">
     <button class="btn btn-sm btn-info" id="view-review">List Review</button>
@@ -52,25 +52,33 @@
                                                               columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("false");
                                                               columns.Bound(p => p.Comment).Title("Planner Comment").Width(250).Editable("false");
                                                               columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
+                                                              columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
+                                                              columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
+                                                              columns.Bound(p => p.NewSoReviewLW).Title("New SO vs last week").Width(100).Editable("true");
+                                                              columns.Bound(p => p.FAI).Title("FAI").Width(100).Editable("true");
                                                               columns.Bound(p => p.LastBuild).Title("Last Build Dr Rev").Width(100).Editable("true");
                                                               columns.Bound(p => p.LastWeeks).Title("Last week Drw Revison Ref ").Width(100).Editable("true");
                                                               columns.Bound(p => p.DrawRevision).Title("Drw Revision(*)").Width(120).Editable("true");
+                                                              columns.Bound(p => p.RequiredDate).Title("Required Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
+                                                              columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
+                                                              columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
+                                                              columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
                                                               columns.Bound(p => p.CoCofRoHS).Title("IQC-CoC of RoHS, Reach").Width(120).Editable("true");
-                                                              columns.Bound(p => p.CoCofRoHSComment).Title("IQC-CoCofRoHS Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.CoCofRoHSComment).Title("IQC - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.Capacity).Title("PIC-Capacity").Width(120).Editable("true");
-                                                              columns.Bound(p => p.CapacityComment).Title("PIC-Capacity Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.CapacityComment).Title("PIC - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.RawMaterial).Title("PIC-Raw Material & consumable").Width(120).Editable("true");
-                                                              columns.Bound(p => p.RawMaterialComment).Title("PIC-Raw Material & consumable Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.RawMaterialComment).Title("PIC - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.Builtless).Title("PIC-Built less than 6 months").Width(120).Editable("true");
-                                                              columns.Bound(p => p.BuiltlessComment).Title("PIC-Built less than 6 months Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.BuiltlessComment).Title("PIC - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.Carrier).Title("IM-EX-Carrier (Fedex, DHL, Schenker,…)").Width(120).Editable("true");
-                                                              columns.Bound(p => p.CarrierComment).Title("IM-EX-Carrier (Fedex, DHL, Schenker,…) Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.CarrierComment).Title("IM-EX - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.ServiceTypeShipping).Title("IM-EX-Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
                                                               .Width(120).Editable("true");
-                                                              columns.Bound(p => p.ServiceTypeShippingComment).Title("IM-EX-Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…) Comment")
+                                                              columns.Bound(p => p.ServiceTypeShippingComment).Title("IM-EX - Comment")
                                                              .Width(120).Editable("true");
                                                               columns.Bound(p => p.Special).Title("IM-EX-Special request (BSO, IOR, COO…)").Width(120).Editable("true");
-                                                              columns.Bound(p => p.SpecialComment).Title("IM-EX-Special request (BSO, IOR, COO…) Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.SpecialComment).Title("IM-EX - Comment").Width(120).Editable("true");
                                                           })
                                                           .Sortable()
                                                           .Scrollable()
@@ -221,6 +229,7 @@
                 data.forEach(function (item) {
                     var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
                     item.DateDownLoad = partdate;
+                    debugger
                     if (item.PlanShipDate != null) {
                         var parstDate = convertUTCDateToLocalDate(item.PlanShipDate);
                         item.PlanShipDate = parstDate;
@@ -228,7 +237,7 @@
                     if (item.TBD == true && (item.PlanShipDate != null && item.PlanShipDate != "")) {
                         isSave = false;
                     }
-                    else if (item.PlanShipDate != null && item.TBD == false) {
+                    else if ((item.PlanShipDate != null && item.TBD == false) || item.TBD == true ) {
                         arrResult.push(item)
                     }
                     })
