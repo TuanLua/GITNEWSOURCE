@@ -8066,5 +8066,14 @@ namespace II_VI_Incorporated_SCM.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2>("sp_tbl_SOR_GetListSoreviewbyUserLogin", departParameter);
         }
+    
+        public virtual ObjectResult<sp_SOR_GetListSoreviewbyUserLogin_Result> sp_SOR_GetListSoreviewbyUserLogin(string depart)
+        {
+            var departParameter = depart != null ?
+                new ObjectParameter("Depart", depart) :
+                new ObjectParameter("Depart", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SOR_GetListSoreviewbyUserLogin_Result>("sp_SOR_GetListSoreviewbyUserLogin", departParameter);
+        }
     }
 }

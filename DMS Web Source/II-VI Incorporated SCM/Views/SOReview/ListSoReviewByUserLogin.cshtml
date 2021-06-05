@@ -57,9 +57,9 @@
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
                                                           columns.Bound(p => p.ItemReview).Title("Item Review").Width(300).Editable("true");
                                                           columns.Bound(p => p.ReviewResult).Title("Review Result Yes").Width(120).Editable("false")
-                                                          .Template(@<text></text>).ClientTemplate("<input type='radio' name='#=Key#'  #= ReviewResult == true ? checked='checked':'' # class='form-control ReviewResult' />");
+                                                          .Template(@<text></text>).ClientTemplate("<input type='radio' name='#=ID#'  #= ReviewResult == true ? checked='checked':'' # class='form-control ReviewResult' />");
                                                           columns.Bound(p => p.ReviewResult1).Title("Review Result No").Width(120).Editable("false")
-                                                          .Template(@<text></text>).ClientTemplate("<input  name='#=Key#'  type='radio' #= ReviewResult1 == true ? checked='checked':'' # class='form-control ReviewResult1' />");;
+                                                          .Template(@<text></text>).ClientTemplate("<input  name='#=ID#'  type='radio' #= ReviewResult1 == true ? checked='checked':'' # class='form-control ReviewResult1' />");;
                                                           columns.Bound(p=> p.Comment).Title("Comment").Width(200).Editable("false");
                                                           columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
                                                           columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");

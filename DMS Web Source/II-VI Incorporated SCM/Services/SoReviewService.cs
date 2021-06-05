@@ -907,7 +907,7 @@ namespace II_VI_Incorporated_SCM.Services
         public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,bool isFilter)
         {
             bool? flag = null;
-            var result = _db.sp_tbl_SOR_GetListSoreviewbyUserLogin(depart).ToList();
+            var result = _db.sp_SOR_GetListSoreviewbyUserLogin(depart).ToList();
             List<ListSOItemReviewModel> data = new List<ListSOItemReviewModel>();
             if (isFilter)
             {
