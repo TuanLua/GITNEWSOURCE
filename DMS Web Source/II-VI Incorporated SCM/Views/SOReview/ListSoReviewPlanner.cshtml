@@ -33,7 +33,8 @@
       @*}*@
 </div>
 <div class="col-sm-6" style="text-align:left">
-    <button class="btn btn-sm btn-info" id="view-review">List Review</button>
+    <button class="btn btn-sm btn-warning" id="reviewed">Reviewed</button>
+    <button class="btn btn-sm btn-info" id="view-review">Not Yead Review</button>
     <button class="btn btn-sm btn-success" id="view-all">View All</button>
 </div>
 <div class="container-fluid">
@@ -364,14 +365,19 @@
             })
      $('#view-review').on('click', function () {
         let Grid = $("#gridSoReview").data("kendoGrid");
-        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=true';
+         Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=NotReview';
         Grid.dataSource.read();
     })
      $('#view-all').on('click', function () {
         let Grid = $("#gridSoReview").data("kendoGrid");
-        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=false';
+         Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=All';
         Grid.dataSource.read();
-    })
+     })
+     $('#reviewed').on('click', function () {
+        let Grid = $("#gridSoReview").data("kendoGrid");
+        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=Reviewed';
+        Grid.dataSource.read();
+     })
 </script>
 
 

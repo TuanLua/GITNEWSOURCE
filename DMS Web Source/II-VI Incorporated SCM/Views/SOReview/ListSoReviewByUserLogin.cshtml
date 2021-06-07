@@ -42,7 +42,8 @@
 <br />
 <div class="container-fluid row">
     <div class="col-sm-6" style="text-align:left">
-        <button class="btn btn-sm btn-info" id="view-review">List Review</button>
+        <button class="btn btn-sm btn-warning" id="reviewed">Reviewed</button>
+        <button class="btn btn-sm btn-info" id="view-review">Not Yead Review</button>
         <button class="btn btn-sm btn-success" id="view-all">View All</button>
     </div>
 
@@ -56,9 +57,9 @@
                                                       {
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
                                                           columns.Bound(p => p.ItemReview).Title("Item Review").Width(300).Editable("true");
-                                                          columns.Bound(p => p.ReviewResult).Title("Review Result Yes").Width(120).Editable("false")
+                                                          columns.Bound(p => p.ReviewResult).Title("(Y) Result ").Width(120).Editable("false")
                                                           .Template(@<text></text>).ClientTemplate("<input type='radio' name='#=ID#'  #= ReviewResult == true ? checked='checked':'' # class='form-control ReviewResult' />");
-                                                          columns.Bound(p => p.ReviewResult1).Title("Review Result No").Width(120).Editable("false")
+                                                          columns.Bound(p => p.ReviewResult1).Title("(N) Result").Width(120).Editable("false")
                                                           .Template(@<text></text>).ClientTemplate("<input  name='#=ID#'  type='radio' #= ReviewResult1 == true ? checked='checked':'' # class='form-control ReviewResult1' />");;
                                                           columns.Bound(p=> p.Comment).Title("Comment").Width(200).Editable("false");
                                                           columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
@@ -92,7 +93,7 @@
                                                               .ServerOperation(false)
                                                             .Events(events => events.Error("error_handler"))
                                                           .Model(model => model.Id(p => p.SONO))
-                                                          .Read(read => read.Action("ListSoReViewRead", "SOReview",new {isFilter = false}))
+                                                          .Read(read => read.Action("ListSoReViewRead", "SOReview",new {isFilter = "All"}))
                                                       ))
         </div>
     </div>
@@ -481,15 +482,19 @@
     });
     $('#view-review').on('click', function () {
         let Grid = $("#gridSoReview").data("kendoGrid");
-        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=true';
+        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=NotReview';
         Grid.dataSource.read();
     })
      $('#view-all').on('click', function () {
         let Grid = $("#gridSoReview").data("kendoGrid");
-        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=false';
+        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=All';
         Grid.dataSource.read();
      })
-
+    $('#reviewed').on('click', function () {
+        let Grid = $("#gridSoReview").data("kendoGrid");
+        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=Reviewed';
+        Grid.dataSource.read();
+     })
 
     $(function () {
         $('#gridSoReview').on('click', '.ReviewResult', function () {

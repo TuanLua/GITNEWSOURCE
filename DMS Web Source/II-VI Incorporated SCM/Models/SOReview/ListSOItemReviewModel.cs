@@ -22,7 +22,7 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
 
         public string Comment { get; set; }
 
-        public bool? LastReview { get; set; }
+        public string LastReview { get; set; }
 
         public string LastComment { get; set; }
         [DataType(DataType.Date)]
@@ -48,7 +48,7 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
 
         public string ShipToLocation { get; set; }
 
-        public bool? NewSoReviewLW { get; set; }
+        public string NewSoReviewLW { get; set; }
 
         public string FAI { get; set; }
 
