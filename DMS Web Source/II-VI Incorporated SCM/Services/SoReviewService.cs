@@ -938,7 +938,8 @@ namespace II_VI_Incorporated_SCM.Services
                              FAI = x.FAI,
                              OrderQty = x.ORD_QTY,
                              RequiredDate = x.REQUIRED_DATE,
-                             ITEM = x.ITEM
+                             ITEM = x.ITEM,
+                             Analyst = x.ANALYST
                          }).Distinct().ToList();
                     return data;
                 }
@@ -971,7 +972,8 @@ namespace II_VI_Incorporated_SCM.Services
                         FAI = x.FAI,
                         OrderQty = x.ORD_QTY,
                         RequiredDate = x.REQUIRED_DATE,
-                        ITEM = x.ITEM
+                        ITEM = x.ITEM,
+                        Analyst = x.ANALYST
                     }).Distinct().ToList();
                     return data;
                 }
@@ -991,7 +993,7 @@ namespace II_VI_Incorporated_SCM.Services
                             {
                                 SONO = a.SO_NO,
                                 ItemReview = b.ITEM_REVIEW,
-                                ReviewResultText = b.RESULT == null ? null : b.RESULT == "Y" ? "True" : "False",
+                                ReviewResultText = b.RESULT == null ? null : b.RESULT == "Y" ? "Yes" : "No",
                                 Comment = a.COMMENT,
                                 Line = b.LINE,
                                 DateDownLoad = a.DOWNLOAD_DATE,
@@ -1011,7 +1013,8 @@ namespace II_VI_Incorporated_SCM.Services
                                 FAI = a.FAI,
                                 OrderQty = a.ORD_QTY,
                                 RequiredDate = a.REQUIRED_DATE,
-                                ITEM = a.ITEM
+                                ITEM = a.ITEM,
+                                Analyst = a.ANALYST
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -1071,7 +1074,7 @@ namespace II_VI_Incorporated_SCM.Services
                             {
                                 SONO = a.SO_NO,
                                 ItemReview = b.ITEM_REVIEW,
-                                ReviewResultText = b.RESULT == null ? null : b.RESULT == "Y" ? "True" : "False",
+                                ReviewResultText = b.RESULT == null ? null : b.RESULT == "Y" ? "Yes" : "No",
                                 Comment = a.COMMENT,
                                 Line = b.LINE,
                                 DateDownLoad = a.DOWNLOAD_DATE,
@@ -1091,7 +1094,8 @@ namespace II_VI_Incorporated_SCM.Services
                                 FAI = a.FAI,
                                 OrderQty = a.ORD_QTY,
                                 RequiredDate = a.REQUIRED_DATE,
-                                ITEM = a.ITEM
+                                ITEM = a.ITEM,
+                                Analyst = a.ANALYST
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -1106,6 +1110,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       SONO = myGroup.Key.SONO,
                                       Comment = myGroup.Max(x => x.Comment),
                                       SOHold = myGroup.Max(x => x.SOHold),
+                                      Analyst = myGroup.Max(x => x.Analyst),
                                       DrawRevision = myGroup.Max(x => x.DrawRevision),
                                       LastBuild = myGroup.Max(x => x.LastBuild),
                                       LastWeeks = myGroup.Max(x => x.LastWeeks),

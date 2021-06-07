@@ -51,6 +51,7 @@
                                                               .Template(@<text></text>).ClientTemplate("<input type='checkbox' #= TBD == true ? checked='checked':'' # class='form-control itemresult' />");
                                                               columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("false");
                                                               columns.Bound(p => p.Comment).Title("Planner Comment").Width(250).Editable("false");
+                                                              columns.Bound(p => p.Analyst).Title("Analyst").Width(200).Editable("true");
                                                               columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
                                                               columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
                                                               columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");

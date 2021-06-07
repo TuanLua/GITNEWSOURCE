@@ -63,6 +63,7 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
 
         public string Key { get; set; }
 
+        public string Analyst { get; set; }
         #endregion
 
         #region Item Review List
