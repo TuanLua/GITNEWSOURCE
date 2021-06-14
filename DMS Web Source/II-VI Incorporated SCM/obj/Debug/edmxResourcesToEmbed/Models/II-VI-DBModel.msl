@@ -4431,6 +4431,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_Review_Analyst">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Review_Analyst">
+        <MappingFragment StoreEntitySet="tbl_SOR_Review_Analyst">
+          <ScalarProperty Name="PIC" ColumnName="PIC" />
+          <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
+          <ScalarProperty Name="Ana_Inx" ColumnName="Ana_Inx" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbl_SOR_Review_Pic">
       <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Review_Pic">
         <MappingFragment StoreEntitySet="tbl_SOR_Review_Pic">

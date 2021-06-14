@@ -74,6 +74,10 @@ namespace II_VI_Incorporated_SCM.Services
         #endregion
         #region Analyst
         List<AnalystReviewmodel> GetListAnalyst();
+        Result DeleteDataAnalystReview(string id);
+        Result SaveDataAnalystReview(AnalystReviewmodel picData);
+
+        Result UpdateDataAnalystReview(AnalystReviewmodel picData, int picID);
         #endregion
 
         #region Report
@@ -878,29 +882,29 @@ namespace II_VI_Incorporated_SCM.Services
 
         public List<AnalystReviewmodel> GetListAnalyst()
         {
-            var picData = (from tbl in _db.tbl_SOR_Review_Pic
-                           join user in _db.AspNetUsers on tbl.Pic_Rv equals user.Id
+            var picData = (from tbl in _db.tbl_SOR_Review_Analyst
+                           join user in _db.AspNetUsers on tbl.PIC equals user.Id
                            select (new AnalystReviewmodel
                            {
 
-                               ID = tbl.Pic_Inx,
-                               Analyst = tbl.Dept_Rv,
+                               ID = tbl.Ana_Inx,
+                               Analyst = tbl.ANALYST,
                                Pic = user.FullName,
-                               PicID = tbl.Pic_Rv
+                               PicID = tbl.PIC
                            })).ToList();
             return picData;
         }
-        public Result SaveDataAnalystReview(PICReviewmodel picData)
+        public Result SaveDataAnalystReview(AnalystReviewmodel picData)
         {
             var _log = new LogWriter("AddData");
             using (var tranj = _db.Database.BeginTransaction())
             {
                 try
                 {
-                    var dataInsert = new tbl_SOR_Review_Pic();
-                    dataInsert.Dept_Rv = picData.Dept;
-                    dataInsert.Pic_Rv = picData.Pic;
-                    _db.tbl_SOR_Review_Pic.Add(dataInsert);
+                    var dataInsert = new tbl_SOR_Review_Analyst();
+                    dataInsert.ANALYST = picData.Analyst;
+                    dataInsert.PIC = picData.Pic;
+                    _db.tbl_SOR_Review_Analyst.Add(dataInsert);
                     _db.SaveChanges();
                     tranj.Commit();
                     return new Result
@@ -928,8 +932,8 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 try
                 {
-                    var checkData = _db.tbl_SOR_Review_Pic.FirstOrDefault(x => x.Pic_Inx.ToString().Trim() == id.Trim());
-                    _db.tbl_SOR_Review_Pic.Remove(checkData);
+                    var checkData = _db.tbl_SOR_Review_Analyst.FirstOrDefault(x => x.Ana_Inx.ToString().Trim() == id.Trim());
+                    _db.tbl_SOR_Review_Analyst.Remove(checkData);
                     _db.SaveChanges();
                     tranj.Commit();
                     return new Result
@@ -949,16 +953,16 @@ namespace II_VI_Incorporated_SCM.Services
                 }
             }
         }
-        public Result UpdateDataAnalystReview(PICReviewmodel picData, int picID)
+        public Result UpdateDataAnalystReview(AnalystReviewmodel picData, int picID)
         {
             var _log = new LogWriter("Updatedata");
             using (var tranj = _db.Database.BeginTransaction())
             {
                 try
                 {
-                    var data = _db.tbl_SOR_Review_Pic.Where(x => x.Pic_Inx == picID).FirstOrDefault();
-                    data.Dept_Rv = picData.Dept;
-                    data.Pic_Rv = picData.Pic;
+                    var data = _db.tbl_SOR_Review_Analyst.Where(x => x.Ana_Inx == picID).FirstOrDefault();
+                    data.ANALYST = picData.Analyst;
+                    data.PIC = picData.Pic;
                     _db.SaveChanges();
                     tranj.Commit();
                     return new Result

@@ -3332,6 +3332,14 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
           <Property Name="Item_Rv" Type="nvarchar" MaxLength="1000" />
           <Property Name="Default" Type="bit" />
         </EntityType>
+        <EntityType Name="tbl_SOR_Review_Analyst">
+          <Key>
+            <PropertyRef Name="Ana_Inx" />
+          </Key>
+          <Property Name="Ana_Inx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ANALYST" Type="nvarchar" MaxLength="50" />
+          <Property Name="PIC" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="tbl_SOR_Review_Pic">
           <Key>
             <PropertyRef Name="Pic_Inx" />
@@ -5807,6 +5815,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <EntitySet Name="tbl_SOR_His_Review_Detail" EntityType="Self.tbl_SOR_His_Review_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_His_Review_List" EntityType="Self.tbl_SOR_His_Review_List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_Item_Review" EntityType="Self.tbl_SOR_Item_Review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SOR_Review_Analyst" EntityType="Self.tbl_SOR_Review_Analyst" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_Review_Pic" EntityType="Self.tbl_SOR_Review_Pic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SQE_Ass_Period" EntityType="Self.tbl_SQE_Ass_Period" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SQE_Ass_Resp" EntityType="Self.tbl_SQE_Ass_Resp" Schema="dbo" store:Type="Tables" />
@@ -8853,6 +8862,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <EntitySet Name="tbl_SOR_His_Review_Detail" EntityType="IQCTestModel.tbl_SOR_His_Review_Detail" />
           <EntitySet Name="tbl_SOR_His_Review_List" EntityType="IQCTestModel.tbl_SOR_His_Review_List" />
           <EntitySet Name="tbl_SOR_Item_Review" EntityType="IQCTestModel.tbl_SOR_Item_Review" />
+          <EntitySet Name="tbl_SOR_Review_Analyst" EntityType="IQCTestModel.tbl_SOR_Review_Analyst" />
           <EntitySet Name="tbl_SOR_Review_Pic" EntityType="IQCTestModel.tbl_SOR_Review_Pic" />
           <EntitySet Name="tbl_SQE_Ass_Period" EntityType="IQCTestModel.tbl_SQE_Ass_Period" />
           <EntitySet Name="tbl_SQE_Ass_Resp" EntityType="IQCTestModel.tbl_SQE_Ass_Resp" />
@@ -13723,6 +13733,14 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <Property Name="Dept_Rv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Item_Rv" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Default" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_SOR_Review_Analyst">
+          <Key>
+            <PropertyRef Name="Ana_Inx" />
+          </Key>
+          <Property Name="Ana_Inx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ANALYST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PIC" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_SOR_Review_Pic">
           <Key>
@@ -19652,6 +19670,15 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
                 <ScalarProperty Name="Item_Rv" ColumnName="Item_Rv" />
                 <ScalarProperty Name="Dept_Rv" ColumnName="Dept_Rv" />
                 <ScalarProperty Name="Item_Idx" ColumnName="Item_Idx" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SOR_Review_Analyst">
+            <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Review_Analyst">
+              <MappingFragment StoreEntitySet="tbl_SOR_Review_Analyst">
+                <ScalarProperty Name="PIC" ColumnName="PIC" />
+                <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
+                <ScalarProperty Name="Ana_Inx" ColumnName="Ana_Inx" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

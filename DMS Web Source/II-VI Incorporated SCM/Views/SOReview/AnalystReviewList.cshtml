@@ -189,7 +189,7 @@
             callback: function (result) {
                 if (result) {
                       $.ajax({
-                        url: '@Url.Action("DeletePICReview", "SOReview")',
+                        url: '@Url.Action("DeleteAnalystReview", "SOReview")',
                         type: "POST",
                         data: {id:id },
                         dataType: "json",
@@ -252,7 +252,7 @@
                 callback: function (result) {
                     if (result) {
                         $.ajax({
-                            url: '@Url.Action("UpdatePICReview", "SoReview")',
+                            url: '@Url.Action("UpdateAnalystReview", "SoReview")',
                             type: "POST",
                             data: { id: id, dept: dept, pic: pic },
                             dataType: "json",
@@ -301,7 +301,7 @@
                 callback: function (result) {
                     if (result) {
                         $.ajax({
-                            url: '@Url.Action("SavePICReview", "SoReview")',
+                            url: '@Url.Action("SaveAnalystReview", "SoReview")',
                             type: "POST",
                             data: { dept: dept, pic: pic },
                             dataType: "json",
@@ -329,7 +329,7 @@
          var certificationdate ="";
         var duedate = "";
         let html = "<tr dept='" + certificationdate + "' pic='" + duedate + "'>" +
-            "<td><input class='form-control' name='dept'/> </td>" +
+            "<td><select class='form-control' name='analyst' id='analyst'><select/> </td>" +
             "<td><select class='form-control' name='pic' id='QMSDropdown'><select/> </td>" +
             "<td style='text-align:center; width:350px'><button class='btn btn-info btn-xs btn-save'>Save</button> <button class='btn btn-danger btn-xs btn-delete'>Delete</button></td>"+
              "</tr>";
@@ -339,6 +339,19 @@
              function (result) {
                     $.each(result, function (i, item) {
                         $('#QMSDropdown').append($('<option>', {
+                            value: item.Value,
+                            text: item.Text
+                        }));
+                    });
+                }).fail(function() {
+                    bootbox.alert('Please contact to Administrator!');
+                }).always(function() {
+                });
+        $('#analyst').select2();
+         $.post('@Url.Action("GetListUser", "SoReview")',
+             function (result) {
+                    $.each(result, function (i, item) {
+                        $('#analyst').append($('<option>', {
                             value: item.Value,
                             text: item.Text
                         }));

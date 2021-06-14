@@ -2356,6 +2356,7 @@
     <EntitySet Name="tbl_SOR_His_Review_Detail" EntityType="IQCTestModel.tbl_SOR_His_Review_Detail" />
     <EntitySet Name="tbl_SOR_His_Review_List" EntityType="IQCTestModel.tbl_SOR_His_Review_List" />
     <EntitySet Name="tbl_SOR_Item_Review" EntityType="IQCTestModel.tbl_SOR_Item_Review" />
+    <EntitySet Name="tbl_SOR_Review_Analyst" EntityType="IQCTestModel.tbl_SOR_Review_Analyst" />
     <EntitySet Name="tbl_SOR_Review_Pic" EntityType="IQCTestModel.tbl_SOR_Review_Pic" />
     <EntitySet Name="tbl_SQE_Ass_Period" EntityType="IQCTestModel.tbl_SQE_Ass_Period" />
     <EntitySet Name="tbl_SQE_Ass_Resp" EntityType="IQCTestModel.tbl_SQE_Ass_Resp" />
@@ -7226,6 +7227,14 @@
     <Property Name="Dept_Rv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Item_Rv" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Name="Default" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_Review_Analyst">
+    <Key>
+      <PropertyRef Name="Ana_Inx" />
+    </Key>
+    <Property Name="Ana_Inx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ANALYST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PIC" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbl_SOR_Review_Pic">
     <Key>

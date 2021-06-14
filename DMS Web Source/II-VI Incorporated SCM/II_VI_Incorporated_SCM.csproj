@@ -1384,6 +1384,9 @@
     <Compile Include="Models\tbl_SOR_Item_Review.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_SOR_Review_Analyst.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_SOR_Review_Pic.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>

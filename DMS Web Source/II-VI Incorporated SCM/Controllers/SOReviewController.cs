@@ -488,10 +488,10 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         [HttpPost]
         public JsonResult SaveAnalystReview(string dept, string pic)
         {
-            PICReviewmodel data = new PICReviewmodel();
-            data.Dept = dept;
+            AnalystReviewmodel data = new AnalystReviewmodel();
+            data.Analyst = dept;
             data.Pic = pic;
-            Result res = _iSoReviewService.SaveDataPICReview(data);
+            Result res = _iSoReviewService.SaveDataAnalystReview(data);
             return Json(new { res.success, message = "Create sucess!", obj = res.obj });
         }
 
@@ -499,10 +499,10 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         public JsonResult UpdateAnalystReview(string id, string dept, string pic)
         {
             int ID = Convert.ToInt32(id);
-            PICReviewmodel data = new PICReviewmodel();
-            data.Dept = dept;
+            AnalystReviewmodel data = new AnalystReviewmodel();
+            data.Analyst = dept;
             data.Pic = pic;
-            Result res = _iSoReviewService.UpdateDataPICReview(data, ID);
+            Result res = _iSoReviewService.UpdateDataAnalystReview(data, ID);
             return Json(new { res.success, message = "Create sucess!", obj = res.obj });
         }
 
@@ -510,8 +510,14 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         [HttpPost]
         public ActionResult DeleteAnalystReview(string id)
         {
-            Result res = _iSoReviewService.DeleteDataPICReview(id);
+            Result res = _iSoReviewService.DeleteDataAnalystReview(id);
             return Json(new { res.success, res.message }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult GetListAnalystReview(string SoNo)
+        {
+            var result = _iSoReviewService.GetDropdownLinebySOreview(SoNo);
+            return Json(result);
         }
 
         #endregion

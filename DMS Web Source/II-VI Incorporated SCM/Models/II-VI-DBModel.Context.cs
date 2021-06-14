@@ -178,6 +178,7 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual DbSet<tbl_SOR_His_Review_Detail> tbl_SOR_His_Review_Detail { get; set; }
         public virtual DbSet<tbl_SOR_His_Review_List> tbl_SOR_His_Review_List { get; set; }
         public virtual DbSet<tbl_SOR_Item_Review> tbl_SOR_Item_Review { get; set; }
+        public virtual DbSet<tbl_SOR_Review_Analyst> tbl_SOR_Review_Analyst { get; set; }
         public virtual DbSet<tbl_SOR_Review_Pic> tbl_SOR_Review_Pic { get; set; }
         public virtual DbSet<tbl_SQE_Ass_Period> tbl_SQE_Ass_Period { get; set; }
         public virtual DbSet<tbl_SQE_Ass_Resp> tbl_SQE_Ass_Resp { get; set; }
