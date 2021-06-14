@@ -72,6 +72,9 @@ namespace II_VI_Incorporated_SCM.Services
         #endregion
 
         #endregion
+        #region Analyst
+        List<AnalystReviewmodel> GetListAnalyst();
+        #endregion
 
         #region Report
         List<SelectListItem> GetdropdownPart();
@@ -88,6 +91,7 @@ namespace II_VI_Incorporated_SCM.Services
         List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter);
         Result UpdateDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
 
+        Result SubmitDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
         List<SelectListItem> GetDropdownlistSOreview();
 
         List<TaskmanagementViewmodel> GetListTaskSoreview(DateTime date);
@@ -98,7 +102,9 @@ namespace II_VI_Incorporated_SCM.Services
 
 
         Result UpdateDataPlannerSoReviewResult(ListSOItemReviewModel picData, string idUser);
+        Result SubmitDataPlannerSoReviewResult(ListSOItemReviewModel picData, string idUser);
 
+        Result ApproveDataPlannerSoReviewResult(ListSOItemReviewModel picData, string idUser);
         List<SelectListItem> GetDropdownLinebySOreview(string soNo);
         #endregion
     }
@@ -868,6 +874,113 @@ namespace II_VI_Incorporated_SCM.Services
         }
         #endregion
 
+        #region Analyst Review
+
+        public List<AnalystReviewmodel> GetListAnalyst()
+        {
+            var picData = (from tbl in _db.tbl_SOR_Review_Pic
+                           join user in _db.AspNetUsers on tbl.Pic_Rv equals user.Id
+                           select (new AnalystReviewmodel
+                           {
+
+                               ID = tbl.Pic_Inx,
+                               Analyst = tbl.Dept_Rv,
+                               Pic = user.FullName,
+                               PicID = tbl.Pic_Rv
+                           })).ToList();
+            return picData;
+        }
+        public Result SaveDataAnalystReview(PICReviewmodel picData)
+        {
+            var _log = new LogWriter("AddData");
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var dataInsert = new tbl_SOR_Review_Pic();
+                    dataInsert.Dept_Rv = picData.Dept;
+                    dataInsert.Pic_Rv = picData.Pic;
+                    _db.tbl_SOR_Review_Pic.Add(dataInsert);
+                    _db.SaveChanges();
+                    tranj.Commit();
+                    return new Result
+                    {
+                        success = true,
+                    };
+                }
+                catch (Exception ex)
+                {
+                    tranj.Rollback();
+                    _log.LogWrite(ex.ToString());
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception AddData!",
+                        obj = -1
+                    };
+                }
+            }
+        }
+
+        public Result DeleteDataAnalystReview(string id)
+        {
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var checkData = _db.tbl_SOR_Review_Pic.FirstOrDefault(x => x.Pic_Inx.ToString().Trim() == id.Trim());
+                    _db.tbl_SOR_Review_Pic.Remove(checkData);
+                    _db.SaveChanges();
+                    tranj.Commit();
+                    return new Result
+                    {
+                        message = "Delete success!",
+                        success = true,
+                    };
+                }
+                catch (Exception ex)
+                {
+                    return new Result
+                    {
+                        message = ex.ToString(),
+                        obj = ex,
+                        success = false
+                    };
+                }
+            }
+        }
+        public Result UpdateDataAnalystReview(PICReviewmodel picData, int picID)
+        {
+            var _log = new LogWriter("Updatedata");
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var data = _db.tbl_SOR_Review_Pic.Where(x => x.Pic_Inx == picID).FirstOrDefault();
+                    data.Dept_Rv = picData.Dept;
+                    data.Pic_Rv = picData.Pic;
+                    _db.SaveChanges();
+                    tranj.Commit();
+                    return new Result
+                    {
+                        success = true,
+                    };
+                }
+                catch (Exception ex)
+                {
+                    tranj.Rollback();
+                    _log.LogWrite(ex.ToString());
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception Updatedata!",
+                        obj = -1
+                    };
+                }
+            }
+        }
+
+        #endregion
         #endregion
 
         #region Report
@@ -939,7 +1052,8 @@ namespace II_VI_Incorporated_SCM.Services
                              OrderQty = x.ORD_QTY,
                              RequiredDate = x.REQUIRED_DATE,
                              ITEM = x.ITEM,
-                             Analyst = x.ANALYST
+                             Analyst = x.ANALYST,
+                             Line = x.LINE
                          }).Distinct().ToList();
                     return data;
                 }
@@ -973,8 +1087,9 @@ namespace II_VI_Incorporated_SCM.Services
                         OrderQty = x.ORD_QTY,
                         RequiredDate = x.REQUIRED_DATE,
                         ITEM = x.ITEM,
-                        Analyst = x.ANALYST
-                    }).Distinct().ToList();
+                        Analyst = x.ANALYST,
+                         Line = x.LINE
+                     }).Distinct().ToList();
                     return data;
                 }
             }
@@ -1006,7 +1121,8 @@ namespace II_VI_Incorporated_SCM.Services
                     OrderQty = x.ORD_QTY,
                     RequiredDate = x.REQUIRED_DATE,
                     ITEM = x.ITEM,
-                    Analyst = x.ANALYST
+                    Analyst = x.ANALYST,
+                    Line =  x.LINE
                 }).Distinct().ToList();
                 return data;
             }
@@ -1035,6 +1151,7 @@ namespace II_VI_Incorporated_SCM.Services
                                 Allcomment = b.COMMENT,
                                 ResolutionOwner = a.ResolutionOwner,
                                 SOHold = a.SO_ON_HOLD,
+                                PROMISE_DATE = a.PROMISE_DATE,
                                 DrawRevision = a.DR_REV,
                                LastBuild = a.LAST_BUILD_DR_REV,
                                LastWeeks = a.LAST_REVIEW_DR_REV,
@@ -1068,6 +1185,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       BalanceValue = myGroup.Max(x => x.BalanceValue),
                                       ShipToLocation = myGroup.Max(x => x.ShipToLocation),
                                       NewSoReviewLW = myGroup.Max(x => x.NewSoReviewLW),
+                                      PROMISE_DATE = myGroup.Max(x => x.PROMISE_DATE),
                                       FAI = myGroup.Max(x => x.FAI),
                                       OrderQty = myGroup.Max(x => x.OrderQty),
                                       RequiredDate = myGroup.Max(x => x.RequiredDate),
@@ -1115,6 +1233,7 @@ namespace II_VI_Incorporated_SCM.Services
                                 ID = a.REVIEW_ID,
                                 Allcomment = b.COMMENT,
                                 ResolutionOwner = a.ResolutionOwner,
+                                PROMISE_DATE = a.PROMISE_DATE,
                                 SOHold = a.SO_ON_HOLD,
                                 DrawRevision = a.DR_REV,
                                 LastBuild = a.LAST_BUILD_DR_REV,
@@ -1150,6 +1269,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       BalanceValue = myGroup.Max(x => x.BalanceValue),
                                       ShipToLocation = myGroup.Max(x => x.ShipToLocation),
                                       NewSoReviewLW = myGroup.Max(x => x.NewSoReviewLW),
+                                      PROMISE_DATE = myGroup.Max(x => x.PROMISE_DATE),
                                       FAI = myGroup.Max(x => x.FAI),
                                       OrderQty = myGroup.Max(x => x.OrderQty),
                                       RequiredDate = myGroup.Max(x => x.RequiredDate),
@@ -1199,6 +1319,7 @@ namespace II_VI_Incorporated_SCM.Services
                                 ResolutionOwner = a.ResolutionOwner,
                                 SOHold = a.SO_ON_HOLD,
                                 DrawRevision = a.DR_REV,
+                                PROMISE_DATE = a.PROMISE_DATE,
                                 LastBuild = a.LAST_BUILD_DR_REV,
                                 LastWeeks = a.LAST_REVIEW_DR_REV,
                                 BalanceQty = a.BLC_QTY,
@@ -1227,6 +1348,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       Analyst = myGroup.Max(x => x.Analyst),
                                       DrawRevision = myGroup.Max(x => x.DrawRevision),
                                       LastBuild = myGroup.Max(x => x.LastBuild),
+                                      PROMISE_DATE = myGroup.Max(x => x.PROMISE_DATE),
                                       LastWeeks = myGroup.Max(x => x.LastWeeks),
                                       BalanceQty = myGroup.Max(x => x.BalanceQty),
                                       BalanceValue = myGroup.Max(x => x.BalanceValue),
@@ -1283,6 +1405,7 @@ namespace II_VI_Incorporated_SCM.Services
                             obj = -1
                         };
                     }
+                     //udpate result detail 
                     var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID).FirstOrDefault();
                     if (data != null)
                     {   if(picData.ReviewResult == true)
@@ -1296,7 +1419,97 @@ namespace II_VI_Incorporated_SCM.Services
                         data.COMMENT = picData.Comment;
                         data.REVIEW_BY = idUser;
                         data.REVIEW_AT = DateTime.Now;
+
+                        //update status So reviewing
+                        var soReview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE == picData.Line).FirstOrDefault();
+                        if(soReview != null)
+                        {
+                            soReview.REVIEW_STATUS = "Reviewing";
+                        }
                         _db.SaveChanges();
+
+                        tranj.Commit();
+                        return new Result
+                        {
+                            success = true,
+                        };
+                    }
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception Updatedata!",
+                        obj = -1
+                    };
+                }
+                catch (Exception ex)
+                {
+                    tranj.Rollback();
+                    _log.LogWrite(ex.ToString());
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception Updatedata!",
+                        obj = -1
+                    };
+                }
+            }
+        }
+
+
+        public Result SubmitDataSoReviewResult(ListSOItemReviewModel picData, string idUser)
+        {
+            var _log = new LogWriter("Updatedata");
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    //udpate result detail 
+                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID).FirstOrDefault();
+                    if (data != null)
+                    {
+                        if (picData.ReviewResult == true)
+                        {
+                            data.RESULT = "Y";
+                        }
+                        else
+                        {
+                            data.RESULT = "N";
+                        }
+                        data.COMMENT = picData.Comment;
+                        data.REVIEW_BY = idUser;
+                        data.REVIEW_AT = DateTime.Now;
+                        data.ISSUBMIT = true;
+                        //update status So Review
+                        bool isSubmitted = true;
+                        var commentAll = "";
+                        var soReviewDetailList = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE == picData.Line).ToList();
+                        if (soReviewDetailList != null)
+                        {
+                            foreach (var item in soReviewDetailList)
+                            {
+                                if (item.RESULT == "N" || item.RESULT == null)
+                                {
+                                    isSubmitted = false;
+                                }
+                                commentAll += "_" + item.COMMENT;
+                            }
+                        }
+                        var soReview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE == picData.Line).FirstOrDefault();
+                        if (soReview != null)
+                        {
+                            if (isSubmitted)
+                            {
+                                soReview.REVIEW_STATUS = "Reviewed";
+                                soReview.PLAN_SHIP_DATE = soReview.PROMISE_DATE;
+                                soReview.COMMENT = commentAll;
+                            }
+                            else
+                            {
+                                soReview.REVIEW_STATUS = "Reviewed";
+                            }
+                        }
+                            _db.SaveChanges();
+
                         tranj.Commit();
                         return new Result
                         {
@@ -1501,10 +1714,91 @@ namespace II_VI_Incorporated_SCM.Services
                     var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim()).FirstOrDefault();
                     if (dataSoreview != null)
                     {
-                        
                         dataSoreview.ResolutionOwner = picData.ResolutionOwner;
                         dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
-                        dataSoreview.REVIEW_STATUS = "Done";
+                        dataSoreview.REVIEW_STATUS = "Reviewed";
+                        dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
+                        dataSoreview.COMMENT = picData.Comment;
+                        _db.SaveChanges();
+                        tranj.Commit();
+                        return new Result
+                        {
+                            success = true,
+                        };
+                    }
+                    else
+                        return new Result
+                        {
+                            success = false,
+                        };
+                }
+                catch (Exception ex)
+                {
+                    tranj.Rollback();
+                    _log.LogWrite(ex.ToString());
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception Updatedata!",
+                        obj = -1
+                    };
+                }
+            }
+        }
+        public Result SubmitDataPlannerSoReviewResult(ListSOItemReviewModel picData, string idUser)
+        {
+            var _log = new LogWriter("Updatedata");
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim()).FirstOrDefault();
+                    if (dataSoreview != null)
+                    {
+                        dataSoreview.ResolutionOwner = picData.ResolutionOwner;
+                        dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
+                        dataSoreview.REVIEW_STATUS = "Final Review";
+                        dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
+                        dataSoreview.COMMENT = picData.Comment;
+                        _db.SaveChanges();
+                        tranj.Commit();
+                        return new Result
+                        {
+                            success = true,
+                        };
+                    }
+                    else
+                        return new Result
+                        {
+                            success = false,
+                        };
+                }
+                catch (Exception ex)
+                {
+                    tranj.Rollback();
+                    _log.LogWrite(ex.ToString());
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception Updatedata!",
+                        obj = -1
+                    };
+                }
+            }
+        }
+      public Result  ApproveDataPlannerSoReviewResult(ListSOItemReviewModel picData, string idUser)
+        {
+            var _log = new LogWriter("Updatedata");
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim()).FirstOrDefault();
+                    if (dataSoreview != null)
+                    {
+                        dataSoreview.ResolutionOwner = picData.ResolutionOwner;
+                        dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
+                        dataSoreview.REVIEW_STATUS = "Approved";
                         dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
                         dataSoreview.COMMENT = picData.Comment;
                         _db.SaveChanges();

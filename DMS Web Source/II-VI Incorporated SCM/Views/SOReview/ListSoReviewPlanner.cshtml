@@ -27,10 +27,12 @@
 </style>
 <h3>Review SO by Planner </h3>
 <div class="container-fluid" style="text-align:right">
-     @*@if (ViewBag.IsPlanner == true)
-      {*@
-    <button class="btn btn-sm btn-success" id="save">Save</button>
-      @*}*@
+    @*@if (ViewBag.IsPlanner == true)
+        {*@
+    <button class="btn btn-sm btn-success" id="save">Save as Draft</button>
+    <button class="btn btn-sm btn-success" id="submit">Submit</button>
+    <button class="btn btn-sm btn-success" id="approve">Approve</button>
+    @*}*@
 </div>
 <div class="col-sm-6" style="text-align:left">
     <button class="btn btn-sm btn-warning" id="reviewed">Reviewed</button>
@@ -44,27 +46,26 @@
                                                           .Name("gridSoReview")
                                                           .Columns(columns =>
                                                           {
+                                                          columns.Bound(p => p.Analyst).Title("Analyst").Width(200).Editable("true");
                                                           columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
-                                                          columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(100).Format("{0:dd-MMM-yy}").Editable("true");
                                                           columns.Bound(p => p.Line).Title("Line").Width(100).Editable("true");
+                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
+                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
+                                                          columns.Bound(p => p.RequiredDate).Title("Required Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
+                                                          columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
+                                                          columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
+                                                          columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
+                                                          columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(100).Format("{0:dd-MMM-yy}").Editable("true");
                                                           columns.Bound(p => p.PlanShipDate).Title("Plan Ship Date").Width(200).Editable("false").Format("{0:dd-MMM-yy}");
                                                           columns.Bound(p => p.TBD).Title("TBD").Width(100).Editable("false")
                                                               .Template(@<text></text>).ClientTemplate("<input type='checkbox' #= TBD == true ? checked='checked':'' # class='form-control itemresult' />");
                                                               columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("false");
                                                               columns.Bound(p => p.Comment).Title("Planner Comment").Width(250).Editable("false");
-                                                              columns.Bound(p => p.Analyst).Title("Analyst").Width(200).Editable("true");
-                                                              columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
-                                                              columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
-                                                              columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
                                                               columns.Bound(p => p.NewSoReviewLW).Title("New SO vs last week").Width(100).Editable("true");
                                                               columns.Bound(p => p.FAI).Title("FAI").Width(100).Editable("true");
-                                                              columns.Bound(p => p.LastBuild).Title("Last Build Dr Rev").Width(100).Editable("true");
-                                                              columns.Bound(p => p.LastWeeks).Title("Last week Drw Revison Ref ").Width(100).Editable("true");
-                                                              columns.Bound(p => p.DrawRevision).Title("Drw Revision(*)").Width(120).Editable("true");
-                                                              columns.Bound(p => p.RequiredDate).Title("Required Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
-                                                              columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
-                                                              columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
-                                                              columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
+                                                              //columns.Bound(p => p.LastBuild).Title("Last Build Dr Rev").Width(100).Editable("true");
+                                                              //columns.Bound(p => p.LastWeeks).Title("Last week Drw Revison Ref ").Width(100).Editable("true");
+                                                              //columns.Bound(p => p.DrawRevision).Title("Drw Revision(*)").Width(120).Editable("true");
                                                               columns.Bound(p => p.CoCofRoHS).Title("IQC-CoC of RoHS, Reach").Width(120).Editable("true");
                                                               columns.Bound(p => p.CoCofRoHSComment).Title("IQC - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.Capacity).Title("PIC-Capacity").Width(120).Editable("true");
@@ -81,6 +82,8 @@
                                                              .Width(120).Editable("true");
                                                               columns.Bound(p => p.Special).Title("IM-EX-Special request (BSO, IOR, COO…)").Width(120).Editable("true");
                                                               columns.Bound(p => p.SpecialComment).Title("IM-EX - Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
+
                                                           }).ToolBar(tools => tools.Excel())
                                                           .Sortable()
                                                           .Scrollable()
@@ -378,6 +381,86 @@
         Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=Reviewed';
         Grid.dataSource.read();
      })
+
+      $('#submit').click(function () {
+          var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
+          var arrResult = [];
+          var isSave = true;
+          data.forEach(function (item) {
+              var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
+              item.DateDownLoad = partdate;
+              debugger
+              if (item.PlanShipDate != null) {
+                  var parstDate = convertUTCDateToLocalDate(item.PlanShipDate);
+                  item.PlanShipDate = parstDate;
+              }
+              if (item.TBD == true && (item.PlanShipDate != null && item.PlanShipDate != "")) {
+                  isSave = false;
+              }
+              else if ((item.PlanShipDate != null && item.TBD == false) || item.TBD == true) {
+                  arrResult.push(item)
+              }
+          })
+          var lstData = JSON.stringify(arrResult);
+          if (!isSave) {
+              bootbox.alert("Please input Plan Ship Date or check TBD (if uncheck TBD please input Plan Ship Date other value) !");
+              isSave = true;
+              return;
+          }
+          else {
+              $.blockUI();
+                 $.post('@Url.Action("SubmitDataPlannerSoReviewResult", "SoReview")', { lstData: lstData },
+                     function (result) {
+                         if (result) {
+                             bootbox.alert('Submit result sucess!', function () {
+                                            window.location.href = "@Url.Action("ListSoReviewPlanner", "SoReview")";
+                                        });
+                         }
+                         $.unblockUI();
+                     }).fail(function () {
+                         $.unblockUI();
+                         bootbox.alert('Please contact to Administrator!');
+                     }).always(function () {
+                         $.unblockUI();
+                     });
+             }
+      });
+      $('#approve').click(function () {
+             var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
+             var arrResult = [];
+        data.forEach(function (item) {
+            if (item.ReviewResult1 == true && (item.Comment == null || item.Comment == "")) {
+                isSave = false;
+                message = "Please input Comment for Item result is false!";
+            }
+            else if (item.ReviewResult != null && item.ReviewResult1 != null) {
+                arrResult.push(item)
+            }
+            })
+        var lstData = JSON.stringify(arrResult);
+             if (!isSave) {
+                 bootbox.alert(message);
+                 isSave = true;
+                 return;
+             }
+             else {
+                  $.blockUI();
+                 $.post('@Url.Action("AprroveDataPlannerSoReviewResult", "SoReview")', { lstData: lstData },
+                     function (result) {
+                         if (result) {
+                             bootbox.alert('Submit result sucess!', function () {
+                                            window.location.href = "@Url.Action("ListSoReviewPlanner", "SoReview")";
+                                        });
+                         }
+                         $.unblockUI();
+                     }).fail(function () {
+                         $.unblockUI();
+                         bootbox.alert('Please contact to Administrator!');
+                     }).always(function () {
+                         $.unblockUI();
+                     });
+             }
+        });
 </script>
 
 

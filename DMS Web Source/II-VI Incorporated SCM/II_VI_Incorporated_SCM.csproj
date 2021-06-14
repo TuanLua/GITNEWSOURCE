@@ -775,6 +775,7 @@
     <Compile Include="Models\SOReview\FileUploadSoviewmodel.cs" />
     <Compile Include="Models\SOReview\ItemReviewmodel.cs" />
     <Compile Include="Models\SOReview\ListSOItemReviewModel.cs" />
+    <Compile Include="Models\SOReview\AnalystReviewmodel.cs" />
     <Compile Include="Models\SOReview\PICReviewmodel.cs" />
     <Compile Include="Models\SOReview\SoReviewDetail.cs" />
     <Compile Include="Models\SplitString_Result.cs">
@@ -3974,6 +3975,7 @@
     <Content Include="Views\SOReview\ListTaskmanagementSOReview.cshtml" />
     <Content Include="Views\SOReview\ListFilemanagementSOReview.cshtml" />
     <Content Include="Views\SOReview\ResultpartialView.cshtml" />
+    <Content Include="Views\SOReview\AnalystReviewList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />

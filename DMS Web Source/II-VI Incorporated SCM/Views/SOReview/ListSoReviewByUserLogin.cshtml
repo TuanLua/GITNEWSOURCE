@@ -36,7 +36,8 @@
         <button class="btn btn-sm btn-info" id="add-task">Add Task</button>
         <button class="btn btn-sm btn-info" id="add-file">Add File</button>
 
-        <button class="btn btn-sm btn-success" id="save">Save</button>
+        <button class="btn btn-sm btn-success" id="save">Save as Draft</button>
+        <button class="btn btn-sm btn-success" id="submit">Submit</button>
     </div>
 </div>
 <br />
@@ -52,32 +53,33 @@
     <div class="row">
         <div class="col-xs-18 col-md-12">
             @(Html.Kendo().Grid<ListSOItemReviewModel>()
-                                                      .Name("gridSoReview")
-                                                      .Columns(columns =>
-                                                      {
-                                                          columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
-                                                          columns.Bound(p => p.ItemReview).Title("Item Review").Width(300).Editable("true");
-                                                          columns.Bound(p => p.ReviewResult).Title("(Y) Result ").Width(120).Editable("false")
-                                                          .Template(@<text></text>).ClientTemplate("<input type='radio' name='#=ID#'  #= ReviewResult == true ? checked='checked':'' # class='form-control ReviewResult' />");
+                                                  .Name("gridSoReview")
+                                                  .Columns(columns =>
+                                                  {
+                                                  columns.Bound(p => p.Analyst).Title("Analyst").Width(200).Editable("true");
+                                                  columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
+                                                  columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
+                                                  columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
+                                                  columns.Bound(p => p.RequiredDate).Title("Required Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
+                                                  columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
+                                                  columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
+                                                  columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
+                                                  columns.Bound(p => p.ItemReview).Title("Item Review").Width(300).Editable("true");
+                                                  columns.Bound(p => p.ReviewResult).Title("(Y) Result ").Width(120).Editable("false")
+                                                      .Template(@<text></text>).ClientTemplate("<input type='radio' name='#=ID#'  #= ReviewResult == true ? checked='checked':'' # class='form-control ReviewResult' />");
                                                           columns.Bound(p => p.ReviewResult1).Title("(N) Result").Width(120).Editable("false")
                                                           .Template(@<text></text>).ClientTemplate("<input  name='#=ID#'  type='radio' #= ReviewResult1 == true ? checked='checked':'' # class='form-control ReviewResult1' />");;
-                                                          columns.Bound(p=> p.Comment).Title("Comment").Width(200).Editable("false");
-                                                          columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
-                                                          columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");
-                                                          columns.Bound(p => p.Analyst).Title("Analyst").Width(200).Editable("true");
-                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
-                                                          columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
-                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
-                                                          columns.Bound(p => p.NewSoReviewLW).Title("New SO vs last week").Width(100).Editable("true");
-                                                          columns.Bound(p => p.FAI).Title("FAI").Width(100).Editable("true");
-                                                          columns.Bound(p => p.LastBuild).Title("Last Build Dr Rev").Width(100).Editable("true");
-                                                          columns.Bound(p => p.LastWeeks).Title("Last week Drw Revison Ref ").Width(100).Editable("true");
-                                                          columns.Bound(p => p.DrawRevision).Title("Drw Revision(*)").Width(120).Editable("true");
-                                                          columns.Bound(p => p.RequiredDate).Title("Required Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
-                                                          columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
-                                                          columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
-                                                          columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
-                                                      }).ToolBar(tools => tools.Excel())
+                                                      columns.Bound(p=> p.Comment).Title("Comment").Width(200).Editable("false");
+                                                      columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
+                                                      columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");
+                                                      columns.Bound(p => p.FAI).Title("FAI").Width(100).Editable("true");
+                                                      columns.Bound(p => p.NewSoReviewLW).Title("New SO vs last week").Width(100).Editable("true");
+                                                      columns.Bound(p => p.LastBuild).Title("Last Build Dr Rev").Width(100).Editable("true");
+                                                      columns.Bound(p => p.LastWeeks).Title("Last week Drw Revison Ref ").Width(100).Editable("true");
+                                                      columns.Bound(p => p.DrawRevision).Title("Drw Revision(*)").Width(120).Editable("true");
+                                                      columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
+                                                      columns.Bound(p => p.Line).Title("SO on hold").Width(0).Editable("true");
+                                                  }).ToolBar(tools => tools.Excel())
                                                       .Sortable()
                                                       .Scrollable()
                                                       .Editable(editable => editable.Mode(GridEditMode.InCell))
@@ -273,6 +275,9 @@
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
              var arrResult = [];
         data.forEach(function (item) {
+            var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
+            item.DateDownLoad = partdate;
+            debugger
             if (item.ReviewResult1 == true && (item.Comment == null || item.Comment == "")) {
                 isSave = false;
                 message = "Please input Comment for Item result is false!";
@@ -306,6 +311,48 @@
              }
         });
     });
+        $('#submit').click(function () {
+             var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
+             var arrResult = [];
+            data.forEach(function (item) {
+                var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
+                item.DateDownLoad = partdate;
+            if (item.ReviewResult1 == true && (item.Comment == null || item.Comment == "")) {
+                isSave = false;
+                message = "Please input Comment for Item result is false!";
+            }
+            else if (item.ReviewResult != null && item.ReviewResult1 != null) {
+                arrResult.push(item)
+            }
+            })
+        var lstData = JSON.stringify(arrResult);
+             if (!isSave) {
+                 bootbox.alert(message);
+                 isSave = true;
+                 return;
+             }
+             else {
+                  $.blockUI();
+                 $.post('@Url.Action("SubmitDataSoReviewResult", "SoReview")', { lstData: lstData },
+                     function (result) {
+                         if (result) {
+                             bootbox.alert('Submit result sucess!', function () {
+                                            window.location.href = "@Url.Action("ListSoReviewByUserLogin", "SoReview")";
+                                        });
+                         }
+                         $.unblockUI();
+                     }).fail(function () {
+                         $.unblockUI();
+                         bootbox.alert('Please contact to Administrator!');
+                     }).always(function () {
+                         $.unblockUI();
+                     });
+             }
+        });
+    function convertUTCDateToLocalDate(date) {
+        var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+        return newDate;
+    }
     $('#add-task').on('click', function () {
         $('#itemreview').val('');
         $('#user').val('');

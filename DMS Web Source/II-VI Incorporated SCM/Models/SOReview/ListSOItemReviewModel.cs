@@ -12,6 +12,8 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public string SONO { get; set; }
 
         public DateTime DateDownLoad { get; set; }
+
+        public DateTime? PROMISE_DATE { get; set; }
         public string ItemReview { get; set; }
 
         public string DeptReview { get; set; }

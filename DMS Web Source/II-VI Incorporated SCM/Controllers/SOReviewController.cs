@@ -476,6 +476,45 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         //}
         #endregion
 
+        #region Analyst ReView
+
+        public ActionResult AnalystReviewList()
+        {
+            ViewBag.IsPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.Planner);
+            var lstPIC = _iSoReviewService.GetListAnalyst();
+            return View(lstPIC);
+        }
+
+        [HttpPost]
+        public JsonResult SaveAnalystReview(string dept, string pic)
+        {
+            PICReviewmodel data = new PICReviewmodel();
+            data.Dept = dept;
+            data.Pic = pic;
+            Result res = _iSoReviewService.SaveDataPICReview(data);
+            return Json(new { res.success, message = "Create sucess!", obj = res.obj });
+        }
+
+        [HttpPost]
+        public JsonResult UpdateAnalystReview(string id, string dept, string pic)
+        {
+            int ID = Convert.ToInt32(id);
+            PICReviewmodel data = new PICReviewmodel();
+            data.Dept = dept;
+            data.Pic = pic;
+            Result res = _iSoReviewService.UpdateDataPICReview(data, ID);
+            return Json(new { res.success, message = "Create sucess!", obj = res.obj });
+        }
+
+
+        [HttpPost]
+        public ActionResult DeleteAnalystReview(string id)
+        {
+            Result res = _iSoReviewService.DeleteDataPICReview(id);
+            return Json(new { res.success, res.message }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
         #region New Code
 
         [HttpPost]
@@ -494,6 +533,21 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
            return Json(new { res.success, message = res.message, obj = res.obj });
         }
         [HttpPost]
+        public JsonResult SubmitDataSoReviewResult(string lstData)
+        {
+            var obj = JsonConvert.DeserializeObject<List<ListSOItemReviewModel>>(lstData);
+            Result res = new Result();
+            var idUser = User.Identity.GetUserId();
+            if (lstData != null && ModelState.IsValid)
+            {
+                foreach (var data in obj)
+                {
+                    res = _iSoReviewService.SubmitDataSoReviewResult(data, idUser);
+                }
+            }
+            return Json(new { res.success, message = res.message, obj = res.obj });
+        }
+        [HttpPost]
         public JsonResult SaveDataPlannerSoReviewResult(string lstData)
         {
             var obj = JsonConvert.DeserializeObject<List<ListSOItemReviewModel>>(lstData);
@@ -504,6 +558,36 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
                 foreach (var data in obj)
                 {
                     res = _iSoReviewService.UpdateDataPlannerSoReviewResult(data, idUser);
+                }
+            }
+            return Json(new { res.success, message = res.message, obj = res.obj });
+        }
+        [HttpPost]
+        public JsonResult SubmitDataPlannerSoReviewResult(string lstData)
+        {
+            var obj = JsonConvert.DeserializeObject<List<ListSOItemReviewModel>>(lstData);
+            Result res = new Result();
+            var idUser = User.Identity.GetUserId();
+            if (lstData != null && ModelState.IsValid)
+            {
+                foreach (var data in obj)
+                {
+                    res = _iSoReviewService.SubmitDataPlannerSoReviewResult(data, idUser);
+                }
+            }
+            return Json(new { res.success, message = res.message, obj = res.obj });
+        }
+        [HttpPost]
+        public JsonResult ApproveDataPlannerSoReviewResult(string lstData)
+        {
+            var obj = JsonConvert.DeserializeObject<List<ListSOItemReviewModel>>(lstData);
+            Result res = new Result();
+            var idUser = User.Identity.GetUserId();
+            if (lstData != null && ModelState.IsValid)
+            {
+                foreach (var data in obj)
+                {
+                    res = _iSoReviewService.ApproveDataPlannerSoReviewResult(data, idUser);
                 }
             }
             return Json(new { res.success, message = res.message, obj = res.obj });
