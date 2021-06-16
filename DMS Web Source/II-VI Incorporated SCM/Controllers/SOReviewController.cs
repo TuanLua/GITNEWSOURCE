@@ -226,7 +226,12 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             var result = _iSoReviewService.GetDropdownlistUser();
             return Json(result);
         }
-
+        [HttpPost]
+        public JsonResult GetListAnalyst()
+        {
+            var result = _iSoReviewService.GetDropdownlistAnalyst();
+            return Json(result);
+        }
         public JsonResult ReViewReSult()
         {
             var result = _iSoReviewService.GetReviewResult();

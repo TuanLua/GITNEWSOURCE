@@ -69,7 +69,7 @@
       // Validate data
     function ValidateDataQMS(dept, pic) {
         if (dept == "") {
-            bootbox.alert("Please input Dept!");
+            bootbox.alert("Please select Analyst!");
             return;
         }
         if (pic == "") {
@@ -134,7 +134,7 @@
             $(this).hide();
 
             //analyst
-             $.post('@Url.Action("GetListUser", "SoReview")',
+             $.post('@Url.Action("GetListAnalyst", "SoReview")',
                 function (result) {
                     $.each(result, function (i, item) {
                         $('#analyst').append($('<option>', {
@@ -225,7 +225,7 @@
     });
     //Edit and Save Update HTML
     $("#gridQMSSummary tbody").on("click", ".btn-update", function () {
-        var dept =$(this).parents("tr").find("input[name='dept']").val();
+        var dept = $(this).parents("tr").find("select[name='analyst']").val();
         var pic = $(this).parents("tr").find("select[name='pic']").val();
         var pictext = $(this).parents("tr").find("select[name='pic']").text();
         var id = $(this).parents("tr").attr('ID');
@@ -277,7 +277,7 @@
     });
     //Save New
     $("#gridQMSSummary tbody").on("click", ".btn-save", function () {
-        var dept =$(this).parents("tr").find("input[name='dept']").val();
+        var dept = $(this).parents("tr").find("select[name='analyst']").val();
         var pic = $(this).parents("tr").find("select[name='pic']").val();
          id = 0;
 
@@ -348,7 +348,7 @@
                 }).always(function() {
                 });
         $('#analyst').select2();
-         $.post('@Url.Action("GetListUser", "SoReview")',
+         $.post('@Url.Action("GetListAnalyst", "SoReview")',
              function (result) {
                     $.each(result, function (i, item) {
                         $('#analyst').append($('<option>', {

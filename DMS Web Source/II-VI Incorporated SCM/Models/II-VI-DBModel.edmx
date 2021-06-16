@@ -3340,6 +3340,14 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
           <Property Name="ANALYST" Type="nvarchar" MaxLength="50" />
           <Property Name="PIC" Type="nvarchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="tbl_SOR_Review_Analyst_Data">
+          <Key>
+            <PropertyRef Name="Anl_ID" />
+          </Key>
+          <Property Name="Anl_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Analist" Type="nvarchar" MaxLength="50" />
+          <Property Name="Anl_Desc" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="tbl_SOR_Review_Pic">
           <Key>
             <PropertyRef Name="Pic_Inx" />
@@ -5816,6 +5824,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <EntitySet Name="tbl_SOR_His_Review_List" EntityType="Self.tbl_SOR_His_Review_List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_Item_Review" EntityType="Self.tbl_SOR_Item_Review" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_Review_Analyst" EntityType="Self.tbl_SOR_Review_Analyst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SOR_Review_Analyst_Data" EntityType="Self.tbl_SOR_Review_Analyst_Data" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_Review_Pic" EntityType="Self.tbl_SOR_Review_Pic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SQE_Ass_Period" EntityType="Self.tbl_SQE_Ass_Period" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SQE_Ass_Resp" EntityType="Self.tbl_SQE_Ass_Resp" Schema="dbo" store:Type="Tables" />
@@ -8708,9 +8717,6 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <FunctionImport Name="sp_tbl_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2)">
           <Parameter Name="Depart" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result)">
-          <Parameter Name="Depart" Mode="In" Type="String" />
-          </FunctionImport>
           <EntitySet Name="C__MigrationHistory" EntityType="IQCTestModel.C__MigrationHistory" />
           <EntitySet Name="ADD_INS" EntityType="IQCTestModel.ADD_INS" />
           <EntitySet Name="ApplicationGroupRoles" EntityType="IQCTestModel.ApplicationGroupRole" />
@@ -8984,6 +8990,10 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="tbl_SOR_Review_Analyst_Data" EntityType="IQCTestModel.tbl_SOR_Review_Analyst_Data" />
+          <FunctionImport Name="sp_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result1)">
+            <Parameter Name="Depart" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pGet_MEASUREMENT_STD_BY_PART_Result">
           <Property Type="String" Name="MEASURE_PARA" Nullable="false" MaxLength="50" />
@@ -15237,6 +15247,38 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <End Type="IQCTestModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="IQCTestModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="tbl_SOR_Review_Analyst_Data">
+          <Key>
+            <PropertyRef Name="Anl_ID" />
+          </Key>
+          <Property Name="Anl_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Analist" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Anl_Desc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="sp_SOR_GetListSoreviewbyUserLogin_Result1">
+          <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+          <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+          <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+          <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="ITEM_REVIEW_ID" Nullable="false" />
+          <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+          <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+          <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+          <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ITEM_REVIEW" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="RESULT" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="COMMENT" Nullable="true" />
+          <Property Type="String" Name="LAST_RESULT" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="LAST_COMMENT" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -17224,34 +17266,6 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <FunctionImportMapping FunctionImportName="sp_tbl_SOR_GetListSoreviewbyUserLogin" FunctionName="IQCTestModel.Store.sp_tbl_SOR_GetListSoreviewbyUserLogin">
             <ResultMapping>
               <ComplexTypeMapping TypeName="IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2">
-                <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
-                <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
-                <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
-                <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
-                <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
-                <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
-                <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
-                <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
-                <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
-                <ScalarProperty Name="FAI" ColumnName="FAI" />
-                <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
-                <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
-                <ScalarProperty Name="LINE" ColumnName="LINE" />
-                <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
-                <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
-                <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
-                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
-                <ScalarProperty Name="ITEM_REVIEW" ColumnName="ITEM_REVIEW" />
-                <ScalarProperty Name="RESULT" ColumnName="RESULT" />
-                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-                <ScalarProperty Name="LAST_RESULT" ColumnName="LAST RESULT" />
-                <ScalarProperty Name="LAST_COMMENT" ColumnName="LAST COMMENT" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_SOR_GetListSoreviewbyUserLogin" FunctionName="IQCTestModel.Store.sp_SOR_GetListSoreviewbyUserLogin">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result">
                 <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
                 <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
                 <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
@@ -21047,6 +21061,43 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="tbl_SOR_Review_Analyst_Data">
+            <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Review_Analyst_Data">
+              <MappingFragment StoreEntitySet="tbl_SOR_Review_Analyst_Data">
+                <ScalarProperty Name="Anl_Desc" ColumnName="Anl_Desc" />
+                <ScalarProperty Name="Analist" ColumnName="Analist" />
+                <ScalarProperty Name="Anl_ID" ColumnName="Anl_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_SOR_GetListSoreviewbyUserLogin" FunctionName="IQCTestModel.Store.sp_SOR_GetListSoreviewbyUserLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result1">
+                <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
+                <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
+                <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
+                <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
+                <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
+                <ScalarProperty Name="BLC_QTY" ColumnName="BLC_QTY" />
+                <ScalarProperty Name="BLC_VALUE" ColumnName="BLC_VALUE" />
+                <ScalarProperty Name="DR_REV" ColumnName="DR_REV" />
+                <ScalarProperty Name="ITEM_REVIEW_ID" ColumnName="ITEM_REVIEW_ID" />
+                <ScalarProperty Name="FAI" ColumnName="FAI" />
+                <ScalarProperty Name="LAST_BUILD_DR_REV" ColumnName="LAST_BUILD_DR_REV" />
+                <ScalarProperty Name="NEW_REVIEW" ColumnName="NEW_REVIEW" />
+                <ScalarProperty Name="LINE" ColumnName="LINE" />
+                <ScalarProperty Name="REQUIRED_DATE" ColumnName="REQUIRED_DATE" />
+                <ScalarProperty Name="ORD_QTY" ColumnName="ORD_QTY" />
+                <ScalarProperty Name="LAST_REVIEW_DR_REV" ColumnName="LAST_REVIEW_DR_REV" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="ITEM_REVIEW" ColumnName="ITEM_REVIEW" />
+                <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+                <ScalarProperty Name="LAST_RESULT" ColumnName="LAST RESULT" />
+                <ScalarProperty Name="LAST_COMMENT" ColumnName="LAST COMMENT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

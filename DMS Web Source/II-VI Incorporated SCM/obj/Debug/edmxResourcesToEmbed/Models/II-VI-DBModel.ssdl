@@ -3335,6 +3335,14 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="ANALYST" Type="nvarchar" MaxLength="50" />
     <Property Name="PIC" Type="nvarchar" MaxLength="128" />
   </EntityType>
+  <EntityType Name="tbl_SOR_Review_Analyst_Data">
+    <Key>
+      <PropertyRef Name="Anl_ID" />
+    </Key>
+    <Property Name="Anl_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Analist" Type="nvarchar" MaxLength="50" />
+    <Property Name="Anl_Desc" Type="nvarchar" MaxLength="500" />
+  </EntityType>
   <EntityType Name="tbl_SOR_Review_Pic">
     <Key>
       <PropertyRef Name="Pic_Inx" />
@@ -5811,6 +5819,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
     <EntitySet Name="tbl_SOR_His_Review_List" EntityType="Self.tbl_SOR_His_Review_List" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SOR_Item_Review" EntityType="Self.tbl_SOR_Item_Review" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SOR_Review_Analyst" EntityType="Self.tbl_SOR_Review_Analyst" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_SOR_Review_Analyst_Data" EntityType="Self.tbl_SOR_Review_Analyst_Data" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SOR_Review_Pic" EntityType="Self.tbl_SOR_Review_Pic" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SQE_Ass_Period" EntityType="Self.tbl_SQE_Ass_Period" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SQE_Ass_Resp" EntityType="Self.tbl_SQE_Ass_Resp" Schema="dbo" store:Type="Tables" />

@@ -254,6 +254,7 @@
         <AssociationConnector Association="IQCTestModel.FK__DETAILQUE__IDQUE__7E8CC4B1" />
         <AssociationConnector Association="IQCTestModel.FK__SCAREMAIL__SCAR___5E74FADA" />
         <AssociationConnector Association="IQCTestModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="IQCTestModel.tbl_SOR_Review_Analyst_Data" Width="1.5" PointX="3.375" PointY="47.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

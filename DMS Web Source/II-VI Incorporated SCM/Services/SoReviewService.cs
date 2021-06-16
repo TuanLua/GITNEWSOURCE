@@ -22,7 +22,7 @@ namespace II_VI_Incorporated_SCM.Services
 
         List<sp_SOR_GetSoOpen_Result> GetListReleaseSoReview();
         bool RealeaseSo();
-
+        List<SelectListItem> GetDropdownlistAnalyst();
         List<sp_SOR_GetSoReviewHist_Result> GetListSoReviewHistory();
         string GetDepart(string userID);
         Result LockSoReview(string SoNo, string item, DateTime date, string islock);
@@ -127,6 +127,15 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 Value = x.Id,
                 Text = x.FullName.Trim(),
+            }).ToList();
+            return listuser;
+        }
+        public List<SelectListItem> GetDropdownlistAnalyst()
+        {
+            List<SelectListItem> listuser = _db.tbl_SOR_Review_Analyst_Data.Select(x => new SelectListItem
+            {
+                Value = x.Anl_ID.ToString(),
+                Text = x.Anl_Desc.Trim(),
             }).ToList();
             return listuser;
         }
@@ -1057,7 +1066,7 @@ namespace II_VI_Incorporated_SCM.Services
                              RequiredDate = x.REQUIRED_DATE,
                              ITEM = x.ITEM,
                              Analyst = x.ANALYST,
-                             Line = x.LINE
+                             Line = x.LINE,
                          }).Distinct().ToList();
                     return data;
                 }

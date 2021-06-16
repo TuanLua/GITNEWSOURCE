@@ -1075,6 +1075,9 @@
     <Compile Include="Models\sp_SOR_GetListSoreviewbyUserLogin_Result.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_SOR_GetListSoreviewbyUserLogin_Result1.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_SOR_GetSoOpen_Result.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
@@ -1385,6 +1388,9 @@
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_SOR_Review_Analyst.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_SOR_Review_Analyst_Data.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_SOR_Review_Pic.cs">
