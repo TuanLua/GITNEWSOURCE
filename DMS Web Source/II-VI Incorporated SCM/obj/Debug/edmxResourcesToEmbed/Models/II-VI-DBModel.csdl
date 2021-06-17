@@ -2202,6 +2202,10 @@
     <FunctionImport Name="sp_tbl_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2)">
       <Parameter Name="Depart" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result4)">
+      <Parameter Name="Depart" Mode="In" Type="String" />
+      <Parameter Name="Analyst" Mode="In" Type="String" />
+    </FunctionImport>
     <EntitySet Name="C__MigrationHistory" EntityType="IQCTestModel.C__MigrationHistory" />
     <EntitySet Name="ADD_INS" EntityType="IQCTestModel.ADD_INS" />
     <EntitySet Name="ApplicationGroupRoles" EntityType="IQCTestModel.ApplicationGroupRole" />
@@ -2354,6 +2358,7 @@
     <EntitySet Name="tbl_SOR_His_Review_List" EntityType="IQCTestModel.tbl_SOR_His_Review_List" />
     <EntitySet Name="tbl_SOR_Item_Review" EntityType="IQCTestModel.tbl_SOR_Item_Review" />
     <EntitySet Name="tbl_SOR_Review_Analyst" EntityType="IQCTestModel.tbl_SOR_Review_Analyst" />
+    <EntitySet Name="tbl_SOR_Review_Analyst_Data" EntityType="IQCTestModel.tbl_SOR_Review_Analyst_Data" />
     <EntitySet Name="tbl_SOR_Review_Pic" EntityType="IQCTestModel.tbl_SOR_Review_Pic" />
     <EntitySet Name="tbl_SQE_Ass_Period" EntityType="IQCTestModel.tbl_SQE_Ass_Period" />
     <EntitySet Name="tbl_SQE_Ass_Resp" EntityType="IQCTestModel.tbl_SQE_Ass_Resp" />
@@ -2475,10 +2480,6 @@
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
-    <EntitySet Name="tbl_SOR_Review_Analyst_Data" EntityType="IQCTestModel.tbl_SOR_Review_Analyst_Data" />
-    <FunctionImport Name="sp_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result1)">
-      <Parameter Name="Depart" Mode="In" Type="String" />
-    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="pGet_MEASUREMENT_STD_BY_PART_Result">
     <Property Type="String" Name="MEASURE_PARA" Nullable="false" MaxLength="50" />
@@ -4828,6 +4829,106 @@
     <Property Type="String" Name="LAST_RESULT" Nullable="true" MaxLength="10" />
     <Property Type="String" Name="LAST_COMMENT" Nullable="true" />
   </ComplexType>
+  <ComplexType Name="sp_SOR_GetListSoreviewbyUserLogin_Result1">
+    <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="ITEM_REVIEW_ID" Nullable="false" />
+    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM_REVIEW" Nullable="false" MaxLength="1000" />
+    <Property Type="String" Name="RESULT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="COMMENT" Nullable="true" />
+    <Property Type="String" Name="LAST_RESULT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="LAST_COMMENT" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SOR_GetListSoreviewbyUserLogin_Result2">
+    <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="ITEM_REVIEW_ID" Nullable="false" />
+    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM_REVIEW" Nullable="false" MaxLength="1000" />
+    <Property Type="String" Name="RESULT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="COMMENT" Nullable="true" />
+    <Property Type="String" Name="LAST_RESULT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="LAST_COMMENT" Nullable="true" />
+    <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SOR_GetListSoreviewbyUserLogin_Result3">
+    <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="ITEM_REVIEW_ID" Nullable="false" />
+    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM_REVIEW" Nullable="false" MaxLength="1000" />
+    <Property Type="String" Name="RESULT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="COMMENT" Nullable="true" />
+    <Property Type="String" Name="LAST_RESULT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="LAST_COMMENT" Nullable="true" />
+    <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_SOR_GetListSoreviewbyUserLogin_Result4">
+    <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="ITEM_REVIEW_ID" Nullable="false" />
+    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ITEM_REVIEW" Nullable="false" MaxLength="1000" />
+    <Property Type="String" Name="RESULT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="COMMENT" Nullable="true" />
+    <Property Type="String" Name="LAST_RESULT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="LAST_COMMENT" Nullable="true" />
+    <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
+    <Property Type="String" Name="REVIEW_STATUS" Nullable="true" MaxLength="50" />
+  </ComplexType>
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -7165,6 +7266,8 @@
     <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ResolutionOwner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="TBD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="APPROVEBY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="APPROVEATT" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_SOR_Family_Setup_Qty">
     <Key>
@@ -7219,6 +7322,8 @@
     <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ResolutionOwner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="TBD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="APPROVEBY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="APPROVEATT" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_SOR_Item_Review">
     <Key>
@@ -7236,6 +7341,14 @@
     <Property Name="Ana_Inx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ANALYST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PIC" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_Review_Analyst_Data">
+    <Key>
+      <PropertyRef Name="Anl_ID" />
+    </Key>
+    <Property Name="Anl_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Analist" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Anl_Desc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbl_SOR_Review_Pic">
     <Key>
@@ -8732,36 +8845,4 @@
     <End Type="IQCTestModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="IQCTestModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
   </Association>
-  <EntityType Name="tbl_SOR_Review_Analyst_Data">
-    <Key>
-      <PropertyRef Name="Anl_ID" />
-    </Key>
-    <Property Name="Anl_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Analist" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Anl_Desc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <ComplexType Name="sp_SOR_GetListSoreviewbyUserLogin_Result1">
-    <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
-    <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
-    <Property Type="Double" Name="BLC_QTY" Nullable="true" />
-    <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
-    <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="Int64" Name="ITEM_REVIEW_ID" Nullable="false" />
-    <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
-    <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
-    <Property Type="Double" Name="ORD_QTY" Nullable="true" />
-    <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="ITEM_REVIEW" Nullable="false" MaxLength="1000" />
-    <Property Type="String" Name="RESULT" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="COMMENT" Nullable="true" />
-    <Property Type="String" Name="LAST_RESULT" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="LAST_COMMENT" Nullable="true" />
-  </ComplexType>
 </Schema>

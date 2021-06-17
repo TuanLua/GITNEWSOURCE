@@ -225,8 +225,7 @@
     });
     //Edit and Save Update HTML
     $("#gridQMSSummary tbody").on("click", ".btn-update", function () {
-        debugger
-        var dept = $(this).parents("tr").find("select[name='analyst']").text();
+        var dept = $(this).parents("tr").find("select[name='analyst']").val();
         var pic = $(this).parents("tr").find("select[name='pic']").val();
         var pictext = $(this).parents("tr").find("select[name='pic']").text();
         var id = $(this).parents("tr").attr('ID');
@@ -278,8 +277,7 @@
     });
     //Save New
     $("#gridQMSSummary tbody").on("click", ".btn-save", function () {
-        debugger
-        var dept = $(this).parents("tr").find("select[name='analyst']").text();
+        var dept = $(this).parents("tr").find("select[name='analyst']").val();
         var pic = $(this).parents("tr").find("select[name='pic']").val();
          id = 0;
 

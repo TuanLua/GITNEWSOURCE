@@ -81,7 +81,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
                 {
                     if (item1.DeptReview.Contains("HIGH_VOLUME"))
                     {
-                     //   lstFile = _iSoReviewService.GetListFileItem(SoNo, dt, item1.ID, item);
+                        //   lstFile = _iSoReviewService.GetListFileItem(SoNo, dt, item1.ID, item);
                     }
 
                 }
@@ -120,7 +120,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             return View(data);
         }
         [HttpPost]
-        public JsonResult AddTaskForItemReview(string SoNo, string itemreview, string assignee, string item, string taskname,string downloaddate)
+        public JsonResult AddTaskForItemReview(string SoNo, string itemreview, string assignee, string item, string taskname, string downloaddate)
         {
             Result res = _iSoReviewService.AddTaskForSoReview(SoNo, itemreview, User.Identity.GetUserId(), assignee, item, taskname);
             return Json(new { res.success, message = res.message, obj = res.obj });
@@ -297,7 +297,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         }
 
         [HttpPost]
-        public ActionResult AddFileforItemReview(string SO_NO,string Date, string File, string ID, string line)
+        public ActionResult AddFileforItemReview(string SO_NO, string Date, string File, string ID, string line)
         {
             DateTime date = DateTime.Now;
             string returnPath = date.Year + "-" + date.Month + "-" + date.Day + "-" + date.Hour + "-" +
@@ -314,7 +314,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
                     Item_Idx = id,
                     LINE = line
                 };
-                Result res = _iSoReviewService.SaveFileAttachedItemReview(datafiles,id);
+                Result res = _iSoReviewService.SaveFileAttachedItemReview(datafiles, id);
                 return Json(new { success = res.success, message = res.obj });
             }
             return Json(new { success = false, message = "Save file not sucess!" });
@@ -541,7 +541,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
                     res = _iSoReviewService.UpdateDataSoReviewResult(data, idUser);
                 }
             }
-           return Json(new { res.success, message = res.message, obj = res.obj });
+            return Json(new { res.success, message = res.message, obj = res.obj });
         }
         [HttpPost]
         public JsonResult SubmitDataSoReviewResult(string lstData)
@@ -607,7 +607,8 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         {
             var idUser = User.Identity.GetUserId();
             var depart = _iSoReviewService.GetDepart(idUser);
-            var data = _iSoReviewService.GetListSOReviewByUserLogin(depart, "All");
+            var analyst = _iSoReviewService.GetAnalyst(idUser);
+            var data = _iSoReviewService.GetListSOReviewByUserLogin(depart, "All", analyst);
             var date = DateTime.Now;
             if (data.Count > 0)
             {
@@ -618,13 +619,14 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             return View();
         }
 
-        public ActionResult ListSoReViewRead([DataSourceRequest] DataSourceRequest request,string isFilter)
+        public ActionResult ListSoReViewRead([DataSourceRequest] DataSourceRequest request, string isFilter)
         {
-             var idUser = User.Identity.GetUserId();
-           var depart =  _iSoReviewService.GetDepart(idUser);
-            var data = _iSoReviewService.GetListSOReviewByUserLogin(depart, isFilter);
+            var idUser = User.Identity.GetUserId();
+            var depart = _iSoReviewService.GetDepart(idUser);
+            var analyst = _iSoReviewService.GetAnalyst(idUser);
+            var data = _iSoReviewService.GetListSOReviewByUserLogin(depart, isFilter, analyst);
             var date = DateTime.Now;
-            if(data.Count > 0)
+            if (data.Count > 0)
             {
                 date = data.FirstOrDefault().DateDownLoad;
             }
@@ -653,12 +655,23 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         public ActionResult ListSoReviewPlanner()
         {
             ViewBag.IsPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.Planner);
+            ViewBag.IsLeadofPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.LeadofPlanner);
             return View();
         }
         [AcceptVerbs("Get", "Post")]
         public ActionResult ListSoReviewPlannerRead([DataSourceRequest] DataSourceRequest request, string isFilter)
         {
-            var result = _iSoReviewService.GetListSOReviewByPlanner("", isFilter);
+            var idUser = User.Identity.GetUserId();
+            var analyst = _iSoReviewService.GetAnalyst(idUser);
+            var result = _iSoReviewService.GetListSOReviewByPlanner("", isFilter, analyst);
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+        [AcceptVerbs("Get", "Post")]
+        public ActionResult ListSoReviewPlannerApproveRead([DataSourceRequest] DataSourceRequest request, string isFilter)
+        {
+            var idUser = User.Identity.GetUserId();
+            var analyst = _iSoReviewService.GetAnalyst(idUser);
+            var result = _iSoReviewService.GetListSOReviewByPlanner("", isFilter, analyst);
             return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
         public ActionResult ListTaskmanagementSOReview(string date)
@@ -666,6 +679,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             ViewBag.Date = date;
             return View();
         }
+
         public ActionResult ListFilemanagementSOReview(string date)
         {
             DateTime dates = DateTime.Parse(date);
@@ -673,10 +687,16 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             return View(lstFile);
         }
 
-              public JsonResult GetListTaskSoreview([DataSourceRequest] DataSourceRequest request,string date)
+        public JsonResult GetListTaskSoreview([DataSourceRequest] DataSourceRequest request, string date)
         {
             DateTime dates = DateTime.Parse(date);
             return Json(_iSoReviewService.GetListTaskSoreview(dates).ToDataSourceResult(request));
+        }
+
+        public ActionResult ListSoReviewApprove()
+        {
+            ViewBag.IsLeadofPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.LeadofPlanner);
+            return View();
         }
         #endregion
     }

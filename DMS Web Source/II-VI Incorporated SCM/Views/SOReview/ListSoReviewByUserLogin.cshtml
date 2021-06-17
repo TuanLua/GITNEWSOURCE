@@ -56,11 +56,13 @@
                                                   .Name("gridSoReview")
                                                   .Columns(columns =>
                                                   {
-                                                  columns.Bound(p => p.Analyst).Title("Analyst").Width(200).Editable("true");
+                                                  columns.Bound(p => p.Analyst).Title("Analyst").Width(100).Editable("true");
                                                   columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
+                                                  columns.Bound(p => p.Line).Title("So Line").Width(0).Editable("true");
+                                                  columns.Bound(p => p.Status).Title("Status").Width(100).Editable("true");
                                                   columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
                                                   columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
-                                                  columns.Bound(p => p.RequiredDate).Title("Required Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
+                                                  columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
                                                   columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
                                                   columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
                                                   columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
@@ -78,7 +80,7 @@
                                                       columns.Bound(p => p.LastWeeks).Title("Last week Drw Revison Ref ").Width(100).Editable("true");
                                                       columns.Bound(p => p.DrawRevision).Title("Drw Revision(*)").Width(120).Editable("true");
                                                       columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
-                                                      columns.Bound(p => p.Line).Title("SO on hold").Width(0).Editable("true");
+                                                      columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(0).Format("{0:dd-MMM-yy}").Editable("true");
                                                   }).ToolBar(tools => tools.Excel())
                                                       .Sortable()
                                                       .Scrollable()
@@ -277,7 +279,6 @@
         data.forEach(function (item) {
             var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
             item.DateDownLoad = partdate;
-            debugger
             if (item.ReviewResult1 == true && (item.Comment == null || item.Comment == "")) {
                 isSave = false;
                 message = "Please input Comment for Item result is false!";

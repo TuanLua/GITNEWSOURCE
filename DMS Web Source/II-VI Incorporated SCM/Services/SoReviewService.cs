@@ -17,7 +17,7 @@ namespace II_VI_Incorporated_SCM.Services
         List<SelectListItem> GetDropdownlistUser();
         bool GetIsLockBySo(string SO, DateTime date, string line);
         List<SelectListItem> GetReviewResult();
-
+        string GetAnalyst(string userID);
         List<sp_SOR_GetSoReview_Result> GetListSoReview();
 
         List<sp_SOR_GetSoOpen_Result> GetListReleaseSoReview();
@@ -91,8 +91,8 @@ namespace II_VI_Incorporated_SCM.Services
 
 
         #region New Requirement
-        List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,string isFilter);
-        List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter);
+        List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,string isFilter, string analyst);
+        List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter, string analyst);
         Result UpdateDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
 
         Result SubmitDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
@@ -134,7 +134,7 @@ namespace II_VI_Incorporated_SCM.Services
         {
             List<SelectListItem> listuser = _db.tbl_SOR_Review_Analyst_Data.Select(x => new SelectListItem
             {
-                Value = x.Anl_ID.ToString(),
+                Value = x.Anl_Desc.ToString(),
                 Text = x.Anl_Desc.Trim(),
             }).ToList();
             return listuser;
@@ -258,6 +258,18 @@ namespace II_VI_Incorporated_SCM.Services
             if (user != null)
             {
                 return user.Dept_Rv;
+            }
+            else
+            {
+                return "";
+            }
+        }
+        public string GetAnalyst(string userID)
+        {
+            var user = _db.tbl_SOR_Review_Analyst.Where(x => x.PIC == userID).FirstOrDefault();
+            if (user != null)
+            {
+                return user.ANALYST;
             }
             else
             {
@@ -1030,10 +1042,10 @@ namespace II_VI_Incorporated_SCM.Services
 
         #region Update Lst Data
 
-        public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,string isFilter)
+        public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,string isFilter,string analyst)
         {
             bool? flag = null;
-            var result = _db.sp_SOR_GetListSoreviewbyUserLogin(depart).ToList();
+            var result = _db.sp_SOR_GetListSoreviewbyUserLogin(depart, analyst).ToList();
             List<ListSOItemReviewModel> data = new List<ListSOItemReviewModel>();
             if (isFilter == "NotReview")
             {
@@ -1067,6 +1079,8 @@ namespace II_VI_Incorporated_SCM.Services
                              ITEM = x.ITEM,
                              Analyst = x.ANALYST,
                              Line = x.LINE,
+                             PROMISE_DATE = x.PROMISE_DATE,
+                             Status = x.REVIEW_STATUS
                          }).Distinct().ToList();
                     return data;
                 }
@@ -1101,7 +1115,9 @@ namespace II_VI_Incorporated_SCM.Services
                         RequiredDate = x.REQUIRED_DATE,
                         ITEM = x.ITEM,
                         Analyst = x.ANALYST,
-                         Line = x.LINE
+                         Line = x.LINE,
+                         PROMISE_DATE = x.PROMISE_DATE,
+                         Status = x.REVIEW_STATUS
                      }).Distinct().ToList();
                     return data;
                 }
@@ -1135,7 +1151,9 @@ namespace II_VI_Incorporated_SCM.Services
                     RequiredDate = x.REQUIRED_DATE,
                     ITEM = x.ITEM,
                     Analyst = x.ANALYST,
-                    Line =  x.LINE
+                    Line =  x.LINE,
+                    PROMISE_DATE = x.PROMISE_DATE,
+                    Status = x.REVIEW_STATUS
                 }).Distinct().ToList();
                 return data;
             }
@@ -1143,13 +1161,17 @@ namespace II_VI_Incorporated_SCM.Services
         }
         #endregion
 
-        public List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter)
+        public List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter,string analyst)
         {
             if (isFilter == "NotReview")
             {
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
-                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO && a.LINE == b.LINE && b.RESULT != "N/A" && (a.PLAN_SHIP_DATE == null && a.TBD == null))
+                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO 
+                            && a.LINE == b.LINE && b.RESULT != "N/A"
+                            && (a.PLAN_SHIP_DATE == null && a.TBD == null
+                             && a.ANALYST == analyst
+                            ))
                             select new ListSOItemReviewModel
                             {
                                 SONO = a.SO_NO,
@@ -1176,7 +1198,9 @@ namespace II_VI_Incorporated_SCM.Services
                                 OrderQty = a.ORD_QTY,
                                 RequiredDate = a.REQUIRED_DATE,
                                 ITEM = a.ITEM,
-                                Analyst = a.ANALYST
+                                Analyst = a.ANALYST,
+                                Status = a.REVIEW_STATUS
+                                
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -1194,6 +1218,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       DrawRevision = myGroup.Max(x => x.DrawRevision),
                                       LastBuild = myGroup.Max(x => x.LastBuild),
                                       LastWeeks = myGroup.Max(x => x.LastWeeks),
+                                      Status = myGroup.Max(x => x.Status),
                                       BalanceQty = myGroup.Max(x => x.BalanceQty),
                                       BalanceValue = myGroup.Max(x => x.BalanceValue),
                                       ShipToLocation = myGroup.Max(x => x.ShipToLocation),
@@ -1232,7 +1257,10 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
-                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO && a.LINE == b.LINE && b.RESULT != "N/A")
+                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE 
+                            && a.SO_NO == b.SO_NO && a.LINE == b.LINE
+                             && a.ANALYST == analyst
+                            && b.RESULT != "N/A")
                             select new ListSOItemReviewModel
                             {
                                 SONO = a.SO_NO,
@@ -1259,7 +1287,8 @@ namespace II_VI_Incorporated_SCM.Services
                                 OrderQty = a.ORD_QTY,
                                 RequiredDate = a.REQUIRED_DATE,
                                 ITEM = a.ITEM,
-                                Analyst = a.ANALYST
+                                Analyst = a.ANALYST,
+                                   Status = a.REVIEW_STATUS
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -1278,6 +1307,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       DrawRevision = myGroup.Max(x => x.DrawRevision),
                                       LastBuild = myGroup.Max(x => x.LastBuild),
                                       LastWeeks = myGroup.Max(x => x.LastWeeks),
+                                      Status = myGroup.Max(x => x.Status),
                                       BalanceQty = myGroup.Max(x => x.BalanceQty),
                                       BalanceValue = myGroup.Max(x => x.BalanceValue),
                                       ShipToLocation = myGroup.Max(x => x.ShipToLocation),
@@ -1316,7 +1346,10 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
-                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO && a.LINE == b.LINE && b.RESULT != "N/A" && (a.PLAN_SHIP_DATE != null || a.TBD != null))
+                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO 
+                            && a.LINE == b.LINE && b.RESULT != "N/A"
+                             && a.ANALYST == analyst
+                            && (a.PLAN_SHIP_DATE != null || a.TBD != null))
                             select new ListSOItemReviewModel
                             {
                                 SONO = a.SO_NO,
@@ -1343,7 +1376,8 @@ namespace II_VI_Incorporated_SCM.Services
                                 OrderQty = a.ORD_QTY,
                                 RequiredDate = a.REQUIRED_DATE,
                                 ITEM = a.ITEM,
-                                Analyst = a.ANALYST
+                                Analyst = a.ANALYST,
+                                Status = a.REVIEW_STATUS
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -1362,6 +1396,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       DrawRevision = myGroup.Max(x => x.DrawRevision),
                                       LastBuild = myGroup.Max(x => x.LastBuild),
                                       PROMISE_DATE = myGroup.Max(x => x.PROMISE_DATE),
+                                      Status = myGroup.Max(x => x.Status),
                                       LastWeeks = myGroup.Max(x => x.LastWeeks),
                                       BalanceQty = myGroup.Max(x => x.BalanceQty),
                                       BalanceValue = myGroup.Max(x => x.BalanceValue),
@@ -1397,7 +1432,6 @@ namespace II_VI_Incorporated_SCM.Services
                 return datasFinal;
             }
         }
-
 
         #endregion
         #region Update Result Review
@@ -1770,7 +1804,7 @@ namespace II_VI_Incorporated_SCM.Services
                     {
                         dataSoreview.ResolutionOwner = picData.ResolutionOwner;
                         dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
-                        dataSoreview.REVIEW_STATUS = "Final Review";
+                        dataSoreview.REVIEW_STATUS = "Final Reviewed";
                         dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
                         dataSoreview.COMMENT = picData.Comment;
                         _db.SaveChanges();
@@ -1806,14 +1840,17 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 try
                 {
+
                     var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim()).FirstOrDefault();
                     if (dataSoreview != null)
                     {
-                        dataSoreview.ResolutionOwner = picData.ResolutionOwner;
-                        dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
+                      //  dataSoreview.ResolutionOwner = picData.ResolutionOwner;
+                    //    dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
                         dataSoreview.REVIEW_STATUS = "Approved";
                         dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
                         dataSoreview.COMMENT = picData.Comment;
+                        dataSoreview.APPROVEBY = idUser;
+                        dataSoreview.APPROVEATT = DateTime.Now;
                         _db.SaveChanges();
                         tranj.Commit();
                         return new Result

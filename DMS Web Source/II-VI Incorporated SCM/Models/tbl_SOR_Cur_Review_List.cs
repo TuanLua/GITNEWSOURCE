@@ -39,5 +39,7 @@ namespace II_VI_Incorporated_SCM.Models
         public string COMMENT { get; set; }
         public string ResolutionOwner { get; set; }
         public string TBD { get; set; }
+        public string APPROVEBY { get; set; }
+        public Nullable<System.DateTime> APPROVEATT { get; set; }
     }
 }

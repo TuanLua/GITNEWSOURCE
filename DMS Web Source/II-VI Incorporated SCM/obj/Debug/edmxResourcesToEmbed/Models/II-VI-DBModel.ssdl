@@ -3263,6 +3263,8 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="COMMENT" Type="nvarchar(max)" />
     <Property Name="ResolutionOwner" Type="nvarchar" MaxLength="128" />
     <Property Name="TBD" Type="nvarchar" MaxLength="50" />
+    <Property Name="APPROVEBY" Type="nvarchar" MaxLength="128" />
+    <Property Name="APPROVEATT" Type="date" />
   </EntityType>
   <EntityType Name="tbl_SOR_Family_Setup_Qty">
     <Key>
@@ -3317,6 +3319,8 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="COMMENT" Type="nvarchar(max)" />
     <Property Name="ResolutionOwner" Type="nvarchar" MaxLength="128" />
     <Property Name="TBD" Type="nvarchar" MaxLength="50" />
+    <Property Name="APPROVEBY" Type="nvarchar" MaxLength="128" />
+    <Property Name="APPROVEATT" Type="date" />
   </EntityType>
   <EntityType Name="tbl_SOR_Item_Review">
     <Key>
@@ -5371,6 +5375,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
   </Function>
   <Function Name="sp_SOR_GetListSoreviewbyUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Depart" Type="nvarchar" Mode="In" />
+    <Parameter Name="Analyst" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="sp_SOR_GetSoOpen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_SOR_GetSoReview" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />

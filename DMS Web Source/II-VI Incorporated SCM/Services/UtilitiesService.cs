@@ -136,6 +136,7 @@ namespace II_VI_Incorporated_SCM.Services
         public static string Initiator = "Initiator";
         public static string PE = "PE";
         public static string Planner = "Planner";
+        public static string LeadofPlanner = "LeadOfPlanner";
     }
 
     public static class Status

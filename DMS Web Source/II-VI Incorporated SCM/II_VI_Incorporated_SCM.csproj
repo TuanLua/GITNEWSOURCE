@@ -1078,6 +1078,15 @@
     <Compile Include="Models\sp_SOR_GetListSoreviewbyUserLogin_Result1.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_SOR_GetListSoreviewbyUserLogin_Result2.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_SOR_GetListSoreviewbyUserLogin_Result3.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_SOR_GetListSoreviewbyUserLogin_Result4.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_SOR_GetSoOpen_Result.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
@@ -3985,6 +3994,7 @@
     <Content Include="Views\SOReview\ListFilemanagementSOReview.cshtml" />
     <Content Include="Views\SOReview\ResultpartialView.cshtml" />
     <Content Include="Views\SOReview\AnalystReviewList.cshtml" />
+    <Content Include="Views\SOReview\ListSoReviewApprove.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />

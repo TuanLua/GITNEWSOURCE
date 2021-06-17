@@ -1,0 +1,447 @@
+﻿@using II_VI_Incorporated_SCM.Models.SOReview
+@using II_VI_Incorporated_SCM.Services
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "SO Review Planner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .k-grid td {
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .k-grid table {
+        table-layout: fixed;
+    }
+
+    .CRNo:hover {
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .CRNo {
+        color: blue;
+    }
+</style>
+<h3>Review SO by Planner </h3>
+<div class="container-fluid" style="text-align:right">
+    @*@if (ViewBag.IsLeadofPlanner == true)
+        {*@
+    <button class="btn btn-sm btn-success" id="approve">Approve</button>
+  
+    @*}*@
+</div>
+<div class="col-sm-6" style="text-align:left">
+    <button id="exportExcel" class="btn btn-info">Export to Excel</button>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-18 col-md-12">
+            @(Html.Kendo().Grid<ListSOItemReviewModel>()
+                                                          .Name("gridSoReview")
+                                                          .Columns(columns =>
+                                                          {
+                                                          columns.Bound(p => p.Analyst).Title("Analyst").Width(80).Editable("true");
+                                                          columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
+                                                          columns.Bound(p => p.Status).Title("Status").Width(100).Editable("true");
+                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
+                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
+                                                          columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
+                                                          columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
+                                                          columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
+                                                          columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
+                                                          columns.Bound(p => p.PlanShipDate).Title("Plan Ship Date").Width(200).Editable("true").Format("{0:dd-MMM-yy}");
+                                                          columns.Bound(p => p.TBD).Title("TBD").Width(100).Editable("true")
+                                                              .Template(@<text></text>).ClientTemplate("<input type='checkbox' #= TBD == true ? checked='checked':'' # class='form-control itemresult' />");
+                                                              columns.Bound(p => p.Comment).Title("Planner Comment").Width(250).Editable("true");
+                                                              columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("true");
+                                                              columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
+                                                              columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(0).Format("{0:dd-MMM-yy}").Editable("true");
+
+                                                          })
+                                                            //.ToolBar(tools => tools.Excel())
+                                                          .Sortable()
+                                                          .Scrollable()
+                                                          .Editable(editable => editable.Mode(GridEditMode.InCell))
+                                                        .Filterable()
+                                                             .Excel(excel => excel
+                                                        .FileName("So Review List.xlsx")
+                                                        .ProxyURL(Url.Action("Excel_Export_Save", "Grid")))
+                                                             .Pageable(m => m.PageSizes(new List<object> { 5, 10, 20, 50, "All" }).Refresh(true))
+                                                          .HtmlAttributes(new { style = "height:750px;" })
+                                                          .DataSource(dataSource => dataSource
+                                                              .Ajax()
+                                                              .PageSize(30)
+                                                                  .ServerOperation(false)
+                                                              .Model(model => model.Id(p => p.SONO))
+                                                              .Read(read => read.Action("ListSoReviewPlannerRead", "SOReview",new { isFilter = false }))
+                                                          ))
+        </div>
+    </div>
+</div>
+
+<div id="popup" class="modal fade" tabindex="-1" role="dialog" aria - labelledby="basicModal" aria - hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add File</h4>
+            </div>
+            <div class="modal-body">
+                <br />
+                <div class="form-horizontal col-md-offset-1">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">So No</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="user" style="width:100%" id="soNo"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">File</label>
+                        <div class="col-md-6">
+                            <input type="file" id="file" class="form-control boder-opal">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="save-file" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupTask" class="modal fade" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Task</h4>
+            </div>
+            <div class="modal-body">
+                <br />
+                <div class="form-horizontal col-md-offset-1">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Assignee:</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="user" style="width:100%" id="user"></select>
+                        </div>
+                        <input type="hidden" id="reviewitemname" name="reviewitemname" />
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Task Name</label>
+                        <div class="col-md-6">
+                            <input class="form-control" style="width:100%" id="taskname" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">So No</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="user" style="width:100%" id="soNo"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Item Review</label>
+                        <div class="col-md-6">
+                            <input class="form-control" style="width:100%" id="itemreview" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-addtask" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+            var isSave = true;
+            var message = "";
+            $(document).ready(function () {
+
+                            $.post('@Url.Action("GetListUser", "SoReview")',
+                                function (result) {
+                                    $.each(result, function (i, item) {
+                                        $('#user').append($('<option>', {
+                                            value: item.Value,
+                                            text: item.Text
+                                        }));
+                                    });
+                                }).fail(function () {
+                                    bootbox.alert('Please contact to Administrator!');
+                                }).always(function () {
+                                });
+                            $("#user").select2();
+
+                            $.post('@Url.Action("GetListSoReviewAddTask", "SoReview")',
+                                function (result) {
+                                    $.each(result, function (i, item) {
+                                        $('#soNo').append($('<option>', {
+                                            value: item.Value,
+                                            text: item.Text
+                                        }));
+                                    });
+                                }).fail(function () {
+                                    bootbox.alert('Please contact to Administrator!');
+                                }).always(function () {
+                                });
+                            $("#soNo").select2();
+
+                        });
+            $(".k-header").kendoTooltip({
+                content: function (e) {
+                    var target = e.target; // element for which the tooltip is shown
+                    return $(target).text();
+                },
+                position: "top"
+            });
+            $(document).ready(function () {
+
+            $('#save').click(function () {
+                     var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
+                var arrResult = [];
+                var isSave = true;
+                data.forEach(function (item) {
+                    var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
+                    item.DateDownLoad = partdate;
+                    if (item.PlanShipDate != null) {
+                        var parstDate = convertUTCDateToLocalDate(item.PlanShipDate);
+                        item.PlanShipDate = parstDate;
+                    }
+                    if (item.TBD == true && (item.PlanShipDate != null && item.PlanShipDate != "")) {
+                        isSave = false;
+                    }
+                    else if ((item.PlanShipDate != null && item.TBD == false) || item.TBD == true ) {
+                        arrResult.push(item)
+                    }
+                    })
+                var lstData = JSON.stringify(arrResult);
+                     if (!isSave) {
+                         bootbox.alert("Please input Plan Ship Date or check TBD (if uncheck TBD please input Plan Ship Date other value) !");
+                         isSave = true;
+                         return;
+                     }
+                     else {
+                          $.blockUI();
+                         $.post('@Url.Action("SaveDataPlannerSoReviewResult", "SoReview")', { lstData: lstData },
+                             function (result) {
+                                 if (result) {
+                                     bootbox.alert('Save result sucess!', function () {
+                                         window.location.href = "@Url.Action("ListSoReviewPlanner", "SoReview")";
+                                     });
+                                 }
+                                 $.unblockUI();
+                             }).fail(function () {
+                                 $.unblockUI();
+                                 bootbox.alert('Please contact to Administrator!');
+                             }).always(function () {
+                                 $.unblockUI();
+                             });
+                     }
+                });
+            });
+
+            function convertUTCDateToLocalDate(date) {
+                var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+                return newDate;
+            }
+
+            $('#add-task').on('click', function () {
+                $('#popupTask').modal('show');
+            });
+
+            $('#add-file').on('click', function () {
+                $('#popup').modal('show');
+            });
+
+             $('#save-file').on('click', function () {
+                let filesave = $('#file').get(0).files;
+                let name = '';
+                if (filesave.length > 0) {
+                    name = filesave[0].name;
+                }
+                var formData = new FormData();
+                formData.append("file", filesave[0]);
+                    if (name != '') {
+                                $.ajax({ url: '@Url.Action("SaveFileADDINItem", "SoReview")', method: 'post', data: formData, contentType: false, processData: false })
+                                }
+                  $.ajax({
+                                    url: '@Url.Action("AddFileforItemReview", "SoReview")',
+                      type: "POST",
+                      data: { SO_NO: '@ViewBag.SoNo', Date: '@ViewBag.Date', File: name, ID: $('Urliditemreview').val(),item: '@ViewBag.Item'},
+                                    dataType: "json",
+                                    success: function (result) {
+                                        if (result.success) {
+                                            bootbox.alert('Add File sucess!', function () {
+                                                $('#popup').modal('hide');
+                                                window.location.reload();
+                                            });
+                                        }
+                                        else {
+                                            bootbox.alert(result.message);
+                                        }
+                                    }
+                                });
+             })
+
+             $('#btn-addtask').on('click', function () {
+                var SoNo = '@ViewBag.SoNo';
+                var Date = '@ViewBag.Date';
+                var topic = '@ViewBag.SoNo' + "-" + Date  + "-" + '@ViewBag.Item';
+                var itemreview = $('#reviewitemname').val();
+                var assignee = $('#user').val();
+                var taskname = $('#taskname').val();
+                if (assignee == null || assignee == "") {
+                    bootbox.alert("Please select assignee!");
+                    return;
+                }
+                else if (taskname == null || taskname == "") {
+                    bootbox.alert("Please input Task Name!");
+                    return;
+                }
+                else {
+                    $.ajax({
+                        url: '@Url.Action("AddTaskForItemReview", "SOReview")',
+                        type: "POST",
+                        data: { SoNo: SoNo, Date: Date, itemreview: itemreview, assignee: assignee, item: '@ViewBag.Item', taskname: taskname, itemreviewID: itemreviewID},
+                        dataType: "json",
+                        success: function (result) {
+                            if (result.success) {
+                                bootbox.alert('Add Task sucess!', function () {
+                                    $('#popupTask').modal('hide');
+                                    window.location.reload();
+                                });
+                            }
+                            else {
+                                bootbox.alert(result.message);
+                                $('#popupTask').modal('hide');
+
+                        //call data source task list when select
+                     //  $("#gridTaskDetail").data("kendoGrid").dataSource.transport.options.read.url = '@Url.Action("ReadTaksMantSoReview", "Soreview")' + '?taskNo=' + topic;
+                     //  $("#gridTaskDetail").data("kendoGrid").dataSource.read();
+                            }
+                        }
+                    });
+                }
+
+             });
+
+            $(function () {
+                $('#gridSoReview').on('click', '.itemresult', function () {
+                    var checked = $(this).is(':checked');
+                    var grid = $('#gridSoReview').data().kendoGrid;
+                    var dataItem = grid.dataItem($(this).closest('tr'));
+                    dataItem.set('TBD', checked);
+                    dataItem.set('PlanShipDate', null);
+                })
+            })
+     $('#view-review').on('click', function () {
+        let Grid = $("#gridSoReview").data("kendoGrid");
+         Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=NotReview';
+        Grid.dataSource.read();
+    })
+     $('#view-all').on('click', function () {
+        let Grid = $("#gridSoReview").data("kendoGrid");
+         Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=All';
+        Grid.dataSource.read();
+     })
+     $('#reviewed').on('click', function () {
+        let Grid = $("#gridSoReview").data("kendoGrid");
+        Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=Reviewed';
+        Grid.dataSource.read();
+     })
+
+      $('#submit').click(function () {
+          var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
+          var arrResult = [];
+          var isSave = true;
+          data.forEach(function (item) {
+              var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
+              item.DateDownLoad = partdate;
+              if (item.PlanShipDate != null) {
+                  var parstDate = convertUTCDateToLocalDate(item.PlanShipDate);
+                  item.PlanShipDate = parstDate;
+              }
+              if (item.TBD == true && (item.PlanShipDate != null && item.PlanShipDate != "")) {
+                  isSave = false;
+              }
+              else if ((item.PlanShipDate != null && item.TBD == false) || item.TBD == true) {
+                  arrResult.push(item)
+              }
+          })
+          var lstData = JSON.stringify(arrResult);
+          if (!isSave) {
+              bootbox.alert("Please input Plan Ship Date or check TBD (if uncheck TBD please input Plan Ship Date other value) !");
+              isSave = true;
+              return;
+          }
+          else {
+              $.blockUI();
+                 $.post('@Url.Action("SubmitDataPlannerSoReviewResult", "SoReview")', { lstData: lstData },
+                     function (result) {
+                         if (result) {
+                             bootbox.alert('Submit result sucess!', function () {
+                                            window.location.href = "@Url.Action("ListSoReviewPlanner", "SoReview")";
+                                        });
+                         }
+                         $.unblockUI();
+                     }).fail(function () {
+                         $.unblockUI();
+                         bootbox.alert('Please contact to Administrator!');
+                     }).always(function () {
+                         $.unblockUI();
+                     });
+             }
+      });
+      $('#approve').click(function () {
+             var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
+             var arrResult = [];
+        data.forEach(function (item) {
+             if (item.Status != 'Final Reviewed') {
+                isSave = false;
+                message = "Please check all data before approved!";
+            }
+            else if (item.ReviewResult != null && item.ReviewResult1 != null) {
+                arrResult.push(item)
+            }
+            })
+        var lstData = JSON.stringify(arrResult);
+             if (!isSave) {
+                 bootbox.alert(message);
+                 isSave = true;
+                 return;
+             }
+             else {
+                  $.blockUI();
+                 $.post('@Url.Action("AprroveDataPlannerSoReviewResult", "SoReview")', { lstData: lstData },
+                     function (result) {
+                         if (result) {
+                             bootbox.alert('Submit result sucess!', function () {
+                                            window.location.href = "@Url.Action("ListSoReviewPlanner", "SoReview")";
+                                        });
+                         }
+                         $.unblockUI();
+                     }).fail(function () {
+                         $.unblockUI();
+                         bootbox.alert('Please contact to Administrator!');
+                     }).always(function () {
+                         $.unblockUI();
+                     });
+             }
+      });
+
+    $("#exportExcel").click(function (e) {
+        var searchText = 'Approved';
+        var filter = $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "Status", operator: "contains", value: searchText });
+        var grid = $("#gridSoReview").data("kendoGrid");
+        grid.saveAsExcel();
+        $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SO_NO", operator: "contains", value: "" });
+    });
+</script>
+
+
