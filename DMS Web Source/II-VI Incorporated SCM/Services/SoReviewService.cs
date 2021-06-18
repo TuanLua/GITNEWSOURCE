@@ -134,8 +134,8 @@ namespace II_VI_Incorporated_SCM.Services
         {
             List<SelectListItem> listuser = _db.tbl_SOR_Review_Analyst_Data.Select(x => new SelectListItem
             {
-                Value = x.Anl_Desc.ToString(),
-                Text = x.Anl_Desc.Trim(),
+                Value = x.Analist.ToString(),
+                Text = x.Analist.Trim(),
             }).ToList();
             return listuser;
         }
