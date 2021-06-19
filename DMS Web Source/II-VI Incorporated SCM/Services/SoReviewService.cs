@@ -1602,7 +1602,7 @@ namespace II_VI_Incorporated_SCM.Services
 
         public List<SelectListItem> GetDropdownlistSOreview()
         {
-            List<SelectListItem> listuser = _db.tbl_SOR_Cur_Review_List.Where(x => x.REVIEW_STATUS != "Done").Select(x => new SelectListItem
+            List<SelectListItem> listuser = _db.tbl_SOR_Cur_Review_List.Where(x => x.REVIEW_STATUS != "Final Reviewed").Select(x => new SelectListItem
             {
                 Value = x.SO_NO,
                 Text = x.SO_NO.Trim(),
@@ -1613,7 +1613,7 @@ namespace II_VI_Incorporated_SCM.Services
         {
             List<SelectListItem> listuser = (from  a in _db.tbl_SOR_Cur_Review_List 
                                              join v in _db.tbl_SOR_Cur_Review_Detail  on a.REVIEW_ID equals v.ITEM_REVIEW_ID
-                                             where(a.REVIEW_STATUS != "Done" && a.SO_NO == soNo)
+                                             where(a.REVIEW_STATUS != "Final Reviewed" && a.SO_NO == soNo)
                                              select( new SelectListItem
             {
                 Value = a.REVIEW_ID.ToString(),
@@ -1623,7 +1623,7 @@ namespace II_VI_Incorporated_SCM.Services
         }
         public List<SelectListItem> GetDropdownLinebySOreview(string soNo)
         {
-            List<SelectListItem> listuser = _db.tbl_SOR_Cur_Review_List.Where(x => x.REVIEW_STATUS != "Done" && x.SO_NO == soNo).Select(x => new SelectListItem
+            List<SelectListItem> listuser = _db.tbl_SOR_Cur_Review_List.Where(x => x.REVIEW_STATUS != "Final Reviewed" && x.SO_NO == soNo).Select(x => new SelectListItem
             {
                 Value = x.LINE.ToString(),
                 Text = x.LINE.Trim(),
