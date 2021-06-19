@@ -4338,7 +4338,7 @@
     <EntitySetMapping Name="tbl_SOR_Cur_Review_List">
       <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Cur_Review_List">
         <MappingFragment StoreEntitySet="tbl_SOR_Cur_Review_List">
-          <ScalarProperty Name="APPROVEATT" ColumnName="APPROVEATT" />
+          <ScalarProperty Name="APPROVEAT" ColumnName="APPROVEAT" />
           <ScalarProperty Name="APPROVEBY" ColumnName="APPROVEBY" />
           <ScalarProperty Name="TBD" ColumnName="TBD" />
           <ScalarProperty Name="ResolutionOwner" ColumnName="ResolutionOwner" />
@@ -4397,7 +4397,7 @@
     <EntitySetMapping Name="tbl_SOR_His_Review_List">
       <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_His_Review_List">
         <MappingFragment StoreEntitySet="tbl_SOR_His_Review_List">
-          <ScalarProperty Name="APPROVEATT" ColumnName="APPROVEATT" />
+          <ScalarProperty Name="APPROVEAT" ColumnName="APPROVEAT" />
           <ScalarProperty Name="APPROVEBY" ColumnName="APPROVEBY" />
           <ScalarProperty Name="TBD" ColumnName="TBD" />
           <ScalarProperty Name="ResolutionOwner" ColumnName="ResolutionOwner" />

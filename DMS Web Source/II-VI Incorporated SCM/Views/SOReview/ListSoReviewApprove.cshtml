@@ -44,7 +44,8 @@
                                                           .Columns(columns =>
                                                           {
                                                           columns.Bound(p => p.Analyst).Title("Analyst").Width(80).Editable("true");
-                                                          columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
+                                                          columns.Bound(p => p.SONO).Title("So No").Width(120).Editable("true")
+                                                           .ClientTemplate("#= Customizecss(data) #");
                                                           columns.Bound(p => p.Status).Title("Status").Width(100).Editable("true");
                                                           columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
                                                           columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
@@ -442,6 +443,12 @@
         grid.saveAsExcel();
         $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SO_NO", operator: "contains", value: "" });
     });
+    function Customizecss(data) {
+        if (data.Status != "Final Reviewed") {
+            var html = kendo.format("<a style='color:red'>" + data.SONO + "</a>");
+        }
+    return html;
+}
 </script>
 
 

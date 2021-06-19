@@ -3264,7 +3264,7 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="ResolutionOwner" Type="nvarchar" MaxLength="128" />
     <Property Name="TBD" Type="nvarchar" MaxLength="50" />
     <Property Name="APPROVEBY" Type="nvarchar" MaxLength="128" />
-    <Property Name="APPROVEATT" Type="date" />
+    <Property Name="APPROVEAT" Type="datetime" />
   </EntityType>
   <EntityType Name="tbl_SOR_Family_Setup_Qty">
     <Key>
@@ -3320,7 +3320,7 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="ResolutionOwner" Type="nvarchar" MaxLength="128" />
     <Property Name="TBD" Type="nvarchar" MaxLength="50" />
     <Property Name="APPROVEBY" Type="nvarchar" MaxLength="128" />
-    <Property Name="APPROVEATT" Type="date" />
+    <Property Name="APPROVEAT" Type="datetime" />
   </EntityType>
   <EntityType Name="tbl_SOR_Item_Review">
     <Key>

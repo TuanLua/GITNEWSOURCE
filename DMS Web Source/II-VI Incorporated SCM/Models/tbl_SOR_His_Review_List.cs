@@ -40,6 +40,6 @@ namespace II_VI_Incorporated_SCM.Models
         public string ResolutionOwner { get; set; }
         public string TBD { get; set; }
         public string APPROVEBY { get; set; }
-        public Nullable<System.DateTime> APPROVEATT { get; set; }
+        public Nullable<System.DateTime> APPROVEAT { get; set; }
     }
 }

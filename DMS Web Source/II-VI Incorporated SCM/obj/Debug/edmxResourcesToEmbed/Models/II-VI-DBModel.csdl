@@ -7267,7 +7267,7 @@
     <Property Name="ResolutionOwner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="TBD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="APPROVEBY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="APPROVEATT" Type="DateTime" Precision="0" />
+    <Property Name="APPROVEAT" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_SOR_Family_Setup_Qty">
     <Key>
@@ -7323,7 +7323,7 @@
     <Property Name="ResolutionOwner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="TBD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="APPROVEBY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="APPROVEATT" Type="DateTime" Precision="0" />
+    <Property Name="APPROVEAT" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_SOR_Item_Review">
     <Key>

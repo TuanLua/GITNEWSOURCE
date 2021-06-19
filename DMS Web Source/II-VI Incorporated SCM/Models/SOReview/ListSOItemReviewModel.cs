@@ -10,7 +10,7 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
     {
         public long ID { get; set; }
         public string SONO { get; set; }
-
+        public string SOLine { get; set; }
         public DateTime DateDownLoad { get; set; }
 
         public DateTime? PROMISE_DATE { get; set; }
@@ -24,6 +24,7 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
 
         public string Comment { get; set; }
 
+        public string SoDel { get; set; }
         public string LastReview { get; set; }
 
         public string LastComment { get; set; }

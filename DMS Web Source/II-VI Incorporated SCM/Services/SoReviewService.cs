@@ -1045,7 +1045,7 @@ namespace II_VI_Incorporated_SCM.Services
         public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,string isFilter,string analyst)
         {
             bool? flag = null;
-            var result = _db.sp_SOR_GetListSoreviewbyUserLogin(depart, analyst).ToList();
+            var result = _db.sp_SOR_GetListSoreviewbyUserLogin(depart, analyst).Where(x => x.REVIEW_STATUS != "Reviewed").ToList();
             List<ListSOItemReviewModel> data = new List<ListSOItemReviewModel>();
             if (isFilter == "NotReview")
             {
@@ -1080,7 +1080,9 @@ namespace II_VI_Incorporated_SCM.Services
                              Analyst = x.ANALYST,
                              Line = x.LINE,
                              PROMISE_DATE = x.PROMISE_DATE,
-                             Status = x.REVIEW_STATUS
+                             Status = x.REVIEW_STATUS,
+                             SoDel = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(4, 4) : null,
+                             SOLine = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(0, 4) : null
                          }).Distinct().ToList();
                     return data;
                 }
@@ -1117,7 +1119,9 @@ namespace II_VI_Incorporated_SCM.Services
                         Analyst = x.ANALYST,
                          Line = x.LINE,
                          PROMISE_DATE = x.PROMISE_DATE,
-                         Status = x.REVIEW_STATUS
+                         Status = x.REVIEW_STATUS,
+                         SoDel = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(4, 4) : null,
+                         SOLine = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(0, 4) : null
                      }).Distinct().ToList();
                     return data;
                 }
@@ -1153,7 +1157,9 @@ namespace II_VI_Incorporated_SCM.Services
                     Analyst = x.ANALYST,
                     Line =  x.LINE,
                     PROMISE_DATE = x.PROMISE_DATE,
-                    Status = x.REVIEW_STATUS
+                    Status = x.REVIEW_STATUS,
+                    SoDel = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(4, 4) : null,
+                    SOLine = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(0, 4) : null
                 }).Distinct().ToList();
                 return data;
             }
@@ -1170,7 +1176,7 @@ namespace II_VI_Incorporated_SCM.Services
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO 
                             && a.LINE == b.LINE && b.RESULT != "N/A"
                             && (a.PLAN_SHIP_DATE == null && a.TBD == null
-                             && a.ANALYST == analyst
+                            && a.ANALYST == analyst && a.REVIEW_STATUS != "Final Reviewed"
                             ))
                             select new ListSOItemReviewModel
                             {
@@ -1216,6 +1222,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       Comment = myGroup.Max(x => x.Comment),
                                       SOHold = myGroup.Max(x => x.SOHold),
                                       DrawRevision = myGroup.Max(x => x.DrawRevision),
+                                      Analyst = myGroup.Max(x => x.Analyst),
                                       LastBuild = myGroup.Max(x => x.LastBuild),
                                       LastWeeks = myGroup.Max(x => x.LastWeeks),
                                       Status = myGroup.Max(x => x.Status),
@@ -1259,7 +1266,7 @@ namespace II_VI_Incorporated_SCM.Services
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE 
                             && a.SO_NO == b.SO_NO && a.LINE == b.LINE
-                             && a.ANALYST == analyst
+                              && a.ANALYST == analyst && a.REVIEW_STATUS != "Final Reviewed"
                             && b.RESULT != "N/A")
                             select new ListSOItemReviewModel
                             {
@@ -1348,7 +1355,7 @@ namespace II_VI_Incorporated_SCM.Services
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO 
                             && a.LINE == b.LINE && b.RESULT != "N/A"
-                             && a.ANALYST == analyst
+                             && a.ANALYST == analyst && a.REVIEW_STATUS != "Final Reviewed"
                             && (a.PLAN_SHIP_DATE != null || a.TBD != null))
                             select new ListSOItemReviewModel
                             {
@@ -1528,34 +1535,43 @@ namespace II_VI_Incorporated_SCM.Services
                         data.ISSUBMIT = true;
                         //update status So Review
                         bool isSubmitted = true;
+                        bool isChangeStatus = true;
                         var commentAll = "";
                         var soReviewDetailList = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE == picData.Line).ToList();
                         if (soReviewDetailList != null)
                         {
                             foreach (var item in soReviewDetailList)
                             {
-                                if (item.RESULT == "N" || item.RESULT == null)
+                                if (item.RESULT == "N")
                                 {
                                     isSubmitted = false;
                                 }
-                                commentAll += "_" + item.COMMENT;
+                                else if(item.RESULT == null)
+                                {
+                                    isChangeStatus = false;
+                                }
+                                commentAll = (item.COMMENT != "" || item.COMMENT != null) ? commentAll + "-"+ item.COMMENT : commentAll ;
                             }
                         }
-                        var soReview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE == picData.Line).FirstOrDefault();
-                        if (soReview != null)
+                        if (isChangeStatus)
                         {
-                            if (isSubmitted)
+                            var soReview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE == picData.Line).FirstOrDefault();
+                            if (soReview != null)
                             {
-                                soReview.REVIEW_STATUS = "Reviewed";
-                                soReview.PLAN_SHIP_DATE = soReview.PROMISE_DATE;
-                                soReview.COMMENT = commentAll;
-                            }
-                            else
-                            {
-                                soReview.REVIEW_STATUS = "Reviewed";
+                                if (isSubmitted)
+                                {
+                                    soReview.REVIEW_STATUS = "Reviewed";
+                                    soReview.PLAN_SHIP_DATE = soReview.PROMISE_DATE;
+                                    soReview.COMMENT = commentAll;
+                                }
+                                else
+                                {
+                                    soReview.REVIEW_STATUS = "Reviewed";
+                                    soReview.COMMENT = commentAll;
+                                }
                             }
                         }
-                            _db.SaveChanges();
+                        _db.SaveChanges();
 
                         tranj.Commit();
                         return new Result
@@ -1759,7 +1775,7 @@ namespace II_VI_Incorporated_SCM.Services
                 try
                 {
                     var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim()).FirstOrDefault();
-                    if (dataSoreview != null)
+                    if (dataSoreview != null && dataSoreview.REVIEW_STATUS != "Final Reviewed")
                     {
                         dataSoreview.ResolutionOwner = picData.ResolutionOwner;
                         dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
@@ -1840,17 +1856,12 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 try
                 {
-
                     var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim()).FirstOrDefault();
                     if (dataSoreview != null)
                     {
-                      //  dataSoreview.ResolutionOwner = picData.ResolutionOwner;
-                    //    dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
                         dataSoreview.REVIEW_STATUS = "Approved";
-                        dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
-                        dataSoreview.COMMENT = picData.Comment;
                         dataSoreview.APPROVEBY = idUser;
-                        dataSoreview.APPROVEATT = DateTime.Now;
+                        dataSoreview.APPROVEAT = DateTime.Now;
                         _db.SaveChanges();
                         tranj.Commit();
                         return new Result

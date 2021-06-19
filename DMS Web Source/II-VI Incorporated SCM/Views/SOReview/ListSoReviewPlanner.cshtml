@@ -51,7 +51,7 @@
                                                           .Columns(columns =>
                                                           {
                                                           columns.Bound(p => p.Analyst).Title("Analyst").Width(70).Editable("true");
-                                                          columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(120).Editable("true");
+                                                          columns.Bound(p => p.SONO).Title("So No").Width(120).Editable("true");
                                                           columns.Bound(p => p.Status).Title("Status").Width(100).Editable("true");
                                                           columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
                                                           columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
@@ -106,7 +106,6 @@
         </div>
     </div>
 </div>
-
 
 <div id="popup" class="modal fade" tabindex="-1" role="dialog" aria - labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -388,15 +387,20 @@
           var arrResult = [];
           var isSave = true;
           data.forEach(function (item) {
+              debugger
               var partdate = convertUTCDateToLocalDate(item.DateDownLoad);
               item.DateDownLoad = partdate;
-              debugger
               if (item.PlanShipDate != null) {
                   var parstDate = convertUTCDateToLocalDate(item.PlanShipDate);
                   item.PlanShipDate = parstDate;
               }
               if (item.TBD == true && (item.PlanShipDate != null && item.PlanShipDate != "")) {
                   isSave = false;
+                  message = "Please input Plan Ship Date or check TBD (if uncheck TBD please input Plan Ship Date other value) !";
+              }
+              if ((item.PlanShipDate == null && item.TBD == false)) {
+                  isSave = false;
+                  message = "Please input result all data!";
               }
               else if ((item.PlanShipDate != null && item.TBD == false) || item.TBD == true) {
                   arrResult.push(item)
@@ -404,7 +408,7 @@
           })
           var lstData = JSON.stringify(arrResult);
           if (!isSave) {
-              bootbox.alert("Please input Plan Ship Date or check TBD (if uncheck TBD please input Plan Ship Date other value) !");
+              bootbox.alert(message);
               isSave = true;
               return;
           }
