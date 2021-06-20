@@ -87,6 +87,9 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public string ServiceTypeShippingComment { get; set; }
         public string Special { get; set; }
         public string SpecialComment { get; set; }
+
+        public string AdditionalRequirementsReviewed { get; set; }
+        public string AdditionalRequirementsReviewedComment { get; set; }
         #endregion
     }
 }

@@ -1256,6 +1256,8 @@ namespace II_VI_Incorporated_SCM.Services
                                       .Max(x => x.Allcomment),
                                       Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
                                       SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.Allcomment),
+                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
+                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().ToList();
                 return datasFinal;
@@ -1345,6 +1347,8 @@ namespace II_VI_Incorporated_SCM.Services
                                       .Max(x => x.Allcomment),
                                       Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
                                       SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.Allcomment),
+                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
+                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().ToList();
                 return datasFinal;
@@ -1434,6 +1438,8 @@ namespace II_VI_Incorporated_SCM.Services
                                       .Max(x => x.Allcomment),
                                       Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
                                       SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.Allcomment),
+                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
+                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().ToList();
                 return datasFinal;
