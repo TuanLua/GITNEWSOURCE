@@ -336,6 +336,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         public ActionResult PICReviewList()
         {
             ViewBag.IsPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.Planner);
+            ViewBag.IsLeadofPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.LeadofPlanner);
             var lstPIC = _iSoReviewService.GetListPIC();
             return View(lstPIC);
         }
@@ -375,6 +376,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         public ActionResult ItemReviewList()
         {
             ViewBag.IsPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.Planner);
+            ViewBag.IsLeadofPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.LeadofPlanner);
             var lstPIC = _iSoReviewService.GetListItem();
             return View(lstPIC);
         }
@@ -418,6 +420,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         public ActionResult FamilyReviewList()
         {
             ViewBag.IsPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.Planner);
+            ViewBag.IsLeadofPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.LeadofPlanner);
             var lstPIC = _iSoReviewService.GetListFamily();
             return View(lstPIC);
         }
