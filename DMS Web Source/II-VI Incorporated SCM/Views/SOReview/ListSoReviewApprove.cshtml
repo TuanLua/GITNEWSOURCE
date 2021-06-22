@@ -77,7 +77,7 @@
                                                               .PageSize(30)
                                                                   .ServerOperation(false)
                                                               .Model(model => model.Id(p => p.SONO))
-                                                              .Read(read => read.Action("ListSoReviewPlannerRead", "SOReview",new { isFilter = false }))
+                                                              .Read(read => read.Action("ListSoReviewPlannerApproveRead", "SOReview",new { isFilter = false }))
                                                           ))
         </div>
     </div>

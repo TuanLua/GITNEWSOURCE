@@ -72,6 +72,7 @@ namespace II_VI_Incorporated_SCM.Services
         #endregion
 
         #endregion
+
         #region Analyst
         List<AnalystReviewmodel> GetListAnalyst();
         Result DeleteDataAnalystReview(string id);
@@ -89,10 +90,11 @@ namespace II_VI_Incorporated_SCM.Services
         //List<sp_SOR_RiskShip_Report_Result> SOR_RiskShip_Report1_Result();
         #endregion
 
-
         #region New Requirement
         List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,string isFilter, string analyst);
         List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter, string analyst);
+
+        List<ListSOItemReviewModel> GetListApproveSOReviewByPlanner(string depart, string isFilter, string analyst);
         Result UpdateDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
 
         Result SubmitDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
@@ -1446,6 +1448,96 @@ namespace II_VI_Incorporated_SCM.Services
             }
         }
 
+        public List<ListSOItemReviewModel> GetListApproveSOReviewByPlanner(string depart, string isFilter, string analyst)
+        {
+                var data = (from a in _db.tbl_SOR_Cur_Review_List
+                            join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
+                            where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO
+                            && a.LINE == b.LINE 
+                             && a.ANALYST == analyst)
+                            select new ListSOItemReviewModel
+                            {
+                                SONO = a.SO_NO,
+                                ItemReview = b.ITEM_REVIEW,
+                                ReviewResultText = b.RESULT == null ? null : b.RESULT == "Y" ? "Y" : "N",
+                                Comment = a.COMMENT,
+                                Line = b.LINE,
+                                DateDownLoad = a.DOWNLOAD_DATE,
+                                PlanShipDate = a.PLAN_SHIP_DATE,
+                                TBD = a.TBD == "TBD" ? true : false,
+                                ID = a.REVIEW_ID,
+                                Allcomment = b.COMMENT,
+                                ResolutionOwner = a.ResolutionOwner,
+                                SOHold = a.SO_ON_HOLD,
+                                DrawRevision = a.DR_REV,
+                                PROMISE_DATE = a.PROMISE_DATE,
+                                LastBuild = a.LAST_BUILD_DR_REV,
+                                LastWeeks = a.LAST_REVIEW_DR_REV,
+                                BalanceQty = a.BLC_QTY,
+                                BalanceValue = a.BLC_VALUE,
+                                ShipToLocation = a.SHIP_TO,
+                                NewSoReviewLW = a.NEW_REVIEW == true ? "Y" : "N",
+                                FAI = a.FAI,
+                                OrderQty = a.ORD_QTY,
+                                RequiredDate = a.REQUIRED_DATE,
+                                ITEM = a.ITEM,
+                                Analyst = a.ANALYST,
+                                Status = a.REVIEW_STATUS
+                            }).ToList();
+                var datasFinal = (from cc in data
+                                  group cc by new
+                                  {
+                                      cc.SONO,
+                                      cc.Line
+                                  }
+                             into myGroup
+                                  select new ListSOItemReviewModel
+                                  {
+                                      ID = myGroup.Max(x => x.ID),
+                                      SONO = myGroup.Key.SONO,
+                                      Comment = myGroup.Max(x => x.Comment),
+                                      SOHold = myGroup.Max(x => x.SOHold),
+                                      Analyst = myGroup.Max(x => x.Analyst),
+                                      DrawRevision = myGroup.Max(x => x.DrawRevision),
+                                      LastBuild = myGroup.Max(x => x.LastBuild),
+                                      PROMISE_DATE = myGroup.Max(x => x.PROMISE_DATE),
+                                      Status = myGroup.Max(x => x.Status),
+                                      LastWeeks = myGroup.Max(x => x.LastWeeks),
+                                      BalanceQty = myGroup.Max(x => x.BalanceQty),
+                                      BalanceValue = myGroup.Max(x => x.BalanceValue),
+                                      ShipToLocation = myGroup.Max(x => x.ShipToLocation),
+                                      NewSoReviewLW = myGroup.Max(x => x.NewSoReviewLW),
+                                      FAI = myGroup.Max(x => x.FAI),
+                                      OrderQty = myGroup.Max(x => x.OrderQty),
+                                      RequiredDate = myGroup.Max(x => x.RequiredDate),
+                                      Line = myGroup.Max(x => x.Line),
+                                      ITEM = myGroup.Max(x => x.ITEM),
+                                      DateDownLoad = myGroup.Max(x => x.DateDownLoad),
+                                      PlanShipDate = myGroup.Max(x => x.PlanShipDate),
+                                      TBD = myGroup.Max(x => x.TBD),
+                                      ResolutionOwner = myGroup.Max(x => x.ResolutionOwner),
+                                      #region list item Review
+                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResultText),
+                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.Allcomment),
+                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.ReviewResultText),
+                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.Allcomment),
+                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResultText),
+                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.Allcomment),
+                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResultText),
+                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.Allcomment),
+                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResultText),
+                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.Allcomment),
+                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResultText),
+                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
+                                      .Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.Allcomment),
+                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
+                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
+                                      #endregion
+                                  }).Distinct().ToList();
+                return datasFinal;
+        }
         #endregion
         #region Update Result Review
 

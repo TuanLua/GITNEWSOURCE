@@ -674,7 +674,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         {
             var idUser = User.Identity.GetUserId();
             var analyst = _iSoReviewService.GetAnalyst(idUser);
-            var result = _iSoReviewService.GetListSOReviewByPlanner("", isFilter, analyst);
+            var result = _iSoReviewService.GetListApproveSOReviewByPlanner("", isFilter, analyst);
             return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
         public ActionResult ListTaskmanagementSOReview(string date)
