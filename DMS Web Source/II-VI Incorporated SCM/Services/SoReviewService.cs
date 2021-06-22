@@ -17,7 +17,7 @@ namespace II_VI_Incorporated_SCM.Services
         List<SelectListItem> GetDropdownlistUser();
         bool GetIsLockBySo(string SO, DateTime date, string line);
         List<SelectListItem> GetReviewResult();
-        string GetAnalyst(string userID);
+        List<string> GetAnalyst(string userID);
         List<sp_SOR_GetSoReview_Result> GetListSoReview();
 
         List<sp_SOR_GetSoOpen_Result> GetListReleaseSoReview();
@@ -91,10 +91,10 @@ namespace II_VI_Incorporated_SCM.Services
         #endregion
 
         #region New Requirement
-        List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,string isFilter, string analyst);
-        List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter, string analyst);
+        List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,string isFilter, List<string> analyst);
+        List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter, List<string> analyst);
 
-        List<ListSOItemReviewModel> GetListApproveSOReviewByPlanner(string depart, string isFilter, string analyst);
+        List<ListSOItemReviewModel> GetListApproveSOReviewByPlanner(string depart, string isFilter, List<string> analyst);
         Result UpdateDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
 
         Result SubmitDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
@@ -266,16 +266,16 @@ namespace II_VI_Incorporated_SCM.Services
                 return "";
             }
         }
-        public string GetAnalyst(string userID)
+        public List<string> GetAnalyst(string userID)
         {
-            var user = _db.tbl_SOR_Review_Analyst.Where(x => x.PIC == userID).FirstOrDefault();
+            var user = _db.tbl_SOR_Review_Analyst.Where(x => x.PIC == userID).Select(x=>x.ANALYST).ToList();
             if (user != null)
             {
-                return user.ANALYST;
+                return user;
             }
             else
             {
-                return "";
+                return null;
             }
         }
         public Result LockSoReview(string SoNo, string item, DateTime date, string isLock)
@@ -1044,10 +1044,15 @@ namespace II_VI_Incorporated_SCM.Services
 
         #region Update Lst Data
 
-        public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,string isFilter,string analyst)
+        public List<ListSOItemReviewModel> GetListSOReviewByUserLogin(string depart,string isFilter,List<string> analyst)
         {
             bool? flag = null;
-            var result = _db.sp_SOR_GetListSoreviewbyUserLogin(depart, analyst).Where(x => x.REVIEW_STATUS != "Reviewed").ToList();
+            var analystuser = "";
+            if(analyst != null)
+            {
+                analystuser = analyst.FirstOrDefault();
+            }
+            var result = _db.sp_SOR_GetListSoreviewbyUserLogin(depart, analystuser).Where(x => x.REVIEW_STATUS != "Reviewed").ToList();
             List<ListSOItemReviewModel> data = new List<ListSOItemReviewModel>();
             if (isFilter == "NotReview")
             {
@@ -1169,7 +1174,7 @@ namespace II_VI_Incorporated_SCM.Services
         }
         #endregion
 
-        public List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter,string analyst)
+        public List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter, List<string> analyst)
         {
             if (isFilter == "NotReview")
             {
@@ -1178,7 +1183,7 @@ namespace II_VI_Incorporated_SCM.Services
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO 
                             && a.LINE == b.LINE && b.RESULT != "N/A"
                             && (a.PLAN_SHIP_DATE == null && a.TBD == null
-                            && a.ANALYST == analyst && a.REVIEW_STATUS != "Final Reviewed"
+                            && analyst.Contains(a.ANALYST) && a.REVIEW_STATUS != "Final Reviewed"
                             ))
                             select new ListSOItemReviewModel
                             {
@@ -1270,7 +1275,7 @@ namespace II_VI_Incorporated_SCM.Services
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE 
                             && a.SO_NO == b.SO_NO && a.LINE == b.LINE
-                              && a.ANALYST == analyst && a.REVIEW_STATUS != "Final Reviewed"
+                             && analyst.Contains(a.ANALYST) && a.REVIEW_STATUS != "Final Reviewed"
                             && b.RESULT != "N/A")
                             select new ListSOItemReviewModel
                             {
@@ -1361,8 +1366,9 @@ namespace II_VI_Incorporated_SCM.Services
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO 
                             && a.LINE == b.LINE && b.RESULT != "N/A"
-                             && a.ANALYST == analyst && a.REVIEW_STATUS != "Final Reviewed"
-                            && (a.PLAN_SHIP_DATE != null || a.TBD != null))
+                            && analyst.Contains(a.ANALYST) && a.REVIEW_STATUS != "Final Reviewed"
+                              && (a.PLAN_SHIP_DATE != null || a.TBD != null))
+                          
                             select new ListSOItemReviewModel
                             {
                                 SONO = a.SO_NO,
@@ -1448,7 +1454,7 @@ namespace II_VI_Incorporated_SCM.Services
             }
         }
 
-        public List<ListSOItemReviewModel> GetListApproveSOReviewByPlanner(string depart, string isFilter, string analyst)
+        public List<ListSOItemReviewModel> GetListApproveSOReviewByPlanner(string depart, string isFilter, List<string> analyst)
         {
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO

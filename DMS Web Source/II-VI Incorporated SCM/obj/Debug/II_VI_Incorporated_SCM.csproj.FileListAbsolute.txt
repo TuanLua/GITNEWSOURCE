@@ -867,4 +867,3 @@ D:\XXX\GITNEWSOURCE\DMS Web Source\II-VI Incorporated SCM\obj\Debug\II_VI_Incorp
 D:\XXX\GITNEWSOURCE\DMS Web Source\II-VI Incorporated SCM\obj\Debug\II_VI_Incorporated_SCM.csproj.CopyComplete
 D:\XXX\GITNEWSOURCE\DMS Web Source\II-VI Incorporated SCM\obj\Debug\II_VI_Incorporated_SCM.dll
 D:\XXX\GITNEWSOURCE\DMS Web Source\II-VI Incorporated SCM\obj\Debug\II_VI_Incorporated_SCM.pdb
-D:\XXX\GITNEWSOURCE\DMS Web Source\II-VI Incorporated SCM\obj\Debug\II_VI_Incorporated_SCM.csprojAssemblyReference.cache

@@ -27,7 +27,7 @@
 </style>
 <h3>Review SO by Planner </h3>
 <div class="container-fluid" style="text-align:right">
-    @if (ViewBag.IsLeadofPlanner == true)
+    @if ((bool)ViewBag.IsLeadofPlanner == true)
         {
     <button class="btn btn-sm btn-success" id="approve">Approve</button>
   

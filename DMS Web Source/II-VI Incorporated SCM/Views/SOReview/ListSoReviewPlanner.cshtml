@@ -27,7 +27,7 @@
 </style>
 <h3>Review SO by Planner </h3>
 <div class="container-fluid" style="text-align:right">
-    @if (ViewBag.IsPlanner == true || ViewBag.IsPlanner.IsLeadofPlanner == true)
+    @if (ViewBag.IsPlanner == true || (bool)ViewBag.IsLeadofPlanner == true)
         {
     <button class="btn btn-sm btn-success" id="save">Save as Draft</button>
     <button class="btn btn-sm btn-success" id="submit">Submit</button>
@@ -102,7 +102,7 @@
                                                               .PageSize(30)
                                                                   .ServerOperation(false)
                                                               .Model(model => model.Id(p => p.SONO))
-                                                              .Read(read => read.Action("ListSoReviewPlannerRead", "SOReview",new { isFilter = false }))
+                                                              .Read(read => read.Action("ListSoReviewPlannerRead", "SOReview",new { isFilter = "All" }))
                                                           .Filter(f => f.Add(a => a.Status).IsEqualTo("Reviewed"))
                                                           ))
         </div>
