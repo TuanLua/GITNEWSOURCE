@@ -1050,7 +1050,10 @@ namespace II_VI_Incorporated_SCM.Services
             var analystuser = "";
             if(analyst != null)
             {
-                analystuser = analyst.FirstOrDefault();
+                foreach (var item in analyst)
+                {
+                    analystuser += item;
+                }
             }
             var result = _db.sp_SOR_GetListSoreviewbyUserLogin(depart, analystuser).Where(x => x.REVIEW_STATUS != "Reviewed").ToList();
             List<ListSOItemReviewModel> data = new List<ListSOItemReviewModel>();
