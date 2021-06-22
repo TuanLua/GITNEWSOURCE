@@ -447,6 +447,9 @@
         if (data.Status != "Final Reviewed") {
             var html = kendo.format("<a style='color:red'>" + data.SONO + "</a>");
         }
+        else {
+            var html = data.SONO;
+        }
     return html;
 }
 </script>

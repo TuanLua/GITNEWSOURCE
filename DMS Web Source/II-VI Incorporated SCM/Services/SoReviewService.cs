@@ -1453,8 +1453,7 @@ namespace II_VI_Incorporated_SCM.Services
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO
-                            && a.LINE == b.LINE 
-                             && a.ANALYST == analyst)
+                            && a.LINE == b.LINE  )
                             select new ListSOItemReviewModel
                             {
                                 SONO = a.SO_NO,
