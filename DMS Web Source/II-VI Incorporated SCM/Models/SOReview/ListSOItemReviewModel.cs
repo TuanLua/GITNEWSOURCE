@@ -36,6 +36,7 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public string Item { get; set; }
         public string Line { get; set; }
 
+        public bool? IsSubmit { get; set; }
         public string Allcomment { get; set; }
 
         public string ResolutionOwner { get; set; }

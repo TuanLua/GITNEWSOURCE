@@ -1087,6 +1087,9 @@
     <Compile Include="Models\sp_SOR_GetListSoreviewbyUserLogin_Result4.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_SOR_GetListSoreviewbyUserLogin_Result5.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_SOR_GetSoOpen_Result.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>

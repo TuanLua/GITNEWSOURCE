@@ -35,8 +35,8 @@
 </div>
 <br />
 <div class="col-sm-6" style="text-align:left">
-    <button class="btn btn-sm btn-warning" id="reviewed">Reviewed</button>
-    <button class="btn btn-sm btn-info" id="view-review">Not Yead Review</button>
+    <button class="btn btn-sm btn-warning" id="reviewed">Submit</button>
+    <button class="btn btn-sm btn-info" id="view-review">Not Yet Submit</button>
     <button class="btn btn-sm btn-success" id="view-all">View All</button>
 </div>
 <div class="col-sm-6" style="text-align:right">
@@ -50,12 +50,13 @@
                                                           .Name("gridSoReview")
                                                           .Columns(columns =>
                                                           {
-                                                          columns.Bound(p => p.Analyst).Title("Analyst").Width(70).Editable("true");
-                                                          columns.Bound(p => p.SONO).Title("So No").Width(120).Editable("true");
-                                                          columns.Bound(p => p.Status).Title("Status").Width(100).Editable("true");
-                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
-                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
-                                                          columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
+                                                          columns.Bound(p => p.Analyst).Title("Analyst").Width(70).Editable("true").Locked(true);
+                                                          columns.Bound(p => p.SONO).Title("So No").Width(120).Editable("true").Locked(true);
+                                                          columns.Bound(p => p.Status).Title("Status").Width(100).Editable("true").Locked(true);
+                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(150).Editable("true").Locked(true);
+                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true").Locked(true);
+                                                          columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true")
+                                                              .Format("{0:dd-MMM-yy}").Locked(true).Lockable(false); ;
                                                           columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
                                                           columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
                                                           columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
@@ -67,31 +68,33 @@
                                                               columns.Bound(p => p.Comment).Title("Planner Comment").Width(250).Editable("false");
                                                               columns.Bound(p => p.NewSoReviewLW).Title("New SO vs last week").Width(100).Editable("true");
                                                               columns.Bound(p => p.FAI).Title("FAI").Width(100).Editable("true");
-                                                              columns.Bound(p => p.CoCofRoHS).Title("IQC-CoC of RoHS, Reach").Width(120).Editable("true");
+                                                              columns.Bound(p => p.CoCofRoHS).Title("IQC-CoC of RoHS, Reach").Width(250).Editable("true");
                                                               columns.Bound(p => p.CoCofRoHSComment).Title("IQC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.Capacity).Title("PIC-Capacity").Width(120).Editable("true");
+                                                              columns.Bound(p => p.Capacity).Title("PIC-Capacity").Width(250).Editable("true");
                                                               columns.Bound(p => p.CapacityComment).Title("PIC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.RawMaterial).Title("PIC-Raw Material & consumable").Width(120).Editable("true");
+                                                              columns.Bound(p => p.RawMaterial).Title("PIC-Raw Material & consumable").Width(250).Editable("true");
                                                               columns.Bound(p => p.RawMaterialComment).Title("PIC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.Builtless).Title("PIC-Built less than 6 months").Width(120).Editable("true");
+                                                              columns.Bound(p => p.Builtless).Title("PIC-Built less than 6 months").Width(250).Editable("true");
                                                               columns.Bound(p => p.BuiltlessComment).Title("PIC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.Carrier).Title("IM-EX-Carrier (Fedex, DHL, Schenker,…)").Width(120).Editable("true");
+                                                              columns.Bound(p => p.Carrier).Title("IM-EX-Carrier (Fedex, DHL, Schenker,…)").Width(250).Editable("true");
                                                               columns.Bound(p => p.CarrierComment).Title("IM-EX - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.ServiceTypeShipping).Title("IM-EX-Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
-                                                              .Width(120).Editable("true");
+                                                              .Width(250).Editable("true");
                                                               columns.Bound(p => p.ServiceTypeShippingComment).Title("IM-EX - Comment")
                                                              .Width(120).Editable("true");
-                                                              columns.Bound(p => p.Special).Title("IM-EX-Special request (BSO, IOR, COO…)").Width(120).Editable("true");
+                                                              columns.Bound(p => p.Special).Title("IM-EX-Special request (BSO, IOR, COO…)").Width(250).Editable("true");
                                                               columns.Bound(p => p.SpecialComment).Title("IM-EX - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.Special).Title("PIC - Additional Requirements reviewed").Width(120).Editable("true");
+                                                              columns.Bound(p => p.Special).Title("PIC - Additional Requirements reviewed").Width(250).Editable("true");
                                                               columns.Bound(p => p.SpecialComment).Title("PIC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
+                                                              columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(200).Editable("true");
 
                                                           }).ToolBar(tools => tools.Excel())
                                                           .Sortable()
                                                           .Scrollable()
+                                                            .Resizable(resize => resize.Columns(true))
                                                           .Editable(editable => editable.Mode(GridEditMode.InCell))
                                                         .Filterable()
+                                                           .Reorderable(reorderable => reorderable.Columns(true))
                                                              .Excel(excel => excel
                                                         .FileName("So Review List.xlsx")
                                                         .ProxyURL(Url.Action("Excel_Export_Save", "Grid")))
@@ -400,10 +403,10 @@
                   isSave = false;
                   message = "Please input Plan Ship Date or check TBD (if uncheck TBD please input Plan Ship Date other value) !";
               }
-              if ((item.PlanShipDate == null && item.TBD == false)) {
-                  isSave = false;
-                  message = "Please input result all data!";
-              }
+              //if ((item.PlanShipDate == null && item.TBD == false)) {
+              //    isSave = false;
+              //    message = "Please input result all data!";
+              //}
               else if ((item.PlanShipDate != null && item.TBD == false) || item.TBD == true) {
                   arrResult.push(item)
               }

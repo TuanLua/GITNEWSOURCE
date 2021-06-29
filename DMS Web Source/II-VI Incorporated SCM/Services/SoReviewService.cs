@@ -1092,8 +1092,9 @@ namespace II_VI_Incorporated_SCM.Services
                              PROMISE_DATE = x.PROMISE_DATE,
                              Status = x.REVIEW_STATUS,
                              SoDel = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(4, 4) : null,
-                             SOLine = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(0, 4) : null
-                         }).Distinct().ToList();
+                             SOLine = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(0, 4) : null,
+                             IsSubmit = x.ISSUBMIT
+                         }).Distinct().OrderBy(x=>x.PROMISE_DATE).ToList();
                     return data;
                 }
             }
@@ -1131,8 +1132,9 @@ namespace II_VI_Incorporated_SCM.Services
                          PROMISE_DATE = x.PROMISE_DATE,
                          Status = x.REVIEW_STATUS,
                          SoDel = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(4, 4) : null,
-                         SOLine = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(0, 4) : null
-                     }).Distinct().ToList();
+                         SOLine = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(0, 4) : null,
+                         IsSubmit = x.ISSUBMIT
+                     }).Distinct().OrderBy(x => x.PROMISE_DATE).ToList();
                     return data;
                 }
             }
@@ -1169,8 +1171,9 @@ namespace II_VI_Incorporated_SCM.Services
                     PROMISE_DATE = x.PROMISE_DATE,
                     Status = x.REVIEW_STATUS,
                     SoDel = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(4, 4) : null,
-                    SOLine = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(0, 4) : null
-                }).Distinct().ToList();
+                    SOLine = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(0, 4) : null,
+                    IsSubmit = x.ISSUBMIT
+                }).Distinct().OrderBy(x => x.PROMISE_DATE).ToList();
                 return data;
             }
             return data;
@@ -1184,7 +1187,7 @@ namespace II_VI_Incorporated_SCM.Services
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO 
-                            && a.LINE == b.LINE && b.RESULT != "N/A"
+                            && a.LINE == b.LINE && b.RESULT != "N/A" && b.ISSUBMIT == true
                             && (a.PLAN_SHIP_DATE == null && a.TBD == null
                             && analyst.Contains(a.ANALYST) && a.REVIEW_STATUS != "Final Reviewed"
                             ))
@@ -1269,7 +1272,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
                                       #endregion
-                                  }).Distinct().ToList();
+                                  }).Distinct().OrderBy(x => x.PROMISE_DATE).ToList();
                 return datasFinal;
             }
             else if(isFilter == "All")
@@ -1277,7 +1280,7 @@ namespace II_VI_Incorporated_SCM.Services
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE 
-                            && a.SO_NO == b.SO_NO && a.LINE == b.LINE
+                            && a.SO_NO == b.SO_NO && a.LINE == b.LINE && b.ISSUBMIT == true
                              && analyst.Contains(a.ANALYST) && a.REVIEW_STATUS != "Final Reviewed"
                             && b.RESULT != "N/A")
                             select new ListSOItemReviewModel
@@ -1360,7 +1363,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
                                       #endregion
-                                  }).Distinct().ToList();
+                                  }).Distinct().OrderBy(x=>x.PROMISE_DATE).ToList();
                 return datasFinal;
             }
             else 
@@ -1368,7 +1371,7 @@ namespace II_VI_Incorporated_SCM.Services
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO 
-                            && a.LINE == b.LINE && b.RESULT != "N/A"
+                            && a.LINE == b.LINE && b.RESULT != "N/A" && b.ISSUBMIT == true
                             && analyst.Contains(a.ANALYST) && a.REVIEW_STATUS != "Final Reviewed"
                               && (a.PLAN_SHIP_DATE != null || a.TBD != null))
                           
@@ -1452,7 +1455,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
                                       #endregion
-                                  }).Distinct().ToList();
+                                  }).Distinct().OrderBy(x => x.PROMISE_DATE).ToList();
                 return datasFinal;
             }
         }
@@ -1543,7 +1546,7 @@ namespace II_VI_Incorporated_SCM.Services
                                       AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
                                       #endregion
-                                  }).Distinct().ToList();
+                                  }).Distinct().OrderBy(x=>x.PROMISE_DATE).ToList();
                 return datasFinal;
         }
         #endregion
@@ -1566,7 +1569,7 @@ namespace II_VI_Incorporated_SCM.Services
                         };
                     }
                      //udpate result detail 
-                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID).FirstOrDefault();
+                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID && x.ISSUBMIT == false).FirstOrDefault();
                     if (data != null)
                     {   if(picData.ReviewResult == true)
                         {
@@ -1624,7 +1627,7 @@ namespace II_VI_Incorporated_SCM.Services
                 try
                 {
                     //udpate result detail 
-                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID).FirstOrDefault();
+                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID && x.ISSUBMIT == false).FirstOrDefault();
                     if (data != null)
                     {
                         if (picData.ReviewResult == true)

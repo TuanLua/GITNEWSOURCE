@@ -43,13 +43,12 @@
                                                           .Name("gridSoReview")
                                                           .Columns(columns =>
                                                           {
-                                                          columns.Bound(p => p.Analyst).Title("Analyst").Width(80).Editable("true");
-                                                          columns.Bound(p => p.SONO).Title("So No").Width(120).Editable("true")
-                                                           .ClientTemplate("#= Customizecss(data) #");
-                                                          columns.Bound(p => p.Status).Title("Status").Width(100).Editable("true");
-                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true");
-                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true");
-                                                          columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}");
+                                                          columns.Bound(p => p.Analyst).Title("Analyst").Width(80).Editable("true").Locked(true); ;
+                                                          columns.Bound(p => p.SONO).Title("So No").Width(120).Editable("true").ClientTemplate("#= Customizecss(data) #").Locked(true); ;
+                                                          columns.Bound(p => p.Status).Title("Status").Width(100).Editable("true").Locked(true); ;
+                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(100).Editable("true").Locked(true); ;
+                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true").Locked(true); ;
+                                                          columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}").Locked(true).Lockable(false);
                                                           columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
                                                           columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
                                                           columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
@@ -62,8 +61,9 @@
                                                               columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(0).Format("{0:dd-MMM-yy}").Editable("true");
 
                                                           })
-                                                            //.ToolBar(tools => tools.Excel())
+                                                          //.ToolBar(tools => tools.Excel())
                                                           .Sortable()
+                                                            .Resizable(resize => resize.Columns(true))
                                                           .Scrollable()
                                                           .Editable(editable => editable.Mode(GridEditMode.InCell))
                                                         .Filterable()

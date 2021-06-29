@@ -8069,7 +8069,7 @@ namespace II_VI_Incorporated_SCM.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2>("sp_tbl_SOR_GetListSoreviewbyUserLogin", departParameter);
         }
     
-        public virtual ObjectResult<sp_SOR_GetListSoreviewbyUserLogin_Result4> sp_SOR_GetListSoreviewbyUserLogin(string depart, string analyst)
+        public virtual ObjectResult<sp_SOR_GetListSoreviewbyUserLogin_Result5> sp_SOR_GetListSoreviewbyUserLogin(string depart, string analyst)
         {
             var departParameter = depart != null ?
                 new ObjectParameter("Depart", depart) :
@@ -8079,7 +8079,7 @@ namespace II_VI_Incorporated_SCM.Models
                 new ObjectParameter("Analyst", analyst) :
                 new ObjectParameter("Analyst", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SOR_GetListSoreviewbyUserLogin_Result4>("sp_SOR_GetListSoreviewbyUserLogin", departParameter, analystParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SOR_GetListSoreviewbyUserLogin_Result5>("sp_SOR_GetListSoreviewbyUserLogin", departParameter, analystParameter);
         }
     }
 }
