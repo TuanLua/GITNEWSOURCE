@@ -1187,7 +1187,7 @@ namespace II_VI_Incorporated_SCM.Services
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO 
-                            && a.LINE == b.LINE && b.RESULT != "N/A" && b.ISSUBMIT == true
+                            && a.LINE == b.LINE && b.RESULT != "N/A"
                             && (a.PLAN_SHIP_DATE == null && a.TBD == null
                             && analyst.Contains(a.ANALYST) && a.REVIEW_STATUS != "Final Reviewed"
                             ))
@@ -1218,7 +1218,8 @@ namespace II_VI_Incorporated_SCM.Services
                                 RequiredDate = a.REQUIRED_DATE,
                                 ITEM = a.ITEM,
                                 Analyst = a.ANALYST,
-                                Status = a.REVIEW_STATUS
+                                Status = a.REVIEW_STATUS,
+                                IsSubmit = b.ISSUBMIT
                                 
                             }).ToList();
                 var datasFinal = (from cc in data
@@ -1254,23 +1255,27 @@ namespace II_VI_Incorporated_SCM.Services
                                       TBD = myGroup.Max(x => x.TBD),
                                       ResolutionOwner = myGroup.Max(x => x.ResolutionOwner),
                                       #region list item Review
-                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResultText),
-                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.Allcomment),
-                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.ReviewResultText),
-                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.Allcomment),
-                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResultText),
-                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.Allcomment),
-                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResultText),
-                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.Allcomment),
-                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResultText),
-                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.Allcomment),
-                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResultText),
-                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
+                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)" && x.IsSubmit == true)
+                                      .Max(x => x.ReviewResultText),
+                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)"
+                                      && x.IsSubmit == true)
                                       .Max(x => x.Allcomment),
-                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
-                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.Allcomment),
-                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
-                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      DrawingComment = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().OrderBy(x => x.PROMISE_DATE).ToList();
                 return datasFinal;
@@ -1280,7 +1285,7 @@ namespace II_VI_Incorporated_SCM.Services
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE 
-                            && a.SO_NO == b.SO_NO && a.LINE == b.LINE && b.ISSUBMIT == true
+                            && a.SO_NO == b.SO_NO && a.LINE == b.LINE
                              && analyst.Contains(a.ANALYST) && a.REVIEW_STATUS != "Final Reviewed"
                             && b.RESULT != "N/A")
                             select new ListSOItemReviewModel
@@ -1310,7 +1315,8 @@ namespace II_VI_Incorporated_SCM.Services
                                 RequiredDate = a.REQUIRED_DATE,
                                 ITEM = a.ITEM,
                                 Analyst = a.ANALYST,
-                                   Status = a.REVIEW_STATUS
+                                   Status = a.REVIEW_STATUS,
+                                IsSubmit = b.ISSUBMIT
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -1345,23 +1351,27 @@ namespace II_VI_Incorporated_SCM.Services
                                       TBD = myGroup.Max(x => x.TBD),
                                       ResolutionOwner = myGroup.Max(x => x.ResolutionOwner),
                                       #region list item Review
-                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResultText),
-                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.Allcomment),
-                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.ReviewResultText),
-                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.Allcomment),
-                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResultText),
-                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.Allcomment),
-                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResultText),
-                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.Allcomment),
-                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResultText),
-                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.Allcomment),
-                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResultText),
-                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
+                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)" && x.IsSubmit == true)
+                                      .Max(x => x.ReviewResultText),
+                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)"
+                                      && x.IsSubmit == true)
                                       .Max(x => x.Allcomment),
-                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
-                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.Allcomment),
-                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
-                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      DrawingComment = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().OrderBy(x=>x.PROMISE_DATE).ToList();
                 return datasFinal;
@@ -1371,7 +1381,7 @@ namespace II_VI_Incorporated_SCM.Services
                 var data = (from a in _db.tbl_SOR_Cur_Review_List
                             join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
                             where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO 
-                            && a.LINE == b.LINE && b.RESULT != "N/A" && b.ISSUBMIT == true
+                            && a.LINE == b.LINE && b.RESULT != "N/A" 
                             && analyst.Contains(a.ANALYST) && a.REVIEW_STATUS != "Final Reviewed"
                               && (a.PLAN_SHIP_DATE != null || a.TBD != null))
                           
@@ -1402,7 +1412,8 @@ namespace II_VI_Incorporated_SCM.Services
                                 RequiredDate = a.REQUIRED_DATE,
                                 ITEM = a.ITEM,
                                 Analyst = a.ANALYST,
-                                Status = a.REVIEW_STATUS
+                                Status = a.REVIEW_STATUS,
+                                IsSubmit = b.ISSUBMIT
                             }).ToList();
                 var datasFinal = (from cc in data
                                   group cc by new
@@ -1437,23 +1448,27 @@ namespace II_VI_Incorporated_SCM.Services
                                       TBD = myGroup.Max(x => x.TBD),
                                       ResolutionOwner = myGroup.Max(x => x.ResolutionOwner),
                                       #region list item Review
-                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResultText),
-                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.Allcomment),
-                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.ReviewResultText),
-                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.Allcomment),
-                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResultText),
-                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.Allcomment),
-                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResultText),
-                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.Allcomment),
-                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResultText),
-                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.Allcomment),
-                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResultText),
-                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
+                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)" && x.IsSubmit == true)
+                                      .Max(x => x.ReviewResultText),
+                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)"
+                                      && x.IsSubmit == true)
                                       .Max(x => x.Allcomment),
-                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
-                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.Allcomment),
-                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
-                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      DrawingComment = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().OrderBy(x => x.PROMISE_DATE).ToList();
                 return datasFinal;
@@ -1528,23 +1543,27 @@ namespace II_VI_Incorporated_SCM.Services
                                       TBD = myGroup.Max(x => x.TBD),
                                       ResolutionOwner = myGroup.Max(x => x.ResolutionOwner),
                                       #region list item Review
-                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.ReviewResultText),
-                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach").Max(x => x.Allcomment),
-                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.ReviewResultText),
-                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity").Max(x => x.Allcomment),
-                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.ReviewResultText),
-                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable").Max(x => x.Allcomment),
-                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.ReviewResultText),
-                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months").Max(x => x.Allcomment),
-                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.ReviewResultText),
-                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)").Max(x => x.Allcomment),
-                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)").Max(x => x.ReviewResultText),
-                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
+                                      CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach" && x.IsSubmit == true ).Max(x => x.Allcomment),
+                                      Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)" && x.IsSubmit == true)
+                                      .Max(x => x.ReviewResultText),
+                                      ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)"
+                                      && x.IsSubmit == true)
                                       .Max(x => x.Allcomment),
-                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.ReviewResultText),
-                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)").Max(x => x.Allcomment),
-                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.ReviewResultText),
-                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed").Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      DrawingComment = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().OrderBy(x=>x.PROMISE_DATE).ToList();
                 return datasFinal;
@@ -1627,7 +1646,7 @@ namespace II_VI_Incorporated_SCM.Services
                 try
                 {
                     //udpate result detail 
-                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID && x.ISSUBMIT == false).FirstOrDefault();
+                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID && (x.ISSUBMIT == false || x.ISSUBMIT == null)).FirstOrDefault();
                     if (data != null)
                     {
                         if (picData.ReviewResult == true)
@@ -1722,7 +1741,7 @@ namespace II_VI_Incorporated_SCM.Services
         {
             List<SelectListItem> listuser = (from  a in _db.tbl_SOR_Cur_Review_List 
                                              join v in _db.tbl_SOR_Cur_Review_Detail  on a.REVIEW_ID equals v.ITEM_REVIEW_ID
-                                             where(a.REVIEW_STATUS != "Final Reviewed" && a.SO_NO == soNo)
+                                             where(a.REVIEW_STATUS != "Approved" && a.SO_NO.Trim() == soNo.Trim())
                                              select( new SelectListItem
             {
                 Value = a.REVIEW_ID.ToString(),
@@ -1732,7 +1751,7 @@ namespace II_VI_Incorporated_SCM.Services
         }
         public List<SelectListItem> GetDropdownLinebySOreview(string soNo)
         {
-            List<SelectListItem> listuser = _db.tbl_SOR_Cur_Review_List.Where(x => x.REVIEW_STATUS != "Final Reviewed" && x.SO_NO == soNo).Select(x => new SelectListItem
+            List<SelectListItem> listuser = _db.tbl_SOR_Cur_Review_List.Where(x => x.REVIEW_STATUS != "Approved" && x.SO_NO.Trim() == soNo.Trim()).Select(x => new SelectListItem
             {
                 Value = x.LINE.ToString(),
                 Text = x.LINE.Trim(),
@@ -1924,7 +1943,8 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 try
                 {
-                    var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim()).FirstOrDefault();
+                    var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() 
+                    && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim() && x.REVIEW_STATUS == "Reviewed").FirstOrDefault();
                     if (dataSoreview != null)
                     {
                         dataSoreview.ResolutionOwner = picData.ResolutionOwner;
@@ -1965,7 +1985,8 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 try
                 {
-                    var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim()).FirstOrDefault();
+                    var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim()
+                    && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE.Trim() == picData.Line.Trim() && x.REVIEW_STATUS == "FinalReviewed").FirstOrDefault();
                     if (dataSoreview != null)
                     {
                         dataSoreview.REVIEW_STATUS = "Approved";

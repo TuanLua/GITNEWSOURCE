@@ -91,6 +91,8 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
 
         public string AdditionalRequirementsReviewed { get; set; }
         public string AdditionalRequirementsReviewedComment { get; set; }
+        public string Drawing { get; set; }
+        public string DrawingComment { get; set; }
         #endregion
     }
 }

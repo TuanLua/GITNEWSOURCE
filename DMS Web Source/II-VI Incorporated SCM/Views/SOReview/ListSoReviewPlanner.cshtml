@@ -28,9 +28,9 @@
 <h3>Review SO by Planner </h3>
 <div class="container-fluid" style="text-align:right">
     @if (ViewBag.IsPlanner == true || (bool)ViewBag.IsLeadofPlanner == true)
-        {
-    <button class="btn btn-sm btn-success" id="save">Save as Draft</button>
-    <button class="btn btn-sm btn-success" id="submit">Submit</button>
+    {
+        <button class="btn btn-sm btn-success" id="save">Save as Draft</button>
+        <button class="btn btn-sm btn-success" id="submit">Submit</button>
     }
 </div>
 <br />
@@ -41,8 +41,8 @@
 </div>
 <div class="col-sm-6" style="text-align:right">
     <button class="btn btn-sm btn-warning" id="clear">Clear Filter</button>
-</div>             
-          
+</div>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-18 col-md-12">
@@ -50,13 +50,12 @@
                                                           .Name("gridSoReview")
                                                           .Columns(columns =>
                                                           {
-                                                          columns.Bound(p => p.Analyst).Title("Analyst").Width(70).Editable("true").Locked(true);
-                                                          columns.Bound(p => p.SONO).Title("So No").Width(120).Editable("true").Locked(true);
-                                                          columns.Bound(p => p.Status).Title("Status").Width(100).Editable("true").Locked(true);
-                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(150).Editable("true").Locked(true);
-                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(100).Editable("true").Locked(true);
-                                                          columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true")
-                                                              .Format("{0:dd-MMM-yy}").Locked(true).Lockable(false); ;
+                                                          columns.Bound(p => p.Analyst).Title("Analyst").Width(80).Editable("true").ClientTemplate("#= CustomizecssAnalyst(data) #").Locked(true);
+                                                          columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(80).Editable("true").Locked(true).ClientTemplate("#= Customizecss(data) #"); ;
+                                                          columns.Bound(p => p.Status).Title("Status").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssStatus(data) #");
+                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssHold(data) #");
+                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(200).Editable("true").Locked(true).ClientTemplate("#= CustomizecssItem(data) #");
+                                                          columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}").Locked(true).Lockable(false);
                                                           columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
                                                           columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
                                                           columns.Bound(p => p.BalanceValue).Title("Balance Value").Width(120).Editable("true");
@@ -70,6 +69,8 @@
                                                               columns.Bound(p => p.FAI).Title("FAI").Width(100).Editable("true");
                                                               columns.Bound(p => p.CoCofRoHS).Title("IQC-CoC of RoHS, Reach").Width(250).Editable("true");
                                                               columns.Bound(p => p.CoCofRoHSComment).Title("IQC - Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.Drawing).Title("ADC-Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)").Width(250).Editable("true");
+                                                              columns.Bound(p => p.DrawingComment).Title("ADC - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.Capacity).Title("PIC-Capacity").Width(250).Editable("true");
                                                               columns.Bound(p => p.CapacityComment).Title("PIC - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.RawMaterial).Title("PIC-Raw Material & consumable").Width(250).Editable("true");
@@ -476,6 +477,72 @@
         $('#search').val("");
         $('a.k-grid-filter').removeClass('k-state-active')
     })
+    function Customizecss(data) {
+        if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
+            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
+            var html = kendo.format("<a style='color:red'>" + data.SONO + "</a>");
+        }
+        else {
+            var html = data.SONO;
+        }
+        return html;
+    }
+    function CustomizecssStatus(data) {
+        if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
+            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
+            var html = kendo.format("<a style='color:red'>" + data.Status + "</a>");
+        }
+        else {
+            var html = data.Status;
+        }
+        return html;
+    }
+    function CustomizecssHold(data) {
+        if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
+            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
+            var html = kendo.format("<a style='color:red'>" + data.SOHold + "</a>");
+        }
+        else {
+            var html = data.SOHold;
+        }
+        return html;
+    }
+    function CustomizecssItem(data) {
+        if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
+            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
+            var html = kendo.format("<a style='color:red'>" + data.ITEM + "</a>");
+        }
+        else {
+            var html = data.ITEM;
+        }
+        return html;
+    }
+    function CustomizecssReview(data) {
+        if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
+            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
+            var html = kendo.format("<a style='color:red'>" + data.ItemReview + "</a>");
+        }
+        else {
+            var html = data.ItemReview;
+        }
+        return html;
+    }
+    function CustomizecssAnalyst(data) {
+        if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
+            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
+            var html = kendo.format("<a style='color:red'>" + data.Analyst + "</a>");
+        }
+        else {
+            var html = data.Analyst;
+        }
+        return html;
+    }
 </script>
 
 
