@@ -15,7 +15,7 @@ namespace II_VI_Incorporated_SCM.Models
     public partial class tbl_SOR_Review_Analyst_Data
     {
         public int Anl_ID { get; set; }
-        public string Analist { get; set; }
-        public string Anl_Desc { get; set; }
+        public string ANALYST { get; set; }
+        public string ANALYST_DESC { get; set; }
     }
 }

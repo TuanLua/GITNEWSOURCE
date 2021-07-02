@@ -136,8 +136,8 @@ namespace II_VI_Incorporated_SCM.Services
         {
             List<SelectListItem> listuser = _db.tbl_SOR_Review_Analyst_Data.Select(x => new SelectListItem
             {
-                Value = x.Analist.ToString(),
-                Text = x.Analist.Trim(),
+                Value = x.ANALYST.ToString(),
+                Text = x.ANALYST .Trim(),
             }).ToList();
             return listuser;
         }
@@ -1062,7 +1062,7 @@ namespace II_VI_Incorporated_SCM.Services
                 if(result != null)
                 {
                     data =
-                         result.Where(x => x.RESULT != "N/A" && x.RESULT == null).Select(x => new ListSOItemReviewModel
+                         result.Where(x => x.ISSUBMIT != false && x.RESULT == null).Select(x => new ListSOItemReviewModel
                          {
                              SONO = x.SO_NO,
                              ItemReview = x.ITEM_REVIEW,
@@ -1141,7 +1141,7 @@ namespace II_VI_Incorporated_SCM.Services
 
             else if( isFilter == "Reviewed")
             {
-                data = result.Where(x => x.RESULT != "N/A" && (x.RESULT == "Y" || x.RESULT == "N")).Select(x => new ListSOItemReviewModel
+                data = result.Where(x => x.ISSUBMIT == true).Select(x => new ListSOItemReviewModel
                 {
                     SONO = x.SO_NO,
                     ItemReview = x.ITEM_REVIEW,
