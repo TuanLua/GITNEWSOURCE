@@ -1588,7 +1588,7 @@ namespace II_VI_Incorporated_SCM.Services
                         };
                     }
                      //udpate result detail 
-                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID && x.ISSUBMIT == false).FirstOrDefault();
+                    var data = _db.tbl_SOR_Cur_Review_Detail.Where(x => x.ITEM_REVIEW_ID == picData.ID && ( x.ISSUBMIT == false || x.ISSUBMIT == null)).FirstOrDefault();
                     if (data != null)
                     {   if(picData.ReviewResult == true)
                         {

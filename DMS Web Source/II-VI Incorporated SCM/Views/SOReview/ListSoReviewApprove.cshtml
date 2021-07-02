@@ -444,7 +444,7 @@
         $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SO_NO", operator: "contains", value: "" });
     });
     function Customizecss(data) {
-        if (data.Status != "Final Reviewed" || data.Status != "Approved") {
+        if (data.Status != "Final Reviewed" && data.Status != "Approved") {
             var html = kendo.format("<a style='color:red'>" + data.SONO + "</a>");
         }
         else {
@@ -453,7 +453,7 @@
         return html;
     }
     function CustomizecssStatus(data) {
-        if (data.Status != "Final Reviewed" || data.Status != "Approved") {
+        if (data.Status != "Final Reviewed" && data.Status != "Approved") {
                 var html = kendo.format("<a style='color:red'>" + data.Status + "</a>");
             }
             else {
@@ -462,7 +462,7 @@
             return html;
         }
         function CustomizecssHold(data) {
-            if (data.Status != "Final Reviewed" || data.Status != "Approved") {
+            if (data.Status != "Final Reviewed" && data.Status != "Approved") {
                 var html = kendo.format("<a style='color:red'>" + data.SOHold + "</a>");
             }
             else {
@@ -471,7 +471,7 @@
             return html;
         }
         function CustomizecssItem(data) {
-            if (data.Status != "Final Reviewed" || data.Status != "Approved") {
+            if (data.Status != "Final Reviewed" && data.Status != "Approved") {
                 var html = kendo.format("<a style='color:red'>" + data.ITEM + "</a>");
             }
             else {
@@ -480,7 +480,7 @@
             return html;
         }
         function CustomizecssReview(data) {
-            if (data.Status != "Final Reviewed" || data.Status != "Approved") {
+            if (data.Status != "Final Reviewed" && data.Status != "Approved") {
                 var html = kendo.format("<a style='color:red'>" + data.ItemReview + "</a>");
             }
             else {
@@ -489,7 +489,7 @@
             return html;
         }
         function CustomizecssAnalyst(data) {
-            if (data.Status != "Final Reviewed" || data.Status != "Approved") {
+            if (data.Status != "Final Reviewed" && data.Status != "Approved") {
                 var html = kendo.format("<a style='color:red'>" + data.Analyst + "</a>");
             }
             else {
