@@ -3346,9 +3346,9 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
         </EntityType>
         <EntityType Name="tbl_SOR_Review_Analyst_Data">
           <Key>
-            <PropertyRef Name="Anl_ID" />
+            <PropertyRef Name="ANALYST_ID" />
           </Key>
-          <Property Name="Anl_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ANALYST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ANALYST" Type="nvarchar" MaxLength="50" />
           <Property Name="ANALYST_DESC" Type="nvarchar" MaxLength="500" />
         </EntityType>
@@ -13891,9 +13891,9 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
         </EntityType>
         <EntityType Name="tbl_SOR_Review_Analyst_Data">
           <Key>
-            <PropertyRef Name="Anl_ID" />
+            <PropertyRef Name="ANALYST_ID" />
           </Key>
-          <Property Name="Anl_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ANALYST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ANALYST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ANALYST_DESC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -19849,7 +19849,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
               <MappingFragment StoreEntitySet="tbl_SOR_Review_Analyst_Data">
                 <ScalarProperty Name="ANALYST_DESC" ColumnName="ANALYST_DESC" />
                 <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
-                <ScalarProperty Name="Anl_ID" ColumnName="Anl_ID" />
+                <ScalarProperty Name="ANALYST_ID" ColumnName="ANALYST_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

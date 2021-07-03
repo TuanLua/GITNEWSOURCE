@@ -4452,7 +4452,7 @@
         <MappingFragment StoreEntitySet="tbl_SOR_Review_Analyst_Data">
           <ScalarProperty Name="ANALYST_DESC" ColumnName="ANALYST_DESC" />
           <ScalarProperty Name="ANALYST" ColumnName="ANALYST" />
-          <ScalarProperty Name="Anl_ID" ColumnName="Anl_ID" />
+          <ScalarProperty Name="ANALYST_ID" ColumnName="ANALYST_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

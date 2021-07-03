@@ -7371,9 +7371,9 @@
   </EntityType>
   <EntityType Name="tbl_SOR_Review_Analyst_Data">
     <Key>
-      <PropertyRef Name="Anl_ID" />
+      <PropertyRef Name="ANALYST_ID" />
     </Key>
-    <Property Name="Anl_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ANALYST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ANALYST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ANALYST_DESC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
