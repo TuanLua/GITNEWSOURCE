@@ -85,8 +85,8 @@
                                                              .Width(120).Editable("true");
                                                               columns.Bound(p => p.Special).Title("IM-EX-Special request (BSO, IOR, COO…)").Width(250).Editable("true");
                                                               columns.Bound(p => p.SpecialComment).Title("IM-EX - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.Special).Title("PIC - Additional Requirements reviewed").Width(250).Editable("true");
-                                                              columns.Bound(p => p.SpecialComment).Title("PIC - Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.AdditionalRequirementsReviewed).Title("PIC - Additional Requirements reviewed").Width(250).Editable("true");
+                                                              columns.Bound(p => p.AdditionalRequirementsReviewedComment).Title("PIC - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(200).Editable("true");
 
                                                           }).ToolBar(tools => tools.Excel())

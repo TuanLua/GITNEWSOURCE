@@ -5,14 +5,14 @@
     ViewBag.Title = "ReleaseforReview";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@if ( ViewBag.IsPlanner == true)
+@if (ViewBag.IsPlanner == true)
 {
     <div style="float:right"> <button class="btn btn-sm btn-success" id="release-so">Release</button></div>
 }
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-18 col-md-12">
-                @(Html.Kendo().Grid<sp_SOR_GetSoOpen_Result>()
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-18 col-md-12">
+            @(Html.Kendo().Grid<sp_SOR_GetSoOpen_Result>()
                                                                   .Name("gridSoReview")
                                                                   .Columns(columns =>
                                                                   {
@@ -52,11 +52,11 @@
                                                                     .Filter(f => f.Add(a => a.REVIEW_STATUS).IsEqualTo("Open"))
                                                                    .Sort(sort => sort.Add("DOWNLOAD_DATE").Descending())
                                                                   ))
-            </div>
         </div>
     </div>
+</div>
 
-    <script>
+<script>
     $('#release-so').on('click', function () {
           bootbox.confirm({
             message: 'Are you sure to release data?',
@@ -85,7 +85,9 @@
                                 });
                             }
                             else {
-                                bootbox.alert(result.message);
+                                bootbox.alert(result.message, function () {
+                                    window.location.reload();
+                                });
                             }
                         }
                     });
@@ -93,4 +95,4 @@
             }
         });
     })
-    </script>
+</script>
