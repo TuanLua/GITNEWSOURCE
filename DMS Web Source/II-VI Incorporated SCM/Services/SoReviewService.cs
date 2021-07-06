@@ -104,7 +104,7 @@ namespace II_VI_Incorporated_SCM.Services
 
         string SORReviewPlanner();
 
-        List<SelectListItem> GetDropdownItembySOreview(string soNo);
+        List<SelectListItem> GetDropdownItembySOreview(string soNo,string line);
 
 
         Result UpdateDataPlannerSoReviewResult(ListSOItemReviewModel picData, string idUser);
@@ -1737,16 +1737,24 @@ namespace II_VI_Incorporated_SCM.Services
             }).Distinct().ToList();
             return listuser;
         }
-        public List<SelectListItem> GetDropdownItembySOreview(string soNo)
+        public List<SelectListItem> GetDropdownItembySOreview(string soNo, string line)
         {
-            List<SelectListItem> listuser = (from  a in _db.tbl_SOR_Cur_Review_List 
-                                             join v in _db.tbl_SOR_Cur_Review_Detail  on a.REVIEW_ID equals v.ITEM_REVIEW_ID
-                                             where(a.REVIEW_STATUS != "Approved" && a.SO_NO.Trim() == soNo.Trim())
-                                             select( new SelectListItem
-            {
-                Value = a.REVIEW_ID.ToString(),
-                Text = v.ITEM_REVIEW.Trim(),
-            })).Distinct().ToList();
+            List<SelectListItem> listuser = (from a in _db.tbl_SOR_Cur_Review_List
+
+                                             join v in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals v.SO_NO 
+
+                                             where(a.REVIEW_STATUS != "Approved" && a.SO_NO.Trim() == soNo.Trim() && a.LINE.Trim() == line && a.LINE == v.LINE)
+
+                                             select(new SelectListItem
+
+                                             {
+
+                                                 Value = a.REVIEW_ID.ToString(),
+
+                                                 Text = v.ITEM_REVIEW.Trim(),
+
+                                             })).Distinct().ToList();
+
             return listuser;
         }
         public List<SelectListItem> GetDropdownLinebySOreview(string soNo)

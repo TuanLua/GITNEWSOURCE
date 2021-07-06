@@ -25,7 +25,9 @@
         color: blue;
     }
 </style>
+
 <h3>Review SO </h3>
+
 <div class="container-fluid row">
     <div class="col-sm-6" style="text-align:left">
         <button class="btn btn-sm btn-warning" id="view-file">View List File</button>
@@ -49,6 +51,7 @@
     </div>
 
 </div>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-18 col-md-12">
@@ -61,8 +64,8 @@
                                                   columns.Bound(p => p.Status).Title("Status").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssStatus(data) #");
                                                   columns.Bound(p => p.SOHold).Title("SO on hold").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssHold(data) #");
                                                   columns.Bound(p => p.ITEM).Title("ITEM").Width(200).Editable("true").Locked(true).ClientTemplate("#= CustomizecssItem(data) #");
-                                                  columns.Bound(p => p.ItemReview).Title("Item Review").Width(300).Editable("true").ClientTemplate("#= CustomizecssReview(data) #").Locked(true); 
-                                                  columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}").Locked(true).Lockable(false); 
+                                                  columns.Bound(p => p.ItemReview).Title("Item Review").Width(300).Editable("true").ClientTemplate("#= CustomizecssReview(data) #").Locked(true);
+                                                  columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}").Locked(true).Lockable(false);
                                                   columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
                                                   columns.Bound(p => p.ReviewResult).Title("(Y) Result ").Width(120).Editable("false")
                                                       .Template(@<text></text>).ClientTemplate("<input type='radio' name='#=ID#'  #= ReviewResult == true ? checked='checked':'' # class='form-control ReviewResult' />");
@@ -105,7 +108,7 @@
         </div>
     </div>
 </div>
- 
+
 <div id="popup" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -201,13 +204,7 @@
         </div>
     </div>
 </div>
-@*@Html.Partial("ResultpartialView");*@
-@*@(Html.Kendo().DropDownList()
-        .Name("ReviewResultText") // The name of the widget has to be the same as the name of the property.
-        .DataValueField("Value") // The value of the drop-down is taken from the EmployeeID property.
-        .DataTextField("Text") // The text of the items is taken from the EmployeeName property.
-        .BindTo((System.Collections.IEnumerable)ViewData["ReviewResultText"]) // A list of all employees which is populated in the controller.
-    )*@
+
 <script>
     var isSave = true;
     var message = "";
@@ -253,6 +250,7 @@
 
 
                 });
+
     $(".k-header").kendoTooltip({
         content: function (e) {
             var target = e.target; // element for which the tooltip is shown
@@ -274,6 +272,7 @@
             alert(message);
         }
     }
+
     $(document).ready(function () {
 
     $('#save').click(function () {
@@ -313,7 +312,8 @@
                          $.unblockUI();
                      });
              }
-        });
+    });
+
     });
         $('#submit').click(function () {
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
@@ -357,17 +357,23 @@
                      });
              }
         });
+
     function convertUTCDateToLocalDate(date) {
         var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
         return newDate;
     }
+
     $('#add-task').on('click', function () {
+        $('#soNo').val('');
+        $('#linetask').val('');
         $('#itemreview').val('');
         $('#user').val('');
         $('#taskname').val('');
         $('#popupTask').modal('show');
     });
     $('#add-file').on('click', function () {
+        $('#soNoFile').val('');
+        $('#line').val('');
         $('#itemreviewFile').val('');
         $('#file').val('');
         $('#popup').modal('show');
@@ -458,33 +464,23 @@
             });
         }
 
-     });
+    });
+
     $('#view-task').on('click', function () {
         var date = '@ViewBag.DownloadDate';
         window.open("@Url.Action("ListTaskmanagementSOReview", "SoReview")" + "?date=" + date,"_blank");
     });
+
     $('#view-file').on('click', function () {
         var date = '@ViewBag.DownloadDate';
         window.open("@Url.Action("ListFilemanagementSOReview", "SoReview")" + "?date=" + date, "_blank");
     });
+
     $('#soNo').on('change', function () {
         var soNo = $('#soNo').val();
         $('#itemreview').html('');
         $('#linetask').html('');
-        $.ajax({
-            url: '@Url.Action("GetListItemSoReviewBySo", "SOReview")',
-            type: "POST",
-            data: { SoNo: soNo },
-            dataType: "json",
-            success: function (result) {
-                $.each(result, function (i, item) {
-                    $('#itemreview').append($('<option>', {
-                        value: item.Text,
-                        text: item.Text
-                    }));
-                });
-            }
-        });
+
            $.ajax({
                             url: '@Url.Action("GetListLineSoReviewBySo", "SOReview")',
                             type: "POST",
@@ -498,27 +494,17 @@
                                     }));
                                 });
                             }
-                        });
+           });
+        var $newOption = $("<option selected='selected'></option>").val("").text("")
+        $("#linetask").append($newOption).trigger('change');
+        $("#linetask").select2();
     });
 
     $('#soNoFile').on('change', function () {
         var soNo = $('#soNoFile').val();
         $('#itemreviewFile').html('');
         $('#line').html('');
-        $.ajax({
-            url: '@Url.Action("GetListItemSoReviewBySo", "SOReview")',
-            type: "POST",
-            data: { SoNo: soNo },
-            dataType: "json",
-            success: function (result) {
-                $.each(result, function (i, item) {
-                    $('#itemreviewFile').append($('<option>', {
-                        value: item.Value,
-                        text: item.Text
-                    }));
-                });
-            }
-        });
+
                 $.ajax({
                             url: '@Url.Action("GetListLineSoReviewBySo", "SOReview")',
                             type: "POST",
@@ -533,18 +519,63 @@
                                 });
                             }
                 });
-
+        var $newOption = $("<option selected='selected'></option>").val("").text("")
+        $("#line").append($newOption).trigger('change');
+        $("#line").select2();
     });
+
+    $('#linetask').on('change', function () {
+        var soNo = $('#soNo').val();
+        var line = $('#linetask').val();
+        $('#itemreview').html('');
+       $.ajax({
+            url: '@Url.Action("GetListItemSoReviewBySo", "SOReview")',
+            type: "POST",
+            data: { SoNo: soNo ,line:line},
+            dataType: "json",
+            success: function (result) {
+                $.each(result, function (i, item) {
+                    $('#itemreview').append($('<option>', {
+                        value: item.Text,
+                        text: item.Text
+                    }));
+                });
+            }
+        });
+    });
+
+    $('#line').on('change', function () {
+        var soNo = $('#soNoFile').val();
+        var line = $('#line').val();
+        $('#itemreviewFile').html('');
+          $.ajax({
+            url: '@Url.Action("GetListItemSoReviewBySo", "SOReview")',
+            type: "POST",
+            data: { SoNo: soNo ,line:line},
+            dataType: "json",
+            success: function (result) {
+                $.each(result, function (i, item) {
+                    $('#itemreviewFile').append($('<option>', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            }
+        });
+    });
+
     $('#view-review').on('click', function () {
         let Grid = $("#gridSoReview").data("kendoGrid");
         Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=NotReview';
         Grid.dataSource.read();
     })
+
      $('#view-all').on('click', function () {
         let Grid = $("#gridSoReview").data("kendoGrid");
         Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=All';
         Grid.dataSource.read();
      })
+
     $('#reviewed').on('click', function () {
         let Grid = $("#gridSoReview").data("kendoGrid");
         Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReViewRead", "SOReview")?isFilter=Reviewed';
@@ -560,6 +591,7 @@
             dataItem.set('ReviewResult1', false);
         })
     })
+
     $(function () {
         $('#gridSoReview').on('click', '.ReviewResult1', function () {
             var checked = $(this).is(':checked');
@@ -569,6 +601,7 @@
             dataItem.set('ReviewResult', false);
         })
     })
+
     function Customizecss(data) {
         if (data.IsSubmit == true) {
             var html = kendo.format("<a style='color:blue'>" + data.SONO + "</a>");
@@ -578,6 +611,7 @@
         }
         return html;
     }
+
     function CustomizecssStatus(data) {
         if (data.IsSubmit == true) {
             var html = kendo.format("<a style='color:blue'>" + data.Status + "</a>");
@@ -587,6 +621,7 @@
         }
         return html;
     }
+
     function CustomizecssHold(data) {
         if (data.IsSubmit == true) {
             var html = kendo.format("<a style='color:blue'>" + data.SOHold + "</a>");
@@ -596,6 +631,7 @@
         }
         return html;
     }
+
     function CustomizecssItem(data) {
         if (data.IsSubmit == true) {
             var html = kendo.format("<a style='color:blue'>" + data.ITEM + "</a>");
@@ -605,6 +641,7 @@
         }
         return html;
     }
+
     function CustomizecssReview(data) {
         if (data.IsSubmit == true) {
             var html = kendo.format("<a style='color:blue'>" + data.ItemReview + "</a>");
@@ -614,6 +651,7 @@
         }
         return html;
     }
+
     function CustomizecssAnalyst(data) {
         if (data.IsSubmit == true) {
             var html = kendo.format("<a style='color:blue'>" + data.Analyst + "</a>");
@@ -623,5 +661,5 @@
         }
         return html;
     }
-    
+
 </script>

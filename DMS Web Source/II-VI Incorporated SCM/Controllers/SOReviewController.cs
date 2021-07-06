@@ -644,9 +644,9 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             return Json(result);
         }
         [HttpPost]
-        public JsonResult GetListItemSoReviewBySo(string SoNo)
+        public JsonResult GetListItemSoReviewBySo(string SoNo,string line)
         {
-            var result = _iSoReviewService.GetDropdownItembySOreview(SoNo);
+            var result = _iSoReviewService.GetDropdownItembySOreview(SoNo, line);
             return Json(result);
         }
         [HttpPost]

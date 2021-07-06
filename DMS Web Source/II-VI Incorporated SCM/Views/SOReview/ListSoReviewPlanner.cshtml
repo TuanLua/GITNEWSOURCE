@@ -26,6 +26,7 @@
     }
 </style>
 <h3>Review SO by Planner </h3>
+
 <div class="container-fluid" style="text-align:right">
     @if (ViewBag.IsPlanner == true || (bool)ViewBag.IsLeadofPlanner == true)
     {
@@ -33,12 +34,15 @@
         <button class="btn btn-sm btn-success" id="submit">Submit</button>
     }
 </div>
+
 <br />
+
 <div class="col-sm-6" style="text-align:left">
     <button class="btn btn-sm btn-warning" id="reviewed">Submit</button>
     <button class="btn btn-sm btn-info" id="view-review">Not Yet Submit</button>
     <button class="btn btn-sm btn-success" id="view-all">View All</button>
 </div>
+
 <div class="col-sm-6" style="text-align:right">
     <button class="btn btn-sm btn-warning" id="clear">Clear Filter</button>
 </div>
@@ -190,6 +194,7 @@
         </div>
     </div>
 </div>
+
 <script>
             var isSave = true;
             var message = "";
@@ -223,7 +228,8 @@
                                 });
                             $("#soNo").select2();
 
-                        });
+            });
+
             $(".k-header").kendoTooltip({
                 content: function (e) {
                     var target = e.target; // element for which the tooltip is shown
@@ -231,6 +237,7 @@
                 },
                 position: "top"
             });
+
             $(document).ready(function () {
 
             $('#save').click(function () {
@@ -376,12 +383,14 @@
         let Grid = $("#gridSoReview").data("kendoGrid");
          Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=NotReview';
         Grid.dataSource.read();
-    })
+     })
+
      $('#view-all').on('click', function () {
         let Grid = $("#gridSoReview").data("kendoGrid");
          Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=All';
         Grid.dataSource.read();
      })
+
      $('#reviewed').on('click', function () {
         let Grid = $("#gridSoReview").data("kendoGrid");
         Grid.dataSource.transport.options.read.url = '@Url.Action("ListSoReviewPlannerRead", "SOReview")?isFilter=Reviewed';
@@ -436,6 +445,7 @@
                      });
              }
       });
+
       $('#approve').click(function () {
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
              var arrResult = [];
@@ -472,11 +482,13 @@
                      });
              }
       });
+
     $("#clear").click(function () {
         $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SO_NO", operator: "contains", value: "" });
         $('#search').val("");
         $('a.k-grid-filter').removeClass('k-state-active')
     })
+
     function Customizecss(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
             || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
@@ -488,6 +500,7 @@
         }
         return html;
     }
+
     function CustomizecssStatus(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
             || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
@@ -499,6 +512,7 @@
         }
         return html;
     }
+
     function CustomizecssHold(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
             || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
@@ -510,6 +524,7 @@
         }
         return html;
     }
+
     function CustomizecssItem(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
             || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
@@ -521,6 +536,7 @@
         }
         return html;
     }
+
     function CustomizecssReview(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
             || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
@@ -532,6 +548,7 @@
         }
         return html;
     }
+
     function CustomizecssAnalyst(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
             || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
