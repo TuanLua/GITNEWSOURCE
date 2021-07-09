@@ -1276,6 +1276,8 @@ namespace II_VI_Incorporated_SCM.Services
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
                                       DrawingComment = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Production = myGroup.Where(x => x.ItemReview.Trim() == "Production - Enough & usable Tool  Process capable /Enough machine / test equipment" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      ProductionComment = myGroup.Where(x => x.ItemReview.Trim() == "Production - Enough & usable Tool  Process capable /Enough machine / test equipment" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().OrderBy(x => x.PROMISE_DATE).ToList();
                 return datasFinal;
@@ -1372,6 +1374,8 @@ namespace II_VI_Incorporated_SCM.Services
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
                                       DrawingComment = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Production = myGroup.Where(x => x.ItemReview.Trim() == "Production - Enough & usable Tool  Process capable /Enough machine / test equipment" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      ProductionComment = myGroup.Where(x => x.ItemReview.Trim() == "Production - Enough & usable Tool  Process capable /Enough machine / test equipment" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().OrderBy(x=>x.PROMISE_DATE).ToList();
                 return datasFinal;
@@ -1469,6 +1473,8 @@ namespace II_VI_Incorporated_SCM.Services
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
                                       DrawingComment = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Production = myGroup.Where(x => x.ItemReview.Trim() == "Production - Enough & usable Tool  Process capable /Enough machine / test equipment" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      ProductionComment = myGroup.Where(x => x.ItemReview.Trim() == "Production - Enough & usable Tool  Process capable /Enough machine / test equipment" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().OrderBy(x => x.PROMISE_DATE).ToList();
                 return datasFinal;

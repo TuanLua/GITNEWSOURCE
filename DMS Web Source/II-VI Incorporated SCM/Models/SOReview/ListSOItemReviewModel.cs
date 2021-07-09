@@ -76,6 +76,8 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public string CoCofRoHS { get; set; }
         public string CoCofRoHSComment { get; set; }
 
+        public string Production { get; set; }
+        public string ProductionComment { get; set; }
         public string Capacity { get; set; }
         public string CapacityComment { get; set; }
         public string RawMaterial { get; set; }
