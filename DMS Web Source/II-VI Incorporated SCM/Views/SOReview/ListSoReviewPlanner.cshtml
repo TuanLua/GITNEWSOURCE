@@ -30,7 +30,7 @@
 <div class="container-fluid" style="text-align:right">
     @if (ViewBag.IsPlanner == true || (bool)ViewBag.IsLeadofPlanner == true)
     {
-        <button class="btn btn-sm btn-success" id="save">Save as Draft</button>
+        <button class="btn btn-sm btn-info" id="save">Save as Draft</button>
         <button class="btn btn-sm btn-success" id="submit">Submit</button>
     }
 </div>
@@ -38,7 +38,7 @@
 <br />
 
 <div class="col-sm-6" style="text-align:left">
-    <button class="btn btn-sm btn-warning" id="reviewed">Submit</button>
+    <button class="btn btn-sm btn-warning" id="reviewed">View Submited</button>
     <button class="btn btn-sm btn-info" id="view-review">Not Yet Submit</button>
     <button class="btn btn-sm btn-success" id="view-all">View All</button>
 </div>
@@ -83,6 +83,8 @@
                                                               columns.Bound(p => p.RawMaterialComment).Title("PIC - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.Builtless).Title("PIC-Built less than 6 months").Width(250).Editable("true");
                                                               columns.Bound(p => p.BuiltlessComment).Title("PIC - Comment").Width(120).Editable("true");
+                                                              columns.Bound(p => p.AdditionalRequirementsReviewed).Title("PIC - Additional Requirements reviewed").Width(250).Editable("true");
+                                                              columns.Bound(p => p.AdditionalRequirementsReviewedComment).Title("PIC - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.Carrier).Title("IM-EX-Carrier (Fedex, DHL, Schenker,…)").Width(250).Editable("true");
                                                               columns.Bound(p => p.CarrierComment).Title("IM-EX - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.ServiceTypeShipping).Title("IM-EX-Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
@@ -91,8 +93,7 @@
                                                              .Width(120).Editable("true");
                                                               columns.Bound(p => p.Special).Title("IM-EX-Special request (BSO, IOR, COO…)").Width(250).Editable("true");
                                                               columns.Bound(p => p.SpecialComment).Title("IM-EX - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.AdditionalRequirementsReviewed).Title("PIC - Additional Requirements reviewed").Width(250).Editable("true");
-                                                              columns.Bound(p => p.AdditionalRequirementsReviewedComment).Title("PIC - Comment").Width(120).Editable("true");
+
                                                               columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(200).Editable("true");
 
                                                           }).ToolBar(tools => tools.Excel())
@@ -493,7 +494,7 @@
 
     function Customizecss(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
-            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Builtless == 'N' || data.Carrier == 'N' || data.ServiceTypeShipping == 'N'
             || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
             var html = kendo.format("<a style='color:red'>" + data.SONO + "</a>");
         }
@@ -505,7 +506,7 @@
 
     function CustomizecssStatus(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
-            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Builtless == 'N' || data.Carrier == 'N' || data.ServiceTypeShipping == 'N'
             || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
             var html = kendo.format("<a style='color:red'>" + data.Status + "</a>");
         }
@@ -517,7 +518,7 @@
 
     function CustomizecssHold(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
-            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Builtless == 'N' || data.Carrier == 'N' || data.ServiceTypeShipping == 'N'
             || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
             var html = kendo.format("<a style='color:red'>" + data.SOHold + "</a>");
         }
@@ -529,7 +530,7 @@
 
     function CustomizecssItem(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
-            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Builtless == 'N' || data.Carrier == 'N' || data.ServiceTypeShipping == 'N'
             || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
             var html = kendo.format("<a style='color:red'>" + data.ITEM + "</a>");
         }
@@ -541,7 +542,7 @@
 
     function CustomizecssReview(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
-            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Builtless == 'N' || data.Carrier == 'N' || data.ServiceTypeShipping == 'N'
             || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
             var html = kendo.format("<a style='color:red'>" + data.ItemReview + "</a>");
         }
@@ -553,7 +554,7 @@
 
     function CustomizecssAnalyst(data) {
         if (data.CoCofRoHS == 'N' || data.Capacity == 'N' || data.RawMaterial == 'N'
-            || data.Builtless == 'N' || data.Carrier || data.ServiceTypeShipping == 'N'
+            || data.Builtless == 'N' || data.Carrier == 'N' || data.ServiceTypeShipping == 'N'
             || data.Special == 'N' || data.AdditionalRequirementsReviewed == 'N' || data.Drawing == 'N') {
             var html = kendo.format("<a style='color:red'>" + data.Analyst + "</a>");
         }
