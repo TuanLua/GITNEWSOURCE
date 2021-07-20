@@ -489,6 +489,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         public ActionResult AnalystReviewList()
         {
             ViewBag.IsPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.Planner);
+            ViewBag.IsLeadofPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.LeadofPlanner);
             var lstPIC = _iSoReviewService.GetListAnalyst();
             return View(lstPIC);
         }

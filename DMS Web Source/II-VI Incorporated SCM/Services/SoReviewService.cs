@@ -1687,9 +1687,9 @@ namespace II_VI_Incorporated_SCM.Services
                                 commentAll = (item.COMMENT != "" || item.COMMENT != null) ? commentAll + "-"+ item.COMMENT : commentAll ;
                             }
                         }
+                        var soReview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE == picData.Line).FirstOrDefault();
                         if (isChangeStatus)
                         {
-                            var soReview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE == picData.Line).FirstOrDefault();
                             if (soReview != null)
                             {
                                 if (isSubmitted)
@@ -1704,6 +1704,10 @@ namespace II_VI_Incorporated_SCM.Services
                                     soReview.COMMENT = commentAll;
                                 }
                             }
+                        }
+                        else
+                        {
+                            soReview.REVIEW_STATUS = "Reviewing";
                         }
                         _db.SaveChanges();
 
