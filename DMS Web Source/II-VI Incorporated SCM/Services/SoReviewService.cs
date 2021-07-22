@@ -1667,6 +1667,7 @@ namespace II_VI_Incorporated_SCM.Services
                         data.REVIEW_BY = idUser;
                         data.REVIEW_AT = DateTime.Now;
                         data.ISSUBMIT = true;
+                        _db.SaveChanges();
                         //update status So Review
                         bool isSubmitted = true;
                         bool isChangeStatus = true;
