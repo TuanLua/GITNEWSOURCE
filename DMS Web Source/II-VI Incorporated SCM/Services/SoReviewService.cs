@@ -1685,7 +1685,7 @@ namespace II_VI_Incorporated_SCM.Services
                                 {
                                     isChangeStatus = false;
                                 }
-                                commentAll = (item.COMMENT != "" || item.COMMENT != null) ? commentAll + "-"+ item.COMMENT : commentAll ;
+                                commentAll += item.COMMENT;
                             }
                         }
                         var soReview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim() && x.DOWNLOAD_DATE == picData.DateDownLoad && x.LINE == picData.Line).FirstOrDefault();
