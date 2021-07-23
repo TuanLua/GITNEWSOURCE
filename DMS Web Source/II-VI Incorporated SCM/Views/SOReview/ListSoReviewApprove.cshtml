@@ -404,11 +404,11 @@
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
              var arrResult = [];
         data.forEach(function (item) {
-             if (item.Status != 'Final Reviewed') {
+            if (item.Status != 'Final Reviewed') {
                 isSave = false;
                 message = "Please check all data before approved!";
             }
-            else if (item.ReviewResult != null && item.ReviewResult1 != null) {
+            else {
                 arrResult.push(item)
             }
             })
