@@ -408,7 +408,7 @@
                 isSave = false;
                 message = "Please check all data before approved!";
             }
-            else {
+            else if (item.PlanShipDate != null || item.TBD != null) {
                 arrResult.push(item)
             }
             })

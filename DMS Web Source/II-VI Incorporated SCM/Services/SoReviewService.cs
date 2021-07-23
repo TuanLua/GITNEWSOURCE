@@ -2005,7 +2005,7 @@ namespace II_VI_Incorporated_SCM.Services
                 try
                 {
                     var dataSoreview = _db.tbl_SOR_Cur_Review_List.Where(x => x.SO_NO.Trim() == picData.SONO.Trim()
-                   && x.LINE.Trim() == picData.Line.Trim() && x.REVIEW_STATUS == "FinalReviewed").FirstOrDefault();
+                   && x.LINE.Trim() == picData.Line.Trim() && x.REVIEW_STATUS == "Final Reviewed").FirstOrDefault();
                     if (dataSoreview != null)
                     {
                         dataSoreview.REVIEW_STATUS = "Approved";
