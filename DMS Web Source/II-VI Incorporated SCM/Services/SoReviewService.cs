@@ -1270,8 +1270,8 @@ namespace II_VI_Incorporated_SCM.Services
                                       ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)"
                                       && x.IsSubmit == true)
                                       .Max(x => x.Allcomment),
-                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
-                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "No Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "No Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.ReviewResultText),
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
@@ -1368,8 +1368,8 @@ namespace II_VI_Incorporated_SCM.Services
                                       ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)"
                                       && x.IsSubmit == true)
                                       .Max(x => x.Allcomment),
-                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
-                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "No Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "No Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.ReviewResultText),
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
@@ -1467,8 +1467,8 @@ namespace II_VI_Incorporated_SCM.Services
                                       ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)"
                                       && x.IsSubmit == true)
                                       .Max(x => x.Allcomment),
-                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
-                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "No Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "No Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.ReviewResultText),
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
@@ -1564,8 +1564,8 @@ namespace II_VI_Incorporated_SCM.Services
                                       ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)"
                                       && x.IsSubmit == true)
                                       .Max(x => x.Allcomment),
-                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
-                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                      Special = myGroup.Where(x => x.ItemReview.Trim() == "No Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                      SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "No Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.ReviewResultText),
                                       AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
