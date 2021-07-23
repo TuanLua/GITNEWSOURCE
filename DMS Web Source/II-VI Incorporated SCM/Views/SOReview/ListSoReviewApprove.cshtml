@@ -399,6 +399,7 @@
                      });
              }
       });
+
       $('#approve').click(function () {
              var data = $("#gridSoReview").data("kendoGrid").dataSource.data();
              var arrResult = [];
@@ -419,7 +420,7 @@
              }
              else {
                   $.blockUI();
-                 $.post('@Url.Action("AprroveDataPlannerSoReviewResult", "SoReview")', { lstData: lstData },
+                 $.post('@Url.Action("ApproveDataPlannerSoReviewResult", "SoReview")', { lstData: lstData },
                      function (result) {
                          if (result) {
                              bootbox.alert('Submit result sucess!', function () {
