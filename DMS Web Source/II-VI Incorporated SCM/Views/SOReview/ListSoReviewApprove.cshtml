@@ -28,13 +28,34 @@
 <h3>Review SO by Planner </h3>
 <div class="container-fluid" style="text-align:right">
     @if ((bool)ViewBag.IsLeadofPlanner == true)
-        {
-    <button class="btn btn-sm btn-success" id="approve">Approve</button>
-  
+    {
+        <button class="btn btn-sm btn-success" id="approve">Approve</button>
+
     }
 </div>
 <div class="col-sm-6" style="text-align:left">
     <button id="exportExcel" class="btn btn-info">Export to Excel</button>
+</div>
+<div class="col-sm-6" style="text-align:right">
+    <div class="actions">
+        <div class="btn-group">
+            <button type="button" class="btn green dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false" readonly>
+                <i class="fa"></i> Find By
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="javascript:;" id="clear"> Clear Filter</a>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="onFind('ANALYST')"> ANALYST </a>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="onFind('SO_NO')"> SO No </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 <div class="container-fluid">
     <div class="row">
@@ -44,7 +65,7 @@
                                                           .Columns(columns =>
                                                           {
                                                           columns.Bound(p => p.Analyst).Title("Analyst").Width(80).Editable("true").ClientTemplate("#= CustomizecssAnalyst(data) #").Locked(true);
-                                                          columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(80).Editable("true").Locked(true).ClientTemplate("#= Customizecss(data) #"); ;
+                                                          columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(80).Editable("true").Locked(true).ClientTemplate("#= Customizecss(data) #");
                                                           columns.Bound(p => p.Status).Title("Status").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssStatus(data) #");
                                                           columns.Bound(p => p.SOHold).Title("SO on hold").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssHold(data) #");
                                                           columns.Bound(p => p.ITEM).Title("ITEM").Width(200).Editable("true").Locked(true).ClientTemplate("#= CustomizecssItem(data) #");
@@ -81,9 +102,54 @@
                                                           ))
         </div>
     </div>
+    <div class="row" style="display:none">
+        <div class="col-xs-18 col-md-12">
+            @(Html.Kendo().Grid<ListSOItemReviewModel>()
+                                                      .Name("gridSoReviewExport")
+                                                      .Columns(columns =>
+                                                      {
+                                                          columns.Bound(p => p.Analyst).Title("Analyst").Width(80).Editable("true").ClientTemplate("#= CustomizecssAnalyst(data) #").Locked(true);
+                                                          columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(80).Editable("true").Locked(true).ClientTemplate("#= Customizecss(data) #");
+                                                          // columns.Bound(p => p.Status).Title("Status").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssStatus(data) #");
+                                                          columns.Bound(p => p.SOHold).Title("SO on hold").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssHold(data) #");
+                                                          columns.Bound(p => p.ITEM).Title("ITEM").Width(200).Editable("true").Locked(true).ClientTemplate("#= CustomizecssItem(data) #");
+                                                          //   columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}").Locked(true).Lockable(false);
+                                                          columns.Bound(p => p.OrderQty).Title("Order Qty").Width(120).Editable("true");
+                                                          columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
+                                                          columns.Bound(p => p.BalanceValueFormat).Title("Balance Value").Width(120).Editable("true");
+                                                        //  columns.Bound(p => p.PlanShipDate).Title("Plan Ship Date").Width(200).Editable("true").Format("{0:dd-MMM-yy}");
+                                                          columns.Bound(p => p.ResultExport).Title("Plan Ship Date").Width(200).Editable("true").Format("{0:dd-MMM-yy}");
+                                                       //   columns.Bound(p => p.TBD).Title("TBD").Width(100).Editable("true");
+                                                          //    .Template(@<text></text>).ClientTemplate("<input type='checkbox' #= TBD == true ? checked='checked':'' # class='form-control itemresult' />");
+                                                          columns.Bound(p => p.Comment).Title("Planner Comment").Width(250).Editable("true");
+                                                          columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("true");
+                                                          columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
+                                                          columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(0).Format("{0:dd-MMM-yy}").Editable("true");
+
+                                                      })
+                                                          .ToolBar(tools => tools.Excel())
+                                                          .Sortable()
+                                                            .Resizable(resize => resize.Columns(true))
+                                                          .Scrollable()
+                                                          .Editable(editable => editable.Mode(GridEditMode.InCell))
+                                                        .Filterable()
+                                                             .Excel(excel => excel
+                                                        .FileName("So Review List.xlsx")
+                                                        .ProxyURL(Url.Action("Excel_Export_Save", "Grid")))
+                                                             .Pageable(m => m.PageSizes(new List<object> { 5, 10, 20, 50, "All" }).Refresh(true))
+                                                          .HtmlAttributes(new { style = "height:750px;" })
+                                                          .DataSource(dataSource => dataSource
+                                                              .Ajax()
+                                                              .PageSize(30)
+                                                                  .ServerOperation(false)
+                                                              .Model(model => model.Id(p => p.SONO))
+                                                              .Read(read => read.Action("ListSoReviewPlannerApproveExportRead", "SOReview",new { isFilter = false }))
+                                                          ))
+        </div>
+    </div>
 </div>
 
-<div id="popup" class="modal fade" tabindex="-1" role="dialog" aria - labelledby="basicModal" aria - hidden="true">
+<div id="popup" class="modal fade" tabindex="-1" role="dialog" aria - labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -160,6 +226,34 @@
         </div>
     </div>
 </div>
+
+<div id="popupsearch" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title searchField"></h4>
+            </div>
+            <div class="modal-body">
+                <br />
+                <div class="form-horizontal col-md-offset-1">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 lbWT searchField "></label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control boder-opal" id="search">
+                            <input type="hidden" class="form-control boder-opal" id="searchId">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="onSearch()" class="btn btn-success">Find</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
             var isSave = true;
             var message = "";
@@ -439,10 +533,10 @@
 
     $("#exportExcel").click(function (e) {
         var searchText = 'Approved';
-        var filter = $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "Status", operator: "contains", value: searchText });
-        var grid = $("#gridSoReview").data("kendoGrid");
+        var filter = $("#gridSoReviewExport").data("kendoGrid").dataSource.filter({ field: "Status", operator: "contains", value: searchText });
+        var grid = $("#gridSoReviewExport").data("kendoGrid");
         grid.saveAsExcel();
-        $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SO_NO", operator: "contains", value: "" });
+        $("#gridSoReviewExport").data("kendoGrid").dataSource.filter({ field: "SO_NO", operator: "contains", value: "" });
     });
     function Customizecss(data) {
         if (data.Status != "Final Reviewed" && data.Status != "Approved") {
@@ -498,7 +592,59 @@
             }
             return html;
         }
+   function onFind(condition) {
+        $('.searchField').text(condition);
 
+        if (condition == 'ANALYST') {
+            $('#search').val();
+            $('#searchId').val(0);
+        }
+        else if (condition == 'SO_NO') {
+            $('#searchId').val(1);
+        }
+       $('#popupsearch').modal('show');
+    }
+    function onSearch() {
+        var searchText = $('#search').val().toLowerCase();
+        var number = $('#searchId').val();
+        if (number == '0') {
+            $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "Analyst", operator: "contains", value: searchText });
+            $('#search').val("");
+        }
+        else if (number == '1') {
+            $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SONO", operator: "contains", value: searchText });
+            $('#search').val("");
+        }
+        $('#popupsearch').modal('hide');
+    }
+
+    function onFindDate(condition) {
+        $('.searchField').text(condition);
+        if (condition == 'Created Date') {
+            $('#searchId').val(3);
+            $('#popupdate').modal('show');
+        }
+    }
+
+    function onSearchDate() {
+        var number = $('#searchId').val();
+        if (number == '3') {
+            var datefrom = $('#datefrom').val().toLowerCase();;
+            var dateto = $('#dateto').val().toLowerCase();;
+            $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "PROMISE_DATE", operator: "gte", value: datefrom },
+                { field: "PROMISE_DATE", operator: "lte", value: dateto });
+            $('#datefrom').val("");
+            $('#dateto').val("");
+        }
+        $('#popupdate').modal('hide');
+    }
+
+
+    $("#clear").click(function () {
+        $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SONO", operator: "contains", value: "" });
+        $('#search').val("");
+        $('a.k-grid-filter').removeClass('k-state-active')
+    })
 </script>
 
 

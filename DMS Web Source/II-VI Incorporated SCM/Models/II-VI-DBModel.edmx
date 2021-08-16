@@ -3222,6 +3222,14 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
           <Property Name="Attached_By" Type="nvarchar" MaxLength="128" />
           <Property Name="Attached_At" Type="datetime" />
         </EntityType>
+        <EntityType Name="tbl_SOR_ColumnName_Data">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColunmName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ColunmNameShow" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tbl_SOR_Cur_Review_Detail">
           <Key>
             <PropertyRef Name="ITEM_REVIEW_ID" />
@@ -3270,6 +3278,15 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
           <Property Name="TBD" Type="nvarchar" MaxLength="50" />
           <Property Name="APPROVEBY" Type="nvarchar" MaxLength="128" />
           <Property Name="APPROVEAT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_SOR_DeptHideColumn">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEPT" Type="nvarchar" MaxLength="50" />
+          <Property Name="COLUMNSHOW" Type="nvarchar" MaxLength="50" />
+          <Property Name="ORDERNUMBER" Type="int" />
         </EntityType>
         <EntityType Name="tbl_SOR_Family_Setup_Qty">
           <Key>
@@ -5822,8 +5839,10 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <EntitySet Name="tbl_RP_Store_Parameter" EntityType="Self.tbl_RP_Store_Parameter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_RP_StoreProcedure" EntityType="Self.tbl_RP_StoreProcedure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_Attached_ForItemReview" EntityType="Self.tbl_SOR_Attached_ForItemReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SOR_ColumnName_Data" EntityType="Self.tbl_SOR_ColumnName_Data" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_Cur_Review_Detail" EntityType="Self.tbl_SOR_Cur_Review_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_Cur_Review_List" EntityType="Self.tbl_SOR_Cur_Review_List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SOR_DeptHideColumn" EntityType="Self.tbl_SOR_DeptHideColumn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_Family_Setup_Qty" EntityType="Self.tbl_SOR_Family_Setup_Qty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_His_Review_Detail" EntityType="Self.tbl_SOR_His_Review_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SOR_His_Review_List" EntityType="Self.tbl_SOR_His_Review_List" Schema="dbo" store:Type="Tables" />
@@ -8722,7 +8741,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <FunctionImport Name="sp_tbl_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2)">
           <Parameter Name="Depart" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result5)">
+          <FunctionImport Name="sp_SOR_GetListSoreviewbyUserLogin" ReturnType="Collection(IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result6)">
             <Parameter Name="Depart" Mode="In" Type="String" />
             <Parameter Name="Analyst" Mode="In" Type="String" />
           </FunctionImport>
@@ -8871,8 +8890,10 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <EntitySet Name="tbl_RP_Store_Parameter" EntityType="IQCTestModel.tbl_RP_Store_Parameter" />
           <EntitySet Name="tbl_RP_StoreProcedure" EntityType="IQCTestModel.tbl_RP_StoreProcedure" />
           <EntitySet Name="tbl_SOR_Attached_ForItemReview" EntityType="IQCTestModel.tbl_SOR_Attached_ForItemReview" />
+          <EntitySet Name="tbl_SOR_ColumnName_Data" EntityType="IQCTestModel.tbl_SOR_ColumnName_Data" />
           <EntitySet Name="tbl_SOR_Cur_Review_Detail" EntityType="IQCTestModel.tbl_SOR_Cur_Review_Detail" />
           <EntitySet Name="tbl_SOR_Cur_Review_List" EntityType="IQCTestModel.tbl_SOR_Cur_Review_List" />
+          <EntitySet Name="tbl_SOR_DeptHideColumn" EntityType="IQCTestModel.tbl_SOR_DeptHideColumn" />
           <EntitySet Name="tbl_SOR_Family_Setup_Qty" EntityType="IQCTestModel.tbl_SOR_Family_Setup_Qty" />
           <EntitySet Name="tbl_SOR_His_Review_Detail" EntityType="IQCTestModel.tbl_SOR_His_Review_Detail" />
           <EntitySet Name="tbl_SOR_His_Review_List" EntityType="IQCTestModel.tbl_SOR_His_Review_List" />
@@ -11476,6 +11497,34 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <Property Type="String" Name="REVIEW_STATUS" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="ISSUBMIT" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="sp_SOR_GetListSoreviewbyUserLogin_Result6">
+          <Property Type="String" Name="SO_NO" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DOWNLOAD_DATE" Nullable="false" />
+          <Property Type="String" Name="SO_ON_HOLD" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SHIP_TO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ANALYST" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="BLC_QTY" Nullable="true" />
+          <Property Type="Double" Name="BLC_VALUE" Nullable="true" />
+          <Property Type="String" Name="DR_REV" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="ITEM_REVIEW_ID" Nullable="false" />
+          <Property Type="String" Name="FAI" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LAST_BUILD_DR_REV" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="NEW_REVIEW" Nullable="true" />
+          <Property Type="String" Name="LINE" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="REQUIRED_DATE" Nullable="true" />
+          <Property Type="Double" Name="ORD_QTY" Nullable="true" />
+          <Property Type="String" Name="LAST_REVIEW_DR_REV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ITEM" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ITEM_REVIEW" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="RESULT" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="COMMENT" Nullable="true" />
+          <Property Type="String" Name="LAST_RESULT" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="LAST_COMMENT" Nullable="true" />
+          <Property Type="DateTime" Name="PROMISE_DATE" Nullable="true" />
+          <Property Type="String" Name="REVIEW_STATUS" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ISSUBMIT" Nullable="true" />
+          <Property Type="String" Name="ResolutionOwner" Nullable="true" MaxLength="128" />
+        </ComplexType>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -13767,6 +13816,14 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <Property Name="Attached_By" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Attached_At" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="tbl_SOR_ColumnName_Data">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColunmName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColunmNameShow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tbl_SOR_Cur_Review_Detail">
           <Key>
             <PropertyRef Name="ITEM_REVIEW_ID" />
@@ -13815,6 +13872,15 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           <Property Name="TBD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="APPROVEBY" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="APPROVEAT" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_SOR_DeptHideColumn">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEPT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COLUMNSHOW" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ORDERNUMBER" Type="Int32" />
         </EntityType>
         <EntityType Name="tbl_SOR_Family_Setup_Qty">
           <Key>
@@ -17406,7 +17472,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_SOR_GetListSoreviewbyUserLogin" FunctionName="IQCTestModel.Store.sp_SOR_GetListSoreviewbyUserLogin">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result5">
+              <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result6">
                 <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
                 <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
                 <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
@@ -17432,6 +17498,7 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
                 <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
                 <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
                 <ScalarProperty Name="ISSUBMIT" ColumnName="ISSUBMIT" />
+                <ScalarProperty Name="ResolutionOwner" ColumnName="ResolutionOwner" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -19715,6 +19782,15 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SOR_ColumnName_Data">
+            <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_ColumnName_Data">
+              <MappingFragment StoreEntitySet="tbl_SOR_ColumnName_Data">
+                <ScalarProperty Name="ColunmNameShow" ColumnName="ColunmNameShow" />
+                <ScalarProperty Name="ColunmName" ColumnName="ColunmName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbl_SOR_Cur_Review_Detail">
             <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Cur_Review_Detail">
               <MappingFragment StoreEntitySet="tbl_SOR_Cur_Review_Detail">
@@ -19763,6 +19839,16 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
                 <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
                 <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
                 <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SOR_DeptHideColumn">
+            <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_DeptHideColumn">
+              <MappingFragment StoreEntitySet="tbl_SOR_DeptHideColumn">
+                <ScalarProperty Name="ORDERNUMBER" ColumnName="ORDERNUMBER" />
+                <ScalarProperty Name="COLUMNSHOW" ColumnName="COLUMNSHOW" />
+                <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

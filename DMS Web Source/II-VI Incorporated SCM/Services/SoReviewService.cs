@@ -15,6 +15,8 @@ namespace II_VI_Incorporated_SCM.Services
     {
         #region SOReview
         List<SelectListItem> GetDropdownlistUser();
+        List<SelectListItem>  GetDropdownlistColumn();
+        List<string> GetConditionHideColumn(string Department);
         bool GetIsLockBySo(string SO, DateTime date, string line);
         List<SelectListItem> GetReviewResult();
         List<string> GetAnalyst(string userID);
@@ -43,6 +45,8 @@ namespace II_VI_Incorporated_SCM.Services
         Result DeleteDataFileofItemReview(string id);
 
         Result AddTaskForSoReview(string SoNo, string itemreview, string userID, string Assignee, string item, string taskname);
+
+        List<TaskmanagementViewmodel> GetAllListTaskSoreview();
         #endregion
 
         #region MasterData
@@ -71,14 +75,22 @@ namespace II_VI_Incorporated_SCM.Services
         Result DeleteDataFamilyReview(string id);
         #endregion
 
-        #endregion
-
         #region Analyst
         List<AnalystReviewmodel> GetListAnalyst();
         Result DeleteDataAnalystReview(string id);
         Result SaveDataAnalystReview(AnalystReviewmodel picData);
 
         Result UpdateDataAnalystReview(AnalystReviewmodel picData, int picID);
+        #endregion
+
+        #region PIC Column
+
+        List<PICReviewmodel> GetListPICColumnHide();
+        Result SaveDataPICColunnHide(PICReviewmodel picData);
+        Result UpdateDataPICHideColumn(PICReviewmodel picData, int picID);
+        Result DeleteDataPICColumnHide(string id);
+        #endregion
+
         #endregion
 
         #region Report
@@ -95,6 +107,8 @@ namespace II_VI_Incorporated_SCM.Services
         List<ListSOItemReviewModel> GetListSOReviewByPlanner(string depart, string isFilter, List<string> analyst);
 
         List<ListSOItemReviewModel> GetListApproveSOReviewByPlanner(string depart, string isFilter, List<string> analyst);
+        List<ListSOItemReviewModel> GetListApproveSOReviewByPlannerExport(string depart, string isFilter, List<string> analyst);
+        
         Result UpdateDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
 
         Result SubmitDataSoReviewResult(ListSOItemReviewModel picData, string idUser);
@@ -141,7 +155,15 @@ namespace II_VI_Incorporated_SCM.Services
             }).ToList();
             return listuser;
         }
-
+        public List<SelectListItem> GetDropdownlistColumn()
+        {
+            List<SelectListItem> listuser = _db.tbl_SOR_ColumnName_Data.Select(x => new SelectListItem
+            {
+                Value = x.ColunmName.ToString(),
+                Text = x.ColunmNameShow.Trim(),
+            }).ToList();
+            return listuser;
+        }
         public List<SelectListItem> GetReviewResult()
         {
             List<SelectListItem> lstData = new List<SelectListItem>();
@@ -159,7 +181,11 @@ namespace II_VI_Incorporated_SCM.Services
             lstData.Add(s3);
             return lstData;
         }
-
+        public List<string> GetConditionHideColumn(string Department)
+        {
+            List<string> lstData = _db.tbl_SOR_DeptHideColumn.Where(x=>x.DEPT == Department).OrderBy(x=>x.ORDERNUMBER).Select(x => x.COLUMNSHOW).ToList();
+            return lstData;
+        }
         public List<sp_SOR_GetSoReview_Result> GetListSoReview()
         {
             List<sp_SOR_GetSoReview_Result> data = _db.sp_SOR_GetSoReview().ToList();
@@ -1008,6 +1034,112 @@ namespace II_VI_Incorporated_SCM.Services
         }
 
         #endregion
+
+        #region PIC Colunm
+
+        public List<PICReviewmodel> GetListPICColumnHide()
+        {
+            var picData = (from tbl in _db.tbl_SOR_DeptHideColumn
+                           select (new PICReviewmodel
+                           {
+                               ID = tbl.ID,
+                               Dept = tbl.DEPT,
+                               Pic = tbl.COLUMNSHOW,
+                               ODERNUNMBER = tbl.ORDERNUMBER
+                           })).ToList();
+            return picData;
+        }
+        public Result SaveDataPICColunnHide(PICReviewmodel picData)
+        {
+            var _log = new LogWriter("AddData");
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var dataInsert = new tbl_SOR_DeptHideColumn();
+                    dataInsert.DEPT = picData.Dept;
+                    dataInsert.COLUMNSHOW = picData.Pic;
+                    dataInsert.ORDERNUMBER = picData.ODERNUNMBER;
+                    _db.tbl_SOR_DeptHideColumn.Add(dataInsert);
+                    _db.SaveChanges();
+                    tranj.Commit();
+                    return new Result
+                    {
+                        success = true,
+                    };
+                }
+                catch (Exception ex)
+                {
+                    tranj.Rollback();
+                    _log.LogWrite(ex.ToString());
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception AddData!",
+                        obj = -1
+                    };
+                }
+            }
+        }
+        public Result UpdateDataPICHideColumn(PICReviewmodel picData, int picID)
+        {
+            var _log = new LogWriter("Updatedata");
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var data = _db.tbl_SOR_DeptHideColumn.Where(x => x.ID == picID).FirstOrDefault();
+                    data.DEPT = picData.Dept;
+                    data.COLUMNSHOW = picData.Pic;
+                    data.ORDERNUMBER = picData.ODERNUNMBER;
+                    _db.SaveChanges();
+                    tranj.Commit();
+                    return new Result
+                    {
+                        success = true,
+                    };
+                }
+                catch (Exception ex)
+                {
+                    tranj.Rollback();
+                    _log.LogWrite(ex.ToString());
+                    return new Result
+                    {
+                        success = false,
+                        message = "Exception Updatedata!",
+                        obj = -1
+                    };
+                }
+            }
+        }
+        #endregion
+        public Result DeleteDataPICColumnHide(string id)
+        {
+            using (var tranj = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var checkData = _db.tbl_SOR_DeptHideColumn.FirstOrDefault(x => x.ID.ToString().Trim() == id.Trim());
+                    _db.tbl_SOR_DeptHideColumn.Remove(checkData);
+                    _db.SaveChanges();
+                    tranj.Commit();
+                    return new Result
+                    {
+                        message = "Delete success!",
+                        success = true,
+                    };
+                }
+                catch (Exception ex)
+                {
+                    return new Result
+                    {
+                        message = ex.ToString(),
+                        obj = ex,
+                        success = false
+                    };
+                }
+            }
+        }
         #endregion
 
         #region Report
@@ -1061,8 +1193,7 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 if(result != null)
                 {
-                    data =
-                         result.Where(x => x.ISSUBMIT != false && x.RESULT == null).Select(x => new ListSOItemReviewModel
+                    data =result.Where(x => x.ISSUBMIT == false || x.ISSUBMIT == null).Select(x => new ListSOItemReviewModel
                          {
                              SONO = x.SO_NO,
                              ItemReview = x.ITEM_REVIEW,
@@ -1093,7 +1224,8 @@ namespace II_VI_Incorporated_SCM.Services
                              Status = x.REVIEW_STATUS,
                              SoDel = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(4, 4) : null,
                              SOLine = (x.LINE != null || x.LINE != "") ? x.LINE.Substring(0, 4) : null,
-                             IsSubmit = x.ISSUBMIT
+                             IsSubmit = x.ISSUBMIT,
+                             ResolutionOwner = x.ResolutionOwner
                          }).Distinct().OrderBy(x=>x.PROMISE_DATE).ToList();
                     return data;
                 }
@@ -1102,7 +1234,7 @@ namespace II_VI_Incorporated_SCM.Services
             {
                 if(result != null)
                 {
-                     data = result.Where(x => x.RESULT != "N/A").Select(x => new ListSOItemReviewModel
+                     data = result.Select(x => new ListSOItemReviewModel
                     {
                         SONO = x.SO_NO,
                         ItemReview = x.ITEM_REVIEW,
@@ -1506,7 +1638,7 @@ namespace II_VI_Incorporated_SCM.Services
                                 LastBuild = a.LAST_BUILD_DR_REV,
                                 LastWeeks = a.LAST_REVIEW_DR_REV,
                                 BalanceQty = a.BLC_QTY,
-                                BalanceValue = a.BLC_VALUE,
+                                BalanceValue =a.BLC_VALUE,
                                 ShipToLocation = a.SHIP_TO,
                                 NewSoReviewLW = a.NEW_REVIEW == true ? "Y" : "N",
                                 FAI = a.FAI,
@@ -1572,7 +1704,110 @@ namespace II_VI_Incorporated_SCM.Services
                                       DrawingComment = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.Allcomment),
                                       #endregion
                                   }).Distinct().OrderBy(x=>x.PROMISE_DATE).ToList();
-                return datasFinal;
+            foreach (var item in datasFinal)
+            {
+                item.BalanceValue = Math.Round(item.BalanceValue.GetValueOrDefault(), 0, MidpointRounding.AwayFromZero);
+            }
+            return datasFinal;
+        }
+        public List<ListSOItemReviewModel> GetListApproveSOReviewByPlannerExport(string depart, string isFilter, List<string> analyst)
+        {
+            var data = (from a in _db.tbl_SOR_Cur_Review_List
+                        join b in _db.tbl_SOR_Cur_Review_Detail on a.SO_NO equals b.SO_NO
+                        where (a.DOWNLOAD_DATE == b.DOWNLOAD_DATE && a.SO_NO == b.SO_NO
+                        && a.LINE == b.LINE)
+                        select new ListSOItemReviewModel
+                        {
+                            SONO = a.SO_NO,
+                            ItemReview = b.ITEM_REVIEW,
+                            ReviewResultText = b.RESULT == null ? null : b.RESULT == "Y" ? "Y" : "N",
+                            Comment = a.COMMENT,
+                            Line = b.LINE,
+                            DateDownLoad = a.DOWNLOAD_DATE,
+                            PlanShipDate = a.PLAN_SHIP_DATE,
+                            TBD = a.TBD == "TBD" ? true : false,
+                            ID = a.REVIEW_ID,
+                            Allcomment = b.COMMENT,
+                            ResolutionOwner = a.ResolutionOwner,
+                            SOHold = a.SO_ON_HOLD,
+                            DrawRevision = a.DR_REV,
+                            LastBuild = a.LAST_BUILD_DR_REV,
+                            LastWeeks = a.LAST_REVIEW_DR_REV,
+                            BalanceQty =a.BLC_QTY,
+                            BalanceValue =a.BLC_VALUE,
+                            ShipToLocation = a.SHIP_TO,
+                            NewSoReviewLW = a.NEW_REVIEW == true ? "Y" : "N",
+                            FAI = a.FAI,
+                            OrderQty = a.ORD_QTY,
+                            RequiredDate = a.REQUIRED_DATE,
+                            ITEM = a.ITEM,
+                            Analyst = a.ANALYST,
+                            Status = a.REVIEW_STATUS,
+                            PROMISE_DATE = a.PROMISE_DATE
+                        }).ToList();
+            var datasFinal = (from cc in data
+                              group cc by new
+                              {
+                                  cc.SONO,
+                                  cc.Line
+                              }
+                         into myGroup
+                              select new ListSOItemReviewModel
+                              {
+                                  ID = myGroup.Max(x => x.ID),
+                                  SONO = myGroup.Key.SONO,
+                                  Comment = myGroup.Max(x => x.Comment),
+                                  SOHold = myGroup.Max(x => x.SOHold),
+                                  Analyst = myGroup.Max(x => x.Analyst),
+                                  DrawRevision = myGroup.Max(x => x.DrawRevision),
+                                  LastBuild = myGroup.Max(x => x.LastBuild),
+                                  PROMISE_DATE = myGroup.Max(x => x.PROMISE_DATE),
+                                  Status = myGroup.Max(x => x.Status),
+                                  LastWeeks = myGroup.Max(x => x.LastWeeks),
+                                  BalanceQty = myGroup.Max(x => x.BalanceQty),
+                                  BalanceValue = myGroup.Max(x => x.BalanceValue),
+                                  ShipToLocation = myGroup.Max(x => x.ShipToLocation),
+                                  NewSoReviewLW = myGroup.Max(x => x.NewSoReviewLW),
+                                  FAI = myGroup.Max(x => x.FAI),
+                                  OrderQty = myGroup.Max(x => x.OrderQty),
+                                  RequiredDate = myGroup.Max(x => x.RequiredDate),
+                                  Line = myGroup.Max(x => x.Line),
+                                  ITEM = myGroup.Max(x => x.ITEM),
+                                  DateDownLoad = myGroup.Max(x => x.DateDownLoad),
+                                  PlanShipDate = myGroup.Max(x => x.PlanShipDate),
+                                  TBD = myGroup.Max(x => x.TBD),
+                                  ResolutionOwner = myGroup.Max(x => x.ResolutionOwner),
+                                  ResultExport = myGroup.Max(x => x.PlanShipDate) != null && myGroup.Max(x=>x.TBD ==false) ? myGroup.Max(x => x.PlanShipDate.GetValueOrDefault().ToString("dd-MMM-yy")) : "TBD",
+                                  #region list item Review
+                                  CoCofRoHS = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                  CoCofRoHSComment = myGroup.Where(x => x.ItemReview.Trim() == "CoC of RoHS, Reach" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                  Capacity = myGroup.Where(x => x.ItemReview.Trim() == "Capacity" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                  CapacityComment = myGroup.Where(x => x.ItemReview.Trim() == "Capacity" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                  RawMaterial = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                  RawMaterialComment = myGroup.Where(x => x.ItemReview.Trim() == "Raw Material & consumable" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                  Builtless = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                  BuiltlessComment = myGroup.Where(x => x.ItemReview.Trim() == "Built less than 6 months" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                  Carrier = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                  CarrierComment = myGroup.Where(x => x.ItemReview.Trim() == "Carrier (Fedex, DHL, Schenker,…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                  ServiceTypeShipping = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)" && x.IsSubmit == true)
+                                  .Max(x => x.ReviewResultText),
+                                  ServiceTypeShippingComment = myGroup.Where(x => x.ItemReview.Trim() == "Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)"
+                                  && x.IsSubmit == true)
+                                  .Max(x => x.Allcomment),
+                                  Special = myGroup.Where(x => x.ItemReview.Trim() == "No Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                  SpecialComment = myGroup.Where(x => x.ItemReview.Trim() == "No Special request (BSO, IOR, COO…)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                  AdditionalRequirementsReviewed = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                  AdditionalRequirementsReviewedComment = myGroup.Where(x => x.ItemReview.Trim() == "Additional Requirements reviewed" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                  Drawing = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.ReviewResultText),
+                                  DrawingComment = myGroup.Where(x => x.ItemReview.Trim() == "Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)" && x.IsSubmit == true).Max(x => x.Allcomment),
+                                  #endregion
+                              }).Distinct().OrderBy(x => x.PROMISE_DATE).ToList();
+            foreach (var item in datasFinal)
+            {
+                item.BalanceValueFormat = "$"+ Math.Round(item.BalanceValue.GetValueOrDefault(), 0, MidpointRounding.AwayFromZero).ToString();
+
+            }
+            return datasFinal;
         }
         #endregion
         #region Update Result Review
@@ -1925,9 +2160,14 @@ namespace II_VI_Incorporated_SCM.Services
                     if (dataSoreview != null && dataSoreview.REVIEW_STATUS != "Final Reviewed")
                     {
                         dataSoreview.ResolutionOwner = picData.ResolutionOwner;
-                        dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
-                        dataSoreview.REVIEW_STATUS = "Reviewed";
-                        dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
+                        if(picData.PlanShipDate != null && picData.TBD == false)
+                        {
+                            dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
+                        }
+                        else if(picData.TBD == true && picData.PlanShipDate == null)
+                        {
+                            dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
+                        }
                         dataSoreview.COMMENT = picData.Comment;
                         _db.SaveChanges();
                         tranj.Commit();
@@ -1967,9 +2207,15 @@ namespace II_VI_Incorporated_SCM.Services
                     if (dataSoreview != null)
                     {
                         dataSoreview.ResolutionOwner = picData.ResolutionOwner;
-                        dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
+                        if (picData.PlanShipDate != null && picData.TBD == false)
+                        {
+                            dataSoreview.PLAN_SHIP_DATE = picData.PlanShipDate;
+                        }
+                        else if (picData.TBD == true && picData.PlanShipDate == null)
+                        {
+                            dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
+                        }
                         dataSoreview.REVIEW_STATUS = "Final Reviewed";
-                        dataSoreview.TBD = picData.TBD == true ? "TBD" : null;
                         dataSoreview.COMMENT = picData.Comment;
                         _db.SaveChanges();
                         tranj.Commit();
@@ -2039,5 +2285,42 @@ namespace II_VI_Incorporated_SCM.Services
         }
         #endregion
 
+        #region Task and File Management
+        public List<TaskmanagementViewmodel> GetAllListTaskSoreview()
+        {
+            var result = from task in _db.TASKLISTs
+                         join taskdetail in _db.TASKDETAILs on task.TopicID equals taskdetail.TopicID
+                         join asp in _db.AspNetUsers on taskdetail.OWNER equals asp.Id
+                         into joined
+                         from j in joined.DefaultIfEmpty()
+                         join asp1 in _db.AspNetUsers on taskdetail.ASSIGNEE equals asp1.Id
+                          into joined1
+                         from j1 in joined1.DefaultIfEmpty()
+                         join asp2 in _db.AspNetUsers on taskdetail.APPROVE equals asp2.Id
+                        into joined2
+                         from j2 in joined2.DefaultIfEmpty()
+                         where (task.TYPE == "SoReview")
+                         select (new TaskmanagementViewmodel
+                         {
+                             RefNUMBER = task.Topic,
+                             Taskname = taskdetail.TASKNAME,
+                             TaskDescription = taskdetail.DESCRIPTION,
+                             Owner = j.FullName,
+                             Assignee = j1.FullName,
+                             Approve = j2.FullName,
+                             StartDay = taskdetail.EstimateStartDate,
+                             DueDate = taskdetail.EstimateEndDate,
+                             Status = taskdetail.STATUS,
+                             ActualStarDay = taskdetail.ActualStartDate,
+                             ActualEndDay = taskdetail.ActualEndDate,
+                             Priority = taskdetail.PRIORITY,
+                             Taskno = task.TopicID,
+                             TaskDetailID = taskdetail.IDTask,
+                             INSDATEs = taskdetail.CreatedDate
+                         });
+
+            return result.ToList();
+        }
+        #endregion
     }
 }

@@ -2009,7 +2009,7 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_SOR_GetListSoreviewbyUserLogin" FunctionName="IQCTestModel.Store.sp_SOR_GetListSoreviewbyUserLogin">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result5">
+        <ComplexTypeMapping TypeName="IQCTestModel.sp_SOR_GetListSoreviewbyUserLogin_Result6">
           <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
           <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
           <ScalarProperty Name="SO_ON_HOLD" ColumnName="SO_ON_HOLD" />
@@ -2035,6 +2035,7 @@
           <ScalarProperty Name="PROMISE_DATE" ColumnName="PROMISE_DATE" />
           <ScalarProperty Name="REVIEW_STATUS" ColumnName="REVIEW_STATUS" />
           <ScalarProperty Name="ISSUBMIT" ColumnName="ISSUBMIT" />
+          <ScalarProperty Name="ResolutionOwner" ColumnName="ResolutionOwner" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -4318,6 +4319,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_ColumnName_Data">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_ColumnName_Data">
+        <MappingFragment StoreEntitySet="tbl_SOR_ColumnName_Data">
+          <ScalarProperty Name="ColunmNameShow" ColumnName="ColunmNameShow" />
+          <ScalarProperty Name="ColunmName" ColumnName="ColunmName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbl_SOR_Cur_Review_Detail">
       <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_Cur_Review_Detail">
         <MappingFragment StoreEntitySet="tbl_SOR_Cur_Review_Detail">
@@ -4366,6 +4376,16 @@
           <ScalarProperty Name="SO_NO" ColumnName="SO_NO" />
           <ScalarProperty Name="DOWNLOAD_DATE" ColumnName="DOWNLOAD_DATE" />
           <ScalarProperty Name="REVIEW_ID" ColumnName="REVIEW_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SOR_DeptHideColumn">
+      <EntityTypeMapping TypeName="IQCTestModel.tbl_SOR_DeptHideColumn">
+        <MappingFragment StoreEntitySet="tbl_SOR_DeptHideColumn">
+          <ScalarProperty Name="ORDERNUMBER" ColumnName="ORDERNUMBER" />
+          <ScalarProperty Name="COLUMNSHOW" ColumnName="COLUMNSHOW" />
+          <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

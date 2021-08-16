@@ -10,7 +10,7 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public int ID { get; set; }
         public string Dept { get; set; }
         public string Pic { get; set; }
-
+        public int? ODERNUNMBER { get; set; }
         public string PicID { get; set; }
     }
 }

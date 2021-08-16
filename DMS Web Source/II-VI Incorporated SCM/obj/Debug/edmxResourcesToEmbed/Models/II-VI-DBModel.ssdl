@@ -3217,6 +3217,14 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="Attached_By" Type="nvarchar" MaxLength="128" />
     <Property Name="Attached_At" Type="datetime" />
   </EntityType>
+  <EntityType Name="tbl_SOR_ColumnName_Data">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColunmName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ColunmNameShow" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="tbl_SOR_Cur_Review_Detail">
     <Key>
       <PropertyRef Name="ITEM_REVIEW_ID" />
@@ -3265,6 +3273,15 @@ warning 6002: The table/view 'IQC.dbo.tbl_RP_Data_Source' does not have a primar
     <Property Name="TBD" Type="nvarchar" MaxLength="50" />
     <Property Name="APPROVEBY" Type="nvarchar" MaxLength="128" />
     <Property Name="APPROVEAT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_SOR_DeptHideColumn">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DEPT" Type="nvarchar" MaxLength="50" />
+    <Property Name="COLUMNSHOW" Type="nvarchar" MaxLength="50" />
+    <Property Name="ORDERNUMBER" Type="int" />
   </EntityType>
   <EntityType Name="tbl_SOR_Family_Setup_Qty">
     <Key>
@@ -5817,8 +5834,10 @@ warning 6002: The table/view 'IQC.dbo.Work Center' does not have a primary key d
     <EntitySet Name="tbl_RP_Store_Parameter" EntityType="Self.tbl_RP_Store_Parameter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_RP_StoreProcedure" EntityType="Self.tbl_RP_StoreProcedure" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SOR_Attached_ForItemReview" EntityType="Self.tbl_SOR_Attached_ForItemReview" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_SOR_ColumnName_Data" EntityType="Self.tbl_SOR_ColumnName_Data" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SOR_Cur_Review_Detail" EntityType="Self.tbl_SOR_Cur_Review_Detail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SOR_Cur_Review_List" EntityType="Self.tbl_SOR_Cur_Review_List" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_SOR_DeptHideColumn" EntityType="Self.tbl_SOR_DeptHideColumn" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SOR_Family_Setup_Qty" EntityType="Self.tbl_SOR_Family_Setup_Qty" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SOR_His_Review_Detail" EntityType="Self.tbl_SOR_His_Review_Detail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_SOR_His_Review_List" EntityType="Self.tbl_SOR_His_Review_List" Schema="dbo" store:Type="Tables" />

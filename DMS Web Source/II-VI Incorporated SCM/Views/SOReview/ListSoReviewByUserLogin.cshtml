@@ -4,7 +4,9 @@
 @{
     ViewBag.Title = "SOReviewList";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
+
 <style>
     .k-grid td {
         white-space: nowrap;
@@ -49,7 +51,27 @@
         <button class="btn btn-sm btn-info" id="view-review">Not Yet Submit</button>
         <button class="btn btn-sm btn-success" id="view-all">View All</button>
     </div>
-
+    <div class="col-sm-6" style="text-align:right">
+        <div class="actions">
+            <div class="btn-group">
+                <button type="button" class="btn green dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false" readonly>
+                    <i class="fa"></i> Find By
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="javascript:;" id="clear"> Clear Filter</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" onclick="onFind('ANALYST')"> ANALYST </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" onclick="onFind('SO_NO')"> SO No </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container-fluid">
@@ -59,32 +81,33 @@
                                                   .Name("gridSoReview")
                                                   .Columns(columns =>
                                                   {
-                                                  columns.Bound(p => p.Analyst).Title("Analyst").Width(80).Editable("true").ClientTemplate("#= CustomizecssAnalyst(data) #").Locked(true);
+                                                  columns.Bound(p => p.Analyst).Title("Analyst").Width(80).Editable("true").ClientTemplate("#= CustomizecssAnalyst(data) #").Locked(true).Hidden(true);
                                                   columns.Bound(p => p.SONO).Title("So No").HtmlAttributes(new { @class = "history" }).Width(80).Editable("true").Locked(true).ClientTemplate("#= Customizecss(data) #"); ;
-                                                  columns.Bound(p => p.Status).Title("Status").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssStatus(data) #");
-                                                  columns.Bound(p => p.SOHold).Title("SO on hold").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssHold(data) #");
-                                                  columns.Bound(p => p.ITEM).Title("ITEM").Width(200).Editable("true").Locked(true).ClientTemplate("#= CustomizecssItem(data) #");
-                                                  columns.Bound(p => p.ItemReview).Title("Item Review").Width(300).Editable("true").ClientTemplate("#= CustomizecssReview(data) #").Locked(true);
-                                                  columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}").Locked(true).Lockable(false);
-                                                  columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true");
+                                                  columns.Bound(p => p.Status).Title("Status").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssStatus(data) #").Hidden(true);
+                                                  columns.Bound(p => p.SOHold).Title("SO on hold").Width(80).Editable("true").Locked(true).ClientTemplate("#= CustomizecssHold(data) #").Hidden(true); ;
+                                                  columns.Bound(p => p.ITEM).Title("ITEM").Width(200).Editable("true").Locked(true).ClientTemplate("#= CustomizecssItem(data) #").Hidden(true); ;
+                                                  columns.Bound(p => p.ItemReview).Title("Item Review").Width(300).Editable("true").ClientTemplate("#= CustomizecssReview(data) #").Locked(true).Hidden(true); ;
+                                                  columns.Bound(p => p.PROMISE_DATE).Title("Promise Date").Width(120).Editable("true").Format("{0:dd-MMM-yy}").Locked(true).Lockable(false).Hidden(true); ;
+                                                  columns.Bound(p => p.BalanceQty).Title("Balance Qty").Width(120).Editable("true").Hidden(true); ;
                                                   columns.Bound(p => p.ReviewResult).Title("(Y) Result ").Width(120).Editable("false")
-                                                      .Template(@<text></text>).ClientTemplate("<input type='radio' name='#=ID#'  #= ReviewResult == true ? checked='checked':'' # class='form-control ReviewResult' />");
-                                                          columns.Bound(p => p.ReviewResult1).Title("(N) Result").Width(120).Editable("false")
-                                                          .Template(@<text></text>).ClientTemplate("<input  name='#=ID#'  type='radio' #= ReviewResult1 == true ? checked='checked':'' # class='form-control ReviewResult1' />");;
-                                                      columns.Bound(p=> p.Comment).Title("Comment").Width(200).Editable("false");
-                                                      columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true");
-                                                      columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true");
-                                                      columns.Bound(p => p.FAI).Title("FAI").Width(100).Editable("true");
-                                                      columns.Bound(p => p.NewSoReviewLW).Title("New SO vs last week").Width(100).Editable("true");
-                                                      columns.Bound(p => p.LastBuild).Title("Last Build Dr Rev").Width(100).Editable("true");
-                                                      columns.Bound(p => p.LastWeeks).Title("Last week Drw Revison Ref ").Width(100).Editable("true");
-                                                      columns.Bound(p => p.DrawRevision).Title("Drw Revision(*)").Width(120).Editable("true");
-                                                      columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true");
-                                                      columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(0).Format("{0:dd-MMM-yy}").Editable("true");
-                                                      columns.Bound(p => p.SOLine).Title("So Line").Width(100).Editable("true");
-                                                      columns.Bound(p => p.SoDel).Title("So Del").Width(100).Editable("true");
-                                                      columns.Bound(p => p.Line).Title("Date Download").Width(0).Format("{0:dd-MMM-yy}").Editable("true");
-                                                      columns.Bound(p => p.IsSubmit).Title("Date Download").Width(0).Format("{0:dd-MMM-yy}").Editable("true");
+                                                      .Template(@<text></text>).ClientTemplate("<input type='radio' name='#=ID#'  #= ReviewResult == true ? checked='checked':'' # class='form-control ReviewResult' />").Hidden(true); ;
+                                          columns.Bound(p => p.ReviewResult1).Title("(N) Result").Width(120).Editable("false")
+                                                  .Template(@<text></text>).ClientTemplate("<input  name='#=ID#'  type='radio' #= ReviewResult1 == true ? checked='checked':'' # class='form-control ReviewResult1' />").Hidden(true); ;
+                                                      columns.Bound(p=> p.Comment).Title("Comment").Width(200).Editable("false").Hidden(true); ;
+                                                      columns.Bound(p => p.ResolutionOwner).Title("Resolution Owner").Width(200).Editable("false").Hidden(true); ;
+                                                      columns.Bound(p => p.LastReview).Title("Last Review").Width(100).Editable("true").Hidden(true); ;
+                                                      columns.Bound(p => p.LastComment).Title("Last Comment").Width(200).Editable("true").Hidden(true); ;
+                                                      columns.Bound(p => p.FAI).Title("FAI").Width(100).Editable("true").Hidden(true); ;
+                                                      columns.Bound(p => p.NewSoReviewLW).Title("New SO vs last week").Width(100).Editable("true").Hidden(true);
+                                                      columns.Bound(p => p.LastBuild).Title("Last Build Dr Rev").Width(100).Editable("true").Hidden(true);
+                                                      columns.Bound(p => p.LastWeeks).Title("Last week Drw Revison Ref ").Width(100).Editable("true").Hidden(true);
+                                                      columns.Bound(p => p.DrawRevision).Title("Drw Revision(*)").Width(120).Editable("true").Hidden(true);
+                                                      columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(100).Editable("true").Hidden(true);
+                                                      columns.Bound(p => p.DateDownLoad).Title("Date Download").Width(0).Format("{0:dd-MMM-yy}").Editable("true").Hidden(true);
+                                                      columns.Bound(p => p.SOLine).Title("So Line").Width(100).Editable("true").Hidden(true);
+                                                      columns.Bound(p => p.SoDel).Title("So Del").Width(100).Editable("true").Hidden(true);
+                                                      columns.Bound(p => p.Line).Title("Date Download").Width(0).Format("{0:dd-MMM-yy}").Editable("true").Hidden(true);
+                                                      columns.Bound(p => p.IsSubmit).Title("Date Download").Width(0).Format("{0:dd-MMM-yy}").Editable("true").Hidden(true);
                                                   }).ToolBar(tools => tools.Excel())
                                                       .Sortable()
                                                       .Scrollable()
@@ -205,6 +228,33 @@
     </div>
 </div>
 
+<div id="popupsearch" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title searchField"></h4>
+            </div>
+            <div class="modal-body">
+                <br />
+                <div class="form-horizontal col-md-offset-1">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 lbWT searchField "></label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control boder-opal" id="search">
+                            <input type="hidden" class="form-control boder-opal" id="searchId">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="onSearch()" class="btn btn-success">Find</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     var isSave = true;
     var message = "";
@@ -283,7 +333,11 @@
             item.DateDownLoad = partdate;
             if (item.ReviewResult1 == true && (item.Comment == null || item.Comment == "")) {
                 isSave = false;
-                message = "Please input Comment for Item result is false!";
+                message = "Please input Comment for Item result is No!";
+            }
+            else if (item.ReviewResult1 == true && (item.ResolutionOwner == null || item.ResolutionOwner == "")) {
+                isSave = false;
+                message = "Please input Resolution Owner for Item result is No!";
             }
             else if (item.ReviewResult != null && item.ReviewResult1 != null) {
                 arrResult.push(item)
@@ -324,6 +378,10 @@
             if (item.ReviewResult1 == true && (item.Comment == null || item.Comment == "")) {
                 isSave = false;
                 message = "Please input Comment for Item result is false!";
+            }
+            else if (item.ReviewResult1 == true && (item.ResolutionOwner == null || item.ResolutionOwner == "")) {
+                isSave = false;
+                message = "Please input Resolution Owner for Item result is No!";
             }
             //else if (item.ReviewResult == null && item.ReviewResult1 == null) {
             //    isSave = false;
@@ -662,4 +720,55 @@
         return html;
     }
 
+    $(document).ready(function () {
+        var array = @Html.Raw(Json.Encode(ViewBag.LstColumnHide));
+        var grid = $('#gridSoReview').data('kendoGrid');
+  //  for(var i = 0; i < array.length; i++) {
+    //    grid.hideColumn(array[i]);
+    //    }
+
+        for (var i = 0; i < array.length; i++) {
+            debugger
+            grid.showColumn(array[i]);
+
+            var field = array[i];
+            $(grid.columns).each(function () {
+                if (this.field === field) {
+                    grid.reorderColumn(i, this);
+                }
+            });
+
+        }
+    });
+
+    function onFind(condition) {
+        $('.searchField').text(condition);
+
+        if (condition == 'ANALYST') {
+            $('#search').val();
+            $('#searchId').val('ANALYST');
+        }
+        else if (condition == 'SO_NO') {
+            $('#searchId').val('SO_NO');
+        }
+        $('#popupsearch').modal('show');
+    }
+    function onSearch() {
+        var searchText = $('#search').val().toLowerCase();
+        var number = $('#searchId').val();
+        if (number == 'ANALYST') {
+            $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "Analyst", operator: "contains", value: searchText });
+            $('#search').val("");
+        }
+        else if (number == 'SO_NO') {
+            $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SONO", operator: "contains", value: searchText });
+            $('#search').val("");
+        }
+        $('#popupsearch').modal('hide');
+    }
+    $("#clear").click(function () {
+        $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SONO", operator: "contains", value: "" });
+        $('#search').val("");
+        $('a.k-grid-filter').removeClass('k-state-active')
+    })
 </script>

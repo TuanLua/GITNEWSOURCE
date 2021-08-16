@@ -172,8 +172,10 @@ namespace II_VI_Incorporated_SCM.Models
         public virtual DbSet<tbl_RP_Store_Parameter> tbl_RP_Store_Parameter { get; set; }
         public virtual DbSet<tbl_RP_StoreProcedure> tbl_RP_StoreProcedure { get; set; }
         public virtual DbSet<tbl_SOR_Attached_ForItemReview> tbl_SOR_Attached_ForItemReview { get; set; }
+        public virtual DbSet<tbl_SOR_ColumnName_Data> tbl_SOR_ColumnName_Data { get; set; }
         public virtual DbSet<tbl_SOR_Cur_Review_Detail> tbl_SOR_Cur_Review_Detail { get; set; }
         public virtual DbSet<tbl_SOR_Cur_Review_List> tbl_SOR_Cur_Review_List { get; set; }
+        public virtual DbSet<tbl_SOR_DeptHideColumn> tbl_SOR_DeptHideColumn { get; set; }
         public virtual DbSet<tbl_SOR_Family_Setup_Qty> tbl_SOR_Family_Setup_Qty { get; set; }
         public virtual DbSet<tbl_SOR_His_Review_Detail> tbl_SOR_His_Review_Detail { get; set; }
         public virtual DbSet<tbl_SOR_His_Review_List> tbl_SOR_His_Review_List { get; set; }
@@ -8069,7 +8071,7 @@ namespace II_VI_Incorporated_SCM.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_tbl_SOR_GetListSoreviewbyUserLogin_Result2>("sp_tbl_SOR_GetListSoreviewbyUserLogin", departParameter);
         }
     
-        public virtual ObjectResult<sp_SOR_GetListSoreviewbyUserLogin_Result5> sp_SOR_GetListSoreviewbyUserLogin(string depart, string analyst)
+        public virtual ObjectResult<sp_SOR_GetListSoreviewbyUserLogin_Result6> sp_SOR_GetListSoreviewbyUserLogin(string depart, string analyst)
         {
             var departParameter = depart != null ?
                 new ObjectParameter("Depart", depart) :
@@ -8079,7 +8081,7 @@ namespace II_VI_Incorporated_SCM.Models
                 new ObjectParameter("Analyst", analyst) :
                 new ObjectParameter("Analyst", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SOR_GetListSoreviewbyUserLogin_Result5>("sp_SOR_GetListSoreviewbyUserLogin", departParameter, analystParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SOR_GetListSoreviewbyUserLogin_Result6>("sp_SOR_GetListSoreviewbyUserLogin", departParameter, analystParameter);
         }
     }
 }

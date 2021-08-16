@@ -1090,6 +1090,9 @@
     <Compile Include="Models\sp_SOR_GetListSoreviewbyUserLogin_Result5.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_SOR_GetListSoreviewbyUserLogin_Result6.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_SOR_GetSoOpen_Result.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
@@ -1381,10 +1384,16 @@
     <Compile Include="Models\tbl_SOR_Attached_ForItemReview.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_SOR_ColumnName_Data.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_SOR_Cur_Review_Detail.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_SOR_Cur_Review_List.cs">
+      <DependentUpon>II-VI-DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_SOR_DeptHideColumn.cs">
       <DependentUpon>II-VI-DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_SOR_Family_Setup_Qty.cs">
@@ -3998,6 +4007,8 @@
     <Content Include="Views\SOReview\ResultpartialView.cshtml" />
     <Content Include="Views\SOReview\AnalystReviewList.cshtml" />
     <Content Include="Views\SOReview\ListSoReviewApprove.cshtml" />
+    <Content Include="Views\SOReview\TaskManagementSoReview.cshtml" />
+    <Content Include="Views\SOReview\PICReviewHideColum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />

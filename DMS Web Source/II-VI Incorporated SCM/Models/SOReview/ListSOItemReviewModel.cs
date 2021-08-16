@@ -17,6 +17,7 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public string ItemReview { get; set; }
 
         public string DeptReview { get; set; }
+        public string ResultExport { get; set; }
 
         public bool? ReviewResult { get; set; }
         public bool? ReviewResult1 { get; set; }
@@ -61,6 +62,8 @@ namespace II_VI_Incorporated_SCM.Models.SOReview
         public double? OrderQty { get; set; }
 
         public double? BalanceQty {get; set;}
+
+        public string BalanceValueFormat { get; set; }
 
         public double? BalanceValue { get; set; }
         public string ITEM { get; set; }

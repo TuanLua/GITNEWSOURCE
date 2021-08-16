@@ -530,6 +530,58 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         }
 
         #endregion
+
+        #region PIC Set Up View Colum
+
+        public ActionResult PICReviewHideColum()
+        {
+            ViewBag.IsPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.Planner);
+            ViewBag.IsLeadofPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.LeadofPlanner);
+            var lstPIC = _iSoReviewService.GetListPICColumnHide();
+            return View(lstPIC);
+        }
+
+        [HttpPost]
+        public JsonResult SavePICReviewHideColum(string dept, string pic,string odernumber)
+        {
+            int odernumbers = Convert.ToInt32(odernumber);
+            PICReviewmodel data = new PICReviewmodel();
+            data.Dept = dept;
+            data.Pic = pic;
+            data.ODERNUNMBER = odernumbers;
+            Result res = _iSoReviewService.SaveDataPICColunnHide(data);
+            return Json(new { res.success, message = "Create sucess!", obj = res.obj });
+        }
+
+        [HttpPost]
+        public JsonResult UpdatePICReviewHideColum(string id, string dept, string pic,string odernumber)
+        {
+            int ID = Convert.ToInt32(id);
+            int odernumbers = Convert.ToInt32(odernumber);
+            PICReviewmodel data = new PICReviewmodel();
+            data.Dept = dept;
+            data.Pic = pic;
+            data.ODERNUNMBER = odernumbers;
+            Result res = _iSoReviewService.UpdateDataPICHideColumn(data, ID);
+            return Json(new { res.success, message = "Update sucess!", obj = res.obj });
+        }
+
+
+        [HttpPost]
+        public ActionResult DeletePICReviewHideColum(string id)
+        {
+            Result res = _iSoReviewService.DeleteDataPICColumnHide(id);
+            return Json(new { res.success, res.message }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult GetListColumn()
+        {
+            var result = _iSoReviewService.GetDropdownlistColumn();
+            return Json(result);
+        }
+        #endregion
+
+
         #region New Code
 
         [HttpPost]
@@ -619,7 +671,7 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
                 date = data.FirstOrDefault().DateDownLoad;
             }
             ViewBag.DownloadDate = date;
-            ViewData["ReviewResultText"] = _iSoReviewService.GetReviewResult();
+            ViewBag.LstColumnHide = _iSoReviewService.GetConditionHideColumn(depart);
             return View();
         }
 
@@ -678,22 +730,37 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
             var result = _iSoReviewService.GetListApproveSOReviewByPlanner("", isFilter, analyst);
             return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ListTaskmanagementSOReview(string date)
+        public ActionResult ListSoReviewPlannerApproveExportRead([DataSourceRequest] DataSourceRequest request, string isFilter)
+        {
+            var idUser = User.Identity.GetUserId();
+            var analyst = _iSoReviewService.GetAnalyst(idUser);
+            var result = _iSoReviewService.GetListApproveSOReviewByPlannerExport("", isFilter, analyst);
+            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ListTaskmanagementSOReview(string date =null)
         {
             ViewBag.Date = date;
             return View();
         }
 
-        public ActionResult ListFilemanagementSOReview(string date)
+        public ActionResult ListFilemanagementSOReview(string date = null)
         {
-            DateTime dates = DateTime.Parse(date);
+            DateTime dates = DateTime.Now;
+            if (date != null)
+            {
+                 dates = DateTime.Parse(date);
+            }
             var lstFile = _iSoReviewService.GetListFileItem(dates);
             return View(lstFile);
         }
 
-        public JsonResult GetListTaskSoreview([DataSourceRequest] DataSourceRequest request, string date)
+        public JsonResult GetListTaskSoreview([DataSourceRequest] DataSourceRequest request, string date = null)
         {
-            DateTime dates = DateTime.Parse(date);
+            DateTime dates = DateTime.Now;
+            if (date != null)
+            {
+                dates = DateTime.Parse(date);
+            }
             return Json(_iSoReviewService.GetListTaskSoreview(dates).ToDataSourceResult(request));
         }
 
@@ -701,6 +768,17 @@ namespace II_VI_Incorporated_SCM.Controllers.SOReview
         {
             ViewBag.IsLeadofPlanner = _IUserService.CheckGroupRoleForUser(User.Identity.GetUserId(), UserGroup.LeadofPlanner);
             return View();
+        }
+        #endregion
+
+        #region Task and File management
+        public ActionResult TaskManagementSoReview()
+        {
+            return View();
+        }
+        public JsonResult ReadListTaskMantNCR([DataSourceRequest] DataSourceRequest request)
+        {
+            return Json(_iTaskManagementService.GetListTaskNCR().ToDataSourceResult(request));
         }
         #endregion
     }

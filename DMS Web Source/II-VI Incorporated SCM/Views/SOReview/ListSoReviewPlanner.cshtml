@@ -44,9 +44,26 @@
 </div>
 
 <div class="col-sm-6" style="text-align:right">
-    <button class="btn btn-sm btn-warning" id="clear">Clear Filter</button>
+    <div class="actions">
+        <div class="btn-group">
+            <button type="button" class="btn green dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false" readonly>
+                <i class="fa"></i> Find By
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="javascript:;" id="clear"> Clear Filter</a>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="onFind('ANALYST')"> ANALYST </a>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="onFind('SO_NO')"> SO No </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-18 col-md-12">
@@ -71,29 +88,28 @@
                                                               columns.Bound(p => p.Comment).Title("Planner Comment").Width(250).Editable("false");
                                                               columns.Bound(p => p.NewSoReviewLW).Title("New SO vs last week").Width(100).Editable("true");
                                                               columns.Bound(p => p.FAI).Title("FAI").Width(100).Editable("true");
-                                                              columns.Bound(p => p.CoCofRoHS).Title("IQC-CoC of RoHS, Reach").Width(250).Editable("true");
+                                                              columns.Bound(p => p.CoCofRoHS).Title("IQC-CoC of RoHS, Reach").Width(250).Editable("true").ClientTemplate("#= CustomizecssCoCofRoHS(data) #");
                                                               columns.Bound(p => p.CoCofRoHSComment).Title("IQC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.Drawing).Title("ADC-Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)").Width(250).Editable("true");
+                                                              columns.Bound(p => p.Drawing).Title("ADC-Drawing/ICD/BOM macthing, procedure available (FA&Rev changed)").Width(250).Editable("true").ClientTemplate("#= CustomizecssDrawing(data) #");
                                                               columns.Bound(p => p.DrawingComment).Title("ADC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.Production).Title("Production - Enough & usable Tool  Process capable /Enough machine / test equipment").Width(250).Editable("true");
+                                                              columns.Bound(p => p.Production).Title("Production - Enough & usable Tool  Process capable /Enough machine / test equipment").Width(250).Editable("true").ClientTemplate("#= CustomizecssProduction(data) #");
                                                               columns.Bound(p => p.ProductionComment).Title("Production - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.Capacity).Title("PIC-Capacity").Width(250).Editable("true");
+                                                              columns.Bound(p => p.Capacity).Title("PIC-Capacity").Width(250).Editable("true").ClientTemplate("#= CustomizecssCapacity(data) #");
                                                               columns.Bound(p => p.CapacityComment).Title("PIC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.RawMaterial).Title("PIC-Raw Material & consumable").Width(250).Editable("true");
+                                                              columns.Bound(p => p.RawMaterial).Title("PIC-Raw Material & consumable").Width(250).Editable("true").ClientTemplate("#= CustomizecssRawMaterial(data) #");
                                                               columns.Bound(p => p.RawMaterialComment).Title("PIC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.Builtless).Title("PIC-Built less than 6 months").Width(250).Editable("true");
+                                                              columns.Bound(p => p.Builtless).Title("PIC-Built less than 6 months").Width(250).Editable("true").ClientTemplate("#= CustomizecssBuiltless(data) #");
                                                               columns.Bound(p => p.BuiltlessComment).Title("PIC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.AdditionalRequirementsReviewed).Title("PIC - Additional Requirements reviewed").Width(250).Editable("true");
+                                                              columns.Bound(p => p.AdditionalRequirementsReviewed).Title("PIC - Additional Requirements reviewed").Width(250).Editable("true").ClientTemplate("#= CustomizecssAdditionalRequirementsReviewed(data) #"); ;
                                                               columns.Bound(p => p.AdditionalRequirementsReviewedComment).Title("PIC - Comment").Width(120).Editable("true");
-                                                              columns.Bound(p => p.Carrier).Title("IM-EX-Carrier (Fedex, DHL, Schenker,…)").Width(250).Editable("true");
+                                                              columns.Bound(p => p.Carrier).Title("IM-EX-Carrier (Fedex, DHL, Schenker,…)").Width(250).Editable("true").ClientTemplate("#= CustomizecssCarrier(data) #");
                                                               columns.Bound(p => p.CarrierComment).Title("IM-EX - Comment").Width(120).Editable("true");
                                                               columns.Bound(p => p.ServiceTypeShipping).Title("IM-EX-Service Type/Shipping method (IP, IE, Saver,.. Air/Sea,…)")
-                                                              .Width(250).Editable("true");
+                                                              .Width(250).Editable("true").ClientTemplate("#= CustomizecssServiceTypeShipping(data) #");
                                                               columns.Bound(p => p.ServiceTypeShippingComment).Title("IM-EX - Comment")
                                                              .Width(120).Editable("true");
-                                                              columns.Bound(p => p.Special).Title("IM-EX- No Special request (BSO, IOR, COO…)").Width(250).Editable("true");
+                                                              columns.Bound(p => p.Special).Title("IM-EX- No Special request (BSO, IOR, COO…)").Width(250).Editable("true").ClientTemplate("#= CustomizecssSpecial(data) #");
                                                               columns.Bound(p => p.SpecialComment).Title("IM-EX - Comment").Width(120).Editable("true");
-
                                                               columns.Bound(p => p.ShipToLocation).Title("Ship To Location").Width(200).Editable("true");
 
                                                           }).ToolBar(tools => tools.Excel())
@@ -191,6 +207,33 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btn-addtask" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupsearch" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title searchField"></h4>
+            </div>
+            <div class="modal-body">
+                <br />
+                <div class="form-horizontal col-md-offset-1">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 lbWT searchField "></label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control boder-opal" id="search">
+                            <input type="hidden" class="form-control boder-opal" id="searchId">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="onSearch()" class="btn btn-success">Find</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -563,6 +606,127 @@
         }
         return html;
     }
+    function CustomizecssSpecial(data) {
+        if (data.Special == null) {
+            var html = kendo.format("<div class='background' style='background-color:red'>&nbsp;</div>");
+        }
+        else {
+            var html = data.Special;
+        }
+        return html;
+    }
+    function CustomizecssServiceTypeShipping(data) {
+        if (data.ServiceTypeShipping == null) {
+            var html = kendo.format("<div class='background' style='background-color:red'>&nbsp;</div>");
+        }
+        else {
+            var html = data.ServiceTypeShipping;
+        }
+        return html;
+    }
+    function CustomizecssCarrier(data) {
+        if (data.Carrier == null) {
+            var html = kendo.format("<div class='background' style='background-color:red'>&nbsp;</div>");
+        }
+        else {
+            var html = data.Carrier;
+        }
+        return html;
+    }
+    function CustomizecssBuiltless(data) {
+        if (data.Builtless == null) {
+            var html = kendo.format("<div class='background' style='background-color:red'>&nbsp;</div>");
+        }
+        else {
+            var html = data.Builtless;
+        }
+        return html;
+    }
+    function CustomizecssRawMaterial(data) {
+        if (data.RawMaterial == null) {
+            var html = kendo.format("<div class='background' style='background-color:red'>&nbsp;</div>");
+        }
+        else {
+            var html = data.RawMaterial;
+        }
+        return html;
+    }
+    function CustomizecssAdditionalRequirementsReviewed(data) {
+        if (data.AdditionalRequirementsReviewed == null) {
+            var html = kendo.format("<div class='background' style='background-color:red'>&nbsp;</div>");
+        }
+        else {
+            var html = data.AdditionalRequirementsReviewed;
+        }
+        return html;
+    }
+    function CustomizecssCapacity(data) {
+        if (data.Capacity == null) {
+            var html = kendo.format("<div class='background' style='background-color:red'>&nbsp;</div>");
+        }
+        else {
+            var html = data.Capacity;
+        }
+        return html;
+    }
+    function CustomizecssProduction(data) {
+        if (data.Production == null) {
+            var html = kendo.format("<div class='background' style='background-color:red'>&nbsp;</div>");
+        }
+        else {
+            var html = data.Production;
+        }
+        return html;
+    }
+    function CustomizecssDrawing(data) {
+        if (data.Drawing == null) {
+            var html = kendo.format("<div class='background' style='background-color:red'>&nbsp;</div>");
+        }
+        else {
+            var html = data.Drawing;
+        }
+        return html;
+    }
+    function CustomizecssCoCofRoHS(data) {
+        if (data.CoCofRoHS == null) {
+            var html = kendo.format("<div class='background' style='background-color:red'>&nbsp;</div>");
+        }
+        else {
+            var html = data.CoCofRoHS;
+        }
+        return html;
+    }
+    function onFind(condition) {
+        $('.searchField').text(condition);
+
+        if (condition == 'ANALYST') {
+            $('#search').val();
+            $('#searchId').val(0);
+        }
+        else if (condition == 'SO_NO') {
+            $('#searchId').val(1);
+        }
+        $('#popupsearch').modal('show');
+    }
+    function onSearch() {
+        var searchText = $('#search').val().toLowerCase();
+        var number = $('#searchId').val();
+        if (number == '0') {
+            $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "Analyst", operator: "contains", value: searchText });
+            $('#search').val("");
+        }
+        else if (number == '1') {
+            $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SONO", operator: "contains", value: searchText });
+            $('#search').val("");
+        }
+        $('#popupsearch').modal('hide');
+    }
+
+    $("#clear").click(function () {
+        $("#gridSoReview").data("kendoGrid").dataSource.filter({ field: "SONO", operator: "contains", value: "" });
+        $('#search').val("");
+        $('a.k-grid-filter').removeClass('k-state-active')
+    })
 </script>
 
 
